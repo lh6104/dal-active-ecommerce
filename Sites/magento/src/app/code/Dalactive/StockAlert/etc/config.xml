@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <dalactive_stockalert>
+            <general>
+                <enabled>1</enabled>
+                <email_enabled>0</email_enabled>
+                <email_sender>general</email_sender>
+                <email_template>stock_alert_email_template</email_template>
+                <allow_guest>1</allow_guest>
+            </general>
+        </dalactive_stockalert>
+    </default>
+</config>

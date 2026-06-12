@@ -1,0 +1,30 @@
+.hb-wrapper .hb-testimonoals ul li .hb-inner .hb-image {
+    align-items: center !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    text-align: center !important;
+}
+
+.hb-wrapper .hb-testimonoals ul li .hb-inner .hb-image > img[src*="/testimonial/messi.png"],
+.hb-wrapper .hb-testimonoals ul li .hb-inner .hb-image > img[src*="/testimonial/penaldo.webp"],
+.hb-wrapper .hb-testimonoals ul li .hb-inner .hb-image > img[src*="/testimonial/phamnhatvuong.png"],
+.hb-wrapper .hb-testimonoals ul li .hb-inner .hb-image > img {
+    aspect-ratio: 1 / 1 !important;
+    border-radius: 50% !important;
+    display: block !important;
+    height: 150px !important;
+    max-height: 150px !important;
+    max-width: 150px !important;
+    min-height: 150px !important;
+    min-width: 150px !important;
+    object-fit: cover !important;
+    object-position: center center !important;
+    overflow: hidden !important;
+    transform: none !important;
+    width: 150px !important;
+}
+
+.hb-wrapper .hb-testimonoals ul li .hb-inner:hover .hb-image > img {
+    transform: none !important;
+}

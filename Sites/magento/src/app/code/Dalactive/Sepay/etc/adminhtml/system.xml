@@ -1,0 +1,142 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="dalactive" translate="label" sortOrder="120">
+            <label>Dalactive</label>
+        </tab>
+        <section id="payment" translate="label" type="text" sortOrder="400" showInDefault="1" showInWebsite="1" showInStore="1">
+            <resource>Magento_Payment::payment</resource>
+            <group id="sepay" translate="label" type="text" sortOrder="13" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>QR chuyển khoản (SePay)</label>
+                <fieldset_css>complex</fieldset_css>
+                <frontend_model>Magento\Config\Block\System\Config\Form\Fieldset</frontend_model>
+                <attribute type="displayIn">other_payment_methods</attribute>
+                <attribute type="activity_path">payment/sepay/active</attribute>
+                <field id="active" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Enabled</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="title" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Checkout Title</label>
+                </field>
+                <field id="bank_code" translate="label comment" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>SePay Bank Code</label>
+                    <comment>Example: MB, VCB, CTG. Used as the bank query parameter for https://qr.sepay.vn/img.</comment>
+                </field>
+                <field id="bank_display_name" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Bank Display Name</label>
+                </field>
+                <field id="account_no" translate="label" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Bank Account Number</label>
+                </field>
+                <field id="account_name" translate="label" type="text" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Bank Account Name</label>
+                </field>
+                <field id="webhook_secret" translate="label comment" type="obscure" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Webhook Secret</label>
+                    <backend_model>Magento\Config\Model\Config\Backend\Encrypted</backend_model>
+                    <comment>SePay must send Authorization: apikey [secret] to /sepay/payment/webhook.</comment>
+                </field>
+                <field id="memo_prefix" translate="label comment" type="text" sortOrder="80" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Transfer Content Prefix</label>
+                    <comment>Order memo format is PREFIX + order increment ID, for example DH000000123.</comment>
+                </field>
+                <field id="payment_timeout" translate="label comment" type="text" sortOrder="90" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Payment Timeout (seconds)</label>
+                    <validate>validate-digits</validate>
+                    <comment>Used by the QR waiting page. Default: 900 seconds.</comment>
+                </field>
+                <field id="qr_base_url" translate="label" type="text" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>SePay QR Base URL</label>
+                    <validate>validate-url</validate>
+                </field>
+                <field id="sort_order" translate="label" type="text" sortOrder="110" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Sort Order</label>
+                    <frontend_class>validate-number</frontend_class>
+                </field>
+                <field id="allowspecific" translate="label" type="allowspecific" sortOrder="120" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Payment from Applicable Countries</label>
+                    <source_model>Magento\Payment\Model\Config\Source\Allspecificcountries</source_model>
+                </field>
+                <field id="specificcountry" translate="label" type="multiselect" sortOrder="130" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Payment from Specific Countries</label>
+                    <source_model>Magento\Directory\Model\Config\Source\Country</source_model>
+                    <can_be_empty>1</can_be_empty>
+                </field>
+            </group>
+        </section>
+        <section id="dalactive_sepay" translate="label" sortOrder="80" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>SePay / QR chuyển khoản</label>
+            <tab>dalactive</tab>
+            <resource>Dalactive_Sepay::config</resource>
+            <group id="general" translate="label" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>QR chuyển khoản Settings</label>
+                <field id="active" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Enabled</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <config_path>payment/sepay/active</config_path>
+                </field>
+                <field id="title" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Checkout Title</label>
+                    <config_path>payment/sepay/title</config_path>
+                </field>
+                <field id="bank_code" translate="label comment" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>SePay Bank Code</label>
+                    <comment>Example: MB, VCB, CTG. Used as the bank query parameter for https://qr.sepay.vn/img.</comment>
+                    <config_path>payment/sepay/bank_code</config_path>
+                </field>
+                <field id="bank_display_name" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Bank Display Name</label>
+                    <config_path>payment/sepay/bank_display_name</config_path>
+                </field>
+                <field id="account_no" translate="label" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Bank Account Number</label>
+                    <config_path>payment/sepay/account_no</config_path>
+                </field>
+                <field id="account_name" translate="label" type="text" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Bank Account Name</label>
+                    <config_path>payment/sepay/account_name</config_path>
+                </field>
+                <field id="webhook_secret" translate="label comment" type="obscure" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Webhook Secret</label>
+                    <backend_model>Magento\Config\Model\Config\Backend\Encrypted</backend_model>
+                    <comment>SePay must send Authorization: apikey [secret] to /sepay/payment/webhook.</comment>
+                    <config_path>payment/sepay/webhook_secret</config_path>
+                </field>
+                <field id="memo_prefix" translate="label comment" type="text" sortOrder="80" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Transfer Content Prefix</label>
+                    <comment>Order memo format is PREFIX + order increment ID, for example DH000000123.</comment>
+                    <config_path>payment/sepay/memo_prefix</config_path>
+                </field>
+                <field id="payment_timeout" translate="label comment" type="text" sortOrder="90" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Payment Timeout (seconds)</label>
+                    <validate>validate-digits</validate>
+                    <comment>Used by the QR waiting page. Default: 900 seconds.</comment>
+                    <config_path>payment/sepay/payment_timeout</config_path>
+                </field>
+                <field id="qr_base_url" translate="label" type="text" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>SePay QR Base URL</label>
+                    <validate>validate-url</validate>
+                    <config_path>payment/sepay/qr_base_url</config_path>
+                </field>
+                <field id="sort_order" translate="label" type="text" sortOrder="110" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Sort Order</label>
+                    <frontend_class>validate-number</frontend_class>
+                    <config_path>payment/sepay/sort_order</config_path>
+                </field>
+                <field id="allowspecific" translate="label" type="allowspecific" sortOrder="120" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Payment from Applicable Countries</label>
+                    <source_model>Magento\Payment\Model\Config\Source\Allspecificcountries</source_model>
+                    <config_path>payment/sepay/allowspecific</config_path>
+                </field>
+                <field id="specificcountry" translate="label" type="multiselect" sortOrder="130" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Payment from Specific Countries</label>
+                    <source_model>Magento\Directory\Model\Config\Source\Country</source_model>
+                    <can_be_empty>1</can_be_empty>
+                    <config_path>payment/sepay/specificcountry</config_path>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

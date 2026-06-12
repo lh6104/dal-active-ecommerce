@@ -1,0 +1,317 @@
+.cms-index-index {
+    overflow-x: hidden;
+}
+
+.cms-index-index .page-wrapper {
+    overflow-x: clip;
+}
+
+.dalactive-hero {
+    position: relative;
+    left: 50%;
+    right: 50%;
+    width: 100vw;
+    max-width: 100vw;
+    height: calc(100vw * 553.39 / 1138.54);
+    min-height: 420px;
+    max-height: 760px;
+    margin-left: -50vw;
+    margin-right: -50vw;
+    background: #f4f8fc;
+    overflow: hidden;
+}
+
+.dalactive-hero-track,
+.dalactive-hero-slide,
+.dalactive-hero-media {
+    position: absolute;
+    inset: 0;
+}
+
+.dalactive-hero-slide {
+    opacity: 0;
+    pointer-events: none;
+    visibility: hidden;
+    z-index: 0;
+    transition: opacity .45s ease;
+}
+
+.dalactive-hero-slide.is-active {
+    opacity: 1;
+    pointer-events: auto;
+    visibility: visible;
+    z-index: 1;
+}
+
+.dalactive-hero-media img,
+.dalactive-hero-media video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.dalactive-hero-content {
+    position: absolute;
+    left: 50%;
+    bottom: 72px;
+    transform: translateX(-50%);
+    width: min(940px, calc(100% - 40px));
+    text-align: center;
+    z-index: 2;
+}
+
+.dalactive-hero-content h1 {
+    margin: 0;
+    color: inherit;
+    font-size: 76px;
+    font-weight: 900;
+    line-height: .92;
+    letter-spacing: 0;
+    text-transform: uppercase;
+}
+
+.dalactive-hero-content p {
+    margin: 10px auto 0;
+    max-width: 760px;
+    color: inherit;
+    font-size: 16px;
+    line-height: 1.35;
+}
+
+.dalactive-hero-actions {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 14px;
+    margin-top: 20px;
+}
+
+.dalactive-hero-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 156px;
+    min-height: 56px;
+    padding: 0 28px;
+    border-radius: 5px;
+    background: #1778f2;
+    color: #fff;
+    box-shadow: 0 12px 28px rgba(23, 120, 242, .26);
+    font-weight: 800;
+    font-size: 22px;
+    line-height: 1;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: background-color .2s ease, box-shadow .2s ease;
+}
+
+.dalactive-hero-button,
+.dalactive-hero-button:visited,
+.dalactive-hero-button:active {
+    color: #fff;
+}
+
+.dalactive-hero-button:hover,
+.dalactive-hero-button:focus {
+    background: #0b6fff;
+    color: #fff;
+    box-shadow: 0 16px 34px rgba(11, 111, 255, .34);
+    text-decoration: none;
+    transform: translateY(-1px);
+}
+
+.dalactive-hero-controls {
+    position: absolute;
+    right: 24px;
+    bottom: 24px;
+    z-index: 3;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.dalactive-hero-controls button {
+    min-width: 42px;
+    min-height: 42px;
+    border: 0;
+    border-radius: 0;
+    background: #061a33;
+    color: #fff;
+    box-shadow: 0 8px 18px rgba(6, 26, 51, .2);
+    font-size: 22px;
+    line-height: 1;
+    cursor: pointer;
+    transition: background-color .2s ease, box-shadow .2s ease;
+}
+
+.dalactive-hero-controls button:hover,
+.dalactive-hero-controls button:focus {
+    background: #0b6fff;
+    color: #fff;
+    box-shadow: 0 12px 26px rgba(11, 111, 255, .28);
+}
+
+.dalactive-hero-prev {
+    padding: 6px 22px 8px 20px;
+}
+
+.dalactive-hero-next {
+    padding: 6px 20px 8px 22px;
+}
+
+.dalactive-hero-pause {
+    --hero-pause-progress: 0;
+    align-items: center;
+    background: rgba(6, 26, 51, .6) !important;
+    border-radius: 50% !important;
+    display: inline-flex;
+    justify-content: center;
+    min-width: 42px !important;
+    min-height: 42px !important;
+    padding: 0;
+    position: relative;
+}
+
+.dalactive-hero-pause:hover,
+.dalactive-hero-pause:focus {
+    background: rgba(11, 111, 255, .75) !important;
+}
+
+.dalactive-hero-pause-ring {
+    background:
+        conic-gradient(#fff calc(var(--hero-pause-progress) * 1turn), rgba(255, 255, 255, .28) 0);
+    border-radius: 50%;
+    inset: 0;
+    position: absolute;
+}
+
+.dalactive-hero-pause-ring:after {
+    background: rgba(6, 26, 51, .78);
+    border-radius: 50%;
+    content: "";
+    inset: 4px;
+    position: absolute;
+}
+
+.dalactive-hero-pause-icon {
+    height: 16px;
+    position: relative;
+    width: 14px;
+    z-index: 1;
+}
+
+.dalactive-hero-pause-icon:before,
+.dalactive-hero-pause-icon:after {
+    background: #fff;
+    border-radius: 1px;
+    content: "";
+    height: 16px;
+    position: absolute;
+    top: 0;
+    width: 4px;
+}
+
+.dalactive-hero-pause-icon:before {
+    left: 1px;
+}
+
+.dalactive-hero-pause-icon:after {
+    right: 1px;
+}
+
+.dalactive-hero-pause.is-paused .dalactive-hero-pause-icon:before {
+    border-bottom: 8px solid transparent;
+    border-left: 11px solid #fff;
+    border-radius: 0;
+    border-top: 8px solid transparent;
+    background: transparent;
+    height: 0;
+    left: 3px;
+    top: 0;
+    width: 0;
+}
+
+.dalactive-hero-pause.is-paused .dalactive-hero-pause-icon:after {
+    display: none;
+}
+
+.dalactive-hero-dots {
+    position: absolute;
+    left: 50%;
+    bottom: 32px;
+    z-index: 3;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 9px;
+}
+
+.dalactive-hero-dot {
+    width: 7px;
+    height: 7px;
+    border: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, .55);
+    padding: 0;
+}
+
+.dalactive-hero-dot.is-active {
+    background: #fff;
+}
+
+@media (max-width: 767px) {
+    .dalactive-hero {
+        height: min(620px, calc(100svh - 120px));
+        min-height: 430px;
+    }
+
+    .dalactive-hero-content {
+        bottom: 62px;
+        width: min(520px, calc(100% - 28px));
+    }
+
+    .dalactive-hero-content h1 {
+        font-size: 42px;
+    }
+
+    .dalactive-hero-content p {
+        font-size: 14px;
+    }
+
+    .dalactive-hero-actions {
+        gap: 8px;
+        margin-top: 16px;
+    }
+
+    .dalactive-hero-button {
+        min-width: 132px;
+        min-height: 46px;
+        padding: 0 18px;
+        font-size: 15px;
+    }
+
+    .dalactive-hero-controls {
+        right: 16px;
+        bottom: 16px;
+        gap: 5px;
+    }
+
+    .dalactive-hero-controls button {
+        min-width: 42px;
+        min-height: 38px;
+        font-size: 21px;
+    }
+
+    .dalactive-hero-prev {
+        padding: 5px 15px 7px 13px;
+    }
+
+    .dalactive-hero-next {
+        padding: 5px 13px 7px 15px;
+    }
+
+    .dalactive-hero-pause {
+        min-width: 38px !important;
+        min-height: 38px !important;
+    }
+}

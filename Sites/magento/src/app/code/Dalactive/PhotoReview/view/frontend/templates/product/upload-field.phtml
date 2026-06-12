@@ -1,0 +1,22 @@
+<?php
+/** @var \Dalactive\PhotoReview\Block\Product\UploadField $block */
+?>
+<?php if ($block->isEnabled()): ?>
+    <div class="field dalactive-photo-review-upload">
+        <label class="label" for="dalactive-review-images">
+            <span><?= $block->escapeHtml(__('Thêm ảnh đánh giá')) ?></span>
+        </label>
+        <div class="control">
+            <input id="dalactive-review-images"
+                   type="file"
+                   name="dalactive_review_images[]"
+                   accept="image/jpeg,image/png,image/webp"
+                   multiple="multiple"
+                   data-max-images="<?= (int) $block->getMaxImages() ?>"
+                   data-max-size-kb="<?= (int) $block->getMaxImageSize() ?>"/>
+            <div class="note">
+                <?= $block->escapeHtml(__('Tối đa %1 ảnh, mỗi ảnh tối đa %2MB.', $block->getMaxImages(), (int) ceil($block->getMaxImageSize() / 1024))) ?>
+            </div>
+        </div>
+    </div>
+<?php endif; ?>

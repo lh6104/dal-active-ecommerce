@@ -1,0 +1,77 @@
+<?php
+/**
+ * Product detail accordions for the DAL Active product layout.
+ *
+ * @var \Magento\Catalog\Block\Product\View $block
+ */
+$_product = $block->getProduct();
+$_outputHelper = $this->helper(\Magento\Catalog\Helper\Output::class);
+$_description = trim((string) $_product->getDescription());
+$_shortDescription = trim((string) $_product->getShortDescription());
+$_color = $_product->getAttributeText('color');
+$_manufacturer = $_product->getAttributeText('manufacturer');
+$_style = $_product->getSku();
+$_sections = [];
+
+if ($_description || $_shortDescription) {
+    $_sections[] = [
+        'id' => 'description',
+        'title' => __('Product Details'),
+        'content' => $_description
+            ? $_outputHelper->productAttribute($_product, $_description, 'description')
+            : $_outputHelper->productAttribute($_product, $_shortDescription, 'short_description'),
+    ];
+}
+
+$_meta = [];
+if ($_color) {
+    $_meta[] = __('Color: %1', is_array($_color) ? implode(', ', $_color) : $_color);
+}
+if ($_style) {
+    $_meta[] = __('Style/SKU: %1', $_style);
+}
+if ($_manufacturer) {
+    $_meta[] = __('Brand: %1', is_array($_manufacturer) ? implode(', ', $_manufacturer) : $_manufacturer);
+}
+if ($_meta) {
+    $_sections[] = [
+        'id' => 'metadata',
+        'title' => __('Product Information'),
+        'content' => '<ul><li>' . implode('</li><li>', array_map([$block, 'escapeHtml'], $_meta)) . '</li></ul>',
+    ];
+}
+
+$_sections[] = [
+    'id' => 'delivery',
+    'title' => __('Delivery & Returns'),
+    'content' => '<p>' . $block->escapeHtml(__('Delivery options and return eligibility are confirmed during checkout.')) . '</p>',
+];
+
+$_sections[] = [
+    'id' => 'reviews',
+    'title' => __('Reviews'),
+    'content' => '<p>' . $block->escapeHtml(__('Review this product or read customer feedback below.')) . '</p>'
+        . '<p><a href="#reviews">' . $block->escapeHtml(__('Go to reviews')) . '</a></p>',
+];
+?>
+<?php if ($_sections): ?>
+    <div class="dalactive-product-accordions">
+        <?php foreach ($_sections as $_index => $_section): ?>
+            <?php $_panelId = 'dalactive-product-accordion-' . $_section['id']; ?>
+            <section class="dalactive-product-accordion">
+                <button class="dalactive-product-accordion-trigger"
+                        type="button"
+                        aria-expanded="<?= $_index === 0 ? 'true' : 'false' ?>"
+                        aria-controls="<?= $block->escapeHtmlAttr($_panelId) ?>">
+                    <span><?= $block->escapeHtml($_section['title']) ?></span>
+                    <span aria-hidden="true">+</span>
+                </button>
+                <div class="dalactive-product-accordion-panel"
+                     id="<?= $block->escapeHtmlAttr($_panelId) ?>"
+                    <?= $_index === 0 ? '' : 'hidden' ?>>
+                    <?= /* @noEscape */ $_section['content'] ?>
+                </div>
+            </section>
+        <?php endforeach; ?>
+    </div>
+<?php endif; ?>

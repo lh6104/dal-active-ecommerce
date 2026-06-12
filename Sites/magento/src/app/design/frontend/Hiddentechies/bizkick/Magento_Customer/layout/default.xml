@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="header.links">
+            <block class="Magento\Customer\Block\Account\Customer" name="customer" template="Magento_Customer::account/customer.phtml" after="dalactive-header-storelocator-link"/>
+            <block class="Magento\Framework\View\Element\Template" name="dalactive-header-weather-link" template="Magento_Theme::html/header-link.phtml" before="customer">
+                <arguments>
+                    <argument name="label" xsi:type="string" translate="true">Thời tiết</argument>
+                    <argument name="path" xsi:type="string">weather/index/index</argument>
+                </arguments>
+            </block>
+            <block class="Magento\Framework\View\Element\Template" name="dalactive-header-news-link" template="Magento_Theme::html/header-link.phtml" after="dalactive-header-weather-link">
+                <arguments>
+                    <argument name="label" xsi:type="string" translate="true">Tin tức</argument>
+                    <argument name="path" xsi:type="string">economicnews/index/index</argument>
+                </arguments>
+            </block>
+            <block class="Magento\Framework\View\Element\Template" name="dalactive-header-exchange-link" template="Magento_Theme::html/header-link.phtml" after="dalactive-header-news-link">
+                <arguments>
+                    <argument name="label" xsi:type="string" translate="true">Tỷ giá</argument>
+                    <argument name="path" xsi:type="string">exchangerate/index/index</argument>
+                </arguments>
+            </block>
+            <block class="Magento\Framework\View\Element\Template" name="dalactive-header-storelocator-link" template="Magento_Theme::html/header-link.phtml" after="dalactive-header-exchange-link">
+                <arguments>
+                    <argument name="label" xsi:type="string" translate="true">Cửa hàng</argument>
+                    <argument name="path" xsi:type="string">find-a-store</argument>
+                </arguments>
+            </block>
+
+        </referenceBlock>
+        <referenceBlock name="header" remove="true"/>
+        <referenceBlock name="register-link" remove="true"/>
+        <move element="top.links" destination="customer"/>
+        <move element="authorization-link" destination="top.links" after="-"/>
+    </body>
+</page>

@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="sales_order_payment_cancel">
+        <observer name="dalactive_checkoutfix_order_cancel_after" instance="Dalactive\CheckoutFix\Observer\OrderCancelAfter"/>
+    </event>
+    <event name="sales_order_item_cancel">
+        <observer name="dalactive_checkoutfix_order_cancel_after2" instance="Dalactive\CheckoutFix\Observer\OrderCancelAfter"/>
+    </event>
+    <event name="order_cancel_after">
+        <observer name="dalactive_checkoutfix_order_cancel_after3" instance="Dalactive\CheckoutFix\Observer\OrderCancelAfter"/>
+    </event>
+</config>

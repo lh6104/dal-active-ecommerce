@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="content">
+            <block class="Dalactive\SizeGuide\Block\Adminhtml\Listing"
+                   name="dalactive.brand.admin.listing"
+                   template="Dalactive_SizeGuide::listing.phtml">
+                <arguments>
+                    <argument name="table" xsi:type="string">dalactive_brand</argument>
+                    <argument name="columns" xsi:type="string">brand_id,name,url_key,status</argument>
+                </arguments>
+            </block>
+        </referenceContainer>
+    </body>
+</page>

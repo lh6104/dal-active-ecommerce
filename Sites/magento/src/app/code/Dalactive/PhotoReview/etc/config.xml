@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <dalactive_photoreview>
+            <general>
+                <enabled>1</enabled>
+                <max_images>3</max_images>
+                <max_image_size>2048</max_image_size>
+                <allow_guest>0</allow_guest>
+                <require_approval>1</require_approval>
+            </general>
+        </dalactive_photoreview>
+    </default>
+</config>

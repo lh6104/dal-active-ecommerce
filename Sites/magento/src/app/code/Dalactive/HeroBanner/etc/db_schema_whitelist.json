@@ -1,0 +1,28 @@
+{
+    "dalactive_herobanner_slide": {
+        "column": {
+            "slide_id": true,
+            "name": true,
+            "media_type": true,
+            "media_path": true,
+            "eyebrow_left": true,
+            "eyebrow_right": true,
+            "headline": true,
+            "subtitle": true,
+            "button1_text": true,
+            "button1_url": true,
+            "button2_text": true,
+            "button2_url": true,
+            "text_color": true,
+            "button_style": true,
+            "timeout_ms": true,
+            "sort_order": true,
+            "status": true,
+            "created_at": true,
+            "updated_at": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    }
+}

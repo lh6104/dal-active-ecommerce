@@ -1,0 +1,104 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="dalactive" translate="label" sortOrder="120">
+            <label>DAL Active</label>
+        </tab>
+        <section id="dalactive_shoppingassistant" translate="label" sortOrder="95"
+                 showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Shopping Assistant</label>
+            <tab>dalactive</tab>
+            <resource>Dalactive_ShoppingAssistant::config</resource>
+            <group id="general" translate="label" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>General</label>
+                <field id="enabled" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable Module</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="widget_enabled" translate="label" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable Chat Widget</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="logging_enabled" translate="label" type="select" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable Conversation Logging</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="max_message_length" translate="label comment" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Max User Message Length</label>
+                    <comment>Default 500. Frontend and backend clamp to 50-1000.</comment>
+                    <validate>validate-number validate-greater-than-zero</validate>
+                </field>
+                <field id="bot_name" translate="label" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Bot Name</label>
+                </field>
+                <field id="welcome_message" translate="label" type="textarea" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Welcome Message</label>
+                </field>
+                <field id="fallback_message" translate="label" type="textarea" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Fallback Message</label>
+                </field>
+            </group>
+            <group id="ai" translate="label" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>AI / Groq</label>
+                <field id="enabled" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable AI Response</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="api_key" translate="label" type="obscure" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Groq API Key</label>
+                    <backend_model>Magento\Config\Model\Config\Backend\Encrypted</backend_model>
+                </field>
+                <field id="endpoint" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Groq API Endpoint</label>
+                </field>
+                <field id="model" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Groq Model</label>
+                </field>
+                <field id="temperature" translate="label" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Temperature</label>
+                    <validate>validate-number</validate>
+                </field>
+                <field id="max_tokens" translate="label" type="text" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Max Tokens</label>
+                    <validate>validate-number validate-greater-than-zero</validate>
+                </field>
+                <field id="timeout" translate="label" type="text" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Timeout Seconds</label>
+                    <validate>validate-number validate-greater-than-zero</validate>
+                </field>
+                <field id="streaming" translate="label" type="select" sortOrder="80" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable Streaming</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="system_prompt" translate="label" type="textarea" sortOrder="90" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>System Prompt</label>
+                </field>
+            </group>
+            <group id="features" translate="label" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Features</label>
+                <field id="latest_products" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1"><label>Enable Latest Products</label><source_model>Magento\Config\Model\Config\Source\Yesno</source_model></field>
+                <field id="size_advisor" translate="label" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1"><label>Enable Size Advisor</label><source_model>Magento\Config\Model\Config\Source\Yesno</source_model></field>
+                <field id="promotion_assistant" translate="label" type="select" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1"><label>Enable Promotion Assistant</label><source_model>Magento\Config\Model\Config\Source\Yesno</source_model></field>
+                <field id="stock_check" translate="label" type="select" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1"><label>Enable Stock Check</label><source_model>Magento\Config\Model\Config\Source\Yesno</source_model></field>
+                <field id="product_recommendation" translate="label" type="select" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1"><label>Enable Product Recommendation</label><source_model>Magento\Config\Model\Config\Source\Yesno</source_model></field>
+                <field id="order_guide" translate="label" type="select" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1"><label>Enable Order Guide</label><source_model>Magento\Config\Model\Config\Source\Yesno</source_model></field>
+                <field id="knowledge_base" translate="label" type="select" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="1"><label>Enable Knowledge Base</label><source_model>Magento\Config\Model\Config\Source\Yesno</source_model></field>
+                <field id="suggested_messages" translate="label" type="select" sortOrder="80" showInDefault="1" showInWebsite="1" showInStore="1"><label>Enable Suggested Messages</label><source_model>Magento\Config\Model\Config\Source\Yesno</source_model></field>
+            </group>
+            <group id="suggestions" translate="label" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Suggested Messages</label>
+                <field id="enabled" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1"><label>Enable Suggested Messages</label><source_model>Magento\Config\Model\Config\Source\Yesno</source_model></field>
+                <field id="max_shown" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1"><label>Max Suggested Messages Shown</label><validate>validate-number validate-greater-than-zero</validate></field>
+                <field id="dynamic" translate="label" type="select" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1"><label>Allow Dynamic Suggestions</label><source_model>Magento\Config\Model\Config\Source\Yesno</source_model></field>
+            </group>
+            <group id="recommendation" translate="label" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Product Recommendation</label>
+                <field id="max_products" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1"><label>Max Recommended Products</label><validate>validate-number validate-greater-than-zero</validate></field>
+                <field id="default_limit" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1"><label>Default Product Limit</label><validate>validate-number validate-greater-than-zero</validate></field>
+                <field id="default_sort" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1"><label>Default Sort</label></field>
+                <field id="include_out_of_stock" translate="label" type="select" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1"><label>Include Out Of Stock</label><source_model>Magento\Config\Model\Config\Source\Yesno</source_model></field>
+            </group>
+        </section>
+    </system>
+</config>

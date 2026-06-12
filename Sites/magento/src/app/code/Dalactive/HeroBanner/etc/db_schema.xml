@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="dalactive_herobanner_slide" resource="default" engine="innodb" comment="Dalactive Hero Banner Slides">
+        <column xsi:type="int" name="slide_id" unsigned="true" nullable="false" identity="true"/>
+        <column xsi:type="varchar" name="name" nullable="false" length="255"/>
+        <column xsi:type="varchar" name="media_type" nullable="false" length="16" default="image"/>
+        <column xsi:type="varchar" name="media_path" nullable="false" length="255"/>
+        <column xsi:type="varchar" name="eyebrow_left" nullable="true" length="255"/>
+        <column xsi:type="varchar" name="eyebrow_right" nullable="true" length="255"/>
+        <column xsi:type="varchar" name="headline" nullable="true" length="255"/>
+        <column xsi:type="text" name="subtitle" nullable="true"/>
+        <column xsi:type="varchar" name="button1_text" nullable="true" length="128"/>
+        <column xsi:type="varchar" name="button1_url" nullable="true" length="255"/>
+        <column xsi:type="varchar" name="button2_text" nullable="true" length="128"/>
+        <column xsi:type="varchar" name="button2_url" nullable="true" length="255"/>
+        <column xsi:type="varchar" name="text_color" nullable="true" length="32" default="#ffffff"/>
+        <column xsi:type="varchar" name="button_style" nullable="true" length="32" default="light"/>
+        <column xsi:type="int" name="timeout_ms" nullable="true" comment="Slide Timeout In Milliseconds"/>
+        <column xsi:type="int" name="sort_order" nullable="false" default="0"/>
+        <column xsi:type="smallint" name="status" unsigned="true" nullable="false" default="1"/>
+        <column xsi:type="timestamp" name="created_at" nullable="false" default="CURRENT_TIMESTAMP"/>
+        <column xsi:type="timestamp" name="updated_at" nullable="false" default="CURRENT_TIMESTAMP" on_update="true"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="slide_id"/>
+        </constraint>
+    </table>
+</schema>

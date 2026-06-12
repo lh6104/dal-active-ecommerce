@@ -1,0 +1,48 @@
+<?php
+/** @var \Dalactive\StoreLocator\Block\Adminhtml\StoreList $block */
+?>
+<div class="page-main-actions">
+    <div class="page-actions">
+        <a class="action-primary" href="<?= $block->escapeUrl($block->getUrl('*/*/new')) ?>">
+            <?= $block->escapeHtml(__('Add New Store')) ?>
+        </a>
+    </div>
+</div>
+<table class="data-grid">
+    <thead>
+        <tr>
+            <th class="data-grid-th"><?= $block->escapeHtml(__('ID')) ?></th>
+            <th class="data-grid-th"><?= $block->escapeHtml(__('Store Name')) ?></th>
+            <th class="data-grid-th"><?= $block->escapeHtml(__('Address')) ?></th>
+            <th class="data-grid-th"><?= $block->escapeHtml(__('City')) ?></th>
+            <th class="data-grid-th"><?= $block->escapeHtml(__('Region/Province')) ?></th>
+            <th class="data-grid-th"><?= $block->escapeHtml(__('Latitude')) ?></th>
+            <th class="data-grid-th"><?= $block->escapeHtml(__('Longitude')) ?></th>
+            <th class="data-grid-th"><?= $block->escapeHtml(__('Status')) ?></th>
+            <th class="data-grid-th"><?= $block->escapeHtml(__('Sort Order')) ?></th>
+            <th class="data-grid-th"><?= $block->escapeHtml(__('Updated At')) ?></th>
+            <th class="data-grid-th"><?= $block->escapeHtml(__('Action')) ?></th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php foreach ($block->getStores() as $store): ?>
+            <tr>
+                <td><?= (int) $store->getId() ?></td>
+                <td><?= $block->escapeHtml((string) $store->getData('name')) ?></td>
+                <td><?= $block->escapeHtml((string) $store->getData('address')) ?></td>
+                <td><?= $block->escapeHtml((string) $store->getData('city')) ?></td>
+                <td><?= $block->escapeHtml((string) $store->getData('region')) ?></td>
+                <td><?= $block->escapeHtml((string) $store->getData('latitude')) ?></td>
+                <td><?= $block->escapeHtml((string) $store->getData('longitude')) ?></td>
+                <td><?= (int) $store->getData('is_active') === 1 ? $block->escapeHtml(__('Active')) : $block->escapeHtml(__('Inactive')) ?></td>
+                <td><?= (int) $store->getData('sort_order') ?></td>
+                <td><?= $block->escapeHtml((string) $store->getData('updated_at')) ?></td>
+                <td>
+                    <a href="<?= $block->escapeUrl($block->getUrl('*/*/edit', ['entity_id' => $store->getId()])) ?>"><?= $block->escapeHtml(__('Edit')) ?></a>
+                    |
+                    <a href="<?= $block->escapeUrl($block->getUrl('*/*/delete', ['entity_id' => $store->getId()])) ?>" onclick="return confirm('<?= $block->escapeJs(__('Delete this store?')) ?>');"><?= $block->escapeHtml(__('Delete')) ?></a>
+                </td>
+            </tr>
+        <?php endforeach; ?>
+    </tbody>
+</table>

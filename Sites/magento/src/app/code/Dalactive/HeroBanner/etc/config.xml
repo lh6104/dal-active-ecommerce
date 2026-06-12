@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <dalactive_herobanner>
+            <general>
+                <enabled>1</enabled>
+                <autoplay>1</autoplay>
+                <interval>6000</interval>
+                <show_arrows>1</show_arrows>
+                <show_dots>1</show_dots>
+                <pause_button>1</pause_button>
+            </general>
+        </dalactive_herobanner>
+    </default>
+</config>

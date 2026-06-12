@@ -1,0 +1,51 @@
+<?php
+/** @var \Dalactive\HeroBanner\Block\Hero $block */
+$slides = $block->getSlides();
+?>
+<?php if ($block->isEnabled() && $slides->getSize()): ?>
+    <section class="dalactive-hero" data-mage-init='{"Dalactive_HeroBanner/js/herobanner": <?= $block->escapeHtmlAttr($block->getSettingsJson()) ?>}'>
+        <div class="dalactive-hero-track">
+            <?php $slideIndex = 0; ?>
+            <?php foreach ($slides as $slide): ?>
+                <?php
+                $mediaUrl = $block->getMediaUrl((string) $slide->getData('media_path'));
+                $mediaType = (string) $slide->getData('media_type');
+                ?>
+                <article class="dalactive-hero-slide<?= $slideIndex === 0 ? ' is-active' : '' ?>" data-timeout="<?= (int) $slide->getData('timeout_ms') ?>" style="color: <?= $block->escapeHtmlAttr((string) ($slide->getData('text_color') ?: '#ffffff')) ?>">
+                    <div class="dalactive-hero-media">
+                        <?php if ($mediaType === 'video'): ?>
+                            <video autoplay muted loop playsinline preload="metadata">
+                                <source src="<?= $block->escapeUrl($mediaUrl) ?>"/>
+                            </video>
+                        <?php else: ?>
+                            <img src="<?= $block->escapeUrl($mediaUrl) ?>" alt="<?= $block->escapeHtmlAttr((string) $slide->getData('name')) ?>"/>
+                        <?php endif; ?>
+                    </div>
+                    <div class="dalactive-hero-content">
+                        <?php if ($slide->getData('headline')): ?>
+                            <h1><?= $block->escapeHtml((string) $slide->getData('headline')) ?></h1>
+                        <?php endif; ?>
+                        <?php if ($slide->getData('subtitle')): ?>
+                            <p><?= $block->escapeHtml((string) $slide->getData('subtitle')) ?></p>
+                        <?php endif; ?>
+                        <?php if ($slide->getData('button1_url')): ?>
+                            <div class="dalactive-hero-actions">
+                                <a class="dalactive-hero-button" href="<?= $block->escapeUrl((string) $slide->getData('button1_url')) ?>"><?= $block->escapeHtml((string) ($slide->getData('button1_text') ?: __('Shop Now'))) ?></a>
+                            </div>
+                        <?php endif; ?>
+                    </div>
+                </article>
+                <?php $slideIndex++; ?>
+            <?php endforeach; ?>
+        </div>
+        <div class="dalactive-hero-controls">
+            <button type="button" class="dalactive-hero-pause" aria-label="<?= $block->escapeHtmlAttr(__('Pause hero')) ?>">
+                <span class="dalactive-hero-pause-ring"></span>
+                <span class="dalactive-hero-pause-icon" aria-hidden="true"></span>
+            </button>
+            <button type="button" class="dalactive-hero-prev" aria-label="<?= $block->escapeHtmlAttr(__('Previous banner')) ?>">‹</button>
+            <button type="button" class="dalactive-hero-next" aria-label="<?= $block->escapeHtmlAttr(__('Next banner')) ?>">›</button>
+        </div>
+        <div class="dalactive-hero-dots" aria-label="<?= $block->escapeHtmlAttr(__('Hero slides')) ?>"></div>
+    </section>
+<?php endif; ?>

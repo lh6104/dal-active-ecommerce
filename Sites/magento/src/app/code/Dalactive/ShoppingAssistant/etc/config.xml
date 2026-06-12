@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <dalactive_shoppingassistant>
+            <general>
+                <enabled>1</enabled>
+                <widget_enabled>1</widget_enabled>
+                <logging_enabled>1</logging_enabled>
+                <max_message_length>500</max_message_length>
+                <bot_name>DAL Assistant</bot_name>
+                <welcome_message>Xin chào, mình là trợ lý mua sắm DAL Active. Mình có thể hỗ trợ chọn size, tìm sản phẩm, kiểm tra ưu đãi và hướng dẫn đặt hàng online.</welcome_message>
+                <fallback_message>Mình chưa tìm thấy thông tin chính xác cho yêu cầu này. Bạn có thể mô tả rõ hơn giúp mình nhé?</fallback_message>
+            </general>
+            <ai>
+                <enabled>0</enabled>
+                <endpoint>https://api.groq.com/openai/v1/chat/completions</endpoint>
+                <model>openai/gpt-oss-120b</model>
+                <temperature>0.3</temperature>
+                <max_tokens>700</max_tokens>
+                <timeout>15</timeout>
+                <streaming>0</streaming>
+                <system_prompt>Bạn là trợ lý mua sắm của DAL Active. Chỉ trả lời dựa trên dữ liệu Magento/admin được cung cấp. Không bịa sản phẩm, giá, tồn kho, khuyến mãi hoặc chính sách. Nếu thiếu thông tin, hãy hỏi lại người dùng. Trả lời bằng tiếng Việt, ngắn gọn và hữu ích.</system_prompt>
+            </ai>
+            <features>
+                <latest_products>1</latest_products>
+                <size_advisor>1</size_advisor>
+                <promotion_assistant>1</promotion_assistant>
+                <stock_check>1</stock_check>
+                <product_recommendation>1</product_recommendation>
+                <order_guide>1</order_guide>
+                <knowledge_base>1</knowledge_base>
+                <suggested_messages>1</suggested_messages>
+            </features>
+            <suggestions>
+                <enabled>1</enabled>
+                <max_shown>5</max_shown>
+                <dynamic>1</dynamic>
+            </suggestions>
+            <recommendation>
+                <max_products>4</max_products>
+                <default_limit>4</default_limit>
+                <default_sort>newest</default_sort>
+                <include_out_of_stock>0</include_out_of_stock>
+            </recommendation>
+        </dalactive_shoppingassistant>
+    </default>
+</config>

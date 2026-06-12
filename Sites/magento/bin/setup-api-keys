@@ -1,0 +1,164 @@
+#!/bin/bash
+
+# Interactive API Key Setup for Dalactive Modules
+# This script guides you through setting up API keys for:
+# - Weather (OpenWeatherMap)
+# - Exchange Rate (Vietcombank)
+# - Economic News (VNExpress RSS)
+
+set -e
+
+MAGENTO_BIN="./bin/magento"
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+BLUE='\033[0;34m'
+NC='\033[0m'
+
+# Check if running from correct directory
+if [ ! -f "$MAGENTO_BIN" ]; then
+    echo -e "${RED}Error: Magento CLI not found. Run this script from Sites/magento directory${NC}"
+    exit 1
+fi
+
+clear
+
+echo -e "${BLUE}╔════════════════════════════════════════════════════════════╗${NC}"
+echo -e "${BLUE}║  DAL ACTIVE MODULES - API KEYS CONFIGURATION WIZARD       ║${NC}"
+echo -e "${BLUE}╚════════════════════════════════════════════════════════════╝${NC}"
+echo ""
+
+# Function to set config with validation
+set_config() {
+    local config_path=$1
+    local label=$2
+    local default_value=$3
+    local input_value=""
+
+    echo -e "${YELLOW}$label${NC}"
+    if [ -n "$default_value" ]; then
+        echo -e "  Default: ${GREEN}$default_value${NC}"
+    fi
+    read -p "  Enter value (or press Enter for default): " input_value
+
+    # Use input value if provided, otherwise use default
+    local final_value="${input_value:-$default_value}"
+
+    if [ -z "$final_value" ]; then
+        echo -e "  ${RED}✗ Skipped (empty value)${NC}"
+        return 1
+    fi
+
+    # Set in Magento config
+    if $MAGENTO_BIN config:set "$config_path" "$final_value" 2>/dev/null; then
+        echo -e "  ${GREEN}✓ Set successfully${NC}"
+    else
+        echo -e "  ${RED}✗ Failed to set${NC}"
+        return 1
+    fi
+
+    echo ""
+    return 0
+}
+
+# ============================================================================
+# WEATHER MODULE
+# ============================================================================
+echo -e "${BLUE}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
+echo -e "${GREEN}1. WEATHER MODULE (OpenWeatherMap)${NC}"
+echo -e "${BLUE}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
+echo ""
+echo "To get your OpenWeatherMap API key:"
+echo "  1. Visit: https://openweathermap.org/api"
+echo "  2. Sign up for a FREE account"
+echo "  3. Go to: Account → My API keys"
+echo "  4. Copy your API key"
+echo ""
+
+set_config "weather/api/api_key" "OpenWeatherMap API Key" "" || echo -e "  ${YELLOW}⚠ Weather API key not configured${NC}"
+set_config "weather/api/city" "Default City for Weather" "Ho Chi Minh City"
+set_config "weather/api/cache_ttl" "Cache TTL (seconds, default 600 = 10min)" "600"
+
+# ============================================================================
+# EXCHANGE RATE MODULE
+# ============================================================================
+echo -e "${BLUE}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
+echo -e "${GREEN}2. EXCHANGE RATE MODULE (Vietcombank)${NC}"
+echo -e "${BLUE}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
+echo ""
+echo "Vietcombank XML API is a PUBLIC API - no authentication needed!"
+echo "Current endpoint: https://portal.vietcombank.com.vn/Usercontrols/TVPortal.TyGia/pXML.aspx?b=68"
+echo ""
+
+set_config "exchangerate/api/api_endpoint" "Vietcombank API Endpoint (or press Enter for default)" "https://portal.vietcombank.com.vn/Usercontrols/TVPortal.TyGia/pXML.aspx?b=68"
+set_config "exchangerate/api/cache_ttl" "Cache TTL (seconds, default 3600 = 1hour)" "3600"
+
+# ============================================================================
+# ECONOMIC NEWS MODULE
+# ============================================================================
+echo -e "${BLUE}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
+echo -e "${GREEN}3. ECONOMIC NEWS MODULE (VNExpress RSS)${NC}"
+echo -e "${BLUE}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
+echo ""
+echo "VNExpress RSS is a PUBLIC feed - no authentication needed!"
+echo "Current feed: https://vnexpress.net/rss/kinh-doanh.rss"
+echo ""
+
+set_config "economicnews/rss/rss_feed_url" "RSS Feed URL (or press Enter for default)" "https://vnexpress.net/rss/kinh-doanh.rss"
+set_config "economicnews/rss/items_per_page" "Items Per Page (default 21)" "21"
+
+# ============================================================================
+# FINALIZE
+# ============================================================================
+echo ""
+echo -e "${BLUE}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
+echo -e "${YELLOW}Clearing Magento caches...${NC}"
+echo -e "${BLUE}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
+
+$MAGENTO_BIN cache:clean 2>/dev/null || true
+$MAGENTO_BIN cache:flush 2>/dev/null || true
+
+echo ""
+echo -e "${GREEN}✓ Cache cleared${NC}"
+echo ""
+
+# ============================================================================
+# SUMMARY
+# ============================================================================
+echo -e "${BLUE}╔════════════════════════════════════════════════════════════╗${NC}"
+echo -e "${GREEN}✓ API CONFIGURATION COMPLETE!                             ${NC}"
+echo -e "${BLUE}╚════════════════════════════════════════════════════════════╝${NC}"
+echo ""
+echo -e "${YELLOW}Configuration Summary:${NC}"
+echo ""
+
+# Get and display configured values
+WEATHER_API=$(./bin/magento config:show weather/api/api_key 2>/dev/null | head -1 || echo "NOT SET")
+WEATHER_CITY=$(./bin/magento config:show weather/api/city 2>/dev/null | head -1 || echo "NOT SET")
+EXCHANGE_ENDPOINT=$(./bin/magento config:show exchangerate/api/api_endpoint 2>/dev/null | head -1 || echo "NOT SET")
+NEWS_FEED=$(./bin/magento config:show economicnews/rss/rss_feed_url 2>/dev/null | head -1 || echo "NOT SET")
+
+echo -e "  ${GREEN}Weather Module:${NC}"
+echo "    API Key: $([ "$WEATHER_API" != "NOT SET" ] && echo "${GREEN}✓ Configured${NC}" || echo "${RED}✗ Not set${NC}")"
+echo "    Default City: ${WEATHER_CITY}"
+echo ""
+echo -e "  ${GREEN}Exchange Rate Module:${NC}"
+echo "    API Endpoint: $([ "$EXCHANGE_ENDPOINT" != "NOT SET" ] && echo "${GREEN}✓ Configured${NC}" || echo "${RED}✗ Not set${NC}")"
+echo ""
+echo -e "  ${GREEN}Economic News Module:${NC}"
+echo "    RSS Feed: $([ "$NEWS_FEED" != "NOT SET" ] && echo "${GREEN}✓ Configured${NC}" || echo "${RED}✗ Not set${NC}")"
+echo ""
+echo -e "${YELLOW}Next Steps:${NC}"
+echo "  1. Restart containers (if running):"
+echo "     ${BLUE}make restart${NC}"
+echo ""
+echo "  2. Test the modules:"
+echo "     ${BLUE}Weather:${NC}         http://dalactive.test/weather"
+echo "     ${BLUE}Exchange Rates:${NC}   http://dalactive.test/exchangerate"
+echo "     ${BLUE}Economic News:${NC}    http://dalactive.test/economicnews"
+echo ""
+echo "  3. Or access via Admin:"
+echo "     ${BLUE}Stores → Configuration → Dalactive Settings${NC}"
+echo ""
+echo -e "${GREEN}Setup complete!${NC}"
+echo ""

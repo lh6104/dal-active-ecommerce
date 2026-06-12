@@ -1,0 +1,83 @@
+.page-wrapper .page-header .header.content .dalactive-header-wishlist {
+    float: right;
+    height: 45px;
+    margin: 0 0 0 15px;
+    position: relative;
+    width: 45px;
+}
+
+.page-wrapper .page-header .header.content .dalactive-header-wishlist__link {
+    align-items: center;
+    background: transparent;
+    border: 1px solid #d1d1d1;
+    color: #0b6fff;
+    display: inline-flex;
+    height: 45px;
+    justify-content: center;
+    line-height: 43px;
+    padding: 0;
+    text-decoration: none;
+    transition: color 0.2s ease-in, border-color 0.2s ease-in;
+    width: 45px;
+}
+
+.page-wrapper .page-header .header.content .dalactive-header-wishlist__link:hover,
+.page-wrapper .page-header .header.content .dalactive-header-wishlist__link:focus {
+    border-color: #d1d1d1;
+    color: #061a33;
+    text-decoration: none;
+}
+
+.page-wrapper .page-header .header.content .dalactive-header-wishlist__icon {
+    display: block;
+    height: 22px;
+    width: 22px;
+}
+
+@media (min-width: 1024px) {
+    .page-wrapper .page-header .header.content {
+        align-items: center;
+        display: flex;
+        gap: 15px;
+    }
+
+    .page-wrapper .page-header .header.content .logo {
+        flex: 0 0 auto;
+        margin-right: auto;
+        order: 1;
+    }
+
+    .page-wrapper .page-header .header.content .header-content-info {
+        flex: 0 0 auto;
+        float: none;
+        margin-left: 0;
+        order: 2;
+    }
+
+    .page-wrapper .page-header .header.content .block-search {
+        flex: 0 0 375px;
+        float: none;
+        margin-left: 0;
+        order: 3;
+    }
+
+    .page-wrapper .page-header .header.content .dalactive-header-wishlist {
+        flex: 0 0 45px;
+        float: none;
+        margin: 0;
+        order: 4;
+    }
+
+    .page-wrapper .page-header .header.content .minicart-wrapper {
+        flex: 0 0 auto;
+        float: none;
+        margin-left: 0;
+        order: 5;
+    }
+}
+
+@media (max-width: 767px) {
+    .page-wrapper .page-header .header.content .dalactive-header-wishlist {
+        margin-left: 8px;
+    }
+}

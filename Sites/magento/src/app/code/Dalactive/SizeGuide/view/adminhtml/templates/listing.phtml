@@ -1,0 +1,24 @@
+<?php
+/** @var \Dalactive\SizeGuide\Block\Adminhtml\Listing $block */
+$columns = $block->getColumns();
+?>
+<div class="admin__data-grid-wrap">
+    <table class="data-grid">
+        <thead>
+            <tr>
+                <?php foreach ($columns as $column): ?>
+                    <th class="data-grid-th"><?= $block->escapeHtml(ucwords(str_replace('_', ' ', $column))) ?></th>
+                <?php endforeach; ?>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach ($block->getRows() as $row): ?>
+                <tr>
+                    <?php foreach ($columns as $column): ?>
+                        <td><?= $block->escapeHtml((string) ($row[$column] ?? '')) ?></td>
+                    <?php endforeach; ?>
+                </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
+</div>

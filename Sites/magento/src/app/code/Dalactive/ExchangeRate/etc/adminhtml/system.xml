@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="exchangerate" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Exchange Rate Settings</label>
+            <tab>dalactive</tab>
+            <resource>Magento_Config::config</resource>
+
+            <group id="api" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Vietcombank API Configuration</label>
+
+                <field id="api_endpoint" translate="label comment" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>API Endpoint URL</label>
+                    <comment>Vietcombank XML API URL (default: https://portal.vietcombank.com.vn/Usercontrols/TVPortal.TyGia/pXML.aspx?b=68)</comment>
+                    <validate>required-entry validate-url</validate>
+                </field>
+
+                <field id="cache_ttl" translate="label comment" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Cache TTL (seconds)</label>
+                    <comment>How long to cache exchange rates (default: 3600 = 1 hour)</comment>
+                    <validate>validate-digits</validate>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

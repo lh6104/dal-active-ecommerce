@@ -1,0 +1,12 @@
+<?php
+/** @var \Dalactive\StockAlert\Block\Product\Subscribe $block */
+?>
+<?php if ($block->canShow()): ?>
+    <form class="dalactive-stock-alert" method="post" action="<?= $block->escapeUrl($block->getPostUrl()) ?>">
+        <?= $block->getBlockHtml('formkey') ?>
+        <input type="hidden" name="product_id" value="<?= (int) $block->getProduct()->getId() ?>"/>
+        <label for="dalactive-stock-alert-email"><?= $block->escapeHtml(__('Notify me when this item is back in stock')) ?></label>
+        <input id="dalactive-stock-alert-email" type="email" name="email" placeholder="<?= $block->escapeHtmlAttr(__('Email address')) ?>"/>
+        <button type="submit" class="action secondary"><?= $block->escapeHtml(__('Subscribe')) ?></button>
+    </form>
+<?php endif; ?>

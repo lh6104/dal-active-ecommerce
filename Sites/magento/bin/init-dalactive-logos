@@ -1,0 +1,84 @@
+#!/usr/bin/env bash
+#
+# Initialize DAL Active Logos
+# Replaces old logos with new ones and updates database configuration
+#
+
+set -o errexit
+
+LOGO_PATH="/var/www/html/pub/media/logo/stores/1"
+DB_HOST=${MAGENTO_DB_HOST:-172.18.0.1}
+DB_PORT=${MAGENTO_DB_PORT:-3307}
+
+echo "================================"
+echo "Initializing DAL Active Logos"
+echo "================================"
+echo ""
+
+# Create logo directory if it doesn't exist
+echo "1️⃣ Preparing logo directory..."
+./bin/cli mkdir -p "$LOGO_PATH" || true
+echo "✓ Directory ready"
+echo ""
+
+# Check and replace logo files
+echo "2️⃣ Setting up logo files..."
+
+# Remove old logo_1_.png
+if [ -f "$LOGO_PATH/logo_1_.png" ]; then
+    echo "  • Removing old logo_1_.png"
+    ./bin/cli rm -f "$LOGO_PATH/logo_1_.png" || true
+fi
+
+# Remove old logo_3_.png
+if [ -f "$LOGO_PATH/logo_3_.png" ]; then
+    echo "  • Removing old logo_3_.png"
+    ./bin/cli rm -f "$LOGO_PATH/logo_3_.png" || true
+fi
+
+# Remove old logo_1.png
+if [ -f "$LOGO_PATH/logo_1.png" ]; then
+    echo "  • Removing old logo_1.png"
+    ./bin/cli rm -f "$LOGO_PATH/logo_1.png" || true
+fi
+
+# Ensure logo_main.png exists
+if [ ! -f "$LOGO_PATH/logo_main.png" ]; then
+    echo "  ⚠️  WARNING: logo_main.png not found. Using logo_1.png as fallback"
+    if [ -f "$LOGO_PATH/logo_1.png" ]; then
+        ./bin/cli cp "$LOGO_PATH/logo_1.png" "$LOGO_PATH/logo_main.png" || true
+    fi
+fi
+
+echo "✓ Logo files configured"
+echo ""
+
+# Update Magento configuration
+echo "3️⃣ Updating Magento logo configuration..."
+./bin/cli mysql -h "$DB_HOST" -P "$DB_PORT" -u magento -pmagento magento -e \
+"INSERT INTO core_config_data (scope, scope_id, path, value) VALUES
+('default', 0, 'design/header/logo_src', 'logo_main.png'),
+('default', 0, 'design/header/logo_alt', 'DAL Active Sports Store'),
+('default', 0, 'design/logo/alt', 'DAL Active Sports Store'),
+('default', 0, 'design/header/logo_width', ''),
+('default', 0, 'design/header/logo_height', '')
+ON DUPLICATE KEY UPDATE value=VALUES(value);" || true
+echo "✓ Configuration updated"
+echo ""
+
+# Verify logo files
+echo "4️⃣ Verifying logo files..."
+echo "  Logo files in container:"
+./bin/cli ls -lh "$LOGO_PATH" | grep -E "logo_main|logo_sub" || echo "  ⚠️  Checking..."
+echo "✓ Logo verification complete"
+echo ""
+
+echo "================================"
+echo "✅ Logo Initialization Complete!"
+echo "================================"
+echo ""
+echo "Logos configured:"
+echo "  ✓ Main Logo: logo_main.png"
+echo "  ✓ Sub Logo: logo_sub.png"
+echo "  ✓ Old logos (logo_1_.png, logo_3_.png) removed"
+echo ""

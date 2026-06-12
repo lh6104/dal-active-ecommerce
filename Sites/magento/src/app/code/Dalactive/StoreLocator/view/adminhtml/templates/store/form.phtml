@@ -1,0 +1,57 @@
+<?php
+/** @var \Dalactive\StoreLocator\Block\Adminhtml\StoreForm $block */
+$store = $block->getStore();
+$fields = [
+    'name' => ['Store Name', 'text', true, ''],
+    'identifier' => ['URL Identifier', 'text', true, ''],
+    'address' => ['Address', 'textarea', true, ''],
+    'city' => ['City', 'text', false, ''],
+    'region' => ['Region/Province', 'text', false, ''],
+    'country' => ['Country', 'text', false, 'VN'],
+    'latitude' => ['Latitude', 'text', false, 'Required for showing this store as a marker on the map.'],
+    'longitude' => ['Longitude', 'text', false, 'Required for showing this store as a marker on the map.'],
+    'google_maps_url' => ['Google Maps URL', 'textarea', false, 'Optional. Paste a Google Maps link for this store. If empty, the system will generate a directions link from latitude and longitude.'],
+    'phone' => ['Phone', 'text', false, ''],
+    'email' => ['Email', 'text', false, ''],
+    'opening_hours' => ['Opening Hours', 'text', false, 'Example: 09:00 - 21:00'],
+    'sort_order' => ['Sort Order', 'text', false, ''],
+];
+?>
+<form class="admin__fieldset" action="<?= $block->escapeUrl($block->getUrl('*/*/save')) ?>" method="post">
+    <?= $block->getBlockHtml('formkey') ?>
+    <input type="hidden" name="entity_id" value="<?= (int) $store->getId() ?>"/>
+
+    <?php foreach ($fields as $field => $meta): ?>
+        <?php [$label, $type, $required, $note] = $meta; ?>
+        <div class="admin__field<?= $required ? ' required' : '' ?>">
+            <label class="admin__field-label" for="<?= $block->escapeHtmlAttr($field) ?>">
+                <?= $block->escapeHtml(__($label)) ?>
+            </label>
+            <div class="admin__field-control">
+                <?php if ($type === 'textarea'): ?>
+                    <textarea class="admin__control-textarea" id="<?= $block->escapeHtmlAttr($field) ?>" name="<?= $block->escapeHtmlAttr($field) ?>"<?= $required ? ' required' : '' ?>><?= $block->escapeHtml((string) $store->getData($field)) ?></textarea>
+                <?php else: ?>
+                    <input class="admin__control-text" id="<?= $block->escapeHtmlAttr($field) ?>" name="<?= $block->escapeHtmlAttr($field) ?>" value="<?= $block->escapeHtmlAttr((string) ($store->getData($field) ?: ($field === 'country' ? 'VN' : ''))) ?>"<?= $required ? ' required' : '' ?>/>
+                <?php endif; ?>
+                <?php if ($note): ?>
+                    <p class="note"><?= $block->escapeHtml(__($note)) ?></p>
+                <?php endif; ?>
+            </div>
+        </div>
+    <?php endforeach; ?>
+
+    <div class="admin__field">
+        <label class="admin__field-label" for="is_active"><?= $block->escapeHtml(__('Status')) ?></label>
+        <div class="admin__field-control">
+            <select id="is_active" name="is_active" class="admin__control-select">
+                <option value="1"<?= (int) $store->getData('is_active') !== 0 ? ' selected' : '' ?>><?= $block->escapeHtml(__('Active')) ?></option>
+                <option value="0"<?= (int) $store->getData('is_active') === 0 ? ' selected' : '' ?>><?= $block->escapeHtml(__('Inactive')) ?></option>
+            </select>
+        </div>
+    </div>
+
+    <div class="page-actions">
+        <button class="action-primary" type="submit"><?= $block->escapeHtml(__('Save Store')) ?></button>
+        <a class="action-secondary" href="<?= $block->escapeUrl($block->getUrl('*/*/')) ?>"><?= $block->escapeHtml(__('Back')) ?></a>
+    </div>
+</form>

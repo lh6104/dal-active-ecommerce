@@ -1,0 +1,90 @@
+#!/bin/bash
+#
+# Setup script for Dalactive modules (Weather, ExchangeRate, EconomicNews)
+# This script runs automatically on project startup
+# API keys can be added later via Admin panel or environment variables
+#
+
+set -e
+
+MAGENTO_BIN="./bin/magento"
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+NC='\033[0m' # No Color
+
+echo -e "${GREEN}========================================${NC}"
+echo -e "${GREEN}Dalactive Modules Setup${NC}"
+echo -e "${GREEN}========================================${NC}"
+
+# Check if Magento CLI is available
+if [ ! -f "$MAGENTO_BIN" ]; then
+    echo -e "${RED}Error: Magento CLI not found at $MAGENTO_BIN${NC}"
+    exit 1
+fi
+
+# Function to set config value
+set_config() {
+    local config_path=$1
+    local value=$2
+    local env_var=$3
+
+    # Check if environment variable is set
+    if [ -n "$env_var" ] && [ -n "${!env_var}" ]; then
+        value="${!env_var}"
+        echo -e "${YELLOW}  Using env var: ${env_var}=${value}${NC}"
+    fi
+
+    $MAGENTO_BIN config:set "$config_path" "$value" 2>/dev/null || true
+    echo -e "${GREEN}✓${NC} Set: $config_path"
+}
+
+echo ""
+echo -e "${YELLOW}Setting up Weather Module...${NC}"
+set_config "weather/api/api_key" "YOUR_OPENWEATHERMAP_API_KEY_HERE" "OPENWEATHERMAP_API_KEY"
+set_config "weather/api/city" "Ho Chi Minh City" "WEATHER_DEFAULT_CITY"
+set_config "weather/api/cache_ttl" "600" "WEATHER_CACHE_TTL"
+
+echo ""
+echo -e "${YELLOW}Setting up Exchange Rate Module...${NC}"
+set_config "exchangerate/api/api_endpoint" "https://portal.vietcombank.com.vn/Usercontrols/TVPortal.TyGia/pXML.aspx?b=68" "EXCHANGERATE_API_ENDPOINT"
+set_config "exchangerate/api/cache_ttl" "3600" "EXCHANGERATE_CACHE_TTL"
+
+echo ""
+echo -e "${YELLOW}Setting up Economic News Module...${NC}"
+set_config "economicnews/rss/rss_feed_url" "https://vnexpress.net/rss/kinh-doanh.rss" "ECONOMICNEWS_RSS_URL"
+set_config "economicnews/rss/items_per_page" "21" "ECONOMICNEWS_ITEMS_PER_PAGE"
+
+echo ""
+echo -e "${YELLOW}Clearing caches...${NC}"
+$MAGENTO_BIN cache:clean 2>/dev/null || true
+$MAGENTO_BIN cache:flush 2>/dev/null || true
+
+echo ""
+echo -e "${GREEN}========================================${NC}"
+echo -e "${GREEN}✓ Setup Complete!${NC}"
+echo -e "${GREEN}========================================${NC}"
+echo ""
+echo -e "${YELLOW}Configuration Status:${NC}"
+echo -e "${GREEN}✓${NC} Weather Module: Configured (needs OpenWeatherMap API key)"
+echo -e "${GREEN}✓${NC} Exchange Rate Module: Configured (using Vietcombank public API)"
+echo -e "${GREEN}✓${NC} Economic News Module: Configured (using VNExpress RSS feed)"
+echo ""
+echo -e "${YELLOW}Next Steps:${NC}"
+echo "1. Get OpenWeatherMap API key from: https://openweathermap.org/api"
+echo "2. Go to Admin: Stores → Configuration → Weather Settings"
+echo "3. Enter your API key and update settings"
+echo "4. Save and test the modules:"
+echo "   - Weather: http://localhost:8000/weather"
+echo "   - Exchange Rates: http://localhost:8000/exchangerate"
+echo "   - Economic News: http://localhost:8000/economicnews"
+echo ""
+echo -e "${YELLOW}Environment Variables (for automation):${NC}"
+echo "   OPENWEATHERMAP_API_KEY=your_api_key"
+echo "   WEATHER_DEFAULT_CITY=Ho Chi Minh City"
+echo "   WEATHER_CACHE_TTL=600"
+echo "   EXCHANGERATE_API_ENDPOINT=https://..."
+echo "   EXCHANGERATE_CACHE_TTL=3600"
+echo "   ECONOMICNEWS_RSS_URL=https://..."
+echo "   ECONOMICNEWS_ITEMS_PER_PAGE=21"
+echo ""

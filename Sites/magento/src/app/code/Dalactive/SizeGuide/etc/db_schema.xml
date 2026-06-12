@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="dalactive_sizeguide_chart" resource="default" engine="innodb" comment="Dalactive Size Charts">
+        <column xsi:type="int" name="chart_id" unsigned="true" nullable="false" identity="true" comment="Chart ID"/>
+        <column xsi:type="varchar" name="name" nullable="false" length="255" comment="Size Chart Name"/>
+        <column xsi:type="varchar" name="product_type" nullable="false" length="64" default="apparel" comment="Product Type"/>
+        <column xsi:type="varchar" name="gender" nullable="false" length="64" default="unisex" comment="Gender"/>
+        <column xsi:type="text" name="content" nullable="true" comment="Size Chart Content"/>
+        <column xsi:type="smallint" name="status" unsigned="true" nullable="false" default="1" comment="Status"/>
+        <column xsi:type="timestamp" name="created_at" nullable="false" default="CURRENT_TIMESTAMP" comment="Created At"/>
+        <column xsi:type="timestamp" name="updated_at" nullable="false" default="CURRENT_TIMESTAMP" on_update="true" comment="Updated At"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="chart_id"/>
+        </constraint>
+    </table>
+</schema>

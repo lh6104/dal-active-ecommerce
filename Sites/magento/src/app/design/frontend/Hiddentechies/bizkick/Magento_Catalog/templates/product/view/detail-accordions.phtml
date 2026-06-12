@@ -1,0 +1,91 @@
+<?php
+/**
+ * Product detail accordions for the DAL Active product layout.
+ *
+ * @var \Magento\Catalog\Block\Product\View $block
+ */
+$_product = $block->getProduct();
+$_outputHelper = $this->helper(\Magento\Catalog\Helper\Output::class);
+$_shortDescription = trim((string) $_product->getShortDescription());
+$_description = trim((string) $_product->getDescription());
+$_color = $_product->getAttributeText('color');
+$_manufacturer = $_product->getAttributeText('manufacturer');
+$_style = $_product->getSku();
+$_sections = [];
+
+// Combine short description and description if they are similar or just use description if available.
+$_overviewContent = '';
+if ($_description) {
+    $_overviewContent = $_outputHelper->productAttribute($_product, $_description, 'description');
+} elseif ($_shortDescription) {
+    $_overviewContent = $_outputHelper->productAttribute($_product, $_shortDescription, 'short_description');
+}
+
+if ($_overviewContent) {
+    $_sections[] = [
+        'id' => 'description',
+        'title' => __('Tổng quan'),
+        'content' => $_overviewContent,
+    ];
+}
+
+$_meta = [];
+if ($_color) {
+    $_meta[] = __('Màu sắc: %1', is_array($_color) ? implode(', ', $_color) : $_color);
+}
+if ($_style) {
+    $_meta[] = __('Mã sản phẩm: %1', $_style);
+}
+if ($_manufacturer) {
+    $_meta[] = __('Thương hiệu: %1', is_array($_manufacturer) ? implode(', ', $_manufacturer) : $_manufacturer);
+}
+if ($_meta) {
+    $_sections[] = [
+        'id' => 'metadata',
+        'title' => __('Thông tin sản phẩm'),
+        'content' => '<ul><li>' . implode('</li><li>', array_map([$block, 'escapeHtml'], $_meta)) . '</li></ul>',
+    ];
+}
+
+$_sections[] = [
+    'id' => 'delivery',
+    'title' => __('Giao hàng & đổi trả'),
+    'content' => '<p>' . $block->escapeHtml(__('Các tùy chọn giao hàng và điều kiện đổi trả sẽ được xác nhận trong quá trình thanh toán.')) . '</p>',
+];
+
+// Keep the review form block in the DOM, but render the accordion with a dedicated card UI.
+$_reviewHtml = $block->getChildHtml('dalactive.review.cards');
+$_reviewFormHtml = $block->getChildHtml('review_form_modal');
+
+$_sections[] = [
+    'id' => 'reviews',
+    'title' => __('Các nhận xét'),
+    'content' => $_reviewHtml ?: '<p>' . $block->escapeHtml(__('Chưa có nhận xét nào.')) . '</p>',
+];
+?>
+<?php if ($_sections): ?>
+    <div class="dalactive-product-accordions">
+        <?php foreach ($_sections as $_index => $_section): ?>
+            <?php $_panelId = 'dalactive-product-accordion-' . $_section['id']; ?>
+            <section class="dalactive-product-accordion">
+                <button class="dalactive-product-accordion-trigger"
+                        type="button"
+                        aria-expanded="<?= $_index === 0 ? 'true' : 'false' ?>"
+                        aria-controls="<?= $block->escapeHtmlAttr($_panelId) ?>">
+                    <span><?= $block->escapeHtml($_section['title']) ?></span>
+                    <span aria-hidden="true" class="accordion-icon"><?= $_index === 0 ? '-' : '+' ?></span>
+                </button>
+                <div class="dalactive-product-accordion-panel"
+                     id="<?= $block->escapeHtmlAttr($_panelId) ?>"
+                    <?= $_index === 0 ? '' : 'hidden' ?>>
+                    <?= /* @noEscape */ $_section['content'] ?>
+                </div>
+            </section>
+        <?php endforeach; ?>
+    </div>
+    <?php if ($_reviewFormHtml): ?>
+        <div class="dal-review-form-host" aria-hidden="false">
+            <?= /* @noEscape */ $_reviewFormHtml ?>
+        </div>
+    <?php endif; ?>
+<?php endif; ?>

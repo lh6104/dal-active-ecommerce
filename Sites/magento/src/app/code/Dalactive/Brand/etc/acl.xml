@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Acl/etc/acl.xsd">
+    <acl>
+        <resources>
+            <resource id="Magento_Backend::admin">
+                <resource id="Dalactive_Brand::root" title="Dalactive Brand">
+                    <resource id="Dalactive_Brand::config" title="Configuration"/>
+                    <resource id="Dalactive_Brand::brands" title="Manage Brands"/>
+                </resource>
+            </resource>
+        </resources>
+    </acl>
+</config>

@@ -1,0 +1,116 @@
+.sepay-checkout-note {
+    border: 1px solid #d7e7ff;
+    background: #f5faff;
+    padding: 14px 16px;
+    margin: 12px 0 18px;
+}
+
+.sepay-checkout-note p {
+    margin: 0 0 10px;
+}
+
+.sepay-checkout-note dl {
+    display: grid;
+    grid-template-columns: 130px 1fr;
+    gap: 6px 12px;
+    margin: 0;
+}
+
+.sepay-checkout-note dt {
+    color: #5f6b7a;
+    font-weight: 600;
+}
+
+.sepay-checkout-note dd {
+    margin: 0;
+    font-weight: 700;
+}
+
+.dalactive-sepay-page {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 48px 20px 72px;
+}
+
+.dalactive-sepay-card {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 360px;
+    gap: 40px;
+    align-items: center;
+    border: 1px solid #d7e7ff;
+    background: #fff;
+    box-shadow: 0 14px 42px rgba(7, 45, 86, .08);
+    padding: 40px;
+}
+
+.dalactive-sepay-eyebrow {
+    color: #1478f2;
+    font-weight: 800;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+}
+
+.dalactive-sepay-copy h1 {
+    margin: 0 0 12px;
+    font-size: 34px;
+    line-height: 1.15;
+}
+
+.dalactive-sepay-copy dl {
+    display: grid;
+    grid-template-columns: 160px 1fr;
+    gap: 10px 18px;
+    margin: 24px 0;
+}
+
+.dalactive-sepay-copy dt {
+    color: #5f6b7a;
+    font-weight: 700;
+}
+
+.dalactive-sepay-copy dd {
+    margin: 0;
+    color: #071f3a;
+    font-weight: 800;
+}
+
+.dalactive-sepay-waiting {
+    color: #33506f;
+    font-weight: 600;
+}
+
+.dalactive-sepay-page.is-processing [data-role="sepay-status-label"] {
+    color: #1478f2;
+}
+
+.dalactive-sepay-page.is-success [data-role="sepay-status-label"] {
+    color: #15803d;
+}
+
+.dalactive-sepay-page.is-failed [data-role="sepay-status-label"] {
+    color: #dc2626;
+}
+
+.dalactive-sepay-qr {
+    text-align: center;
+}
+
+.dalactive-sepay-qr img {
+    width: min(100%, 320px);
+    height: auto;
+    border: 1px solid #d7e7ff;
+    padding: 12px;
+    background: #fff;
+}
+
+@media (max-width: 768px) {
+    .dalactive-sepay-card {
+        grid-template-columns: 1fr;
+        padding: 24px;
+    }
+
+    .dalactive-sepay-copy dl,
+    .sepay-checkout-note dl {
+        grid-template-columns: 1fr;
+    }
+}

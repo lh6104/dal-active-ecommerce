@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Acl/etc/acl.xsd">
+    <acl>
+        <resources>
+            <resource id="Magento_Backend::admin">
+                <resource id="Dalactive_HeroBanner::root" title="Dalactive Hero Banner">
+                    <resource id="Dalactive_HeroBanner::config" title="Configuration"/>
+                    <resource id="Dalactive_HeroBanner::banners" title="Manage Hero Banners"/>
+                </resource>
+            </resource>
+        </resources>
+    </acl>
+</config>

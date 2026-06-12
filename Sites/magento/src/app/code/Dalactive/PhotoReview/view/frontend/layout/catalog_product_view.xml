@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="product.info.details">
+            <block class="Dalactive\PhotoReview\Block\Product\PhotoReview"
+                   name="dalactive.photoreview.product"
+                   template="Dalactive_PhotoReview::product/photo-review.phtml"
+                   group="detailed_info">
+                <arguments>
+                    <argument name="title" translate="true" xsi:type="string">Photo Reviews</argument>
+                </arguments>
+            </block>
+        </referenceBlock>
+        <referenceContainer name="product.review.form.fields.before">
+            <block class="Dalactive\PhotoReview\Block\Product\UploadField"
+                   name="dalactive.photoreview.upload.field"
+                   template="Dalactive_PhotoReview::product/upload-field.phtml"/>
+        </referenceContainer>
+    </body>
+</page>

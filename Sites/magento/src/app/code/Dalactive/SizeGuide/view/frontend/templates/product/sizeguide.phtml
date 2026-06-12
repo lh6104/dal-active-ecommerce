@@ -1,0 +1,11 @@
+<?php
+/** @var \Dalactive\SizeGuide\Block\Product\SizeGuide $block */
+?>
+<?php if ($block->canShow()): ?>
+    <div class="dalactive-size-guide" data-display-mode="<?= $block->escapeHtmlAttr($block->getDisplayMode()) ?>">
+        <a class="action secondary dalactive-size-guide-button"
+           href="<?= $block->escapeUrl($block->getUrl('size-guide')) ?>">
+            <?= $block->escapeHtml(__('Hướng dẫn chọn size')) ?>
+        </a>
+    </div>
+<?php endif; ?>

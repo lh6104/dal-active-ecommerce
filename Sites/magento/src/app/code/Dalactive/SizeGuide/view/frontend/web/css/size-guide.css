@@ -1,0 +1,166 @@
+.dal-size-guide-page {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 42px 20px 72px;
+    color: #071f3c;
+}
+
+.dal-size-guide-hero {
+    max-width: 860px;
+    margin-bottom: 30px;
+}
+
+.dal-size-guide-eyebrow {
+    margin: 0 0 8px;
+    color: #1473e6;
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 0;
+    text-transform: uppercase;
+}
+
+.dal-size-guide-hero h1,
+.dal-size-chart h2,
+.dal-size-measure h2 {
+    margin: 0 0 14px;
+    color: #071f3c;
+    font-weight: 800;
+    letter-spacing: 0;
+}
+
+.dal-size-guide-hero h1 {
+    font-size: 36px;
+    line-height: 1.15;
+}
+
+.dal-size-guide-hero p {
+    margin: 0;
+    color: #44556b;
+    font-size: 16px;
+    line-height: 1.7;
+}
+
+.dal-size-guide-panel,
+.dal-size-measure {
+    background: #fff;
+    border: 1px solid #dbe7f6;
+    padding: 24px;
+}
+
+.dal-size-guide-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 14px;
+}
+
+.dal-size-guide-tabs-sub {
+    margin-bottom: 24px;
+}
+
+.dal-size-guide-tabs button {
+    min-height: 44px;
+    padding: 0 22px;
+    border: 1px solid #c9d8ea;
+    border-radius: 0;
+    background: #fff;
+    color: #071f3c;
+    font-weight: 800;
+    cursor: pointer;
+}
+
+.dal-size-guide-tabs button:hover,
+.dal-size-guide-tabs button:focus {
+    border-color: #1473e6;
+    color: #1473e6;
+}
+
+.dal-size-guide-tabs button.is-active {
+    background: #1473e6;
+    border-color: #1473e6;
+    color: #fff;
+}
+
+.dal-size-chart {
+    display: none;
+}
+
+.dal-size-chart.is-active {
+    display: block;
+}
+
+.dal-size-chart h2,
+.dal-size-measure h2 {
+    font-size: 24px;
+}
+
+.dal-size-table-wrap {
+    overflow-x: auto;
+    border: 1px solid #dbe7f6;
+}
+
+.dal-size-table-wrap table {
+    width: 100%;
+    min-width: 680px;
+    border-collapse: collapse;
+}
+
+.dal-size-table-wrap th,
+.dal-size-table-wrap td {
+    padding: 16px;
+    border-bottom: 1px solid #e5edf7;
+    border-right: 1px solid #e5edf7;
+    text-align: center;
+    white-space: nowrap;
+}
+
+.dal-size-table-wrap tr:last-child th,
+.dal-size-table-wrap tr:last-child td {
+    border-bottom: 0;
+}
+
+.dal-size-table-wrap th {
+    position: sticky;
+    left: 0;
+    z-index: 1;
+    background: #f3f8ff;
+    text-align: left;
+    font-weight: 800;
+}
+
+.dal-size-note {
+    margin: 18px 0 0;
+    color: #44556b;
+    line-height: 1.6;
+}
+
+.dal-size-measure {
+    margin-top: 22px;
+}
+
+.dal-size-measure ol {
+    margin: 0;
+    padding-left: 22px;
+    color: #263a52;
+    line-height: 1.8;
+}
+
+@media (max-width: 767px) {
+    .dal-size-guide-page {
+        padding: 28px 14px 52px;
+    }
+
+    .dal-size-guide-hero h1 {
+        font-size: 28px;
+    }
+
+    .dal-size-guide-panel,
+    .dal-size-measure {
+        padding: 18px;
+    }
+
+    .dal-size-guide-tabs button {
+        flex: 1 1 auto;
+        padding: 0 14px;
+    }
+}

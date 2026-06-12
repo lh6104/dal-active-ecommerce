@@ -1,0 +1,55 @@
+<?php
+/** @var \Dalactive\HeroBanner\Block\Adminhtml\BannerForm $block */
+$banner = $block->getBanner();
+?>
+<form class="admin__fieldset" action="<?= $block->escapeUrl($block->getUrl('*/*/save')) ?>" method="post" enctype="multipart/form-data">
+    <?= $block->getBlockHtml('formkey') ?>
+    <input type="hidden" name="slide_id" value="<?= (int) $banner->getId() ?>"/>
+    <input type="hidden" name="media_path" value="<?= $block->escapeHtmlAttr((string) $banner->getData('media_path')) ?>"/>
+
+    <?php $fields = [
+        'headline' => 'Title',
+        'subtitle' => 'Subtitle',
+        'button1_text' => 'Button Text',
+        'button1_url' => 'Button URL',
+        'timeout_ms' => 'Slide Timeout (ms)',
+        'sort_order' => 'Sort Order',
+    ]; ?>
+    <?php foreach ($fields as $field => $label): ?>
+        <div class="admin__field">
+            <label class="admin__field-label" for="<?= $block->escapeHtmlAttr($field) ?>"><?= $block->escapeHtml(__($label)) ?></label>
+            <div class="admin__field-control">
+                <input class="admin__control-text" id="<?= $block->escapeHtmlAttr($field) ?>" name="<?= $block->escapeHtmlAttr($field) ?>" value="<?= $block->escapeHtmlAttr((string) $banner->getData($field)) ?>"/>
+                <?php if ($field === 'timeout_ms'): ?>
+                    <p class="note"><?= $block->escapeHtml(__('Leave empty to use the default timeout from Stores > Configuration > Dalactive Settings > Hero Banner. Minimum used on frontend: 1000 ms.')) ?></p>
+                <?php endif; ?>
+            </div>
+        </div>
+    <?php endforeach; ?>
+
+    <div class="admin__field">
+        <label class="admin__field-label" for="media_file"><?= $block->escapeHtml(__('Image / MP4 Video')) ?></label>
+        <div class="admin__field-control">
+            <input id="media_file" name="media_file" type="file" accept=".jpg,.jpeg,.png,.webp,.gif,.avif,.mp4"/>
+            <p class="note"><?= $block->escapeHtml(__('Allowed: jpg, jpeg, png, webp, gif, avif, mp4. Max size: 20MB. Stored under pub/media/dalactive/herobanner. Database stores only the relative path.')) ?></p>
+            <?php if ($banner->getData('media_path')): ?>
+                <p><?= $block->escapeHtml(__('Current: %1', $banner->getData('media_path'))) ?></p>
+            <?php endif; ?>
+        </div>
+    </div>
+
+    <div class="admin__field">
+        <label class="admin__field-label" for="status"><?= $block->escapeHtml(__('Status')) ?></label>
+        <div class="admin__field-control">
+            <select id="status" name="status" class="admin__control-select">
+                <option value="1"<?= (int) $banner->getData('status') === 1 ? ' selected' : '' ?>><?= $block->escapeHtml(__('Enabled')) ?></option>
+                <option value="0"<?= (int) $banner->getData('status') === 0 ? ' selected' : '' ?>><?= $block->escapeHtml(__('Disabled')) ?></option>
+            </select>
+        </div>
+    </div>
+
+    <div class="page-actions">
+        <button class="action-primary" type="submit"><?= $block->escapeHtml(__('Save Hero Banner')) ?></button>
+        <a class="action-secondary" href="<?= $block->escapeUrl($block->getUrl('*/*/')) ?>"><?= $block->escapeHtml(__('Back')) ?></a>
+    </div>
+</form>

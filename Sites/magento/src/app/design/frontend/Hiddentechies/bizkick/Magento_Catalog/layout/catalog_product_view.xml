@@ -1,0 +1,86 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page layout="1column" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="Magento_Catalog::css/product-detail-layout.css"/>
+        <css src="Magento_Catalog::css/product-detail-final.css"/>
+        <script src="Magento_Catalog::js/product-detail.js"/>
+        <script src="Magento_Catalog::js/gallery-bottom-right.js"/>
+    </head>
+    <body>
+        <referenceContainer name="content">
+            <container name="dalactive.product.detail.scroll"
+                       htmlTag="div"
+                       htmlClass="product-detail-scroll-section"
+                       before="product.info.details">
+                <container name="dalactive.product.detail.pin"
+                           htmlTag="div"
+                           htmlClass="product-detail-pin">
+                    <container name="dalactive.product.gallery.column"
+                               htmlTag="div"
+                               htmlClass="product-gallery-column"/>
+                    <container name="dalactive.product.info.column"
+                               htmlTag="div"
+                               htmlClass="product-info-column"/>
+                </container>
+            </container>
+        </referenceContainer>
+        <container name="dalactive.product.gallery.shell" htmlTag="div" htmlClass="dal-product-gallery-shell"/>
+        <move element="dalactive.product.gallery.shell" destination="dalactive.product.gallery.column" before="-"/>
+        <move element="product.info.media" destination="dalactive.product.gallery.shell" after="-"/>
+        <move element="product.info.main" destination="dalactive.product.info.column" before="-"/>
+        <move element="page.main.title" destination="product.info.main" before="-"/>
+        <move element="product.info.stock.sku" destination="product.info.price" after="product.labels"/>
+        <move element="product.info.review" destination="product.info.main" before="product.info.price"/>
+        
+        <!-- Hide standard details block and move reviews inside accordions -->
+        <referenceBlock name="product.info.details" display="false"/>
+        <move element="dalactive.photoreview.product" destination="dalactive.product.detail.accordions"/>
+
+        <move element="dalactive.recommendation.product" destination="content" after="product.info.details"/>
+        <referenceContainer name="product.info.main">
+            <block class="Magento\Catalog\Block\Product\View"
+                   name="dalactive.product.detail.accordions"
+                   template="Magento_Catalog::product/view/detail-accordions.phtml"
+                   after="-">
+                <block class="Dalactive\PhotoReview\Block\Product\ReviewCards"
+                       name="dalactive.review.cards"
+                       template="Magento_Review::product/view/dalactive-cards.phtml"
+                       ifconfig="catalog/review/active"/>
+                <block class="Magento\Review\Block\Form"
+                       name="dalactive.product.review.form"
+                       as="review_form_modal"
+                       template="Magento_Review::form.phtml"
+                       ifconfig="catalog/review/active">
+                    <arguments>
+                        <argument name="button_lock_manager" xsi:type="object">Magento\Framework\View\Element\ButtonLockManager</argument>
+                    </arguments>
+                    <container name="dalactive.form.additional.review.info"
+                               as="form_additional_review_info"/>
+                    <container name="dalactive.product.review.form.fields.before"
+                               as="form_fields_before"
+                               label="Review Form Fields Before">
+                        <block class="Dalactive\PhotoReview\Block\Product\UploadField"
+                               name="dalactive.photoreview.upload.field.modal"
+                               template="Dalactive_PhotoReview::product/upload-field.phtml"/>
+                    </container>
+                </block>
+            </block>
+        </referenceContainer>
+        <referenceBlock name="product.info.sku" remove="true" />
+        <referenceBlock name="product.info.overview" remove="true" />
+        <referenceContainer name="risecommerce.auto.related.products.left.popup.container" remove="true"/>
+        <referenceContainer name="risecommerce.auto.related.products.right.popup.container" remove="true"/>
+        <referenceContainer name="product.info.price">
+            <block class="Magento\Catalog\Block\Product\View"
+                   name="product.labels"
+                   template="Magento_Catalog::product/view/productlabels.phtml"
+                   after="product.price.final"/>
+        </referenceContainer>
+    </body>
+</page>

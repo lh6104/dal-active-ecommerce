@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="economicnews" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Economic News Settings</label>
+            <tab>dalactive</tab>
+            <resource>Magento_Config::config</resource>
+
+            <group id="rss" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>VNExpress RSS Configuration</label>
+
+                <field id="rss_feed_url" translate="label comment" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>RSS Feed URL</label>
+                    <comment>VNExpress business news RSS feed URL</comment>
+                    <validate>required-entry validate-url</validate>
+                </field>
+
+                <field id="items_per_page" translate="label comment" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Items Per Page</label>
+                    <comment>Number of news items per page. Default: 12. Maximum used by frontend: 12.</comment>
+                    <validate>validate-digits</validate>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

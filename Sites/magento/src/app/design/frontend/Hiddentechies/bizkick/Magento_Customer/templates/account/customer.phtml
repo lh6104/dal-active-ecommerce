@@ -1,0 +1,63 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+/** @var Magento\Customer\Block\Account\Customer $block */
+/** @var Magento\Framework\Escaper $escaper */
+?>
+<?php if ($block->customerLoggedIn()) : ?>
+    <li class="customer-welcome">
+        <span class="customer-name"
+              role="link"
+              tabindex="0"
+              data-mage-init='{"dropdown":{}}'
+              data-toggle="dropdown"
+              data-trigger-keypress-button="true"
+              data-bind="scope: 'customer'">
+            <!-- ko if: customer().fullname -->
+            <span class="customer-greeting-text"
+                  data-bind="text: new String('<?= $escaper->escapeHtml(__('Welcome, %1!', '%1')) ?>').replace('%1', customer().fullname)">
+            </span>
+            <!-- /ko -->
+            <!-- ko ifnot: customer().fullname -->
+            <span class="customer-greeting-text"><?= $escaper->escapeHtml(__('Welcome!')) ?></span>
+            <!-- /ko -->
+            <button type="button"
+                    class="action switch"
+                    tabindex="-1"
+                    data-action="customer-menu-toggle">
+                <span><?= $block->escapeHtml(__('Change')) ?></span>
+            </button>
+        </span>
+        <script type="text/x-magento-init">
+        {
+            "*": {
+                "Magento_Ui/js/core/app": {
+                    "components": {
+                        "customer": {
+                            "component": "Magento_Customer/js/view/customer"
+                        }
+                    }
+                }
+            }
+        }
+        </script>
+        <div class="customer-menu" data-target="dropdown">
+            <ul class="header links">
+                <li><a href="<?= $escaper->escapeUrl($block->getUrl('customer/account')) ?>"><?= $escaper->escapeHtml(__('Tài khoản của tôi')) ?></a></li>
+                <li><a href="<?= $escaper->escapeUrl($block->getUrl('sales/order/history')) ?>"><?= $escaper->escapeHtml(__('Đơn hàng của tôi')) ?></a></li>
+                <li><a href="<?= $escaper->escapeUrl($block->getUrl('wishlist')) ?>"><?= $escaper->escapeHtml(__('Danh mục yêu thích')) ?></a></li>
+                <li><a href="<?= $escaper->escapeUrl($block->getUrl('review/customer')) ?>"><?= $escaper->escapeHtml(__('Đánh giá sản phẩm của tôi')) ?></a></li>
+                <li><a href="<?= $escaper->escapeUrl($block->getUrl('customer/account/logout')) ?>"><?= $escaper->escapeHtml(__('Đăng xuất')) ?></a></li>
+            </ul>
+        </div>
+    </li>
+<?php else : ?>
+    <li class="link authorization-link" data-label="<?= $escaper->escapeHtmlAttr(__('or')) ?>">
+        <a href="<?= $escaper->escapeUrl($block->getUrl('customer/account/login')) ?>">
+            <?= $escaper->escapeHtml(__('Sign In')) ?>
+        </a>
+    </li>
+<?php endif; ?>

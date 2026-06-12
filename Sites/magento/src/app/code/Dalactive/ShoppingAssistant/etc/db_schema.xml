@@ -1,0 +1,136 @@
+<?xml version="1.0"?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="dalactive_chatbot_quick_action" resource="default" engine="innodb" comment="DAL Active Chatbot Quick Actions">
+        <column xsi:type="int" name="action_id" unsigned="true" nullable="false" identity="true" comment="Action ID"/>
+        <column xsi:type="varchar" name="label" nullable="false" length="255" comment="Label"/>
+        <column xsi:type="varchar" name="action_type" nullable="false" length="100" comment="Action Type"/>
+        <column xsi:type="text" name="payload" nullable="true" comment="Payload"/>
+        <column xsi:type="int" name="sort_order" nullable="false" default="0" comment="Sort Order"/>
+        <column xsi:type="smallint" name="status" nullable="false" default="1" comment="Status"/>
+        <column xsi:type="timestamp" name="created_at" nullable="false" default="CURRENT_TIMESTAMP" comment="Created At"/>
+        <column xsi:type="timestamp" name="updated_at" nullable="false" default="CURRENT_TIMESTAMP" on_update="true" comment="Updated At"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="action_id"/>
+        </constraint>
+        <index referenceId="DALACTIVE_CHATBOT_QUICK_ACTION_STATUS_SORT" indexType="btree">
+            <column name="status"/>
+            <column name="sort_order"/>
+        </index>
+    </table>
+
+    <table name="dalactive_chatbot_message_suggestion" resource="default" engine="innodb" comment="DAL Active Chatbot Message Suggestions">
+        <column xsi:type="int" name="suggestion_id" unsigned="true" nullable="false" identity="true" comment="Suggestion ID"/>
+        <column xsi:type="varchar" name="label" nullable="false" length="255" comment="Label"/>
+        <column xsi:type="text" name="message" nullable="false" comment="Message"/>
+        <column xsi:type="varchar" name="intent" nullable="true" length="100" comment="Intent"/>
+        <column xsi:type="varchar" name="trigger_context" nullable="true" length="100" comment="Trigger Context"/>
+        <column xsi:type="int" name="sort_order" nullable="false" default="0" comment="Sort Order"/>
+        <column xsi:type="smallint" name="status" nullable="false" default="1" comment="Status"/>
+        <column xsi:type="timestamp" name="created_at" nullable="false" default="CURRENT_TIMESTAMP" comment="Created At"/>
+        <column xsi:type="timestamp" name="updated_at" nullable="false" default="CURRENT_TIMESTAMP" on_update="true" comment="Updated At"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="suggestion_id"/>
+        </constraint>
+        <index referenceId="DALACTIVE_CHATBOT_SUGGESTION_CONTEXT" indexType="btree">
+            <column name="status"/>
+            <column name="trigger_context"/>
+            <column name="sort_order"/>
+        </index>
+    </table>
+
+    <table name="dalactive_chatbot_size_rule" resource="default" engine="innodb" comment="DAL Active Chatbot Size Rules">
+        <column xsi:type="int" name="rule_id" unsigned="true" nullable="false" identity="true" comment="Rule ID"/>
+        <column xsi:type="varchar" name="product_type" nullable="false" length="100" comment="Product Type"/>
+        <column xsi:type="varchar" name="gender" nullable="true" length="50" comment="Gender"/>
+        <column xsi:type="decimal" name="height_min" nullable="true" precision="10" scale="2" comment="Height Min"/>
+        <column xsi:type="decimal" name="height_max" nullable="true" precision="10" scale="2" comment="Height Max"/>
+        <column xsi:type="decimal" name="weight_min" nullable="true" precision="10" scale="2" comment="Weight Min"/>
+        <column xsi:type="decimal" name="weight_max" nullable="true" precision="10" scale="2" comment="Weight Max"/>
+        <column xsi:type="decimal" name="foot_length_min" nullable="true" precision="10" scale="2" comment="Foot Length Min"/>
+        <column xsi:type="decimal" name="foot_length_max" nullable="true" precision="10" scale="2" comment="Foot Length Max"/>
+        <column xsi:type="varchar" name="fit_type" nullable="true" length="50" comment="Fit Type"/>
+        <column xsi:type="varchar" name="recommended_size" nullable="false" length="50" comment="Recommended Size"/>
+        <column xsi:type="text" name="note" nullable="true" comment="Note"/>
+        <column xsi:type="int" name="priority" nullable="false" default="0" comment="Priority"/>
+        <column xsi:type="smallint" name="status" nullable="false" default="1" comment="Status"/>
+        <column xsi:type="timestamp" name="created_at" nullable="false" default="CURRENT_TIMESTAMP" comment="Created At"/>
+        <column xsi:type="timestamp" name="updated_at" nullable="false" default="CURRENT_TIMESTAMP" on_update="true" comment="Updated At"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="rule_id"/>
+        </constraint>
+        <index referenceId="DALACTIVE_CHATBOT_SIZE_RULE_LOOKUP" indexType="btree">
+            <column name="status"/>
+            <column name="product_type"/>
+            <column name="gender"/>
+            <column name="priority"/>
+        </index>
+    </table>
+
+    <table name="dalactive_chatbot_promotion" resource="default" engine="innodb" comment="DAL Active Chatbot Promotions">
+        <column xsi:type="int" name="promotion_id" unsigned="true" nullable="false" identity="true" comment="Promotion ID"/>
+        <column xsi:type="varchar" name="title" nullable="false" length="255" comment="Title"/>
+        <column xsi:type="text" name="description" nullable="true" comment="Description"/>
+        <column xsi:type="varchar" name="discount_type" nullable="true" length="50" comment="Discount Type"/>
+        <column xsi:type="decimal" name="discount_value" nullable="true" precision="12" scale="2" comment="Discount Value"/>
+        <column xsi:type="decimal" name="minimum_order_amount" nullable="true" precision="12" scale="2" comment="Minimum Order Amount"/>
+        <column xsi:type="varchar" name="coupon_code" nullable="true" length="100" comment="Coupon Code"/>
+        <column xsi:type="datetime" name="start_date" nullable="true" comment="Start Date"/>
+        <column xsi:type="datetime" name="end_date" nullable="true" comment="End Date"/>
+        <column xsi:type="varchar" name="apply_channel" nullable="true" length="100" comment="Apply Channel"/>
+        <column xsi:type="varchar" name="apply_category" nullable="true" length="255" comment="Apply Category"/>
+        <column xsi:type="int" name="priority" nullable="false" default="0" comment="Priority"/>
+        <column xsi:type="smallint" name="status" nullable="false" default="1" comment="Status"/>
+        <column xsi:type="timestamp" name="created_at" nullable="false" default="CURRENT_TIMESTAMP" comment="Created At"/>
+        <column xsi:type="timestamp" name="updated_at" nullable="false" default="CURRENT_TIMESTAMP" on_update="true" comment="Updated At"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="promotion_id"/>
+        </constraint>
+        <index referenceId="DALACTIVE_CHATBOT_PROMOTION_ACTIVE" indexType="btree">
+            <column name="status"/>
+            <column name="priority"/>
+        </index>
+    </table>
+
+    <table name="dalactive_chatbot_knowledge_base" resource="default" engine="innodb" comment="DAL Active Chatbot Knowledge Base">
+        <column xsi:type="int" name="kb_id" unsigned="true" nullable="false" identity="true" comment="Knowledge Base ID"/>
+        <column xsi:type="varchar" name="title" nullable="false" length="255" comment="Title"/>
+        <column xsi:type="text" name="question" nullable="true" comment="Question"/>
+        <column xsi:type="text" name="answer" nullable="false" comment="Answer"/>
+        <column xsi:type="text" name="keywords" nullable="true" comment="Keywords"/>
+        <column xsi:type="varchar" name="category" nullable="false" length="100" comment="Category"/>
+        <column xsi:type="int" name="priority" nullable="false" default="0" comment="Priority"/>
+        <column xsi:type="smallint" name="status" nullable="false" default="1" comment="Status"/>
+        <column xsi:type="timestamp" name="created_at" nullable="false" default="CURRENT_TIMESTAMP" comment="Created At"/>
+        <column xsi:type="timestamp" name="updated_at" nullable="false" default="CURRENT_TIMESTAMP" on_update="true" comment="Updated At"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="kb_id"/>
+        </constraint>
+        <index referenceId="DALACTIVE_CHATBOT_KB_LOOKUP" indexType="btree">
+            <column name="status"/>
+            <column name="category"/>
+            <column name="priority"/>
+        </index>
+    </table>
+
+    <table name="dalactive_chatbot_conversation_log" resource="default" engine="innodb" comment="DAL Active Chatbot Conversation Log">
+        <column xsi:type="int" name="log_id" unsigned="true" nullable="false" identity="true" comment="Log ID"/>
+        <column xsi:type="varchar" name="session_id" nullable="false" length="255" comment="Session ID"/>
+        <column xsi:type="int" name="customer_id" nullable="true" comment="Customer ID"/>
+        <column xsi:type="text" name="user_message" nullable="true" comment="User Message"/>
+        <column xsi:type="text" name="bot_response" nullable="true" comment="Bot Response"/>
+        <column xsi:type="varchar" name="intent" nullable="true" length="100" comment="Intent"/>
+        <column xsi:type="smallint" name="used_ai" nullable="false" default="0" comment="Used AI"/>
+        <column xsi:type="varchar" name="model" nullable="true" length="100" comment="Model"/>
+        <column xsi:type="int" name="response_time_ms" nullable="true" comment="Response Time MS"/>
+        <column xsi:type="text" name="error_message" nullable="true" comment="Error Message"/>
+        <column xsi:type="timestamp" name="created_at" nullable="false" default="CURRENT_TIMESTAMP" comment="Created At"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="log_id"/>
+        </constraint>
+        <index referenceId="DALACTIVE_CHATBOT_LOG_SESSION_TIME" indexType="btree">
+            <column name="session_id"/>
+            <column name="created_at"/>
+        </index>
+    </table>
+</schema>

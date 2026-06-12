@@ -1,0 +1,70 @@
+# Keep Magento source code tracked. Do not ignore src/.
+
+# Local environment and secrets
+env/*.env
+rootCA.pem
+auth.json
+*.pem
+.env
+.env.*
+!.env.example
+
+# Database dumps / local backups
+*.sql
+*.sql.gz
+*.dump
+backup-*.sql
+
+# Editor metadata
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+Thumbs.db
+.DS_Store
+
+# Magento runtime/generated files
+src/app/etc/env.php
+src/app/etc/config.php.bak*
+src/generated/
+src/var/
+src/bizkick/
+src/src/
+src/pub/static/
+src/pub/cache/
+src/pub/page_cache/
+src/pub/media/tmp/
+src/pub/media/catalog/product/cache/
+src/pub/media/css/
+src/pub/media/js/
+
+# Dependencies/build output
+src/vendor/
+src/node_modules/
+src/.sass-cache/
+src/.grunt/
+
+# Backups created during Composer/module work
+src/composer.json.bak*
+src/composer.lock.bak*
+*.bak
+*.bak.*
+*.backup
+*.backup.*
+
+# Logs/reports
+*.log
+*.pid
+src/var/log/
+src/var/report/
+
+# Accidental shell/output fragments
+src/,
+src/2.0.0,
+src/VND,
+src/\[REMOTE_ADDR\],
+src/jsonFac
+src/other,
+src/pay,
+src/vn,

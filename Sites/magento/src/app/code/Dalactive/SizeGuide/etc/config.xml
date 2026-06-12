@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <dalactive_sizeguide>
+            <general>
+                <enabled>1</enabled>
+                <display_mode>popup</display_mode>
+                <show_on_product>1</show_on_product>
+                <default_chart_type>shoes</default_chart_type>
+            </general>
+        </dalactive_sizeguide>
+    </default>
+</config>

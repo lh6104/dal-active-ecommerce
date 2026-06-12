@@ -1,0 +1,43 @@
+<?php
+/**
+ * Copyright © 2016 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+// @codingStandardsIgnoreFile
+?>
+<?php
+/**
+ * Top menu for store
+ *
+ * @see \Magento\Theme\Block\Html\Topmenu
+ */
+?>
+<?php $columnsLimit = $block->getColumnsLimit() ? : 0; ?>
+<?php $_menu = $block->getHtml('level-top', 'submenu', $columnsLimit) ?>
+<?php
+$helper = $this->helper('Hiddentechies\Bizkick\Helper\Data');
+$baseUrl = $helper->getBaseUrl();
+$ishome = $helper->getIsHome();
+$showHome = $helper->getConfigValue('bizkicksettings/navigation_settings/enable');
+$extraMenuItems = [];
+?>
+<nav class="navigation" role="navigation">
+    <ul data-mage-init='{"menu":{"responsive":true, "expanded":true, "position":{"my":"left top","at":"left bottom"}}}'>
+        <?php if ($showHome) { ?>
+            <li class = "level0 level-top <?php if ($ishome) { ?> active <?php } ?>">
+                <a class = "level-top" href = "<?php echo $baseUrl; ?>">
+                    <?php echo __('Home');
+                    ?>
+                </a>
+            </li>
+        <?php } ?>
+        <?php /* @escapeNotVerified */ echo $_menu; ?>
+        <?php foreach ($extraMenuItems as $item) { ?>
+            <li class="level0 level-top dalactive-nav-link <?php if ($item['active']) { ?> active <?php } ?>">
+                <a class="level-top" href="<?php echo $block->escapeUrl($item['url']); ?>">
+                    <?php echo $block->escapeHtml($item['label']); ?>
+                </a>
+            </li>
+        <?php } ?>
+    </ul>
+</nav>

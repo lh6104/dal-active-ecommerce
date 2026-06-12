@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Dalactive_StoreLocator::stores" title="Stores" module="Dalactive_StoreLocator" sortOrder="20" parent="Dalactive_HeroBanner::content_root" action="dalactive_storelocator/store/index" resource="Dalactive_StoreLocator::stores"/>
+    </menu>
+</config>

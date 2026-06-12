@@ -1,0 +1,45 @@
+<?php
+/** @var \Dalactive\Sepay\Block\Payment $block */
+$order = $block->getOrder();
+?>
+<?php if ($order): ?>
+    <section class="dalactive-sepay-page"
+             data-status-url="<?= $block->escapeUrl($block->getStatusUrl()) ?>"
+             data-fail-url="<?= $block->escapeUrl($block->getFailUrl()) ?>"
+             data-success-url="<?= $block->escapeUrl($block->getSuccessUrl()) ?>"
+             data-timeout="<?= (int) $block->getTimeout() ?>">
+        <div class="dalactive-sepay-card">
+            <div class="dalactive-sepay-copy">
+                <p class="dalactive-sepay-eyebrow">DAL Active</p>
+                <h1>QR chuyển khoản</h1>
+                <p>Quét mã QR hoặc chuyển khoản đúng số tiền và nội dung để hệ thống tự xác nhận đơn hàng.</p>
+                <dl>
+                    <dt>Mã đơn hàng</dt>
+                    <dd><?= $block->escapeHtml($order->getIncrementId()) ?></dd>
+                    <dt>Số tiền</dt>
+                    <dd><?= $block->escapeHtml(number_format((float) $order->getGrandTotal(), 0, ',', '.')) ?> đ</dd>
+                    <dt>Nội dung chuyển khoản</dt>
+                    <dd><strong><?= $block->escapeHtml($block->getMemo()) ?></strong></dd>
+                </dl>
+                <p class="dalactive-sepay-waiting">
+                    <strong data-role="sepay-status-label">Đang xử lý</strong>.
+                    Trang sẽ tự chuyển khi SePay xác nhận giao dịch.
+                    <span data-role="sepay-countdown"></span>
+                </p>
+            </div>
+            <div class="dalactive-sepay-qr">
+                <img src="<?= $block->escapeUrl($block->getQrUrl()) ?>"
+                     alt="<?= $block->escapeHtmlAttr(__('QR chuyển khoản đơn hàng %1', $order->getIncrementId())) ?>"
+                     width="320"
+                     height="320"/>
+            </div>
+        </div>
+    </section>
+    <script type="text/x-magento-init">
+    {
+        ".dalactive-sepay-page": {
+            "Dalactive_Sepay/js/sepay-status": {}
+        }
+    }
+    </script>
+<?php endif; ?>

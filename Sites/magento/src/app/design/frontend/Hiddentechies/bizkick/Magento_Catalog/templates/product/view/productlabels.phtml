@@ -1,0 +1,60 @@
+<?php
+/**
+ * Copyright © 2016 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+// @codingStandardsIgnoreFile
+
+/** @var $block \Magento\Catalog\Block\Product\View */
+?>
+<?php $_product = $block->getProduct(); 
+$bizkickHelper = $this->helper('Hiddentechies\Bizkick\Helper\Data');
+$showNewLabel = $bizkickHelper->getConfigValue('bizkicksettings/product_settings/show_new_label');
+$showSaleLabel = $bizkickHelper->getConfigValue('bizkicksettings/product_settings/show_sale_label');
+$getSalePercent = function ($product): int {
+    $regularPrice = 0.0;
+    $finalPrice = 0.0;
+
+    try {
+        $priceInfo = $product->getPriceInfo();
+        $regularPrice = (float) $priceInfo->getPrice('regular_price')->getAmount()->getValue();
+        $finalPrice = (float) $priceInfo->getPrice('final_price')->getAmount()->getValue();
+    } catch (\Throwable $exception) {
+        $regularPrice = (float) $product->getPrice();
+        $finalPrice = (float) $product->getFinalPrice();
+    }
+
+    if ($regularPrice <= 0 || $finalPrice <= 0 || $finalPrice >= $regularPrice) {
+        return 0;
+    }
+
+    return (int) round((($regularPrice - $finalPrice) / $regularPrice) * 100);
+};
+?>
+<div class="product-labels">
+    <?php
+    if ($showNewLabel == 1) {
+        $fromDate = $_product->getNewsFromDate();
+        $toDate = $_product->getNewsToDate();
+
+        if (isset($fromDate) && isset($toDate)) {
+            $fromDate = strtotime($fromDate);
+            $toDate = strtotime($toDate);
+            $now = strtotime(date("Y-m-d h:m:s"));
+
+            if ($fromDate <= $now && $now <= $toDate) {
+                ?>
+                <span class="new-label"><?php echo __('New'); ?></span>
+                <?php
+            }
+        }
+    }
+
+    $salePercent = $getSalePercent($_product);
+    if ($salePercent > 0) {
+        ?>
+        <span class="sale-label">-<?= $block->escapeHtml((string) $salePercent) ?>%</span>
+        <?php
+    }
+    ?>
+</div>

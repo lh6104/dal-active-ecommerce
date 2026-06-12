@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd"
+      layout="1column">
+    <head>
+        <css src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" src_type="url"/>
+        <css src="Dalactive_StoreLocator::css/store-locator.css"/>
+    </head>
+    <body>
+        <referenceContainer name="sidebar.main" remove="true"/>
+        <referenceContainer name="sidebar.additional" remove="true"/>
+        <referenceBlock name="catalog.compare.sidebar" remove="true"/>
+        <referenceBlock name="wishlist_sidebar" remove="true"/>
+        <referenceBlock name="catalog.leftnav" remove="true"/>
+        <referenceContainer name="content">
+            <block class="Dalactive\StoreLocator\Block\StoreList"
+                   name="dalactive.storelocator.list"
+                   template="Dalactive_StoreLocator::store/list.phtml"/>
+        </referenceContainer>
+    </body>
+</page>

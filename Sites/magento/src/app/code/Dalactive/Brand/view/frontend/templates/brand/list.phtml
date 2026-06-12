@@ -1,0 +1,18 @@
+<?php
+/** @var \Dalactive\Brand\Block\BrandList $block */
+?>
+<?php if ($block->isEnabled()): ?>
+    <section class="dalactive-brand-list">
+        <h1><?= $block->escapeHtml(__('Brands')) ?></h1>
+        <div class="items">
+            <?php foreach ($block->getBrands() as $brand): ?>
+                <article class="item">
+                    <h2><?= $block->escapeHtml($brand->getData('name')) ?></h2>
+                    <?php if ($brand->getData('description')): ?>
+                        <p><?= $block->escapeHtml($brand->getData('description')) ?></p>
+                    <?php endif; ?>
+                </article>
+            <?php endforeach; ?>
+        </div>
+    </section>
+<?php endif; ?>

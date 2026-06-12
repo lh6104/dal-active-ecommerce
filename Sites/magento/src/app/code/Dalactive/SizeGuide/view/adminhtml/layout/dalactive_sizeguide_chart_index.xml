@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="content">
+            <block class="Dalactive\SizeGuide\Block\Adminhtml\Listing"
+                   name="dalactive.sizeguide.admin.listing"
+                   template="Dalactive_SizeGuide::listing.phtml">
+                <arguments>
+                    <argument name="table" xsi:type="string">dalactive_sizeguide_chart</argument>
+                    <argument name="columns" xsi:type="string">chart_id,name,product_type,gender,status</argument>
+                </arguments>
+            </block>
+        </referenceContainer>
+    </body>
+</page>

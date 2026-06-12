@@ -1,0 +1,40 @@
+<?php
+/** @var \Dalactive\StoreLocator\Block\StoreList $block */
+$storesJson = $block->getStoresJson();
+?>
+<?php if ($block->isEnabled() && $storesJson !== '[]'): ?>
+    <section class="dal-storelocator-page"
+             data-stores='<?= $block->escapeHtmlAttr($storesJson) ?>'
+             data-mage-init='{"Dalactive_StoreLocator/js/store-locator": {}}'>
+        <div class="dal-storelocator-shell">
+            <aside class="dal-storelocator-sidebar">
+                <div class="dal-storelocator-sidebar__header">
+                    <p class="dal-storelocator-eyebrow"><?= $block->escapeHtml(__('DAL Active')) ?></p>
+                    <h1><?= $block->escapeHtml(__('Tìm cửa hàng')) ?></h1>
+                    <p><?= $block->escapeHtml(__('Tìm cửa hàng DAL Active gần bạn nhất.')) ?></p>
+                </div>
+
+                <div class="dal-storelocator-search">
+                    <label class="dal-storelocator-search__label" for="dal-storelocator-search">
+                        <?= $block->escapeHtml(__('Tìm kiếm cửa hàng')) ?>
+                    </label>
+                    <input
+                        id="dal-storelocator-search"
+                        class="dal-storelocator-search__input"
+                        type="search"
+                        placeholder="<?= $block->escapeHtmlAttr(__('Tìm theo tên cửa hàng, địa chỉ, thành phố...')) ?>"
+                        autocomplete="off"
+                    />
+                    <p class="dal-storelocator-count" aria-live="polite"></p>
+                </div>
+
+                <div class="dal-storelocator-list" data-store-list></div>
+            </aside>
+
+            <section class="dal-storelocator-mapwrap">
+                <div id="dal-storelocator-map" class="dal-storelocator-map" role="region" aria-label="<?= $block->escapeHtmlAttr(__('Bản đồ cửa hàng DAL Active')) ?>"></div>
+                <div class="dal-storelocator-mapempty" hidden><?= $block->escapeHtml(__('Không có cửa hàng có tọa độ để hiển thị trên bản đồ.')) ?></div>
+            </section>
+        </div>
+    </section>
+<?php endif; ?>

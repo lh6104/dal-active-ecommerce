@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="dalactive_brand" resource="default" engine="innodb" comment="Dalactive Brands">
+        <column xsi:type="int" name="brand_id" unsigned="true" nullable="false" identity="true"/>
+        <column xsi:type="varchar" name="name" nullable="false" length="255"/>
+        <column xsi:type="varchar" name="logo" nullable="true" length="255"/>
+        <column xsi:type="varchar" name="banner" nullable="true" length="255"/>
+        <column xsi:type="text" name="description" nullable="true"/>
+        <column xsi:type="varchar" name="url_key" nullable="false" length="255"/>
+        <column xsi:type="smallint" name="status" unsigned="true" nullable="false" default="1"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="brand_id"/>
+        </constraint>
+        <constraint xsi:type="unique" referenceId="DALACTIVE_BRAND_URL_KEY">
+            <column name="url_key"/>
+        </constraint>
+    </table>
+</schema>

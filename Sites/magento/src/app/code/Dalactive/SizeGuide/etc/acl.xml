@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Acl/etc/acl.xsd">
+    <acl>
+        <resources>
+            <resource id="Magento_Backend::admin">
+                <resource id="Dalactive_SizeGuide::root" title="Dalactive Size Guide" sortOrder="10">
+                    <resource id="Dalactive_SizeGuide::config" title="Configuration"/>
+                    <resource id="Dalactive_SizeGuide::charts" title="Manage Size Charts"/>
+                </resource>
+            </resource>
+        </resources>
+    </acl>
+</config>

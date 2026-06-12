@@ -1,0 +1,145 @@
+#!/usr/bin/env bash
+#
+# Safe Flshop → Dalactive Refactoring Script
+# Refactors all Flshop branding to Dalactive without losing code
+#
+
+set -o errexit
+
+cd "$(dirname "$0")/.."
+
+echo "================================"
+echo "FLSHOP → DALACTIVE REFACTORING"
+echo "================================"
+echo ""
+echo "This script will:"
+echo "  1. Copy Flshop modules to Dalactive"
+echo "  2. Update all namespaces"
+echo "  3. Update config files"
+echo "  4. Remove old Flshop modules"
+echo ""
+
+read -p "Continue? (yes/no): " -r
+if [[ ! $REPLY =~ ^[Yy][Ee][Ss]$ ]]; then
+    echo "Aborted."
+    exit 0
+fi
+
+FLSHOP_PATH="src/app/code/Flshop"
+DALACTIVE_PATH="src/app/code/Dalactive"
+
+if [ ! -d "$FLSHOP_PATH" ]; then
+    echo "❌ Error: Flshop modules not found at $FLSHOP_PATH"
+    exit 1
+fi
+
+echo ""
+echo "1️⃣ Checking if Dalactive modules already exist..."
+if [ -d "$DALACTIVE_PATH" ]; then
+    echo "⚠️  Dalactive folder already exists"
+    read -p "Overwrite existing Dalactive modules? (yes/no): " -r
+    if [[ $REPLY =~ ^[Yy][Ee][Ss]$ ]]; then
+        echo "Removing old Dalactive modules..."
+        rm -rf "$DALACTIVE_PATH"
+    else
+        echo "Keeping existing Dalactive modules"
+    fi
+fi
+
+if [ ! -d "$DALACTIVE_PATH" ]; then
+    echo ""
+    echo "2️⃣ Copying Flshop modules to Dalactive..."
+    cp -r "$FLSHOP_PATH" "$DALACTIVE_PATH"
+    echo "✅ Copied Flshop → Dalactive"
+fi
+
+echo ""
+echo "3️⃣ Refactoring Dalactive module namespaces..."
+
+# Weather module
+echo "  → Refactoring Dalactive_Weather..."
+find "$DALACTIVE_PATH/Weather" -type f \( -name "*.php" -o -name "*.phtml" -o -name "*.xml" -o -name "*.css" \) -exec sed -i 's/Flshop\\Weather/Dalactive\\Weather/g' {} +
+find "$DALACTIVE_PATH/Weather" -type f \( -name "*.php" -o -name "*.phtml" \) -exec sed -i 's/Flshop\\\\Weather/Dalactive\\\\Weather/g' {} +
+find "$DALACTIVE_PATH/Weather" -type f -exec sed -i 's/Flshop_Weather/Dalactive_Weather/g' {} +
+find "$DALACTIVE_PATH/Weather" -type f -exec sed -i 's/flshop_weather/dalactive_weather/g' {} +
+find "$DALACTIVE_PATH/Weather" -type f -exec sed -i 's/FlshopWeatherModule/DalactiveWeatherModule/g' {} +
+sed -i "s|'User-Agent' => 'DalactiveWeatherModule/1.0 .*|'User-Agent' => 'DalactiveWeatherModule/1.0 (https://dalactive.test)'|g" "$DALACTIVE_PATH/Weather/Block/Weather.php"
+
+# ExchangeRate module
+echo "  → Refactoring Dalactive_ExchangeRate..."
+find "$DALACTIVE_PATH/ExchangeRate" -type f \( -name "*.php" -o -name "*.phtml" -o -name "*.xml" \) -exec sed -i 's/Flshop\\ExchangeRate/Dalactive\\ExchangeRate/g' {} +
+find "$DALACTIVE_PATH/ExchangeRate" -type f \( -name "*.php" -o -name "*.phtml" \) -exec sed -i 's/Flshop\\\\ExchangeRate/Dalactive\\\\ExchangeRate/g' {} +
+find "$DALACTIVE_PATH/ExchangeRate" -type f -exec sed -i 's/Flshop_ExchangeRate/Dalactive_ExchangeRate/g' {} +
+find "$DALACTIVE_PATH/ExchangeRate" -type f -exec sed -i 's/FlshopExchangeRateModule/DalactiveExchangeRateModule/g' {} +
+sed -i "s|'User-Agent' => 'DalactiveExchangeRateModule/1.0 .*|'User-Agent' => 'DalactiveExchangeRateModule/1.0 (https://dalactive.test)'|g" "$DALACTIVE_PATH/ExchangeRate/Block/ExchangeRate.php"
+
+# EconomicNews module
+echo "  → Refactoring Dalactive_EconomicNews..."
+find "$DALACTIVE_PATH/EconomicNews" -type f \( -name "*.php" -o -name "*.phtml" -o -name "*.xml" -o -name "*.css" \) -exec sed -i 's/Flshop\\EconomicNews/Dalactive\\EconomicNews/g' {} +
+find "$DALACTIVE_PATH/EconomicNews" -type f \( -name "*.php" -o -name "*.phtml" \) -exec sed -i 's/Flshop\\\\EconomicNews/Dalactive\\\\EconomicNews/g' {} +
+find "$DALACTIVE_PATH/EconomicNews" -type f -exec sed -i 's/Flshop_EconomicNews/Dalactive_EconomicNews/g' {} +
+find "$DALACTIVE_PATH/EconomicNews" -type f -exec sed -i 's/FlshopEconomicNews/DalactiveEconomicNews/g' {} +
+sed -i 's|https://flshop.me|https://dalactive.test|g' "$DALACTIVE_PATH/EconomicNews/Block/News.php"
+echo "✅ Namespace refactoring complete"
+
+echo ""
+echo "4️⃣ Updating config.php..."
+if [ -f "src/app/etc/config.php" ]; then
+    sed -i "/^        'Flshop_/d" src/app/etc/config.php
+    # Verify Dalactive entries exist
+    if ! grep -q "Dalactive_Weather" src/app/etc/config.php; then
+        # Add before Hiddentechies_Base
+        sed -i "/^        'Hiddentechies_Base/i\        'Dalactive_EconomicNews' => 1,\n        'Dalactive_ExchangeRate' => 1,\n        'Dalactive_Weather' => 1," src/app/etc/config.php
+    fi
+    echo "✅ config.php updated"
+else
+    echo "⚠️  config.php not found - skipping"
+fi
+
+echo ""
+echo "5️⃣ Updating env.php..."
+if [ -f "src/app/etc/env.php" ]; then
+    sed -i "s/'flshop.me'/'dalactive.test'/g" src/app/etc/env.php
+    sed -i "s/'flshop.test'/'dalactive.test'/g" src/app/etc/env.php
+    echo "✅ env.php updated"
+else
+    echo "⚠️  env.php not found - skipping"
+fi
+
+echo ""
+echo "6️⃣ Updating Hiddentechies/Bizkick brand config..."
+BIZKICK_CONFIG="src/app/code/Hiddentechies/Bizkick/etc/config.xml"
+if [ -f "$BIZKICK_CONFIG" ]; then
+    sed -i 's|<email>.*flshop.*</email>|<email>info@dalactive.test</email>|g' "$BIZKICK_CONFIG"
+    sed -i 's|<copyright_text>Flshop.*</copyright_text>|<copyright_text>DAL Active Sports Store</copyright_text>|g' "$BIZKICK_CONFIG"
+    echo "✅ Bizkick config updated"
+else
+    echo "⚠️  Bizkick config not found - skipping"
+fi
+
+echo ""
+echo "7️⃣ Cleaning up old Flshop modules..."
+if [ -d "$FLSHOP_PATH" ]; then
+    rm -rf "$FLSHOP_PATH"
+    echo "✅ Old Flshop modules removed"
+fi
+
+echo ""
+echo "8️⃣ Verifying refactoring..."
+FLSHOP_COUNT=$(grep -r "Flshop\|flshop" "src/app/code/Dalactive" "src/app/etc" 2>/dev/null | wc -l)
+if [ "$FLSHOP_COUNT" -eq 0 ]; then
+    echo "✅ Verification: Zero Flshop references found in Dalactive!"
+else
+    echo "⚠️  Warning: Found $FLSHOP_COUNT Flshop references - may need manual fixing"
+fi
+
+echo ""
+echo "================================"
+echo "✅ REFACTORING COMPLETE!"
+echo "================================"
+echo ""
+echo "Next steps:"
+echo "  1. Run: ./bin/setup-safe dalactive.test"
+echo "  2. Or run from src/: php bin/magento setup:upgrade"
+echo "  3. Then: bin/clinotty bin/magento cache:flush"
+echo ""

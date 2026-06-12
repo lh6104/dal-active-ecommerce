@@ -1,0 +1,83 @@
+# Local agent/editor metadata
+.agents/
+.codex/
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+Thumbs.db
+.DS_Store
+
+# Local backup repositories/artifacts
+.git.backup-*/
+*.bak
+*.bak.*
+*.backup
+*.backup.*
+
+# Environment and secrets
+.env
+.env.*
+!.env.example
+*.pem
+auth.json
+
+# Database dumps and local backups
+*.sql
+*.sql.gz
+*.dump
+backup-*.sql
+
+# Temporary imported assets already copied into Magento media
+/messi.png
+/penaldo.webp
+/phamnhatvuong.png
+
+# Magento/Docker local environment
+Sites/magento/env/*.env
+Sites/magento/rootCA.pem
+Sites/magento/backup-*.sql
+
+# Magento generated/runtime files
+Sites/magento/src/app/etc/env.php
+Sites/magento/src/app/etc/config.php.bak*
+Sites/magento/src/generated/
+Sites/magento/src/var/
+Sites/magento/src/bizkick/
+Sites/magento/src/src/
+Sites/magento/src/pub/static/
+Sites/magento/src/pub/cache/
+Sites/magento/src/pub/page_cache/
+Sites/magento/src/pub/media/tmp/
+Sites/magento/src/pub/media/catalog/product/cache/
+Sites/magento/src/pub/media/css/
+Sites/magento/src/pub/media/js/
+
+# Dependencies/build output
+Sites/magento/src/vendor/
+Sites/magento/src/node_modules/
+Sites/magento/src/.sass-cache/
+Sites/magento/src/.grunt/
+
+# Composer backup files made during module experiments
+Sites/magento/src/composer.json.bak*
+Sites/magento/src/composer.lock.bak*
+
+# Runtime logs/reports
+*.log
+*.pid
+Sites/magento/src/var/log/
+Sites/magento/src/var/report/
+
+# Accidental shell/output fragments
+Sites/magento/src/,
+Sites/magento/src/2.0.0,
+Sites/magento/src/VND,
+Sites/magento/src/\[REMOTE_ADDR\],
+Sites/magento/src/jsonFac
+Sites/magento/src/other,
+Sites/magento/src/pay,
+Sites/magento/src/vn,
+
+*.md

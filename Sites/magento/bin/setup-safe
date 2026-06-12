@@ -1,0 +1,88 @@
+#!/usr/bin/env bash
+#
+# Safe setup for existing Magento projects
+# Does NOT delete src/ folder, only runs setup commands
+# Use this for projects that already have code
+#
+
+set -o errexit
+
+DOMAIN=${1:-dalactive.test}
+
+echo "================================"
+echo "Safe Magento Setup (Existing Project)"
+echo "================================"
+echo ""
+echo "Domain: $DOMAIN"
+echo "Mode: Development"
+echo ""
+
+# Check if src exists
+if [ ! -d "src" ]; then
+    echo "❌ Error: src/ folder not found"
+    echo "Use 'make setup <domain>' for fresh installation instead"
+    exit 1
+fi
+
+echo "1️⃣ Starting Docker containers..."
+./bin/start --no-dev
+[ $? != 0 ] && echo "Failed to start Docker services" && exit 1
+
+echo ""
+echo "2️⃣ Copying files to container..."
+./bin/copytocontainer --all
+
+echo ""
+echo "2️⃣a Copying logos to container..."
+docker cp src/pub/media/logo/stores/1/logo_main.png magento-phpfpm-1:/var/www/html/pub/media/logo/stores/1/ 2>/dev/null || true
+docker cp src/pub/media/logo/stores/1/logo_sub.png magento-phpfpm-1:/var/www/html/pub/media/logo/stores/1/ 2>/dev/null || true
+
+echo ""
+echo "3️⃣ Running Magento setup:upgrade..."
+./bin/clinotty bin/magento setup:upgrade
+
+echo ""
+echo "4️⃣ Running DI compilation..."
+./bin/clinotty bin/magento setup:di:compile
+
+echo ""
+echo "5️⃣ Deploying static content..."
+./bin/clinotty bin/magento setup:static-content:deploy -f vi_VN en_US
+
+echo ""
+echo "6️⃣ Re-indexing..."
+./bin/clinotty bin/magento indexer:reindex
+
+echo ""
+echo "7️⃣ Setting up domain..."
+./bin/setup-domain "$DOMAIN"
+
+echo ""
+echo "8️⃣ Fixing permissions..."
+./bin/fixowns
+./bin/fixperms
+
+echo ""
+echo "9️⃣ Clearing cache..."
+./bin/clinotty bin/magento cache:flush
+
+echo ""
+echo "🔟 Initializing Dalactive configuration..."
+./bin/init-dalactive-config
+
+echo ""
+echo "1️⃣1️⃣ Initializing Dalactive logos..."
+./bin/init-dalactive-logos
+
+echo ""
+echo "1️⃣2️⃣ Copying files back to host..."
+./bin/copyfromcontainer --all
+
+echo ""
+echo "================================"
+echo "✅ Setup complete!"
+echo "================================"
+echo ""
+echo "Storefront: https://$DOMAIN/"
+echo "Admin: https://$DOMAIN/admin"
+echo ""

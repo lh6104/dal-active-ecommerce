@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="dalactive_stockalert_subscriber" resource="default" engine="innodb" comment="Dalactive Stock Alert Subscribers">
+        <column xsi:type="int" name="subscriber_id" unsigned="true" nullable="false" identity="true"/>
+        <column xsi:type="varchar" name="email" nullable="false" length="255"/>
+        <column xsi:type="int" name="product_id" unsigned="true" nullable="false"/>
+        <column xsi:type="varchar" name="product_option" nullable="true" length="255"/>
+        <column xsi:type="timestamp" name="subscribe_date" nullable="false" default="CURRENT_TIMESTAMP"/>
+        <column xsi:type="smallint" name="notification_status" unsigned="true" nullable="false" default="0" comment="0 Pending, 1 Sent"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="subscriber_id"/>
+        </constraint>
+    </table>
+</schema>

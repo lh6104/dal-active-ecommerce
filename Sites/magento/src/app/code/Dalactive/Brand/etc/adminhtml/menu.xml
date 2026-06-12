@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Dalactive_Brand::brands" title="Brands" module="Dalactive_Brand" sortOrder="60" parent="Dalactive_Core::root" action="dalactive_brand/brand/index" resource="Dalactive_Brand::brands"/>
+    </menu>
+</config>

@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Dalactive_Core::root" title="Dalactive" module="Dalactive_SizeGuide" sortOrder="80" resource="Magento_Backend::content"/>
+        <add id="Dalactive_SizeGuide::charts" title="Size Charts" module="Dalactive_SizeGuide" sortOrder="10" parent="Dalactive_Core::root" action="dalactive_sizeguide/chart/index" resource="Dalactive_SizeGuide::charts"/>
+    </menu>
+</config>

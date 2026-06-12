@@ -1,0 +1,40 @@
+<?php
+/** @var \Dalactive\HeroBanner\Block\Adminhtml\BannerList $block */
+?>
+<div class="page-main-actions">
+    <div class="page-actions">
+        <a class="action-primary" href="<?= $block->escapeUrl($block->getUrl('*/*/new')) ?>"><?= $block->escapeHtml(__('Add New Banner')) ?></a>
+    </div>
+</div>
+<table class="data-grid">
+    <thead>
+        <tr>
+            <th class="data-grid-th"><?= $block->escapeHtml(__('ID')) ?></th>
+            <th class="data-grid-th"><?= $block->escapeHtml(__('Title')) ?></th>
+            <th class="data-grid-th"><?= $block->escapeHtml(__('Image')) ?></th>
+            <th class="data-grid-th"><?= $block->escapeHtml(__('Button URL')) ?></th>
+            <th class="data-grid-th"><?= $block->escapeHtml(__('Timeout')) ?></th>
+            <th class="data-grid-th"><?= $block->escapeHtml(__('Sort Order')) ?></th>
+            <th class="data-grid-th"><?= $block->escapeHtml(__('Status')) ?></th>
+            <th class="data-grid-th"><?= $block->escapeHtml(__('Action')) ?></th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php foreach ($block->getBanners() as $banner): ?>
+            <tr>
+                <td><?= (int) $banner->getId() ?></td>
+                <td><?= $block->escapeHtml((string) $banner->getData('headline')) ?></td>
+                <td><?= $block->escapeHtml((string) $banner->getData('media_path')) ?></td>
+                <td><?= $block->escapeHtml((string) $banner->getData('button1_url')) ?></td>
+                <td><?= $banner->getData('timeout_ms') ? (int) $banner->getData('timeout_ms') . ' ms' : $block->escapeHtml(__('Default')) ?></td>
+                <td><?= (int) $banner->getData('sort_order') ?></td>
+                <td><?= $banner->getData('status') ? $block->escapeHtml(__('Enabled')) : $block->escapeHtml(__('Disabled')) ?></td>
+                <td>
+                    <a href="<?= $block->escapeUrl($block->getUrl('*/*/edit', ['slide_id' => $banner->getId()])) ?>"><?= $block->escapeHtml(__('Edit')) ?></a>
+                    |
+                    <a href="<?= $block->escapeUrl($block->getUrl('*/*/delete', ['slide_id' => $banner->getId()])) ?>"><?= $block->escapeHtml(__('Delete')) ?></a>
+                </td>
+            </tr>
+        <?php endforeach; ?>
+    </tbody>
+</table>

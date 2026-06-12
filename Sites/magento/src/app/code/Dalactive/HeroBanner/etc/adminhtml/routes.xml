@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:App/etc/routes.xsd">
+    <router id="admin">
+        <route id="dalactive_herobanner" frontName="dalactive_herobanner">
+            <module name="Dalactive_HeroBanner"/>
+        </route>
+    </router>
+</config>

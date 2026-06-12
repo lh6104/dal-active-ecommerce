@@ -1,0 +1,77 @@
+#!/usr/bin/env bash
+#
+# Initialize Dalactive Configuration in Database
+# Runs after initial Magento setup to update all Flshop references to Dalactive
+#
+
+set -o errexit
+
+echo "================================"
+echo "Initializing Dalactive Configuration"
+echo "================================"
+echo ""
+
+DB_HOST=${MAGENTO_DB_HOST:-172.18.0.1}
+DB_PORT=${MAGENTO_DB_PORT:-3307}
+
+# Update CMS pages
+echo "1️⃣ Fixing theme configuration (Bizkick)..."
+./bin/cli sed -i 's/flshop166@gmail.com/dalactive99@gmail.com/g' /var/www/html/app/code/Hiddentechies/Bizkick/etc/config.xml || true
+./bin/cli sed -i 's/Flshop\.me/DAL Active Sports Store/g' /var/www/html/app/code/Hiddentechies/Bizkick/etc/config.xml || true
+echo "✓ Theme configuration fixed"
+echo ""
+
+echo "2️⃣ Updating CMS Pages..."
+./bin/cli mysql -h "$DB_HOST" -P "$DB_PORT" -u magento -pmagento magento -e \
+"UPDATE cms_page SET
+  identifier = REPLACE(identifier, 'flshop', 'dalactive'),
+  content = REPLACE(content, 'Flshop', 'Dalactive'),
+  content = REPLACE(content, 'flshop', 'dalactive')
+WHERE title LIKE '%flshop%' OR identifier LIKE '%flshop%' OR content LIKE '%flshop%';" || true
+echo "✓ CMS Pages updated"
+echo ""
+
+# Update store information
+echo "3️⃣ Setting Store Information..."
+./bin/cli mysql -h "$DB_HOST" -P "$DB_PORT" -u magento -pmagento magento -e \
+"INSERT INTO core_config_data (scope, scope_id, path, value) VALUES
+('default', 0, 'general/store_information/name', 'DAL Active Sports Store'),
+('default', 0, 'trans_email/ident_general/name', 'DAL Active Sports Store'),
+('default', 0, 'general/locale/code', 'vi_VN'),
+('default', 0, 'currency/options/default', 'VND'),
+('default', 0, 'general/locale/timezone', 'Asia/Ho_Chi_Minh')
+ON DUPLICATE KEY UPDATE value=VALUES(value);" || true
+echo "✓ Store information set"
+echo ""
+
+# Update system config for Vietnam
+echo "4️⃣ Configuring Vietnam Settings..."
+./bin/cli mysql -h "$DB_HOST" -P "$DB_PORT" -u magento -pmagento magento -e \
+"INSERT INTO core_config_data (scope, scope_id, path, value) VALUES
+('default', 0, 'general/country/default', 'VN'),
+('default', 0, 'shipping/origin/country_id', 'VN'),
+('default', 0, 'shipping/origin/region_id', '565'),
+('default', 0, 'shipping/origin/city', 'Ho Chi Minh'),
+('default', 0, 'shipping/origin/postcode', '70000')
+ON DUPLICATE KEY UPDATE value=VALUES(value);" || true
+echo "✓ Vietnam settings configured"
+echo ""
+
+# Flush cache
+echo "5️⃣ Flushing Cache..."
+./bin/clinotty bin/magento cache:flush || true
+echo "✓ Cache flushed"
+echo ""
+
+echo "================================"
+echo "✅ Dalactive Configuration Complete!"
+echo "================================"
+echo ""
+echo "Changes made:"
+echo "  ✓ CMS page identifiers/content updated: Flshop → Dalactive"
+echo "  ✓ Store name: DAL Active Sports Store"
+echo "  ✓ Locale: Vietnamese (vi_VN)"
+echo "  ✓ Currency: VND"
+echo "  ✓ Timezone: Asia/Ho_Chi_Minh"
+echo "  ✓ Country: Vietnam"
+echo ""

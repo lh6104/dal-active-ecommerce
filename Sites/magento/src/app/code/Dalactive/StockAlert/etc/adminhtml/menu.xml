@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Dalactive_StockAlert::subscribers" title="Stock Alert Subscribers" module="Dalactive_StockAlert" sortOrder="50" parent="Dalactive_Core::root" action="dalactive_stockalert/subscriber/index" resource="Dalactive_StockAlert::subscribers"/>
+    </menu>
+</config>

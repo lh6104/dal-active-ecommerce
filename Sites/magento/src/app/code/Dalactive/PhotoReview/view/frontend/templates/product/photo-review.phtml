@@ -1,0 +1,8 @@
+<?php
+/** @var \Dalactive\PhotoReview\Block\Product\PhotoReview $block */
+?>
+<?php if ($block->isEnabled()): ?>
+    <div class="dalactive-photo-review" hidden>
+        <p><?= $block->escapeHtml(__('Thêm tối đa %1 ảnh, mỗi ảnh tối đa %2MB.', $block->getMaxImages(), (int) ceil($block->getMaxImageSize() / 1024))) ?></p>
+    </div>
+<?php endif; ?>

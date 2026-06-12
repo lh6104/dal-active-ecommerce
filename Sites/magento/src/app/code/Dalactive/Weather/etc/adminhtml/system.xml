@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="dalactive" translate="label" sortOrder="130">
+            <label>Dalactive Settings</label>
+        </tab>
+        <section id="weather" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Weather Settings</label>
+            <tab>dalactive</tab>
+            <resource>Magento_Config::config</resource>
+
+            <group id="api" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>OpenWeatherMap Configuration</label>
+
+                <field id="api_key" translate="label comment" type="password" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>API Key</label>
+                    <comment>Get your free API key from https://openweathermap.org/api</comment>
+                    <validate>required-entry</validate>
+                </field>
+
+                <field id="cities" translate="label comment" type="textarea" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Cities (one per line)</label>
+                    <comment>Enter city names separated by newlines (e.g., Ho Chi Minh City, Ha Noi, Da Nang)</comment>
+                    <validate>required-entry</validate>
+                </field>
+
+                <field id="cache_ttl" translate="label comment" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Cache TTL (seconds)</label>
+                    <comment>How long to cache weather data (default: 600 = 10 minutes)</comment>
+                    <validate>validate-digits</validate>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>
