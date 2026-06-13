@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+cd "$ROOT_DIR"
+
+echo "Refreshing DAL Active flash sale demo rule dates..."
+./bin/clinotty bash -lc 'cd /var/www/html && php app/code/Dalactive/CatalogSetup/Console/apply_flash_sale.php'
+
+echo "Reindexing catalog rule and price indexes..."
+./bin/clinotty bash -lc 'cd /var/www/html && php bin/magento indexer:reindex catalogrule_rule catalogrule_product catalog_product_price catalog_category_product'
+
+echo "Syncing promotion categories from active rule prices..."
+./bin/clinotty bash -lc 'cd /var/www/html && php app/code/Dalactive/CatalogSetup/Console/apply_flash_sale.php --sync-only'
+
+echo "Reindexing catalog rules after promotion sync..."
+./bin/clinotty bash -lc 'cd /var/www/html && php bin/magento indexer:reindex catalogrule_rule catalogrule_product catalog_product_price catalog_category_product catalogsearch_fulltext'
+
+./bin/clinotty bash -lc 'cd /var/www/html && php bin/magento cache:clean && php bin/magento cache:flush'
+echo "Flash sale refresh complete."

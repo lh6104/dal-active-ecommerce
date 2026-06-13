@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <carriers>
+            <ghn>
+                <active>0</active>
+                <model>Dalactive\GhnShipping\Model\Carrier\Ghn</model>
+                <title>GHN Express</title>
+                <name>Dynamic Shipping Fee</name>
+                <environment>sandbox</environment>
+                <sandbox_base_url>https://dev-online-gateway.ghn.vn/shiip/public-api</sandbox_base_url>
+                <production_base_url>https://online-gateway.ghn.vn/shiip/public-api</production_base_url>
+                <token></token>
+                <shop_id></shop_id>
+                <from_district_id></from_district_id>
+                <from_ward_code></from_ward_code>
+                <enable_auto_mapping>1</enable_auto_mapping>
+                <enable_nearest_origin>1</enable_nearest_origin>
+                <default_origin_store_code>dal-active-xuan-thuy</default_origin_store_code>
+                <enable_checkout_dropdowns>1</enable_checkout_dropdowns>
+                <enable_name_resolver>1</enable_name_resolver>
+                <demo_to_district_id></demo_to_district_id>
+                <demo_to_ward_code></demo_to_ward_code>
+                <address_cache_ttl>86400</address_cache_ttl>
+                <default_service_id></default_service_id>
+                <default_service_type_id>2</default_service_type_id>
+                <default_weight>500</default_weight>
+                <default_length>30</default_length>
+                <default_width>20</default_width>
+                <default_height>12</default_height>
+                <free_shipping_threshold>0</free_shipping_threshold>
+                <fallback_fee>35000</fallback_fee>
+                <debug>1</debug>
+                <sallowspecific>0</sallowspecific>
+                <sort_order>60</sort_order>
+                <specificerrmsg>GHN Express is currently unavailable.</specificerrmsg>
+            </ghn>
+        </carriers>
+    </default>
+</config>

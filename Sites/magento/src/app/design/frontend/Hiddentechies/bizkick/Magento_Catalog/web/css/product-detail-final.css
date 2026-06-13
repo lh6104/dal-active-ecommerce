@@ -262,6 +262,40 @@
     visibility: visible !important;
 }
 
+.catalog-product-view.page-layout-1column .product.media .fotorama__stage__frame.dal-gallery-from-bottom .fotorama__img,
+.catalog-product-view.page-layout-1column .product.media .fotorama__stage__frame.dal-gallery-from-bottom img {
+    animation: dalGalleryFromBottom .48s ease both !important;
+}
+
+.catalog-product-view.page-layout-1column .product.media .fotorama__stage__frame.dal-gallery-from-top .fotorama__img,
+.catalog-product-view.page-layout-1column .product.media .fotorama__stage__frame.dal-gallery-from-top img {
+    animation: dalGalleryFromTop .48s ease both !important;
+}
+
+@keyframes dalGalleryFromBottom {
+    from {
+        opacity: .2;
+        transform: translateY(34px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes dalGalleryFromTop {
+    from {
+        opacity: .2;
+        transform: translateY(-34px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 .catalog-product-view.page-layout-1column .product.media .fotorama__arr {
     bottom: 24px !important;
     height: 34px !important;

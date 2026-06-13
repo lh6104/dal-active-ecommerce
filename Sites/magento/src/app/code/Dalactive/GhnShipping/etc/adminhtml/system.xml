@@ -1,0 +1,139 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="carriers" translate="label" type="text" sortOrder="320" showInDefault="1" showInWebsite="1" showInStore="1">
+            <group id="ghn" translate="label" type="text" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>GHN Express</label>
+                <field id="active" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Enabled</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="title" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Title</label>
+                </field>
+                <field id="name" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Method Name</label>
+                </field>
+                <field id="environment" translate="label" type="select" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Environment</label>
+                    <source_model>Dalactive\GhnShipping\Model\Config\Source\Environment</source_model>
+                </field>
+                <field id="sandbox_base_url" translate="label" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Sandbox Base URL</label>
+                    <validate>validate-url</validate>
+                </field>
+                <field id="production_base_url" translate="label" type="text" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Production Base URL</label>
+                    <validate>validate-url</validate>
+                </field>
+                <field id="token" translate="label" type="obscure" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Token</label>
+                    <backend_model>Magento\Config\Model\Config\Backend\Encrypted</backend_model>
+                </field>
+                <field id="shop_id" translate="label" type="text" sortOrder="80" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Shop ID</label>
+                    <validate>validate-digits</validate>
+                </field>
+                <field id="from_district_id" translate="label" type="text" sortOrder="90" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>From District ID</label>
+                    <validate>validate-digits</validate>
+                </field>
+                <field id="from_ward_code" translate="label" type="text" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Legacy From Ward Code</label>
+                    <comment>Used only if selected Store Locator origin has no GHN ward code.</comment>
+                </field>
+                <field id="enable_auto_mapping" translate="label" type="select" sortOrder="105" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Enable Automatic GHN Address Mapping</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="enable_nearest_origin" translate="label comment" type="select" sortOrder="106" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Enable Nearest Origin Store</label>
+                    <comment>Uses coordinates if available, then province/district matching, then default origin.</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="default_origin_store_code" translate="label comment" type="select" sortOrder="107" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Default Origin Store</label>
+                    <comment>Loaded from DAL Active Store Locator.</comment>
+                    <source_model>Dalactive\GhnShipping\Model\Config\Source\OriginStore</source_model>
+                </field>
+                <field id="enable_checkout_dropdowns" translate="label comment" type="select" sortOrder="108" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Enable GHN Address Dropdowns in Checkout</label>
+                    <comment>Loads province, district, and ward from backend /ghn/address/* endpoints. GHN token is never exposed to frontend JavaScript.</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="enable_name_resolver" translate="label comment" type="select" sortOrder="109" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Enable Name-Based Address Resolver</label>
+                    <comment>Matches Magento city/region/street text against GHN cached master data.</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="demo_to_district_id" translate="label comment" type="text" sortOrder="110" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Fallback Destination District ID</label>
+                    <comment>Used only when automatic mapping/name resolver cannot resolve checkout address.</comment>
+                    <validate>validate-digits</validate>
+                </field>
+                <field id="demo_to_ward_code" translate="label comment" type="text" sortOrder="120" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Fallback Destination Ward Code</label>
+                    <comment>Used only when automatic mapping/name resolver cannot resolve checkout address.</comment>
+                </field>
+                <field id="address_cache_ttl" translate="label comment" type="text" sortOrder="125" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>GHN Address Cache TTL (seconds)</label>
+                    <comment>Default is 86400 seconds.</comment>
+                    <validate>validate-digits</validate>
+                </field>
+                <field id="default_service_id" translate="label comment" type="text" sortOrder="130" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Default Service ID</label>
+                    <comment>Optional. If empty, available-services is called first.</comment>
+                    <validate>validate-digits</validate>
+                </field>
+                <field id="default_service_type_id" translate="label" type="text" sortOrder="140" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Default Service Type ID</label>
+                    <validate>validate-digits</validate>
+                </field>
+                <field id="default_weight" translate="label" type="text" sortOrder="150" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Default Package Weight (grams)</label>
+                    <validate>validate-digits</validate>
+                </field>
+                <field id="default_length" translate="label" type="text" sortOrder="160" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Default Length (cm)</label>
+                    <validate>validate-digits</validate>
+                </field>
+                <field id="default_width" translate="label" type="text" sortOrder="170" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Default Width (cm)</label>
+                    <validate>validate-digits</validate>
+                </field>
+                <field id="default_height" translate="label" type="text" sortOrder="180" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Default Height (cm)</label>
+                    <validate>validate-digits</validate>
+                </field>
+                <field id="free_shipping_threshold" translate="label comment" type="text" sortOrder="190" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Free Shipping Threshold</label>
+                    <comment>Set 0 to disable.</comment>
+                    <validate>validate-number</validate>
+                </field>
+                <field id="fallback_fee" translate="label" type="text" sortOrder="200" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Fallback Shipping Fee</label>
+                    <validate>validate-number</validate>
+                </field>
+                <field id="debug" translate="label" type="select" sortOrder="210" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Debug Logging</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="sort_order" translate="label" type="text" sortOrder="220" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Sort Order</label>
+                    <validate>validate-number</validate>
+                </field>
+                <field id="sallowspecific" translate="label" type="select" sortOrder="230" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Ship to Applicable Countries</label>
+                    <frontend_class>shipping-applicable-country</frontend_class>
+                    <source_model>Magento\Shipping\Model\Config\Source\Allspecificcountries</source_model>
+                </field>
+                <field id="specificcountry" translate="label" type="multiselect" sortOrder="240" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Ship to Specific Countries</label>
+                    <source_model>Magento\Directory\Model\Config\Source\Country</source_model>
+                    <can_be_empty>1</can_be_empty>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

@@ -44,12 +44,12 @@ define(['jquery'], function ($) {
             if (attempts >= 20) {
                 window.clearInterval(intervalId);
             }
-        }, 100));
+        }, 100);
 
         timeoutId = window.setTimeout(function () {
             applyGalleryFix($root);
             window.clearInterval(intervalId);
-        }, 2200));
+        }, 2200);
 
         timers = [intervalId, timeoutId];
 

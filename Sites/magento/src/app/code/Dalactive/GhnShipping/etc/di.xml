@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Dalactive\GhnShipping\Logger\Logger">
+        <arguments>
+            <argument name="name" xsi:type="string">ghn_shipping</argument>
+            <argument name="handlers" xsi:type="array">
+                <item name="system" xsi:type="object">Dalactive\GhnShipping\Logger\Handler</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Magento\Checkout\Block\Checkout\LayoutProcessor">
+        <plugin name="dalactive_ghn_checkout_address_fields"
+                type="Dalactive\GhnShipping\Plugin\Checkout\LayoutProcessor"/>
+    </type>
+    <type name="Magento\Quote\Model\ShippingMethodManagement">
+        <plugin name="dalactive_ghn_quote_shipping_address_data"
+                type="Dalactive\GhnShipping\Plugin\Quote\ShippingAddressData"/>
+    </type>
+    <type name="Magento\Checkout\Model\ShippingInformationManagement">
+        <plugin name="dalactive_ghn_checkout_shipping_address_data"
+                type="Dalactive\GhnShipping\Plugin\Quote\ShippingAddressData"/>
+    </type>
+</config>

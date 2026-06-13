@@ -8,9 +8,13 @@
         <column xsi:type="text" name="address" nullable="false"/>
         <column xsi:type="varchar" name="city" nullable="true" length="128"/>
         <column xsi:type="varchar" name="region" nullable="true" length="128"/>
+        <column xsi:type="varchar" name="ward" nullable="true" length="128"/>
         <column xsi:type="varchar" name="country" nullable="false" default="VN" length="64"/>
         <column xsi:type="decimal" name="latitude" scale="7" precision="10" nullable="true"/>
         <column xsi:type="decimal" name="longitude" scale="7" precision="10" nullable="true"/>
+        <column xsi:type="int" name="ghn_province_id" unsigned="true" nullable="true"/>
+        <column xsi:type="int" name="ghn_district_id" unsigned="true" nullable="true"/>
+        <column xsi:type="varchar" name="ghn_ward_code" nullable="true" length="32"/>
         <column xsi:type="text" name="google_maps_url" nullable="true"/>
         <column xsi:type="varchar" name="phone" nullable="true" length="64"/>
         <column xsi:type="varchar" name="email" nullable="true" length="255"/>

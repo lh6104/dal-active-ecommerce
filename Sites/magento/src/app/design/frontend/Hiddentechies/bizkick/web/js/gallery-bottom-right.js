@@ -1,8 +1,9 @@
-define(['jquery'], function ($) {
+require(['jquery'], function ($) {
     'use strict';
 
-    function applyBottomRight($root) {
-        var $media = $root.closest('.catalog-product-view').find('.product.media');
+    var animationDirection = 'next';
+
+    function applyBottomRight($media) {
         var $stage = $media.find('.fotorama__stage');
         var $shaft = $media.find('.fotorama__stage__shaft');
         var $prev = $media.find('.fotorama__arr--prev');
@@ -20,40 +21,104 @@ define(['jquery'], function ($) {
         }
 
         if ($prev.length) {
-            $prev[0].style.cssText = 'left: 24px !important; right: auto !important; bottom: 24px !important; top: auto !important; transform: none !important;';
+            $prev[0].style.cssText = 'left: auto !important; right: 66px !important; bottom: 24px !important; top: auto !important; transform: none !important;';
         }
 
         if ($next.length) {
-            $next[0].style.cssText = 'right: 24px !important; left: auto !important; bottom: 24px !important; top: auto !important; transform: none !important;';
+            $next[0].style.cssText = 'right: 22px !important; left: auto !important; bottom: 24px !important; top: auto !important; transform: none !important;';
         }
     }
 
-    function runWithRetries($root) {
-        var attempts = 0;
-        var intervalId = window.setInterval(function () {
-            attempts += 1;
-            applyBottomRight($root);
+    function animateActiveFrame($media) {
+        var $active = $media.find('.fotorama__stage__frame.fotorama__active').first();
 
-            if (attempts >= 40) {
+        if (!$active.length) {
+            return;
+        }
+
+        $active
+            .removeClass('dal-gallery-from-top dal-gallery-from-bottom')
+            .addClass(animationDirection === 'prev' ? 'dal-gallery-from-top' : 'dal-gallery-from-bottom');
+
+        window.setTimeout(function () {
+            $active.removeClass('dal-gallery-from-top dal-gallery-from-bottom');
+        }, 520);
+    }
+
+    function bindDirectionEvents($media) {
+        var lastThumbIndex = $media.find('.fotorama__nav__frame.fotorama__active').index();
+
+        if ($media.data('dalactiveVerticalGalleryBound')) {
+            return;
+        }
+
+        $media.data('dalactiveVerticalGalleryBound', true);
+
+        $media.on('click.dalactiveVerticalGallery', '.fotorama__arr--prev', function () {
+            animationDirection = 'prev';
+        });
+
+        $media.on('click.dalactiveVerticalGallery', '.fotorama__arr--next', function () {
+            animationDirection = 'next';
+        });
+
+        $media.on('click.dalactiveVerticalGallery', '.fotorama__nav__frame', function () {
+            var nextThumbIndex = $(this).index();
+
+            animationDirection = nextThumbIndex < lastThumbIndex ? 'prev' : 'next';
+            lastThumbIndex = nextThumbIndex;
+        });
+
+        $media.on('fotorama:show.dalactiveVerticalGallery fotorama:showend.dalactiveVerticalGallery', function () {
+            applyBottomRight($media);
+            animateActiveFrame($media);
+        });
+    }
+
+    function runGalleryFix($media) {
+        var attempts = 0;
+        var intervalId;
+
+        if (!$media.length) {
+            return;
+        }
+
+        bindDirectionEvents($media);
+
+        intervalId = window.setInterval(function () {
+            attempts += 1;
+            applyBottomRight($media);
+
+            if (attempts >= 30) {
                 window.clearInterval(intervalId);
             }
         }, 100);
 
-        applyBottomRight($root);
+        applyBottomRight($media);
         window.requestAnimationFrame(function () {
-            applyBottomRight($root);
-            window.setTimeout(applyBottomRight, 120, $root);
-            window.setTimeout(applyBottomRight, 600, $root);
+            applyBottomRight($media);
+            window.setTimeout(applyBottomRight, 120, $media);
+            window.setTimeout(applyBottomRight, 600, $media);
             window.setTimeout(function () {
                 window.clearInterval(intervalId);
-                applyBottomRight($root);
-            }, 4200);
+                applyBottomRight($media);
+            }, 3200);
         });
     }
 
-    return function (config, element) {
-        var $root = $(element);
+    $(function () {
+        var $page = $('.catalog-product-view');
+        var $media = $page.find('.product.media').first();
 
-        runWithRetries($root);
-    };
+        if (!$page.length || !$media.length) {
+            return;
+        }
+
+        runGalleryFix($media);
+
+        $('[data-gallery-role="gallery-placeholder"]').on('gallery:loaded fotorama:ready', function () {
+            runGalleryFix($media);
+            animateActiveFrame($media);
+        });
+    });
 });

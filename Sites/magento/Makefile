@@ -287,6 +287,7 @@ spx:
 start:
 	@./bin/start $(call args)
 	@$(MAKE) apply-docker-network-fix
+	@$(MAKE) apply-flash-sale
 
 status:
 	@./bin/status
@@ -352,9 +353,14 @@ quick-start:
 	@echo "$(call lightblue,Starting containers...)"
 	@./bin/start --no-dev
 	@$(MAKE) apply-docker-network-fix
+	@$(MAKE) apply-flash-sale
 	@echo ""
 	@echo "$(call lightblue,Ready! Access your site at:)"
 	@echo "$(call lightblue,https://dalactive.test)"
+
+apply-flash-sale:
+	@echo "$(call lightblue,Refreshing DAL Active flash sale demo rule...)"
+	@./bin/apply-flash-sale
 
 apply-docker-network-fix:
 	@echo "$(call lightblue,Applying Docker outbound network fix...)"

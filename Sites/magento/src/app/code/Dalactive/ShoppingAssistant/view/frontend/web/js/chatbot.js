@@ -111,6 +111,7 @@ define(['jquery'], function ($) {
             };
 
             return map[intent] || [
+                {label: 'Gợi ý sản phẩm', message: 'Gợi ý sản phẩm phù hợp cho tôi'},
                 {label: 'Tư vấn size', message: 'Tôi muốn được tư vấn size'},
                 {label: 'Áo dưới 400k', message: 'Gợi ý cho tôi vài mẫu áo dưới 400k'},
                 {label: 'Ưu đãi hôm nay', message: 'Có ưu đãi nào hôm nay không?'}

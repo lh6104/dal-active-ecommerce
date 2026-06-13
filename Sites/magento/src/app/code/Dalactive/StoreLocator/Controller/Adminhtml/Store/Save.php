@@ -46,7 +46,11 @@ class Save extends Action
                 'address' => trim((string) ($data['address'] ?? '')),
                 'city' => trim((string) ($data['city'] ?? '')),
                 'region' => trim((string) ($data['region'] ?? '')),
+                'ward' => trim((string) ($data['ward'] ?? '')),
                 'country' => trim((string) ($data['country'] ?? 'VN')) ?: 'VN',
+                'ghn_province_id' => $this->nullableInt($data['ghn_province_id'] ?? null),
+                'ghn_district_id' => $this->nullableInt($data['ghn_district_id'] ?? null),
+                'ghn_ward_code' => trim((string) ($data['ghn_ward_code'] ?? '')),
                 'latitude' => $this->nullableDecimal($data['latitude'] ?? null),
                 'longitude' => $this->nullableDecimal($data['longitude'] ?? null),
                 'google_maps_url' => trim((string) ($data['google_maps_url'] ?? '')),
@@ -77,6 +81,15 @@ class Save extends Action
         }
 
         return (float) str_replace(',', '.', (string) $value);
+    }
+
+    private function nullableInt($value): ?int
+    {
+        if ($value === null || trim((string) $value) === '') {
+            return null;
+        }
+
+        return (int) $value;
     }
 
     private function slugify(string $value): string

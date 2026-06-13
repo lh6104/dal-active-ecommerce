@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <carriers>
+            <ghtk>
+                <active>0</active>
+                <model>Dalactive\GhtkShipping\Model\Carrier\Ghtk</model>
+                <title>GHTK Standard</title>
+                <name>Dynamic Shipping Fee</name>
+                <environment>staging</environment>
+                <staging_base_url>https://services-staging.ghtklab.com</staging_base_url>
+                <production_base_url>https://services.giaohangtietkiem.vn</production_base_url>
+                <token></token>
+                <client_source></client_source>
+                <pick_name>DAL Active</pick_name>
+                <pick_tel></pick_tel>
+                <pick_address>144 Xuân Thủy</pick_address>
+                <pick_province>Hà Nội</pick_province>
+                <pick_district>Cầu Giấy</pick_district>
+                <pick_ward>Dịch Vọng Hậu</pick_ward>
+                <demo_to_province>Hà Nội</demo_to_province>
+                <demo_to_district>Cầu Giấy</demo_to_district>
+                <demo_to_ward>Dịch Vọng Hậu</demo_to_ward>
+                <demo_to_address>144 Xuân Thủy</demo_to_address>
+                <transport>road</transport>
+                <default_weight>500</default_weight>
+                <free_shipping_threshold>0</free_shipping_threshold>
+                <fallback_fee>30000</fallback_fee>
+                <hide_when_unsupported>0</hide_when_unsupported>
+                <create_order_after_place>0</create_order_after_place>
+                <webhook_hash></webhook_hash>
+                <debug>1</debug>
+                <sallowspecific>0</sallowspecific>
+                <sort_order>61</sort_order>
+                <specificerrmsg>GHTK Standard is currently unavailable.</specificerrmsg>
+            </ghtk>
+        </carriers>
+    </default>
+</config>

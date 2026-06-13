@@ -1,0 +1,122 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="carriers" translate="label" type="text" sortOrder="320" showInDefault="1" showInWebsite="1" showInStore="1">
+            <group id="ghtk" translate="label" type="text" sortOrder="61" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>GHTK Standard</label>
+                <field id="active" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Enabled</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="title" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Title</label>
+                </field>
+                <field id="name" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Method Name</label>
+                </field>
+                <field id="environment" translate="label" type="select" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Environment</label>
+                    <source_model>Dalactive\GhtkShipping\Model\Config\Source\Environment</source_model>
+                </field>
+                <field id="staging_base_url" translate="label" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Staging Base URL</label>
+                    <validate>validate-url</validate>
+                </field>
+                <field id="production_base_url" translate="label" type="text" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Production Base URL</label>
+                    <validate>validate-url</validate>
+                </field>
+                <field id="token" translate="label" type="obscure" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>API Token</label>
+                    <backend_model>Magento\Config\Model\Config\Backend\Encrypted</backend_model>
+                </field>
+                <field id="client_source" translate="label comment" type="text" sortOrder="80" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>X-Client-Source / Partner Code</label>
+                    <comment>Required by GHTK staging/partner API.</comment>
+                </field>
+                <field id="pick_name" translate="label" type="text" sortOrder="90" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Pick Name</label>
+                </field>
+                <field id="pick_tel" translate="label" type="text" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Pick Telephone</label>
+                </field>
+                <field id="pick_address" translate="label" type="text" sortOrder="110" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Pick Address</label>
+                </field>
+                <field id="pick_province" translate="label" type="text" sortOrder="120" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Pick Province</label>
+                </field>
+                <field id="pick_district" translate="label" type="text" sortOrder="130" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Pick District</label>
+                </field>
+                <field id="pick_ward" translate="label" type="text" sortOrder="140" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Pick Ward</label>
+                </field>
+                <field id="demo_to_province" translate="label comment" type="text" sortOrder="150" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Demo Destination Province</label>
+                    <comment>Used when checkout address province is incomplete.</comment>
+                </field>
+                <field id="demo_to_district" translate="label" type="text" sortOrder="160" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Demo Destination District</label>
+                </field>
+                <field id="demo_to_ward" translate="label" type="text" sortOrder="170" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Demo Destination Ward</label>
+                </field>
+                <field id="demo_to_address" translate="label" type="text" sortOrder="180" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Demo Destination Address</label>
+                </field>
+                <field id="transport" translate="label" type="select" sortOrder="190" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Transport</label>
+                    <source_model>Dalactive\GhtkShipping\Model\Config\Source\Transport</source_model>
+                </field>
+                <field id="default_weight" translate="label" type="text" sortOrder="200" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Default Package Weight (grams)</label>
+                    <validate>validate-digits</validate>
+                </field>
+                <field id="free_shipping_threshold" translate="label comment" type="text" sortOrder="210" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Free Shipping Threshold</label>
+                    <comment>Set 0 to disable.</comment>
+                    <validate>validate-number</validate>
+                </field>
+                <field id="fallback_fee" translate="label" type="text" sortOrder="220" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Fallback Shipping Fee</label>
+                    <validate>validate-number</validate>
+                </field>
+                <field id="hide_when_unsupported" translate="label comment" type="select" sortOrder="230" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Hide Method When GHTK Says Unsupported</label>
+                    <comment>If No, fallback fee is shown.</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="create_order_after_place" translate="label comment" type="select" sortOrder="240" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Create GHTK Demo Order After Magento Order</label>
+                    <comment>Disabled by default. Use only with staging credentials.</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="webhook_hash" translate="label comment" type="obscure" sortOrder="250" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Webhook Hash / Secret</label>
+                    <backend_model>Magento\Config\Model\Config\Backend\Encrypted</backend_model>
+                    <comment>Use /ghtk/webhook/status?hash=VALUE for staging callbacks.</comment>
+                </field>
+                <field id="debug" translate="label" type="select" sortOrder="260" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Debug Logging</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="sort_order" translate="label" type="text" sortOrder="270" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Sort Order</label>
+                    <validate>validate-number</validate>
+                </field>
+                <field id="sallowspecific" translate="label" type="select" sortOrder="280" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Ship to Applicable Countries</label>
+                    <frontend_class>shipping-applicable-country</frontend_class>
+                    <source_model>Magento\Shipping\Model\Config\Source\Allspecificcountries</source_model>
+                </field>
+                <field id="specificcountry" translate="label" type="multiselect" sortOrder="290" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Ship to Specific Countries</label>
+                    <source_model>Magento\Directory\Model\Config\Source\Country</source_model>
+                    <can_be_empty>1</can_be_empty>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>
