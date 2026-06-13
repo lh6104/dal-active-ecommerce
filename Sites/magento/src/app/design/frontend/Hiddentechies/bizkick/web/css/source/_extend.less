@@ -739,7 +739,7 @@
 }
 
 .cms-index-index .block.widget.block-new-products .products-grid .product-items {
-    gap: 0;
+    gap: 24px;
     justify-content: center;
 }
 
@@ -749,13 +749,16 @@
 }
 
 .cms-index-index .block.widget.block-new-products .owl-item {
+    box-sizing: border-box;
     display: flex;
+    padding: 0 12px;
 }
 
 .cms-index-index .block.widget.block-new-products .products-grid .product-item {
     box-sizing: border-box;
     display: flex;
-    padding: 0 10px;
+    padding: 0 !important;
+    width: 100% !important;
 }
 
 .cms-index-index .block.widget.block-new-products .products-grid .product-item .product-item-info {
@@ -1180,13 +1183,16 @@
 }
 
 .cms-index-index .hb-wrapper .hb-testimonoals {
-    margin: -14px -16px -24px;
-    overflow: hidden;
-    padding: 14px 16px 24px;
+    margin: 0 -16px -24px;
+    overflow: visible;
+    padding: 0 16px 24px;
+    position: relative;
 }
 
 .cms-index-index .hb-wrapper .hb-testimonoals .owl-wrapper-outer {
-    overflow: visible !important;
+    margin: -14px -16px -24px;
+    overflow: hidden !important;
+    padding: 14px 16px 24px;
 }
 
 .cms-index-index .hb-wrapper .hb-testimonoals ul li {
@@ -1313,13 +1319,23 @@
 
 .cms-index-index .hb-wrapper .hb-testimonoals .owl-controls .owl-buttons > div {
     background: @dalactive-blue-dark !important;
-    border-radius: 8px !important;
-    box-shadow: 0 4px 12px rgba(6, 26, 51, 0.15);
-    height: 36px !important;
-    line-height: 36px !important;
+    border-radius: 7px !important;
+    box-shadow: 0 3px 10px rgba(6, 26, 51, 0.14);
+    box-sizing: border-box;
+    font-size: 13px !important;
+    height: 30px !important;
+    line-height: 30px !important;
     opacity: 1 !important;
+    padding: 0 !important;
     transition: background 0.2s ease, transform 0.2s ease;
-    width: 36px !important;
+    width: 30px !important;
+}
+
+.cms-index-index .hb-wrapper .hb-testimonoals .owl-controls,
+.cms-index-index .hb-wrapper .hb-testimonoals .owl-controls.clickable {
+    right: 16px !important;
+    top: -55px !important;
+    z-index: 3;
 }
 
 .cms-index-index .hb-wrapper .hb-testimonoals .owl-controls .owl-buttons > div:hover {
