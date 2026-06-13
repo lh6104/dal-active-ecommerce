@@ -25,10 +25,11 @@
         "magento/composer-root-update-plugin": "^2.0.4",
         "magento/product-community-edition": "2.4.7",
         "mageplaza/magento-2-vietnamese-language-pack": "dev-master",
-        "mageplaza/module-core": "^1.5",
-        "mageplaza/module-image-optimizer": "*",
         "mageplaza/module-lazy-loading": "^4.0",
         "mageplaza/module-smtp": "^4.7"
+    },
+    "replace": {
+        "mageplaza/module-core": "1.5.9"
     },
     "autoload": {
         "exclude-from-classmap": [

@@ -19,7 +19,13 @@
                     <validate>required-entry</validate>
                 </field>
 
-                <field id="cities" translate="label comment" type="textarea" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                <field id="city" translate="label comment" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Default City</label>
+                    <comment>Fallback/default city used by related modules.</comment>
+                    <validate>required-entry</validate>
+                </field>
+
+                <field id="cities" translate="label comment" type="textarea" sortOrder="25" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Cities (one per line)</label>
                     <comment>Enter city names separated by newlines (e.g., Ho Chi Minh City, Ha Noi, Da Nang)</comment>
                     <validate>required-entry</validate>

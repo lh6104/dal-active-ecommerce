@@ -75,8 +75,11 @@ echo "  3. Go to: Account → My API keys"
 echo "  4. Copy your API key"
 echo ""
 
+DEFAULT_WEATHER_CITIES=$'Ho Chi Minh City\nHa Noi\nDa Nang'
+
 set_config "weather/api/api_key" "OpenWeatherMap API Key" "" || echo -e "  ${YELLOW}⚠ Weather API key not configured${NC}"
 set_config "weather/api/city" "Default City for Weather" "Ho Chi Minh City"
+set_config "weather/api/cities" "Weather Cities (one per line in Admin)" "$DEFAULT_WEATHER_CITIES"
 set_config "weather/api/cache_ttl" "Cache TTL (seconds, default 600 = 10min)" "600"
 
 # ============================================================================
@@ -135,12 +138,14 @@ echo ""
 # Get and display configured values
 WEATHER_API=$(./bin/magento config:show weather/api/api_key 2>/dev/null | head -1 || echo "NOT SET")
 WEATHER_CITY=$(./bin/magento config:show weather/api/city 2>/dev/null | head -1 || echo "NOT SET")
+WEATHER_CITIES=$(./bin/magento config:show weather/api/cities 2>/dev/null | head -1 || echo "NOT SET")
 EXCHANGE_ENDPOINT=$(./bin/magento config:show exchangerate/api/api_endpoint 2>/dev/null | head -1 || echo "NOT SET")
 NEWS_FEED=$(./bin/magento config:show economicnews/rss/rss_feed_url 2>/dev/null | head -1 || echo "NOT SET")
 
 echo -e "  ${GREEN}Weather Module:${NC}"
 echo "    API Key: $([ "$WEATHER_API" != "NOT SET" ] && echo "${GREEN}✓ Configured${NC}" || echo "${RED}✗ Not set${NC}")"
 echo "    Default City: ${WEATHER_CITY}"
+echo "    Cities: ${WEATHER_CITIES}"
 echo ""
 echo -e "  ${GREEN}Exchange Rate Module:${NC}"
 echo "    API Endpoint: $([ "$EXCHANGE_ENDPOINT" != "NOT SET" ] && echo "${GREEN}✓ Configured${NC}" || echo "${RED}✗ Not set${NC}")"

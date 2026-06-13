@@ -3,6 +3,10 @@
 // This file is loaded after module styles, so it wins over the old product floats.
 // _____________________________________________
 
+.cms-content-important {
+    font-family: @font-family__base;
+}
+
 .catalog-product-view {
     .page-main {
         box-sizing: border-box;
@@ -643,5 +647,775 @@
         .dalactive-product-recommendation .products-grid {
             grid-template-columns: 1fr;
         }
+    }
+}
+
+//
+// DAL Active – Homepage UI Refresh
+// Scoped to main content only (not header/navbar/footer).
+// _____________________________________________
+
+// 1. Section spacing rhythm
+// ---------------------------------------------
+.cms-index-index .column.main > .block.widget,
+.cms-index-index .column.main > section,
+.cms-index-index .column.main > .page-main,
+.cms-index-index .column.main > .home-parallax-block,
+.cms-index-index .column.main > .home-advantage-block,
+.cms-index-index .column.main > .hb-wrapper,
+.cms-index-index .column.main > .brands-wrapper,
+.cms-index-index .column.main > .weather-container-wrapper {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.cms-index-index .column.main {
+    gap: 0;
+}
+
+// 2. Product carousel section
+// ---------------------------------------------
+.cms-index-index .block.widget.block-new-products {
+    background: #f8fafc;
+    padding: 48px 0 56px;
+}
+
+.cms-index-index .block.widget.block-new-products .page-title-main {
+    background: transparent;
+    margin-bottom: 28px;
+    text-align: center;
+}
+
+.cms-index-index .block.widget.block-new-products .page-title-main > strong {
+    color: @dalactive-blue-dark;
+    display: inline-block;
+    font-size: 28px;
+    font-weight: 800;
+    letter-spacing: -0.3px;
+    padding: 0 0 16px;
+    position: relative;
+    text-transform: uppercase;
+}
+
+.cms-index-index .block.widget.block-new-products .page-title-main > strong:after {
+    background: linear-gradient(90deg, @dalactive-blue, #4da3ff);
+    border-radius: 2px;
+    bottom: 0;
+    content: "";
+    height: 3px;
+    left: 50%;
+    position: absolute;
+    transform: translateX(-50%);
+    width: 80px;
+}
+
+.cms-index-index .block.widget.block-new-products .products-grid .product-items {
+    gap: 0;
+    justify-content: center;
+}
+
+.cms-index-index .block.widget.block-new-products .products-grid .product-item {
+    box-sizing: border-box;
+    padding: 0 12px;
+}
+
+.cms-index-index .block.widget.block-new-products .products-grid .product-item .product-item-info {
+    background: #fff;
+    border: 1px solid #e8ecf1;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(6, 26, 51, 0.06);
+    overflow: hidden;
+    padding: 0;
+    transition: box-shadow 0.28s ease, transform 0.28s ease, border-color 0.28s ease;
+}
+
+.cms-index-index .block.widget.block-new-products .products-grid .product-item:hover .product-item-info {
+    border-color: @dalactive-blue-border;
+    box-shadow: 0 16px 40px rgba(6, 26, 51, 0.12);
+    transform: translateY(-6px);
+}
+
+.cms-index-index .block.widget.block-new-products .products-grid .product-item .product-item-info .product-img-main {
+    background: #ffffff;
+    overflow: hidden;
+}
+
+.cms-index-index .block.widget.block-new-products .products-grid .product-item .product-item-info .product-img-main .product-item-photo {
+    aspect-ratio: 16 / 9;
+    display: block;
+    overflow: hidden;
+    padding: 0;
+}
+
+.cms-index-index .block.widget.block-new-products .products-grid .product-item .product-item-info .product-img-main .product-item-photo img {
+    border-radius: 0;
+    height: 100%;
+    margin: 0;
+    max-height: none;
+    object-fit: cover;
+    transition: transform 0.35s ease;
+    width: 100%;
+}
+
+.cms-index-index .block.widget.block-new-products .products-grid .product-item:hover .product-item-info .product-img-main .product-item-photo img {
+    transform: scale(1.06);
+}
+
+.cms-index-index .block.widget.block-new-products .product-item-details {
+    padding: 16px 18px 20px;
+}
+
+.cms-index-index .block.widget.block-new-products .product-item-name {
+    margin: 0 0 8px;
+}
+
+.cms-index-index .block.widget.block-new-products .product-item-name > a {
+    color: @dalactive-blue-dark;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.4;
+}
+
+.cms-index-index .block.widget.block-new-products .product-item-name > a:hover {
+    color: @dalactive-blue;
+}
+
+.cms-index-index .block.widget.block-new-products .price-box {
+    margin: 0 0 12px;
+}
+
+.cms-index-index .block.widget.block-new-products .price-box .price {
+    color: @dalactive-blue;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.cms-index-index .block.widget.block-new-products .product-item-actions {
+    display: flex;
+    gap: 8px;
+    margin: 0;
+    padding: 0;
+}
+
+.cms-index-index .block.widget.block-new-products .product-item-actions .actions-primary .action.primary {
+    background: @dalactive-blue;
+    border: 0;
+    border-radius: 8px;
+    color: #fff;
+    font-size: 13px;
+    font-weight: 700;
+    padding: 10px 18px;
+    text-transform: uppercase;
+    transition: background 0.2s ease, box-shadow 0.2s ease;
+}
+
+.cms-index-index .block.widget.block-new-products .product-item-actions .actions-primary .action.primary:hover {
+    background: @dalactive-blue-dark;
+    box-shadow: 0 8px 20px rgba(11, 111, 255, 0.28);
+}
+
+.cms-index-index .block.widget.block-new-products .product-item-actions .actions-secondary {
+    display: flex;
+    gap: 6px;
+}
+
+.cms-index-index .block.widget.block-new-products .product-item-actions .actions-secondary a.action {
+    align-items: center;
+    background: #fff;
+    border: 1px solid #e0e5eb;
+    border-radius: 8px;
+    color: @dalactive-blue-dark;
+    display: flex;
+    height: 38px;
+    justify-content: center;
+    width: 38px;
+    transition: border-color 0.2s ease, color 0.2s ease, background 0.2s ease;
+}
+
+.cms-index-index .block.widget.block-new-products .product-item-actions .actions-secondary a.action:hover {
+    background: @dalactive-blue-light;
+    border-color: @dalactive-blue;
+    color: @dalactive-blue;
+}
+
+// 3. Promo banner / parallax block
+// ---------------------------------------------
+.cms-index-index .home-parallax-block {
+    border-radius: 0;
+    margin: 0;
+    overflow: hidden;
+    position: relative;
+}
+
+.cms-index-index .home-parallax-block > .page-main {
+    max-width: 1320px;
+    padding: 0 24px;
+}
+
+.cms-index-index .home-parallax-block > .page-main > div {
+    min-height: 420px;
+}
+
+.cms-index-index .home-parallax-block > .page-main > div > a.action.primary {
+    background: @dalactive-blue;
+    border: 0;
+    border-radius: 8px;
+    box-shadow: 0 12px 28px rgba(11, 111, 255, 0.26);
+    color: #fff;
+    font-size: 18px;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+    min-height: 56px;
+    padding: 0 36px;
+    text-transform: uppercase;
+    transition: background 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.cms-index-index .home-parallax-block > .page-main > div > a.action.primary:hover {
+    background: @dalactive-blue-dark;
+    box-shadow: 0 16px 36px rgba(6, 26, 51, 0.28);
+    transform: translateY(-2px);
+}
+
+// 4. Service badges
+// ---------------------------------------------
+.cms-index-index .home-advantage-block {
+    background: #fff;
+    border-bottom: 1px solid #edf1f6;
+    border-top: 1px solid #edf1f6;
+    padding: 52px 0 48px;
+}
+
+.cms-index-index .home-advantage-block .hab-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0;
+    justify-content: center;
+    max-width: 1320px;
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+.cms-index-index .home-advantage-block .hab-row .hab-inner {
+    box-sizing: border-box;
+    flex: 0 0 25%;
+    max-width: 25%;
+    padding: 0 16px;
+}
+
+.cms-index-index .home-advantage-block .hab-row .hab-inner .home-advantage-block-inner {
+    background: #fff;
+    border: 1px solid #e8ecf1;
+    border-radius: 14px;
+    box-shadow: 0 4px 16px rgba(6, 26, 51, 0.06);
+    min-height: 140px;
+    padding: 28px 20px;
+    position: relative;
+    text-align: center;
+    transition: box-shadow 0.28s ease, transform 0.28s ease, border-color 0.28s ease;
+}
+
+.cms-index-index .home-advantage-block .hab-row .hab-inner .home-advantage-block-inner:before {
+    background: linear-gradient(135deg, @dalactive-blue, @dalactive-blue-dark);
+    border-radius: 14px 14px 0 0;
+    content: "";
+    height: 4px;
+    left: -1px;
+    opacity: 0;
+    position: absolute;
+    right: -1px;
+    top: -1px;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: opacity 0.28s ease, transform 0.28s ease;
+}
+
+.cms-index-index .home-advantage-block .hab-row .hab-inner .home-advantage-block-inner:hover {
+    border-color: @dalactive-blue-border;
+    box-shadow: 0 18px 44px rgba(6, 26, 51, 0.12);
+    transform: translateY(-8px);
+}
+
+.cms-index-index .home-advantage-block .hab-row .hab-inner .home-advantage-block-inner:hover:before {
+    opacity: 1;
+    transform: scaleX(1);
+}
+
+.cms-index-index .home-advantage-block .hab-row .hab-inner .home-advantage-block-inner > span {
+    align-items: center;
+    background: linear-gradient(135deg, @dalactive-blue-light, #fff);
+    border: 2px solid @dalactive-blue-border !important;
+    border-radius: 50%;
+    box-shadow: 0 8px 20px rgba(11, 111, 255, 0.12) !important;
+    color: @dalactive-blue !important;
+    display: inline-flex;
+    font-size: 24px !important;
+    height: 60px !important;
+    justify-content: center;
+    margin-bottom: 16px;
+    transition: background 0.28s ease, color 0.28s ease, box-shadow 0.28s ease, transform 0.28s ease;
+    width: 60px !important;
+}
+
+.cms-index-index .home-advantage-block .hab-row .hab-inner .home-advantage-block-inner:hover > span {
+    background: @dalactive-blue !important;
+    border-color: @dalactive-blue !important;
+    box-shadow: 0 12px 28px rgba(11, 111, 255, 0.28) !important;
+    color: #fff !important;
+    transform: scale(1.08);
+}
+
+.cms-index-index .home-advantage-block .hab-row .hab-inner .home-advantage-block-inner > p {
+    color: @dalactive-blue-dark !important;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1.5;
+    margin: 0;
+}
+
+// 5. Testimonials section
+// ---------------------------------------------
+.cms-index-index .hb-wrapper {
+    background: linear-gradient(180deg, #f0f6ff 0%, #e8f2ff 50%, #f8fafc 100%) !important;
+    border-bottom: 1px solid #e0e8f0;
+    padding: 56px 0 48px;
+}
+
+.cms-index-index .hb-wrapper .page-title-main {
+    background: transparent;
+    text-align: center;
+}
+
+.cms-index-index .hb-wrapper .page-title-main > strong {
+    color: @dalactive-blue-dark;
+    display: inline-block;
+    font-size: 26px;
+    font-weight: 800;
+    padding: 0 0 14px;
+    position: relative;
+    text-transform: uppercase;
+}
+
+.cms-index-index .hb-wrapper .page-title-main > strong:after {
+    background: linear-gradient(90deg, @dalactive-blue, #4da3ff);
+    border-radius: 2px;
+    bottom: 0;
+    content: "";
+    height: 3px;
+    left: 50%;
+    position: absolute;
+    transform: translateX(-50%);
+    width: 80px;
+}
+
+.cms-index-index .hb-wrapper .hb-testimonoals ul li .hb-inner {
+    padding: 0;
+    text-align: center;
+}
+
+.cms-index-index .hb-wrapper .hb-testimonoals ul li .hb-inner .hb-content {
+    background: #fff !important;
+    border: 1px solid #e0e8f0 !important;
+    border-radius: 14px;
+    box-shadow: 0 6px 20px rgba(6, 26, 51, 0.07);
+    color: @dalactive-blue-dark !important;
+    padding: 20px 22px;
+    position: relative;
+    transition: box-shadow 0.28s ease, border-color 0.28s ease;
+}
+
+.cms-index-index .hb-wrapper .hb-testimonoals ul li .hb-inner:hover .hb-content {
+    border-color: @dalactive-blue-border !important;
+    box-shadow: 0 14px 36px rgba(6, 26, 51, 0.1);
+}
+
+.cms-index-index .hb-wrapper .hb-testimonoals ul li .hb-inner .hb-content:before {
+    border-color: #e0e8f0 transparent transparent transparent !important;
+}
+
+.cms-index-index .hb-wrapper .hb-testimonoals ul li .hb-inner .hb-content:after {
+    border-color: #fff transparent transparent transparent !important;
+}
+
+.cms-index-index .hb-wrapper .hb-testimonoals ul li .hb-inner .hb-content > p {
+    color: @dalactive-blue-dark;
+    font-family: @font-family__base;
+    font-size: 15px;
+    font-style: normal;
+    line-height: 1.7;
+}
+
+.cms-index-index .hb-wrapper .hb-testimonoals ul li .hb-inner .hb-image {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    justify-content: center;
+    margin-top: 20px;
+    text-align: center;
+}
+
+.cms-index-index .hb-wrapper .hb-testimonoals ul li .hb-inner .hb-image > img {
+    aspect-ratio: 1 / 1;
+    background: linear-gradient(135deg, @dalactive-blue-light 0%, #dce8f7 100%);
+    border: 4px solid #fff;
+    border-radius: 50%;
+    box-shadow: 0 8px 24px rgba(6, 26, 51, 0.14);
+    display: block;
+    height: 120px;
+    max-height: 120px;
+    max-width: 120px;
+    min-height: 120px;
+    min-width: 120px;
+    object-fit: cover;
+    object-position: center center;
+    transition: border-color 0.28s ease, box-shadow 0.28s ease, transform 0.28s ease;
+    width: 120px;
+}
+
+.cms-index-index .hb-wrapper .hb-testimonoals ul li .hb-inner:hover .hb-image > img {
+    border-color: @dalactive-blue;
+    box-shadow: 0 12px 30px rgba(11, 111, 255, 0.2);
+    transform: scale(1.06);
+}
+
+.cms-index-index .hb-wrapper .hb-testimonoals ul li .hb-inner .hb-image h4 {
+    color: @dalactive-blue-dark;
+    font-size: 15px;
+    font-weight: 700;
+    margin: 0;
+}
+
+.cms-index-index .hb-wrapper .hb-testimonoals ul li .hb-inner .hb-image p {
+    color: rgba(6, 26, 51, 0.6);
+    font-size: 13px;
+    margin: 0;
+}
+
+// 6. Weather section
+// ---------------------------------------------
+.cms-index-index .weather-container-wrapper {
+    background: #fff;
+    border-bottom: 1px solid #edf1f6;
+    border-top: 1px solid #edf1f6;
+    padding: 52px 0 48px;
+}
+
+.cms-index-index .weather-container-wrapper .page-main {
+    max-width: 1320px;
+    padding: 0 24px;
+}
+
+.cms-index-index .weather-container-wrapper .page-main > .page-title-main {
+    background: transparent;
+    margin-bottom: 28px;
+    text-align: center;
+}
+
+.cms-index-index .weather-container-wrapper .page-main > .page-title-main > strong {
+    color: @dalactive-blue-dark;
+    display: inline-block;
+    font-size: 26px;
+    font-weight: 800;
+    padding: 0 0 14px;
+    position: relative;
+    text-transform: uppercase;
+}
+
+.cms-index-index .weather-container-wrapper .page-main > .page-title-main > strong:after {
+    background: linear-gradient(90deg, @dalactive-blue, #4da3ff);
+    border-radius: 2px;
+    bottom: 0;
+    content: "";
+    height: 3px;
+    left: 50%;
+    position: absolute;
+    transform: translateX(-50%);
+    width: 80px;
+}
+
+.cms-index-index .weather-card {
+    background: #fff !important;
+    border: 1px solid #e0e8f0 !important;
+    border-radius: 14px;
+    box-shadow: 0 4px 16px rgba(6, 26, 51, 0.06) !important;
+    padding: 24px 18px;
+    transition: box-shadow 0.28s ease, transform 0.28s ease, border-color 0.28s ease;
+}
+
+.cms-index-index .weather-card:hover {
+    border-color: @dalactive-blue-border !important;
+    box-shadow: 0 14px 36px rgba(6, 26, 51, 0.1) !important;
+    transform: translateY(-6px) !important;
+}
+
+.cms-index-index .weather-card h2 {
+    color: @dalactive-blue-dark !important;
+    font-size: 16px;
+    font-weight: 700;
+    margin: 0 0 8px;
+}
+
+.cms-index-index .weather-card p {
+    color: rgba(6, 26, 51, 0.65) !important;
+    font-size: 13px;
+    line-height: 1.5;
+    margin: 0;
+}
+
+// 7. Brand logos strip
+// ---------------------------------------------
+.cms-index-index .brands-wrapper {
+    background: #f8fafc;
+    border-top: 1px solid #edf1f6;
+    padding: 48px 0 52px;
+}
+
+.cms-index-index .brands-wrapper .page-main {
+    max-width: 1320px;
+    padding: 0 24px;
+}
+
+.cms-index-index .brands-wrapper .page-main > .page-title-main {
+    background: transparent;
+    margin-bottom: 28px;
+    text-align: center;
+}
+
+.cms-index-index .brands-wrapper .page-main > .page-title-main > strong {
+    color: @dalactive-blue-dark;
+    display: inline-block;
+    font-size: 24px;
+    font-weight: 800;
+    padding: 0 0 14px;
+    position: relative;
+    text-transform: uppercase;
+}
+
+.cms-index-index .brands-wrapper .page-main > .page-title-main > strong:after {
+    background: linear-gradient(90deg, @dalactive-blue, #4da3ff);
+    border-radius: 2px;
+    bottom: 0;
+    content: "";
+    height: 3px;
+    left: 50%;
+    position: absolute;
+    transform: translateX(-50%);
+    width: 80px;
+}
+
+.cms-index-index .brands-wrapper .hb-brands {
+    background: transparent;
+}
+
+.cms-index-index .brands-wrapper .brands-main {
+    background: transparent;
+    overflow: hidden;
+}
+
+.cms-index-index .brands-wrapper .brands-slider li {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    padding: 12px;
+}
+
+.cms-index-index .brands-wrapper .brands-slider li a {
+    align-items: center;
+    background: #fff;
+    border: 1px solid #e8ecf1;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(6, 26, 51, 0.04);
+    display: flex;
+    justify-content: center;
+    min-height: 80px;
+    padding: 16px 24px;
+    transition: box-shadow 0.28s ease, border-color 0.28s ease, transform 0.28s ease;
+    width: 100%;
+}
+
+.cms-index-index .brands-wrapper .brands-slider li a:hover {
+    border-color: @dalactive-blue-border;
+    box-shadow: 0 10px 28px rgba(6, 26, 51, 0.1);
+    transform: translateY(-3px);
+}
+
+.cms-index-index .brands-wrapper .brands-slider li a img {
+    filter: grayscale(0.6);
+    max-height: 48px;
+    object-fit: contain;
+    transition: filter 0.28s ease;
+    width: auto;
+}
+
+.cms-index-index .brands-wrapper .brands-slider li a:hover img {
+    filter: grayscale(0);
+}
+
+// 8. Unified surfaces and Inter typography
+// ---------------------------------------------
+body.cms-index-index {
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    font-family: @font-family__base !important;
+    text-rendering: optimizeLegibility;
+}
+
+.cms-index-index .column.main {
+    background: #f8fafc;
+    color: @dalactive-blue-dark;
+    font-family: @font-family__base;
+}
+
+.cms-index-index .page-main {
+    background-color: transparent !important;
+}
+
+.cms-index-index .home-images-wrapper .page-main,
+.cms-index-index .testimonials-section .page-main,
+.cms-index-index .weather-section .page-main,
+.cms-index-index .brands-wrapper .page-main,
+.cms-index-index .home-parallax-block > .page-main {
+    background-color: transparent !important;
+}
+
+.cms-index-index .dalactive-hero {
+    background: #f8fafc;
+}
+
+.cms-index-index .home-images-wrapper {
+    background: #ffffff;
+    padding: 40px 0 44px;
+}
+
+.cms-index-index .block.widget.block-new-products {
+    background: #f8fafc !important;
+}
+
+.cms-index-index .home-advantage-block {
+    background: #ffffff !important;
+    border-bottom: 1px solid #edf1f6;
+    border-top: 1px solid #edf1f6;
+}
+
+.cms-index-index .testimonials-section {
+    background: #f8fafc !important;
+    border-bottom: 1px solid #edf1f6;
+}
+
+.cms-index-index .weather-section {
+    background: #ffffff !important;
+    border-bottom: 1px solid #edf1f6;
+    border-top: 1px solid #edf1f6;
+}
+
+.cms-index-index .weather-section .weather-container-wrapper {
+    background: #ffffff !important;
+    border: 0;
+}
+
+.cms-index-index .brands-wrapper {
+    background: #f8fafc !important;
+    border-top: 1px solid #edf1f6;
+}
+
+.cms-index-index .weather-card {
+    background: #ffffff !important;
+    border: 1px solid #e0e8f0 !important;
+    color: @dalactive-blue-dark !important;
+}
+
+.cms-index-index .weather-card:hover {
+    background: #ffffff !important;
+    border-color: @dalactive-blue-border !important;
+    transform: translateY(-6px) !important;
+}
+
+.cms-index-index .weather-card h2 {
+    color: @dalactive-blue-dark !important;
+    font-family: @font-family__base;
+}
+
+.cms-index-index .weather-card p {
+    color: rgba(6, 26, 51, 0.65) !important;
+    font-family: @font-family__base;
+}
+
+.cms-index-index .hb-wrapper .nav-button {
+    background: @dalactive-blue-dark !important;
+    border: 1px solid rgba(255, 255, 255, 0.12) !important;
+    border-radius: 6px !important;
+    color: @dalactive-white !important;
+}
+
+.cms-index-index .hb-wrapper .nav-button:hover {
+    background: @dalactive-blue !important;
+}
+
+.cms-index-index .dalactive-hero-content h1,
+.cms-index-index .dalactive-hero-content p,
+.cms-index-index .dalactive-hero-button,
+.cms-index-index .page-title-main > strong,
+.cms-index-index .block.widget.block-new-products .page-title-main > strong,
+.cms-index-index .hb-wrapper .page-title-main > strong,
+.cms-index-index .weather-container-wrapper .page-main > .page-title-main > strong,
+.cms-index-index .brands-wrapper .page-main > .page-title-main > strong,
+.cms-index-index .home-advantage-block .hab-row .hab-inner .home-advantage-block-inner > p,
+.cms-index-index .hb-wrapper .hb-testimonoals ul li .hb-inner .hb-content > p {
+    font-family: @font-family__base;
+    letter-spacing: -0.02em;
+}
+
+.cms-index-index .home-parallax-block h1,
+.cms-index-index .home-parallax-block p,
+.cms-index-index .home-parallax-block .action.primary {
+    font-family: @font-family__base;
+}
+
+// 9. Responsive adjustments
+// ---------------------------------------------
+@media (max-width: 1024px) {
+    .cms-index-index .home-advantage-block .hab-row .hab-inner {
+        flex: 0 0 50%;
+        max-width: 50%;
+        margin-bottom: 16px;
+    }
+}
+
+@media (max-width: 767px) {
+    .cms-index-index .block.widget.block-new-products {
+        padding: 32px 0 40px;
+    }
+
+    .cms-index-index .block.widget.block-new-products .page-title-main > strong {
+        font-size: 22px;
+    }
+
+    .cms-index-index .home-advantage-block .hab-row .hab-inner {
+        flex: 0 0 100%;
+        max-width: 100%;
+        margin-bottom: 12px;
+        padding: 0 4px;
+    }
+
+    .cms-index-index .hb-wrapper {
+        padding: 36px 0 32px;
+    }
+
+    .cms-index-index .hb-wrapper .hb-testimonoals ul li .hb-inner .hb-image > img {
+        height: 100px;
+        max-height: 100px;
+        max-width: 100px;
+        min-height: 100px;
+        min-width: 100px;
+        width: 100px;
+    }
+
+    .cms-index-index .weather-container-wrapper {
+        padding: 36px 0 32px;
+    }
+
+    .cms-index-index .brands-wrapper {
+        padding: 36px 0 40px;
     }
 }

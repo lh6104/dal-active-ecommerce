@@ -936,7 +936,7 @@ body.dal-modal-open {
     color: currentColor !important;
     content: '★' !important;
     display: block !important;
-    font-family: Arial, sans-serif !important;
+    font-family: Inter, Arial, sans-serif !important;
     font-size: 38px !important;
     height: 42px !important;
     line-height: 42px !important;

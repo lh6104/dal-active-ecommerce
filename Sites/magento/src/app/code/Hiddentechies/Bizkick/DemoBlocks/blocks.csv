@@ -106,7 +106,7 @@ Bizkick Below,bizkick-below,"{{widget type=""Magento\Cms\Block\Widget\Block"" te
 {{widget type=""Magento\Cms\Block\Widget\Block"" template=""widget/static_block/default.phtml"" block_id=""home_testimonials""}}
 {{widget type=""Magento\Cms\Block\Widget\Block"" template=""widget/static_block/default.phtml"" block_id=""home_blogs""}}
 {{widget type=""Magento\Cms\Block\Widget\Block"" template=""widget/static_block/default.phtml"" block_id=""home-brands""}}",1,0
-Home Testimonials,home_testimonials,"<div class=""hb-wrapper above-padding below-padding above-margin below-margin"">
+Home Testimonials,home_testimonials,"<div class=""hb-wrapper testimonials-section above-padding below-padding above-margin below-margin"">
     <div class=""page-main"">
         <div class=""page-title-main""><strong>Phản hồi của khách hàng</strong></div>
         <div class=""hb-row"">
@@ -247,7 +247,7 @@ Footer Payment & Shipping,footer_payment_shipping,"<div class=""footer-colum-tit
 <li class=""nav item""><a href=""https://flshop.me/hoan-hang-doi-tra"">Hoàn hàng & Đổi trả</a></li>
 </ul>
 </div>",1,0
-Home Blogs,home_blogs,"<div class=""hb-wrapper above-padding below-padding"" style=""background: #ffffff;"">
+Home Blogs,home_blogs,"<div class=""hb-wrapper above-padding below-padding weather-section"">
     <div class=""page-main"">
         <div class=""page-title-main"">
             <strong>Thời tiết</strong>
@@ -268,93 +268,35 @@ Home Blogs,home_blogs,"<div class=""hb-wrapper above-padding below-padding"" sty
 </div>
 
 <style>
-    body {
-        font-family: Arial, sans-serif;
-        margin: 0;
-        padding: 0;
-    }
-
-    .weather-container-wrapper {
-        position: relative;
+    .weather-section .weather-container-wrapper {
         overflow: hidden;
+        position: relative;
         width: 100%;
     }
 
-    .weather-container {
+    .weather-section .weather-container {
         display: flex;
         gap: 20px;
         transition: transform 0.3s ease-in-out;
     }
 
-    .weather-card {
-        background-color: #f9f9f9;
-        border: 1px solid #e0e0e0;
-        border-radius: 10px;
-        padding: 20px;
-        flex: 0 0 auto;
-        width: 300px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        text-align: center;
-        transition: transform 0.3s, box-shadow 0.3s;
-        color: #000000; /* Text color */
-    }
-
-    .weather-card:hover {
-        transform: scale(1.05);
-        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-        background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
-        border-color: #ff6f61;
-    }
-
-    .weather-card h2 {
-        margin-top: 0;
-        font-size: 1.4em;
-        color: #333;
-    }
-
-    .weather-card p {
-        margin: 8px 0;
-        font-size: 1em;
-        color: #666;
-    }
-
-    /* Position the nav buttons */
-    .nav-buttons {
-        position: absolute;
-        top: 0px;
-        right: 0px;
+    .weather-section .nav-buttons {
         display: flex;
         gap: 3px;
+        position: absolute;
+        right: 0;
+        top: 0;
         z-index: 10;
     }
 
-    .nav-button {
-        background-color: #004936;
-        color: #fff;
-        border: none;
-        border-radius: 0px;
-        padding: 0px 0px;
-        cursor: pointer;
-        font-size: 13px;
-    }
-
-    .nav-button:hover {
-        background-color: #7b0707;
-    }
-
     @media screen and (max-width: 768px) {
-        .weather-container {
+        .weather-section .weather-container {
             gap: 15px;
         }
 
-        .weather-card {
-            width: 85%;
-            margin: 0 auto;
-        }
-
-        .nav-buttons {
-            top: 5px;
+        .weather-section .nav-buttons {
             right: 5px;
+            top: 5px;
         }
     }
 </style>

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "9a9981d1261af1d8d037f07cede03ffa",
+    "content-hash": "bb6416879b6571d2c542596d229913a7",
     "packages": [
         {
             "name": "2tvenom/cborencode",
@@ -18661,93 +18661,6 @@
                 "source": "https://github.com/mageplaza/magento-2-vietnamese-language-pack/tree/master"
             },
             "time": "2022-02-22T09:05:30+00:00"
-        },
-        {
-            "name": "mageplaza/module-core",
-            "version": "1.5.9",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/mageplaza/module-core.git",
-                "reference": "06f3287615adc7e1cf8d9dcb8c0b94dfae99eb75"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/mageplaza/module-core/zipball/06f3287615adc7e1cf8d9dcb8c0b94dfae99eb75",
-                "reference": "06f3287615adc7e1cf8d9dcb8c0b94dfae99eb75",
-                "shasum": ""
-            },
-            "type": "magento2-module",
-            "autoload": {
-                "files": [
-                    "registration.php"
-                ],
-                "psr-4": {
-                    "Mageplaza\\Core\\": ""
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "proprietary"
-            ],
-            "authors": [
-                {
-                    "name": "Mageplaza",
-                    "email": "support@mageplaza.com",
-                    "homepage": "https://www.mageplaza.com",
-                    "role": "Technical Support"
-                }
-            ],
-            "description": "Mageplaza Core for Magento 2",
-            "support": {
-                "source": "https://github.com/mageplaza/module-core/tree/v1.5.9"
-            },
-            "time": "2024-10-21T09:28:40+00:00"
-        },
-        {
-            "name": "mageplaza/module-image-optimizer",
-            "version": "1.0.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/mageplaza/magento-2-image-optimizer.git",
-                "reference": "fe81ce6614b7e7cd6b9ce143ba6b56f9290b92c2"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/mageplaza/magento-2-image-optimizer/zipball/fe81ce6614b7e7cd6b9ce143ba6b56f9290b92c2",
-                "reference": "fe81ce6614b7e7cd6b9ce143ba6b56f9290b92c2",
-                "shasum": ""
-            },
-            "require": {
-                "mageplaza/module-core": "^1.4.5"
-            },
-            "type": "magento2-module",
-            "autoload": {
-                "files": [
-                    "registration.php"
-                ],
-                "psr-4": {
-                    "Mageplaza\\ImageOptimizer\\": ""
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "proprietary"
-            ],
-            "authors": [
-                {
-                    "name": "Mageplaza",
-                    "email": "support@mageplaza.com",
-                    "homepage": "https://www.mageplaza.com",
-                    "role": "Technical Support"
-                }
-            ],
-            "description": "Magento 2 Image Optimizer Extension",
-            "support": {
-                "issues": "https://github.com/mageplaza/magento-2-image-optimizer/issues",
-                "source": "https://github.com/mageplaza/magento-2-image-optimizer/tree/v1.0.1"
-            },
-            "abandoned": true,
-            "time": "2020-02-24T10:16:51+00:00"
         },
         {
             "name": "mageplaza/module-lazy-loading",

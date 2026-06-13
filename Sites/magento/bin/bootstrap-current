@@ -119,6 +119,7 @@ upsert_config sociallogin/general/link_trigger ''
 
 # Public/default API endpoints only. Do not overwrite private API keys or payment credentials.
 upsert_config weather/api/city "Ho Chi Minh City"
+upsert_config weather/api/cities "Ho Chi Minh City\nHa Noi\nDa Nang"
 upsert_config weather/api/cache_ttl 600
 upsert_config exchangerate/api/api_endpoint "https://portal.vietcombank.com.vn/Usercontrols/TVPortal.TyGia/pXML.aspx?b=68"
 upsert_config exchangerate/api/cache_ttl 3600

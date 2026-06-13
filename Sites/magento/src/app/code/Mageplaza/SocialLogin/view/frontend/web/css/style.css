@@ -17,7 +17,7 @@
  * @copyright   Copyright (c) Mageplaza (https://www.mageplaza.com/)
  * @license     https://www.mageplaza.com/LICENSE.txt
  */
-@import url('https://fonts.googleapis.com/css?family=Roboto');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
 
 .white-popup {
     position: relative;
@@ -406,7 +406,7 @@
     border: 1px solid transparent;
     border-radius: 4px;
     padding: 6px 12px 6px 44px;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Inter', sans-serif;
 }
 
 .btn-social {
