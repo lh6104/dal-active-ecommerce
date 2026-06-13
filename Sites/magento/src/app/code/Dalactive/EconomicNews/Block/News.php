@@ -638,4 +638,56 @@ class News extends Template
 
         return $this->getUrl('*/*/*', ['_current' => true, '_use_rewrite' => true, '_query' => $params]);
     }
+
+    /**
+     * Latest news items for homepage teaser section.
+     *
+     * @param int|null $limit
+     * @return \Magento\Framework\DataObject[]
+     */
+    public function getHomepageNewsItems(?int $limit = null): array
+    {
+        if ($limit === null) {
+            $limit = 4;
+        }
+
+        $limit = max(1, min(8, $limit));
+        $items = array_values($this->getEconomicNewsCollection()->getItems());
+
+        return array_slice($items, 0, $limit);
+    }
+
+    /**
+     * Full economic news listing page URL.
+     *
+     * @return string
+     */
+    public function getViewAllUrl(): string
+    {
+        return $this->getUrl('economicnews/index/index');
+    }
+
+    /**
+     * Format RSS/article date for homepage cards.
+     *
+     * @param string $date
+     * @return string
+     */
+    public function formatNewsDate(string $date): string
+    {
+        if ($date === '') {
+            return '';
+        }
+
+        try {
+            $timestamp = strtotime($date);
+            if ($timestamp === false) {
+                return '';
+            }
+
+            return $this->formatDate(date('Y-m-d H:i:s', $timestamp), \IntlDateFormatter::MEDIUM);
+        } catch (\Exception $exception) {
+            return '';
+        }
+    }
 }

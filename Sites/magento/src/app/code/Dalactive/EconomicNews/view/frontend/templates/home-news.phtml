@@ -1,0 +1,79 @@
+<?php
+/** @var \Dalactive\EconomicNews\Block\News $block */
+$articles = $block->getHomepageNewsItems(4);
+?>
+<section class="dalactive-home-news" aria-labelledby="dalactive-home-news-title">
+    <div class="page-main">
+        <div class="dalactive-home-news__header page-title-main">
+            <strong id="dalactive-home-news-title" role="heading" aria-level="2">
+                <?= $block->escapeHtml(__('Tin kinh tế')) ?>
+            </strong>
+            <a class="dalactive-home-news__view-all" href="<?= $block->escapeUrl($block->getViewAllUrl()) ?>">
+                <?= $block->escapeHtml(__('Xem tất cả')) ?>
+                <span aria-hidden="true">&rarr;</span>
+            </a>
+        </div>
+
+        <?php if (!empty($articles)): ?>
+            <div class="dalactive-home-news__grid">
+                <?php foreach ($articles as $index => $article): ?>
+                    <?php
+                    $title = (string) $article->getTitle();
+                    $link = (string) $article->getLink();
+                    $description = (string) $article->getDescription();
+                    $image = (string) $article->getImage();
+                    $date = $block->formatNewsDate((string) $article->getPubDate());
+                    $cardClass = 'dalactive-home-news__card';
+                    if ($index === 0) {
+                        $cardClass .= ' is-featured';
+                    }
+                    ?>
+                    <article class="<?= $block->escapeHtmlAttr($cardClass) ?>">
+                        <a class="dalactive-home-news__media<?= $image === '' ? ' is-placeholder' : '' ?>"
+                           href="<?= $block->escapeUrl($link) ?>"
+                           target="_blank"
+                           rel="noopener noreferrer"
+                           aria-label="<?= $block->escapeHtmlAttr($title) ?>">
+                            <?php if ($image !== ''): ?>
+                                <img src="<?= $block->escapeUrl($image) ?>"
+                                     alt="<?= $block->escapeHtmlAttr($title) ?>"
+                                     loading="lazy" />
+                            <?php else: ?>
+                                <span><?= $block->escapeHtml(__('Tin tức')) ?></span>
+                            <?php endif; ?>
+                        </a>
+                        <div class="dalactive-home-news__body">
+                            <?php if ($date !== ''): ?>
+                                <time class="dalactive-home-news__date" datetime="<?= $block->escapeHtmlAttr($article->getPubDate()) ?>">
+                                    <?= $block->escapeHtml($date) ?>
+                                </time>
+                            <?php endif; ?>
+                            <h3 class="dalactive-home-news__title">
+                                <a href="<?= $block->escapeUrl($link) ?>"
+                                   target="_blank"
+                                   rel="noopener noreferrer">
+                                    <?= $block->escapeHtml($title) ?>
+                                </a>
+                            </h3>
+                            <?php if ($description !== ''): ?>
+                                <p class="dalactive-home-news__excerpt">
+                                    <?= $block->escapeHtml(strip_tags($description)) ?>
+                                </p>
+                            <?php endif; ?>
+                            <a class="dalactive-home-news__read-more"
+                               href="<?= $block->escapeUrl($link) ?>"
+                               target="_blank"
+                               rel="noopener noreferrer">
+                                <?= $block->escapeHtml(__('Đọc thêm')) ?>
+                            </a>
+                        </div>
+                    </article>
+                <?php endforeach; ?>
+            </div>
+        <?php else: ?>
+            <p class="dalactive-home-news__empty">
+                <?= $block->escapeHtml(__('Hiện chưa có tin tức để hiển thị.')) ?>
+            </p>
+        <?php endif; ?>
+    </div>
+</section>
