@@ -50,7 +50,7 @@
         max-width: 100% !important;
         overflow: visible !important;
         position: relative;
-        z-index: 5;
+        z-index: auto;
     }
 
     .product-info-main {
@@ -85,7 +85,7 @@
 
     /* Ensure product info sits above gallery overlays so primary actions remain clickable */
     .product-info-main {
-        z-index: 20 !important;
+        z-index: 1 !important;
     }
 
     .product.media .gallery-placeholder,
@@ -230,12 +230,13 @@
     .product.media {
         overflow: visible !important;
         position: relative !important;
+        z-index: auto !important;
     }
 
     .product.media .fotorama__arr,
     .product.media .fotorama__arr--prev,
     .product.media .fotorama__arr--next {
-        z-index: 100000 !important;
+        z-index: 1 !important;
         pointer-events: auto !important;
         visibility: visible !important;
         opacity: 1 !important;

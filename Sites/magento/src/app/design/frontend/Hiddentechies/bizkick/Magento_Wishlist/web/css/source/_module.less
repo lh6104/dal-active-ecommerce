@@ -402,3 +402,137 @@
         }
     }
 }
+
+// DAL Active wishlist cards: keep actions in normal flow so cards cannot overlap.
+& when (@media-common = true) {
+    .wishlist-index-index {
+        .products-grid.wishlist {
+            .product-items {
+                display: grid;
+                gap: 24px;
+                grid-template-columns: repeat(4, minmax(0, 1fr));
+                margin: 0;
+            }
+
+            .product-item {
+                margin: 0;
+                padding: 0;
+                width: auto;
+            }
+
+            .product-item-info {
+                background: @color-white;
+                border: 1px solid #e5eaf2;
+                border-radius: 14px;
+                box-shadow: 0 12px 30px rgba(6, 26, 51, .06);
+                box-sizing: border-box;
+                display: flex;
+                flex-direction: column;
+                height: 100%;
+                padding: 14px;
+                position: relative;
+                width: 100%;
+            }
+
+            .product-item-photo {
+                background: #f6f8fb;
+                border-radius: 10px;
+                float: none;
+                margin: 0 0 14px;
+                overflow: hidden;
+            }
+
+            .product-item-details,
+            .product-item-inner,
+            .box-tocart,
+            .product-item-actions {
+                box-sizing: border-box;
+                clear: both;
+                display: block;
+                float: none;
+                position: static;
+                width: 100%;
+            }
+
+            .product-item-inner {
+                background: transparent;
+                border: 0;
+                box-shadow: none;
+                margin: 12px 0 0;
+                padding: 0;
+                z-index: auto;
+            }
+
+            .product-item-name,
+            .product-item-description,
+            .price-box,
+            .product-item-tooltip {
+                margin-left: 0;
+            }
+
+            .comment-box,
+            .product-item-comment {
+                margin-top: 12px;
+                width: 100%;
+            }
+
+            .product-item-actions {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 10px;
+                margin-top: 12px;
+            }
+
+            .product-item-actions > * {
+                margin: 0;
+            }
+
+            .box-tocart .fieldset,
+            .box-tocart .actions-primary {
+                display: block;
+                width: 100%;
+            }
+
+            .box-tocart .action.tocart {
+                border-radius: 999px;
+                width: 100%;
+            }
+        }
+    }
+}
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__l) {
+    .wishlist-index-index {
+        .products-grid.wishlist {
+            .product-items {
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+            }
+        }
+    }
+}
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+    .wishlist-index-index {
+        .products-grid.wishlist {
+            .product-items {
+                gap: 18px;
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                margin-right: 0;
+            }
+
+            .product-item-photo {
+                margin-right: 0;
+            }
+        }
+    }
+}
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__s) {
+    .wishlist-index-index {
+        .products-grid.wishlist {
+            .product-items {
+                grid-template-columns: 1fr;
+            }
+        }
+    }
+}

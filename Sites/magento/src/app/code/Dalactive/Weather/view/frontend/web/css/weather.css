@@ -1,7 +1,8 @@
 .weather-container {
     display: flex;
-    flex-wrap: nowrap;
+    flex-wrap: wrap;
     gap: 20px;
+    max-width: 100%;
 }
 
 .weather-card {
@@ -10,10 +11,22 @@
     border-radius: 16px;
     box-shadow: 0 2px 8px rgba(6, 26, 51, 0.05);
     box-sizing: border-box;
-    flex: 0 0 auto;
+    flex: 1 1 280px;
+    max-width: 100%;
     min-width: 240px;
     padding: 22px 20px;
     transition: border-color 0.28s ease, box-shadow 0.28s ease, transform 0.28s ease;
+}
+
+@media (max-width: 767px) {
+    .weather-container {
+        gap: 14px;
+    }
+
+    .weather-card {
+        flex-basis: 100%;
+        min-width: 0;
+    }
 }
 
 .weather-card__top {

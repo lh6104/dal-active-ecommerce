@@ -29,7 +29,89 @@ $mainImageData = $mainImage ?
     $imageWidth = $block->getImageAttribute('product_page_image_medium', 'width');
     $imageHeight = $block->getImageAttribute('product_page_image_medium', 'height');
 
+$galleryItems = [];
+$productName = $block->getProduct() ? (string) $block->getProduct()->getName() : (string) __('Product image');
+
+foreach ($images as $image) {
+    $mediumImage = (string) ($image->getData('medium_image_url') ?: $image->getData('large_image_url'));
+
+    if ($mediumImage === '') {
+        continue;
+    }
+
+    $galleryItems[] = [
+        'main' => $mediumImage,
+        'full' => (string) ($image->getData('large_image_url') ?: $mediumImage),
+        'thumb' => (string) ($image->getData('small_image_url') ?: $mediumImage),
+        'caption' => (string) ($image->getLabel() ?: $productName),
+        'is_main' => $block->isMainImage($image),
+    ];
+}
+
+if (empty($galleryItems)) {
+    $galleryItems[] = [
+        'main' => $mainImageData,
+        'full' => $mainImageData,
+        'thumb' => $mainImageData,
+        'caption' => $productName,
+        'is_main' => true,
+    ];
+}
+
+$activeIndex = 0;
+foreach ($galleryItems as $index => $galleryItem) {
+    if (!empty($galleryItem['is_main'])) {
+        $activeIndex = $index;
+        break;
+    }
+}
+
+$activeImage = $galleryItems[$activeIndex];
+
 ?>
+
+<div class="dalactive-product-gallery<?= count($galleryItems) === 1 ? ' dalactive-product-gallery--single' : '' ?>" data-role="dalactive-product-gallery" aria-label="<?= $escaper->escapeHtmlAttr(__('Product image gallery')) ?>">
+    <?php if (count($galleryItems) > 1): ?>
+        <div class="dalactive-product-gallery__thumbs" role="list" aria-label="<?= $escaper->escapeHtmlAttr(__('Product thumbnails')) ?>">
+            <?php foreach ($galleryItems as $index => $galleryItem): ?>
+                <button
+                    class="dalactive-product-gallery__thumb<?= $index === $activeIndex ? ' is-active' : '' ?>"
+                    type="button"
+                    data-gallery-index="<?= $escaper->escapeHtmlAttr((string) $index) ?>"
+                    data-gallery-main="<?= $escaper->escapeUrl($galleryItem['main']) ?>"
+                    data-gallery-full="<?= $escaper->escapeUrl($galleryItem['full']) ?>"
+                    data-gallery-caption="<?= $escaper->escapeHtmlAttr($galleryItem['caption']) ?>"
+                    aria-label="<?= $escaper->escapeHtmlAttr(__('View image %1', $index + 1)) ?>"
+                    aria-current="<?= $index === $activeIndex ? 'true' : 'false' ?>"
+                    role="listitem">
+                    <img
+                        src="<?= $escaper->escapeUrl($galleryItem['thumb']) ?>"
+                        alt="<?= $escaper->escapeHtmlAttr($galleryItem['caption']) ?>"
+                        loading="<?= $index === $activeIndex ? 'eager' : 'lazy' ?>"
+                        decoding="async" />
+                </button>
+            <?php endforeach; ?>
+        </div>
+    <?php endif; ?>
+
+    <figure class="dalactive-product-gallery__stage">
+        <img
+            class="dalactive-product-gallery__image"
+            src="<?= $escaper->escapeUrl($activeImage['main']) ?>"
+            data-full-image="<?= $escaper->escapeUrl($activeImage['full']) ?>"
+            alt="<?= $escaper->escapeHtmlAttr($activeImage['caption']) ?>"
+            loading="eager"
+            fetchpriority="high"
+            decoding="async" />
+
+        <?php if (count($galleryItems) > 1): ?>
+            <div class="dalactive-product-gallery__controls" aria-hidden="false">
+                <button class="dalactive-product-gallery__control dalactive-product-gallery__control--prev" type="button" data-gallery-control="prev" aria-label="<?= $escaper->escapeHtmlAttr(__('Previous image')) ?>"></button>
+                <button class="dalactive-product-gallery__control dalactive-product-gallery__control--next" type="button" data-gallery-control="next" aria-label="<?= $escaper->escapeHtmlAttr(__('Next image')) ?>"></button>
+            </div>
+        <?php endif; ?>
+    </figure>
+</div>
 
 <div class="gallery-placeholder _block-content-loading" data-gallery-role="gallery-placeholder">
     <img

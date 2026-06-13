@@ -1,38 +1,140 @@
-/* Exchange Rate Info Container */
 .exchange-rate-info {
-    margin: 20px 0;
-    padding: 20px;
-    background-color: #fffafa; /* Snow White Background */
-    border: 2px solid #228B22; /* Forest Green Border */
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background: linear-gradient(135deg, #f7fbff 0%, #ffffff 48%, #eef5ff 100%);
+    border: 1px solid #e5eefb;
+    border-radius: 24px;
+    box-shadow: 0 22px 60px rgba(6, 26, 51, 0.08);
+    box-sizing: border-box;
+    font-family: 'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    margin: 32px auto 56px;
+    max-width: 1180px;
+    overflow: hidden;
+    padding: 28px;
     position: relative;
-    font-family: 'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
+.exchange-rate-hero {
+    background: #061a33;
+    border-radius: 20px;
+    color: #ffffff;
+    overflow: hidden;
+    padding: 34px 36px;
+    position: relative;
+}
 
+.exchange-rate-hero:after {
+    background: radial-gradient(circle, rgba(11, 111, 255, 0.55) 0%, rgba(11, 111, 255, 0) 68%);
+    content: '';
+    height: 220px;
+    position: absolute;
+    right: -70px;
+    top: -80px;
+    width: 220px;
+}
 
-/* Exchange Rate Table Styling */
+.exchange-rate-eyebrow,
+.exchange-rate-label,
+.exchange-rate-count {
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.exchange-rate-eyebrow {
+    color: #7db6ff;
+    display: inline-block;
+    margin-bottom: 10px;
+}
+
+.exchange-rate-hero h1 {
+    color: #ffffff;
+    font-size: 34px;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1.12;
+    margin: 0 0 12px;
+}
+
+.exchange-rate-hero p {
+    color: rgba(255, 255, 255, 0.76);
+    font-size: 16px;
+    line-height: 1.6;
+    margin: 0;
+    max-width: 620px;
+}
+
+.exchange-rate-card {
+    background: #ffffff;
+    border: 1px solid #e8eef7;
+    border-radius: 20px;
+    box-shadow: 0 12px 34px rgba(6, 26, 51, 0.07);
+    margin-top: -18px;
+    overflow: hidden;
+    position: relative;
+    z-index: 1;
+}
+
+.exchange-rate-card__header {
+    align-items: center;
+    display: flex;
+    gap: 18px;
+    justify-content: space-between;
+    padding: 24px 26px;
+}
+
+.exchange-rate-label {
+    color: #7b8797;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.exchange-rate-card__header strong {
+    color: #061a33;
+    font-size: 22px;
+    line-height: 1.25;
+}
+
+.exchange-rate-count {
+    background: #eef5ff;
+    border-radius: 999px;
+    color: #0b6fff;
+    padding: 9px 13px;
+    white-space: nowrap;
+}
+
+.exchange-rate-table-wrap {
+    overflow-x: auto;
+}
+
 .exchange-rate-table {
-    width: 100%;
     border-collapse: collapse;
-    margin-top: 10px;
     font-family: 'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    min-width: 720px;
+    width: 100%;
 }
 
-.exchange-rate-table th, .exchange-rate-table td {
-    padding: 12px 15px;
-    text-align: left;
-    border: 1px solid #ddd;
+.exchange-rate-table th,
+.exchange-rate-table td {
+    border: 0;
+    border-top: 1px solid #edf2f7;
+    color: #061a33;
     font-family: 'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    padding: 16px 22px;
+    text-align: left;
 }
 
 .exchange-rate-table th {
-    background-color: #228B22; /* Forest Green */
-    color: #fff; /* White Text */
-    font-size: 1.1em;
-    position: relative;
-    font-family: 'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    background: #f6f9fd;
+    color: #526174;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+}
+
+.exchange-rate-table td {
+    font-size: 15px;
+    font-weight: 650;
 }
 
 .exchange-rate-currency {
@@ -44,31 +146,60 @@
 
 .exchange-rate-flag {
     display: inline-block;
-    font-size: 18px;
+    font-size: 20px;
     line-height: 1;
-    width: 24px;
+    width: 26px;
 }
-
-
 
 .exchange-rate-table tr:nth-child(even) {
-    background-color: #f0fff0; /* Honeydew for a Light Green Shade */
+    background: #fbfdff;
 }
 
-.exchange-rate-table tr:hover {
-    background-color: #ffe4e1; /* Misty Rose for a Soft Highlight */
-    transition: background-color 0.3s ease;
+.exchange-rate-table tbody tr:hover {
+    background: #eef5ff;
+    transition: background-color 0.2s ease;
 }
 
-/* Additional Festive Enhancements */
+.exchange-rate-message {
+    background: #f6f9fd;
+    border: 1px solid #e8eef7;
+    border-radius: 14px;
+    color: #526174;
+    margin: 32px auto;
+    max-width: 760px;
+    padding: 18px 20px;
+}
 
+.exchange-rate-message--error {
+    background: #fff4f4;
+    border-color: #ffdada;
+    color: #a22b2b;
+}
 
+@media (max-width: 767px) {
+    .exchange-rate-info {
+        border-radius: 18px;
+        margin: 20px 0 40px;
+        padding: 14px;
+    }
 
-/* Responsive Design for Mobile Devices */
-@media (max-width: 600px) {
-    .exchange-rate-table th, .exchange-rate-table td {
-        padding: 8px 10px;
-        font-size: 0.9em;
-        font-family: 'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    .exchange-rate-hero {
+        border-radius: 16px;
+        padding: 26px 20px;
+    }
+
+    .exchange-rate-hero h1 {
+        font-size: 26px;
+    }
+
+    .exchange-rate-card__header {
+        align-items: flex-start;
+        flex-direction: column;
+        padding: 20px;
+    }
+
+    .exchange-rate-table th,
+    .exchange-rate-table td {
+        padding: 13px 16px;
     }
 }

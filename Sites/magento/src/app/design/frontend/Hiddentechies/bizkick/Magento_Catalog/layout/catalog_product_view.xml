@@ -10,7 +10,7 @@
         <css src="Magento_Catalog::css/product-detail-layout.css"/>
         <css src="Magento_Catalog::css/product-detail-final.css"/>
         <script src="Magento_Catalog::js/product-detail.js"/>
-        <script src="Magento_Catalog::js/gallery-bottom-right.js"/>
+        <script src="Magento_Catalog::js/dalactive-product-gallery.js"/>
     </head>
     <body>
         <referenceContainer name="content">

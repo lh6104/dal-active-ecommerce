@@ -1,21 +1,21 @@
 title,identifier,content,is_active,stores
 Payments Icons,payment-icons,"<span class=""payment-icons"">
     <ul>
-        <li><a href=""https://flshop.me/thanh-toan""><img class=""image-responsive middle-block"" src=""{{media url=wysiwyg/paymet/momo.png}}"" alt=""momo"" /></a></li>
-        <li><a href=""https://flshop.me/thanh-toan""><img class=""image-responsive middle-block"" src=""{{media url=wysiwyg/paymet/zalopay.png}}"" alt=""zalopay"" /></a></li>
-        <li><a href=""https://flshop.me/thanh-toan""><img class=""image-responsive middle-block"" src=""{{media url=wysiwyg/paymet/vnpay.png}}"" alt=""vnpay"" /></a></li>
+        <li><a href=""https://dalactive.me/thanh-toan""><img class=""image-responsive middle-block"" src=""{{media url=wysiwyg/paymet/momo.png}}"" alt=""momo"" /></a></li>
+        <li><a href=""https://dalactive.me/thanh-toan""><img class=""image-responsive middle-block"" src=""{{media url=wysiwyg/paymet/zalopay.png}}"" alt=""zalopay"" /></a></li>
+        <li><a href=""https://dalactive.me/thanh-toan""><img class=""image-responsive middle-block"" src=""{{media url=wysiwyg/paymet/vnpay.png}}"" alt=""vnpay"" /></a></li>
     </ul>
 </span>",1,0
 Home Slider,home-slider,"<div class=""home-slider-wrapper"">
     <div class=""home-slider-main below-padding"">
         <ul class=""home-slider"">
             <li>
-                <a href=""https://flshop.me/qu-n-ao.html"">
+                <a href=""https://dalactive.me/qu-n-ao.html"">
                     <img class=""image-responsive middle-block"" src=""{{media url=wysiwyg/slider/bizkick-home-banner-1.png}}"" alt=""home banner"" />
                 </a>
             </li>
             <li style=""display:none;"">
-                <a href=""https://flshop.me/giay.html"">
+                <a href=""https://dalactive.me/giay.html"">
                     <img class=""image-responsive middle-block"" src=""{{media url=wysiwyg/slider/bizkick-home-banner-2.png}}"" alt=""home banner"" />
                 </a>
             </li>
@@ -80,17 +80,17 @@ Home Images Block,home-images-one,"<div class=""home-images-wrapper above-paddin
     <div class=""page-main"">
         <div class=""home-image-main"">
             <div class=""home-image-inner"">
-                <a href=""https://flshop.me/giay-adidas-superstar-og-vintage-white-c77124.html"">
+                <a href=""https://dalactive.me/giay-adidas-superstar-og-vintage-white-c77124.html"">
                     <img class=""image-responsive middle-block"" src=""{{media url=wysiwyg/advertisement/bizkick-male-watch1.png}}"" alt=""bizkick-fashion-image"" />
                 </a>
             </div>
             <div class=""home-image-inner"">
-                <a href=""https://flshop.me/balo-louis-vuitton-multipocket-backpack-multicoloured-m21846.html"">
+                <a href=""https://dalactive.me/balo-louis-vuitton-multipocket-backpack-multicoloured-m21846.html"">
                     <img class=""image-responsive middle-block"" src=""{{media url=wysiwyg/advertisement/bizkick-male-watch2.png}}"" alt=""bizkick-fashion-image"" />
                 </a>
             </div>
             <div class=""home-image-inner"">
-                <a href=""https://flshop.me/ao-nike-sportswear-faux-fur-jacket-cream-dm1760.html"">
+                <a href=""https://dalactive.me/ao-nike-sportswear-faux-fur-jacket-cream-dm1760.html"">
                     <img class=""image-responsive middle-block"" src=""{{media url=wysiwyg/advertisement/bizkick-male-watch3.png}}"" alt=""bizkick-fashion-image"" />
                 </a>
             </div>
@@ -150,7 +150,7 @@ Home Testimonials,home_testimonials,"<div class=""hb-wrapper testimonials-sectio
                             <div class=""hb-image"">
                                 <img src=""{{media url=wysiwyg/testimonial/phamnhatvuong.png}}"" alt=""testimonial-image"" />
                                 <span><h4>Phạm Nhật Vượng</h4>
-                                    <p>Cổ đông công ty Flshop</p>
+                                    <p>Cổ đông công ty Dalactive</p>
                                 </span>
                             </div>
                         </div>
@@ -185,16 +185,16 @@ Home Brands,home-brands,"<div class=""brands-wrapper above-padding below-padding
     <div class=""hb-brands"">
         <div class=""brands-main"">
             <ul class=""brands-slider"">
-                <li style=""display: none;""><a href=""https://flshop.me/catalogsearch/result/?q=adidas""><img src=""{{media url=wysiwyg/brand/brand-1.png}}"" alt=""brand-image"" /></a></li>
-                <li style=""display: none;""><a href=""https://flshop.me/catalogsearch/result/?q=nike""><img src=""{{media url=wysiwyg/brand/brand-2.png}}"" alt=""brand-image"" /></a></li>
-                <li style=""display: none;""><a href=""https://flshop.me/catalogsearch/result/index/?q=drew+house""><img src=""{{media url=wysiwyg/brand/brand-3.png}}"" alt=""brand-image"" /></a> </li>
-                <li style=""display: none;""><a href=""https://flshop.me/catalogsearch/result/?q=lacoste""><img src=""{{media url=wysiwyg/brand/brand-4.png}}"" alt=""brand-image"" /></a></li>
-                <li style=""display: none;""><a href=""https://flshop.me/catalogsearch/result/?q=New+Balance""><img src=""{{media url=wysiwyg/brand/brand-5.png}}"" alt=""brand-image"" /></a></li>
-                <li style=""display: none;""><a href=""https://flshop.me/catalogsearch/result/?q=louis+vuitton""><img src=""{{media url=wysiwyg/brand/brand-6.png}}"" alt=""brand-image"" /></a></li>
-                <li style=""display: none;""><a href=""https://flshop.me/catalogsearch/result/?q=MCM+Worldwide""><img src=""{{media url=wysiwyg/brand/brand-7.png}}"" alt=""brand-image"" /></a></li>
-                <li style=""display: none;""><a href=""https://flshop.me/catalogsearch/result/?q=Moschino""><img src=""{{media url=wysiwyg/brand/brand-8.png}}"" alt=""brand-image"" /></a></li>
-                <li style=""display: none;""><a href=""https://flshop.me/catalogsearch/result/?q=New+Balance+MLB""><img src=""{{media url=wysiwyg/brand/brand-9.png}}"" alt=""brand-image"" /></a></li>
-                <li style=""display: none;""><a href=""https://flshop.me/catalogsearch/result/?q=Dior""><img src=""{{media url=wysiwyg/brand/brand-10.png}}"" alt=""brand-image"" /></a></li>
+                <li style=""display: none;""><a href=""https://dalactive.me/catalogsearch/result/?q=adidas""><img src=""{{media url=wysiwyg/brand/brand-1.png}}"" alt=""brand-image"" /></a></li>
+                <li style=""display: none;""><a href=""https://dalactive.me/catalogsearch/result/?q=nike""><img src=""{{media url=wysiwyg/brand/brand-2.png}}"" alt=""brand-image"" /></a></li>
+                <li style=""display: none;""><a href=""https://dalactive.me/catalogsearch/result/index/?q=drew+house""><img src=""{{media url=wysiwyg/brand/brand-3.png}}"" alt=""brand-image"" /></a> </li>
+                <li style=""display: none;""><a href=""https://dalactive.me/catalogsearch/result/?q=lacoste""><img src=""{{media url=wysiwyg/brand/brand-4.png}}"" alt=""brand-image"" /></a></li>
+                <li style=""display: none;""><a href=""https://dalactive.me/catalogsearch/result/?q=New+Balance""><img src=""{{media url=wysiwyg/brand/brand-5.png}}"" alt=""brand-image"" /></a></li>
+                <li style=""display: none;""><a href=""https://dalactive.me/catalogsearch/result/?q=louis+vuitton""><img src=""{{media url=wysiwyg/brand/brand-6.png}}"" alt=""brand-image"" /></a></li>
+                <li style=""display: none;""><a href=""https://dalactive.me/catalogsearch/result/?q=MCM+Worldwide""><img src=""{{media url=wysiwyg/brand/brand-7.png}}"" alt=""brand-image"" /></a></li>
+                <li style=""display: none;""><a href=""https://dalactive.me/catalogsearch/result/?q=Moschino""><img src=""{{media url=wysiwyg/brand/brand-8.png}}"" alt=""brand-image"" /></a></li>
+                <li style=""display: none;""><a href=""https://dalactive.me/catalogsearch/result/?q=New+Balance+MLB""><img src=""{{media url=wysiwyg/brand/brand-9.png}}"" alt=""brand-image"" /></a></li>
+                <li style=""display: none;""><a href=""https://dalactive.me/catalogsearch/result/?q=Dior""><img src=""{{media url=wysiwyg/brand/brand-10.png}}"" alt=""brand-image"" /></a></li>
             </ul>
             <script type=""text/javascript"" xml:space=""preserve"">
                 require(['jquery', 'bizkickowlcarousel'], function($) {
@@ -230,11 +230,11 @@ Footer My Account Block,footer_myaccount,"<div class=""footer-colum-title"">
                                 </div>
                                 <div class=""footer-column-content"">
 <ul class=""footer links"">
-<li class=""nav item""><a href=""https://flshop.me/customer/account/"">Tài khoản người dùng</a></li>
-<li class=""nav item""><a href=""https://flshop.me/customer/account/login"">Đăng nhập và đăng ký</a></li>
-<li class=""nav item""><a href=""https://flshop.me/checkout/cart/"">Giỏ hàng cá nhân</a></li>
-<li class=""nav item""><a href=""https://flshop.me/catalog/product_compare/"">So sánh sản phẩm</a></li>
-<li class=""nav item""><a href=""https://flshop.me/wishlist/"">Danh sách sản phẩm yêu thích</a></li>
+<li class=""nav item""><a href=""https://dalactive.me/customer/account/"">Tài khoản người dùng</a></li>
+<li class=""nav item""><a href=""https://dalactive.me/customer/account/login"">Đăng nhập và đăng ký</a></li>
+<li class=""nav item""><a href=""https://dalactive.me/checkout/cart/"">Giỏ hàng cá nhân</a></li>
+<li class=""nav item""><a href=""https://dalactive.me/catalog/product_compare/"">So sánh sản phẩm</a></li>
+<li class=""nav item""><a href=""https://dalactive.me/wishlist/"">Danh sách sản phẩm yêu thích</a></li>
 </ul>
 </div>",1,0
 Footer Payment & Shipping,footer_payment_shipping,"<div class=""footer-colum-title"">
@@ -244,11 +244,11 @@ Footer Payment & Shipping,footer_payment_shipping,"<div class=""footer-colum-tit
                         </div>
                         <div class=""footer-column-content"">
 <ul class=""footer links"">
-<li class=""nav item""><a href=""https://flshop.me/dieu-khoan-su-dung"">Điều khoản sử dụng</a></li>
-<li class=""nav item""><a href=""https://flshop.me/thanh-toan"">Phương thức thanh toán</a></li>
-<li class=""nav item""><a href=""https://flshop.me/huong-dan-van-chuyen"">Hướng dẫn vận chuyển</a></li>
-<li class=""nav item""><a href=""https://flshop.me/sales/order/history/order-shipments"">Theo dõi đơn hàng</a></li>
-<li class=""nav item""><a href=""https://flshop.me/hoan-hang-doi-tra"">Hoàn hàng & Đổi trả</a></li>
+<li class=""nav item""><a href=""https://dalactive.me/dieu-khoan-su-dung"">Điều khoản sử dụng</a></li>
+<li class=""nav item""><a href=""https://dalactive.me/thanh-toan"">Phương thức thanh toán</a></li>
+<li class=""nav item""><a href=""https://dalactive.me/huong-dan-van-chuyen"">Hướng dẫn vận chuyển</a></li>
+<li class=""nav item""><a href=""https://dalactive.me/sales/order/history/order-shipments"">Theo dõi đơn hàng</a></li>
+<li class=""nav item""><a href=""https://dalactive.me/hoan-hang-doi-tra"">Hoàn hàng & Đổi trả</a></li>
 </ul>
 </div>",1,0
 Home Blogs,home_blogs,"<div class=""hb-wrapper above-padding below-padding weather-section"">
@@ -266,7 +266,7 @@ Home Blogs,home_blogs,"<div class=""hb-wrapper above-padding below-padding weath
         </div>
 
         <div class=""weather-container-wrapper"">
-            {{block class=""Flshop\\Weather\\Block\\Weather"" name=""current.weather"" template=""Flshop_Weather::weather.phtml""}}
+            {{block class=""Dalactive\\Weather\\Block\\Weather"" name=""current.weather"" template=""Dalactive_Weather::weather.phtml""}}
         </div>
     </div>
 </div>
@@ -375,7 +375,7 @@ Footer Socials Block,footer-socials,"<div class=""socials-block"">
 Home Images Block,home-images-two,"<div class=""home-parallax-block above-margin below-margin"">
 <p>CHỈ TRONG TUẦN NÀY</p>
 <h1>GIẢM GIÁ 20% CHO QUẦN ÁO BÓNG ĐÁ</h1>
-<a class=""action primary"" href=""https://flshop.me/qu-n-ao/ao-bong-da-adidas.html"">MUA NGAY</a>
+<a class=""action primary"" href=""https://dalactive.me/qu-n-ao/ao-bong-da-adidas.html"">MUA NGAY</a>
 </div>",1,0
 Home Services Block,home-services,"<div class=""home-advantage-block"">
     <div class=""page-main"">

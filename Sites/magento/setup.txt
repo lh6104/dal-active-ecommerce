@@ -5,7 +5,7 @@ bin/copytocontainer --all
 bin/clinotty composer install
 
 # 3. Chạy setup install với domain local
-bin/setup-install flshop.test
+bin/setup-install dalactive.test
 
 # 4. Copy lại từ container về host
 bin/copyfromcontainer --all
@@ -63,8 +63,8 @@ setup:install [--backend-frontname BACKEND-FRONTNAME] [--enable-debug-logging EN
 Successfully copied 1.42GB to /home/longha/Desktop/E-Commerce-Project/Sites/magento/src/
 Completed copying all files from container to host
 Your system password is needed to add an entry to /etc/hosts...
-127.0.0.1 ::1 flshop.test
-Set https://flshop.test/ to web/secure/base_url and web/unsecure/base_url
+127.0.0.1 ::1 dalactive.test
+Set https://dalactive.test/ to web/secure/base_url and web/unsecure/base_url
 
 In Mysql.php line 672:
                                                                                

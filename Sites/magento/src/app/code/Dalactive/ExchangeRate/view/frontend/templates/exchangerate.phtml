@@ -31,50 +31,55 @@ $currencyFlags = [
 ?>
 
 <?php if ($errorMessage): ?>
-    <p><?php echo $this->escapeHtml($errorMessage); ?></p>
+    <div class="exchange-rate-message exchange-rate-message--error"><?php echo $block->escapeHtml($errorMessage); ?></div>
 <?php elseif (!empty($exchangeRates)): ?>
-    <div class="exchange-rate-info">
-        <h2>Tiền tệ mặc định: VND (Việt Nam Đồng)</h2>
-        <table class="exchange-rate-table" border="1" cellpadding="10" cellspacing="0">
-            <thead>
-                <tr>
-                    <th>Loại tiền</th>
-                    <th>Tỷ giá mua vào</th>
-                    <th>Tỷ giá chuyển khoản</th>
-                    <th>Tỷ giá bán ra</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php foreach ($exchangeRates as $currency => $rate): ?>
-                    <tr>
-                        <td>
-                            <span class="exchange-rate-currency">
-                                <?php if (isset($currencyFlags[$currency])): ?>
-                                    <span class="exchange-rate-flag" aria-hidden="true"><?php echo $this->escapeHtml($currencyFlags[$currency]); ?></span>
-                                <?php endif; ?>
-                                <span><?php echo $this->escapeHtml($currency); ?></span>
-                            </span>
-                        </td>
-                        <td>
-                            <?php 
-                                echo isset($rate['buy']) ? number_format($rate['buy'], 2) : '-';
-                            ?>
-                        </td>
-                        <td>
-                            <?php 
-                                echo isset($rate['transfer']) ? number_format($rate['transfer'], 2) : '-';
-                            ?>
-                        </td>
-                        <td>
-                            <?php 
-                                echo isset($rate['sell']) ? number_format($rate['sell'], 2) : '-';
-                            ?>
-                        </td>
-                    </tr>
-                <?php endforeach; ?>
-            </tbody>
-        </table>
+    <div class="exchange-rate-info" aria-labelledby="exchange-rate-title">
+        <div class="exchange-rate-hero">
+            <span class="exchange-rate-eyebrow"><?php echo $block->escapeHtml(__('Cập nhật tỷ giá')); ?></span>
+            <h1 id="exchange-rate-title"><?php echo $block->escapeHtml(__('Tỷ giá ngoại tệ hôm nay')); ?></h1>
+            <p><?php echo $block->escapeHtml(__('Tham khảo nhanh tỷ giá mua vào, chuyển khoản và bán ra theo tiền tệ mặc định VND.')); ?></p>
+        </div>
+
+        <div class="exchange-rate-card">
+            <div class="exchange-rate-card__header">
+                <div>
+                    <span class="exchange-rate-label"><?php echo $block->escapeHtml(__('Tiền tệ mặc định')); ?></span>
+                    <strong><?php echo $block->escapeHtml(__('VND (Việt Nam Đồng)')); ?></strong>
+                </div>
+                <span class="exchange-rate-count"><?php echo $block->escapeHtml(__('%1 loại tiền', count($exchangeRates))); ?></span>
+            </div>
+
+            <div class="exchange-rate-table-wrap">
+                <table class="exchange-rate-table">
+                    <thead>
+                        <tr>
+                            <th><?php echo $block->escapeHtml(__('Loại tiền')); ?></th>
+                            <th><?php echo $block->escapeHtml(__('Mua vào')); ?></th>
+                            <th><?php echo $block->escapeHtml(__('Chuyển khoản')); ?></th>
+                            <th><?php echo $block->escapeHtml(__('Bán ra')); ?></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($exchangeRates as $currency => $rate): ?>
+                            <tr>
+                                <td>
+                                    <span class="exchange-rate-currency">
+                                        <?php if (isset($currencyFlags[$currency])): ?>
+                                            <span class="exchange-rate-flag" aria-hidden="true"><?php echo $block->escapeHtml($currencyFlags[$currency]); ?></span>
+                                        <?php endif; ?>
+                                        <span><?php echo $block->escapeHtml($currency); ?></span>
+                                    </span>
+                                </td>
+                                <td><?php echo isset($rate['buy']) ? $block->escapeHtml(number_format($rate['buy'], 2)) : '-'; ?></td>
+                                <td><?php echo isset($rate['transfer']) ? $block->escapeHtml(number_format($rate['transfer'], 2)) : '-'; ?></td>
+                                <td><?php echo isset($rate['sell']) ? $block->escapeHtml(number_format($rate['sell'], 2)) : '-'; ?></td>
+                            </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
 <?php else: ?>
-    <p>Không có dữ liệu tỷ giá nào vào lúc này.</p>
+    <div class="exchange-rate-message"><?php echo $block->escapeHtml(__('Không có dữ liệu tỷ giá nào vào lúc này.')); ?></div>
 <?php endif; ?>

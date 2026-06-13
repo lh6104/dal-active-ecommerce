@@ -6853,6 +6853,8 @@ li.greet.welcome {
    dropdown overlay the page instead of pushing header content around. */
 .page-wrapper .page-header .panel.wrapper {
     min-height: 40px !important;
+    position: relative !important;
+    z-index: 100 !important;
 }
 
 .page-wrapper .page-header .panel.wrapper .panel.header {
@@ -6930,6 +6932,15 @@ li.greet.welcome {
 .page-wrapper .page-header .header.content {
     align-items: center !important;
     min-height: 92px !important;
+}
+
+.page-wrapper .page-header {
+    position: relative !important;
+    z-index: 100 !important;
+}
+
+.catalog-product-view .product.media {
+    z-index: auto !important;
 }
 
 //
