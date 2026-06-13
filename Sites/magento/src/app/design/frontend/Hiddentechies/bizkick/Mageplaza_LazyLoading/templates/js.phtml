@@ -1,0 +1,55 @@
+<?php
+/**
+ * Theme override: keep Mageplaza lazy loading available, but remove the default
+ * 2 second startup delay and fade for local storefront images.
+ */
+?>
+<script>
+    require([
+        'jquery',
+        'mageplaza/lazyloading/lib/lazyload'
+    ], function ($) {
+        'use strict';
+
+        $(function () {
+            var lazyImages = $('.mplazyload');
+
+            if (!lazyImages.length) {
+                return;
+            }
+
+            var lazy = lazyImages.lazy({
+                bind: 'event',
+                chainable: false,
+                threshold: <?= /** @noEscape */ $block->getThreshold() ?>,
+                effect: 'show',
+                effectTime: 0,
+                afterLoad: function (element) {
+                    element.removeClass('mplazyload-blur mplazyload-icon mplazyload-cms');
+                }
+            });
+
+            if ($('body').hasClass('cms-index-index') && lazy.loadAll) {
+                lazy.loadAll();
+            }
+        });
+    });
+</script>
+
+<style>
+    img.mplazyload-icon {
+        width: <?= /** @noEscape */ $block->getResizeWith() . 'px' ?>;
+        height: <?= /** @noEscape */ $block->getResizeHeight() . 'px' ?>;
+    }
+
+    img.mplazyload-cms {
+        padding-left: 45%;
+    }
+
+    img.mplazyload-blur {
+        transition: 0.3s filter linear;
+        -o-transition: 0.3s -o-filter linear;
+        -webkit-filter: blur(5px);
+        filter: blur(5px);
+    }
+</style>

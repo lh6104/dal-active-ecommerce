@@ -683,16 +683,6 @@
     position: relative;
 }
 
-.cms-index-index .block.widget.block-new-products:before {
-    background: linear-gradient(90deg, #0b6fff, #4da3ff);
-    content: "";
-    height: 4px;
-    left: 0;
-    position: absolute;
-    right: 0;
-    top: 0;
-}
-
 .cms-index-index .block.widget.block-new-products .page-title-main {
     background: transparent;
     margin-bottom: 34px;
@@ -729,13 +719,16 @@
 }
 
 .cms-index-index .block.widget.block-new-products .slider-outer {
-    margin: -14px -22px -24px;
-    overflow: hidden;
-    padding: 14px 22px 24px;
+    margin: 0 -22px -24px;
+    overflow: visible;
+    padding: 0 22px 24px;
+    position: relative;
 }
 
 .cms-index-index .block.widget.block-new-products .owl-wrapper-outer {
-    overflow: visible !important;
+    margin: -14px -22px -24px;
+    overflow: hidden !important;
+    padding: 14px 22px 24px;
 }
 
 .cms-index-index .block.widget.block-new-products .products-grid .product-items {
@@ -922,11 +915,20 @@
     background: @dalactive-blue-dark !important;
     border-radius: 8px !important;
     box-shadow: 0 4px 12px rgba(6, 26, 51, 0.15);
+    box-sizing: border-box;
     height: 36px !important;
     line-height: 36px !important;
     opacity: 1 !important;
+    padding: 0 !important;
     transition: background 0.2s ease, transform 0.2s ease;
     width: 36px !important;
+}
+
+.cms-index-index .block.widget.block-new-products .owl-controls,
+.cms-index-index .block.widget.block-new-products .owl-controls.clickable {
+    right: 22px !important;
+    top: -58px !important;
+    z-index: 3;
 }
 
 .cms-index-index .block.widget.block-new-products .owl-controls .owl-buttons > div:hover {
