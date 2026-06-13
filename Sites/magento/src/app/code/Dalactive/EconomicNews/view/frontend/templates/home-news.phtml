@@ -9,7 +9,15 @@ $flags = [
     'EUR' => '🇪🇺',
     'GBP' => '🇬🇧',
     'JPY' => '🇯🇵',
+    'AUD' => '🇦🇺',
     'SGD' => '🇸🇬',
+    'CAD' => '🇨🇦',
+    'CHF' => '🇨🇭',
+];
+$rateFields = [
+    'buy' => __('Mua'),
+    'transfer' => __('CK'),
+    'sell' => __('Bán'),
 ];
 ?>
 <section class="dalactive-home-news dalactive-home-news--economic" aria-labelledby="dalactive-home-economic-title">
@@ -31,13 +39,22 @@ $flags = [
                     <ul class="dalactive-home-news__rates-list">
                         <?php foreach ($rates as $currency => $rate): ?>
                             <li class="dalactive-home-news__rates-item">
-                                <span class="dalactive-home-news__rates-code">
-                                    <?php if (isset($flags[$currency])): ?>
-                                        <span aria-hidden="true"><?= $block->escapeHtml($flags[$currency]) ?></span>
-                                    <?php endif; ?>
-                                    <?= $block->escapeHtml($currency) ?>
-                                </span>
-                                <strong><?= $block->escapeHtml($rateBlock->formatRate($rate['transfer'] ?? $rate['sell'] ?? $rate['buy'] ?? null)) ?></strong>
+                                <div class="dalactive-home-news__rates-head">
+                                    <span class="dalactive-home-news__rates-code">
+                                        <?php if (isset($flags[$currency])): ?>
+                                            <span aria-hidden="true"><?= $block->escapeHtml($flags[$currency]) ?></span>
+                                        <?php endif; ?>
+                                        <?= $block->escapeHtml($currency) ?>
+                                    </span>
+                                </div>
+                                <div class="dalactive-home-news__rates-values">
+                                    <?php foreach ($rateFields as $field => $label): ?>
+                                        <span class="dalactive-home-news__rates-value">
+                                            <small><?= $block->escapeHtml($label) ?></small>
+                                            <strong><?= $block->escapeHtml($rateBlock->formatRate($rate[$field] ?? null)) ?></strong>
+                                        </span>
+                                    <?php endforeach; ?>
+                                </div>
                             </li>
                         <?php endforeach; ?>
                     </ul>

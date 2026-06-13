@@ -138,7 +138,7 @@ class ExchangeRate extends Template
      */
     public function getHomepageRates(): array
     {
-        $preferred = ['USD', 'EUR', 'GBP', 'JPY', 'SGD'];
+        $preferred = ['USD', 'EUR', 'GBP', 'JPY', 'AUD', 'SGD', 'CAD', 'CHF'];
         $rates = $this->getExchangeRates();
         $homepageRates = [];
 
@@ -152,7 +152,7 @@ class ExchangeRate extends Template
             return $homepageRates;
         }
 
-        return array_slice($rates, 0, 5, true);
+        return array_slice($rates, 0, 8, true);
     }
 
     /**

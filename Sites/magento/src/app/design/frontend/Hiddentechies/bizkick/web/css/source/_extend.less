@@ -676,10 +676,10 @@
 // 2. Product carousel section
 // ---------------------------------------------
 .cms-index-index .block.widget.block-new-products {
-    background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+    background: #ffffff;
     border-bottom: 1px solid #edf1f6;
     border-top: 1px solid #edf1f6;
-    padding: 64px 0 72px;
+    padding: 58px 0 64px;
     position: relative;
 }
 
@@ -695,14 +695,14 @@
 
 .cms-index-index .block.widget.block-new-products .page-title-main {
     background: transparent;
-    margin-bottom: 40px;
+    margin-bottom: 34px;
     text-align: center;
 }
 
 .cms-index-index .block.widget.block-new-products .page-title-main > strong {
     color: @dalactive-blue-dark;
     display: inline-block;
-    font-size: 26px;
+    font-size: 24px;
     font-weight: 800;
     letter-spacing: -0.02em;
     padding: 0 0 14px;
@@ -719,13 +719,23 @@
     left: 50%;
     position: absolute;
     transform: translateX(-50%);
-    width: 80px;
+    width: 64px;
 }
 
 .cms-index-index .block.widget.block-new-products .block-content {
     margin: 0 auto;
-    max-width: 1400px;
+    max-width: 1180px;
     padding: 0 24px;
+}
+
+.cms-index-index .block.widget.block-new-products .slider-outer {
+    margin: -14px -22px -24px;
+    overflow: hidden;
+    padding: 14px 22px 24px;
+}
+
+.cms-index-index .block.widget.block-new-products .owl-wrapper-outer {
+    overflow: visible !important;
 }
 
 .cms-index-index .block.widget.block-new-products .products-grid .product-items {
@@ -733,16 +743,29 @@
     justify-content: center;
 }
 
+.cms-index-index .block.widget.block-new-products .owl-wrapper {
+    align-items: stretch;
+    display: flex !important;
+}
+
+.cms-index-index .block.widget.block-new-products .owl-item {
+    display: flex;
+}
+
 .cms-index-index .block.widget.block-new-products .products-grid .product-item {
     box-sizing: border-box;
-    padding: 0 16px;
+    display: flex;
+    padding: 0 10px;
 }
 
 .cms-index-index .block.widget.block-new-products .products-grid .product-item .product-item-info {
     background: #fff;
     border: 1px solid #e8ecf1;
-    border-radius: 20px;
-    box-shadow: 0 2px 4px rgba(6, 26, 51, 0.04), 0 12px 32px rgba(6, 26, 51, 0.07);
+    border-radius: 12px;
+    box-shadow: 0 6px 18px rgba(6, 26, 51, 0.06);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
     overflow: hidden;
     padding: 0;
     transition: box-shadow 0.32s ease, transform 0.32s ease, border-color 0.32s ease;
@@ -750,17 +773,17 @@
 
 .cms-index-index .block.widget.block-new-products .products-grid .product-item:hover .product-item-info {
     border-color: @dalactive-blue;
-    box-shadow: 0 4px 8px rgba(11, 111, 255, 0.08), 0 24px 48px rgba(11, 111, 255, 0.14);
-    transform: translateY(-6px);
+    box-shadow: 0 12px 28px rgba(6, 26, 51, 0.11);
+    transform: translateY(-3px);
 }
 
 .cms-index-index .block.widget.block-new-products .products-grid .product-item .product-item-info .product-img-main {
-    background: linear-gradient(180deg, #f8fafc 0%, #ffffff 100%);
+    background: #f8fafc;
     overflow: hidden;
 }
 
 .cms-index-index .block.widget.block-new-products .products-grid .product-item .product-item-info .product-img-main .product-item-photo {
-    aspect-ratio: 4 / 3;
+    aspect-ratio: 1 / 1;
     display: block;
     overflow: hidden;
     padding: 0;
@@ -768,10 +791,12 @@
 
 .cms-index-index .block.widget.block-new-products .products-grid .product-item .product-item-info .product-img-main .product-item-photo img {
     border-radius: 0;
+    box-sizing: border-box;
     height: 100%;
     margin: 0;
     max-height: none;
-    object-fit: cover;
+    object-fit: contain;
+    padding: 14px;
     transition: transform 0.4s ease;
     width: 100%;
 }
@@ -781,18 +806,21 @@
 }
 
 .cms-index-index .block.widget.block-new-products .product-item-details {
-    padding: 22px 24px 26px;
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: column;
+    padding: 18px 18px 20px;
 }
 
 .cms-index-index .block.widget.block-new-products .product-item-name {
     margin: 0 0 10px;
-    min-height: 44px;
+    min-height: 42px;
 }
 
 .cms-index-index .block.widget.block-new-products .product-item-name > a {
     color: @dalactive-blue-dark;
     display: -webkit-box;
-    font-size: 15px;
+    font-size: 14px;
     font-weight: 700;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 2;
@@ -805,36 +833,55 @@
 }
 
 .cms-index-index .block.widget.block-new-products .price-box {
-    margin: 0 0 16px;
+    margin: 0 0 14px;
 }
 
 .cms-index-index .block.widget.block-new-products .price-box .price {
     color: @dalactive-blue;
-    font-size: 20px;
+    font-size: 18px;
     font-weight: 800;
     letter-spacing: -0.02em;
 }
 
 .cms-index-index .block.widget.block-new-products .product-item-actions {
+    align-items: stretch;
     display: flex;
     gap: 8px;
     margin: 0;
+    margin-top: auto;
     padding: 0;
+    width: 100%;
+}
+
+.cms-index-index .block.widget.block-new-products .product-item-actions .actions-primary {
+    display: flex;
+    flex: 1 1 auto;
+    width: 100%;
 }
 
 .cms-index-index .block.widget.block-new-products .product-item-actions .actions-primary .action.primary {
+    align-items: center;
     background: @dalactive-blue;
     border: 0;
-    border-radius: 12px;
-    box-shadow: 0 4px 14px rgba(11, 111, 255, 0.22);
+    border-radius: 8px;
+    box-shadow: 0 5px 12px rgba(11, 111, 255, 0.18);
     color: #fff;
+    display: inline-flex;
     font-size: 13px;
     font-weight: 700;
     letter-spacing: 0.02em;
-    min-height: 46px;
-    padding: 0 20px;
+    justify-content: center;
+    line-height: 1.2;
+    min-height: 40px;
+    padding: 0 16px;
     text-transform: uppercase;
     transition: background 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+    width: 100%;
+}
+
+.cms-index-index .block.widget.block-new-products .product-item-actions .actions-primary .action.primary span {
+    display: block;
+    text-align: center;
     width: 100%;
 }
 
@@ -870,13 +917,13 @@
 
 .cms-index-index .block.widget.block-new-products .owl-controls .owl-buttons > div {
     background: @dalactive-blue-dark !important;
-    border-radius: 10px !important;
+    border-radius: 8px !important;
     box-shadow: 0 4px 12px rgba(6, 26, 51, 0.15);
-    height: 40px !important;
-    line-height: 40px !important;
+    height: 36px !important;
+    line-height: 36px !important;
     opacity: 1 !important;
     transition: background 0.2s ease, transform 0.2s ease;
-    width: 40px !important;
+    width: 36px !important;
 }
 
 .cms-index-index .block.widget.block-new-products .owl-controls .owl-buttons > div:hover {
@@ -887,10 +934,72 @@
 // 3. Promo banner / parallax block
 // ---------------------------------------------
 .cms-index-index .home-parallax-block {
+    align-items: center;
+    background-position: center center !important;
+    background-size: cover !important;
     border-radius: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     margin: 0;
+    min-height: 360px;
     overflow: hidden;
     position: relative;
+}
+
+.cms-index-index .home-parallax-block:before {
+    background: linear-gradient(90deg, rgba(6, 26, 51, 0.78) 0%, rgba(6, 26, 51, 0.46) 45%, rgba(6, 26, 51, 0.12) 100%);
+    content: "";
+    inset: 0;
+    position: absolute;
+}
+
+.cms-index-index .home-parallax-block > * {
+    position: relative;
+    z-index: 1;
+}
+
+.cms-index-index .home-parallax-block > p,
+.cms-index-index .home-parallax-block > h1,
+.cms-index-index .home-parallax-block > .action.primary {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.cms-index-index .home-parallax-block > p {
+    color: rgba(255, 255, 255, 0.9) !important;
+    font-size: 12px !important;
+    font-weight: 800 !important;
+    letter-spacing: 0.16em !important;
+    line-height: 1.2;
+    margin-bottom: 12px !important;
+    text-transform: uppercase;
+}
+
+.cms-index-index .home-parallax-block > h1 {
+    color: #fff !important;
+    font-size: ~"clamp(32px, 5vw, 52px)" !important;
+    font-weight: 800 !important;
+    letter-spacing: -0.035em !important;
+    line-height: 1.08 !important;
+    margin-bottom: 26px !important;
+    max-width: 960px;
+    text-align: center;
+}
+
+.cms-index-index .home-parallax-block > .action.primary {
+    align-items: center;
+    background: @dalactive-blue !important;
+    border: 0 !important;
+    border-radius: 8px !important;
+    box-shadow: 0 12px 28px rgba(11, 111, 255, 0.28) !important;
+    display: inline-flex;
+    font-size: 17px !important;
+    font-weight: 800 !important;
+    justify-content: center;
+    min-height: 52px;
+    padding: 0 34px !important;
+    text-transform: uppercase;
 }
 
 .cms-index-index .home-parallax-block > .page-main {
@@ -1024,19 +1133,19 @@
 .cms-index-index .hb-wrapper.testimonials-section {
     background: linear-gradient(180deg, #f0f6ff 0%, #f8fafc 100%) !important;
     border-bottom: 1px solid #e0e8f0;
-    padding: 64px 0 56px;
+    padding: 58px 0 58px;
 }
 
 .cms-index-index .hb-wrapper .page-title-main {
     background: transparent;
-    margin-bottom: 36px;
+    margin-bottom: 32px;
     text-align: center;
 }
 
 .cms-index-index .hb-wrapper .page-title-main > strong {
     color: @dalactive-blue-dark;
     display: inline-block;
-    font-size: 26px;
+    font-size: 24px;
     font-weight: 800;
     letter-spacing: -0.02em;
     padding: 0 0 14px;
@@ -1053,14 +1162,42 @@
     left: 50%;
     position: absolute;
     transform: translateX(-50%);
-    width: 80px;
+    width: 64px;
+}
+
+.cms-index-index .hb-wrapper.testimonials-section .page-main {
+    max-width: 1180px;
+    padding: 0 24px;
+}
+
+.cms-index-index .hb-wrapper .hb-testimonoals .owl-wrapper {
+    align-items: stretch;
+    display: flex !important;
+}
+
+.cms-index-index .hb-wrapper .hb-testimonoals .owl-item {
+    display: flex;
+}
+
+.cms-index-index .hb-wrapper .hb-testimonoals {
+    margin: -14px -16px -24px;
+    overflow: hidden;
+    padding: 14px 16px 24px;
+}
+
+.cms-index-index .hb-wrapper .hb-testimonoals .owl-wrapper-outer {
+    overflow: visible !important;
 }
 
 .cms-index-index .hb-wrapper .hb-testimonoals ul li {
-    padding: 0 16px;
+    display: flex;
+    padding: 0 12px;
 }
 
 .cms-index-index .hb-wrapper .hb-testimonoals ul li .hb-inner {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
     padding: 0;
     text-align: center;
 }
@@ -1068,11 +1205,13 @@
 .cms-index-index .hb-wrapper .hb-testimonoals ul li .hb-inner .hb-content {
     background: #fff !important;
     border: 1px solid #e8ecf1 !important;
-    border-radius: 18px !important;
-    box-shadow: 0 2px 8px rgba(6, 26, 51, 0.05), 0 12px 32px rgba(6, 26, 51, 0.06) !important;
+    border-radius: 14px !important;
+    box-shadow: 0 8px 24px rgba(6, 26, 51, 0.07) !important;
     color: @dalactive-blue-dark !important;
-    margin-bottom: 24px;
-    padding: 28px 28px 24px !important;
+    flex: 1 1 auto;
+    margin-bottom: 18px;
+    min-height: 142px;
+    padding: 26px 28px 22px !important;
     position: relative;
     text-align: left;
     transition: box-shadow 0.32s ease, border-color 0.32s ease, transform 0.32s ease;
@@ -1080,8 +1219,8 @@
 
 .cms-index-index .hb-wrapper .hb-testimonoals ul li .hb-inner:hover .hb-content {
     border-color: @dalactive-blue-border !important;
-    box-shadow: 0 4px 12px rgba(11, 111, 255, 0.08), 0 20px 44px rgba(6, 26, 51, 0.1) !important;
-    transform: translateY(-4px);
+    box-shadow: 0 14px 32px rgba(6, 26, 51, 0.1) !important;
+    transform: translateY(-3px);
 }
 
 .cms-index-index .hb-wrapper .hb-testimonoals ul li .hb-inner .hb-content:before {
@@ -1140,15 +1279,15 @@
     border-radius: 50%;
     box-shadow: 0 4px 16px rgba(6, 26, 51, 0.12), 0 0 0 3px rgba(11, 111, 255, 0.12);
     display: block;
-    height: 96px;
-    max-height: 96px;
-    max-width: 96px;
-    min-height: 96px;
-    min-width: 96px;
+    height: 84px;
+    max-height: 84px;
+    max-width: 84px;
+    min-height: 84px;
+    min-width: 84px;
     object-fit: cover;
     object-position: center center;
     transition: border-color 0.28s ease, box-shadow 0.28s ease, transform 0.28s ease;
-    width: 96px;
+    width: 84px;
 }
 
 .cms-index-index .hb-wrapper .hb-testimonoals ul li .hb-inner:hover .hb-image > img {
@@ -1174,10 +1313,13 @@
 
 .cms-index-index .hb-wrapper .hb-testimonoals .owl-controls .owl-buttons > div {
     background: @dalactive-blue-dark !important;
-    border-radius: 10px !important;
+    border-radius: 8px !important;
     box-shadow: 0 4px 12px rgba(6, 26, 51, 0.15);
+    height: 36px !important;
+    line-height: 36px !important;
     opacity: 1 !important;
     transition: background 0.2s ease, transform 0.2s ease;
+    width: 36px !important;
 }
 
 .cms-index-index .hb-wrapper .hb-testimonoals .owl-controls .owl-buttons > div:hover {
@@ -1191,7 +1333,7 @@
     background: #ffffff !important;
     border-bottom: 1px solid #edf1f6;
     border-top: 1px solid #edf1f6;
-    padding: 64px 0 56px;
+    padding: 58px 0 56px;
 }
 
 .cms-index-index .weather-container-wrapper {
@@ -1202,13 +1344,13 @@
 }
 
 .cms-index-index .weather-section .page-main {
-    max-width: 1320px;
+    max-width: 1180px;
     padding: 0 24px;
 }
 
 .cms-index-index .weather-section .page-title-main {
     background: transparent;
-    margin-bottom: 32px;
+    margin-bottom: 30px;
     position: relative;
     text-align: center;
 }
@@ -1216,7 +1358,7 @@
 .cms-index-index .weather-section .page-title-main > strong {
     color: @dalactive-blue-dark;
     display: inline-block;
-    font-size: 26px;
+    font-size: 24px;
     font-weight: 800;
     letter-spacing: -0.02em;
     padding: 0 0 14px;
@@ -1233,35 +1375,51 @@
     left: 50%;
     position: absolute;
     transform: translateX(-50%);
-    width: 80px;
+    width: 64px;
 }
 
 .cms-index-index .weather-section .nav-buttons {
-    gap: 6px;
+    gap: 8px;
     right: 0;
     top: 4px;
+}
+
+.cms-index-index .weather-section .nav-button {
+    align-items: center;
+    display: inline-flex;
+    height: 36px !important;
+    justify-content: center;
+    width: 36px !important;
+}
+
+.cms-index-index .weather-section .weather-container {
+    gap: 24px !important;
 }
 
 .cms-index-index .weather-section .weather-container-wrapper {
     background: transparent !important;
     border: 0;
+    margin: -14px -16px -22px;
+    overflow: hidden !important;
+    padding: 14px 16px 22px;
 }
 
 .cms-index-index .weather-card {
     background: #fff !important;
     border: 1px solid #e8ecf1 !important;
-    border-radius: 18px !important;
-    box-shadow: 0 2px 8px rgba(6, 26, 51, 0.05) !important;
-    flex: 0 0 auto;
-    min-width: 260px;
-    padding: 24px 22px !important;
+    border-radius: 12px !important;
+    box-shadow: 0 6px 18px rgba(6, 26, 51, 0.06) !important;
+    flex: 0 0 calc((100% - 48px) / 3);
+    min-height: 172px;
+    min-width: 0;
+    padding: 22px 22px 20px !important;
     transition: box-shadow 0.32s ease, transform 0.32s ease, border-color 0.32s ease;
 }
 
 .cms-index-index .weather-card:hover {
     border-color: @dalactive-blue-border !important;
-    box-shadow: 0 4px 12px rgba(11, 111, 255, 0.08), 0 20px 40px rgba(6, 26, 51, 0.1) !important;
-    transform: translateY(-5px) !important;
+    box-shadow: 0 12px 28px rgba(6, 26, 51, 0.1) !important;
+    transform: translateY(-3px) !important;
 }
 
 .cms-index-index .weather-card__top {
@@ -1290,13 +1448,20 @@
 }
 
 .cms-index-index .weather-card__icon {
-    font-size: 32px;
+    align-items: center;
+    background: #f6f9fd;
+    border-radius: 50%;
+    display: inline-flex;
+    font-size: 30px;
+    height: 42px;
+    justify-content: center;
     line-height: 1;
+    width: 42px;
 }
 
 .cms-index-index .weather-card__temp {
     color: @dalactive-blue !important;
-    font-size: 38px !important;
+    font-size: 34px !important;
     font-weight: 800 !important;
     letter-spacing: -0.03em;
     line-height: 1 !important;
@@ -1317,11 +1482,18 @@
 }
 
 .cms-index-index .weather-card__stats {
-    border-top: 1px solid #edf1f6;
+    border-top: 0;
     display: grid;
-    gap: 10px;
+    gap: 12px;
     grid-template-columns: 1fr 1fr;
-    padding-top: 14px;
+    padding-top: 4px;
+}
+
+.cms-index-index .weather-card__stat {
+    background: #f8fafc;
+    border: 1px solid #edf1f6;
+    border-radius: 10px;
+    padding: 9px 10px;
 }
 
 .cms-index-index .weather-card__stat-label {
@@ -1352,24 +1524,24 @@
 .cms-index-index .brands-wrapper {
     background: #f8fafc;
     border-top: 1px solid #edf1f6;
-    padding: 64px 0 0;
+    padding: 58px 0 0;
 }
 
 .cms-index-index .brands-wrapper .page-main {
-    max-width: 1320px;
+    max-width: 1180px;
     padding: 0 24px;
 }
 
 .cms-index-index .brands-wrapper .page-main > .page-title-main {
     background: transparent;
-    margin-bottom: 36px;
+    margin-bottom: 30px;
     text-align: center;
 }
 
 .cms-index-index .brands-wrapper .page-main > .page-title-main > strong {
     color: @dalactive-blue-dark;
     display: inline-block;
-    font-size: 26px;
+    font-size: 24px;
     font-weight: 800;
     letter-spacing: -0.02em;
     padding: 0 0 14px;
@@ -1386,7 +1558,7 @@
     left: 50%;
     position: absolute;
     transform: translateX(-50%);
-    width: 80px;
+    width: 64px;
 }
 
 .cms-index-index .brands-wrapper .hb-brands {
@@ -1395,26 +1567,29 @@
 
 .cms-index-index .brands-wrapper .brands-main {
     background: transparent;
+    margin: -10px -14px -18px;
     overflow: hidden;
+    padding: 10px 14px 18px;
 }
 
 .cms-index-index .brands-wrapper .brands-slider li {
     align-items: center;
     display: flex;
     justify-content: center;
-    padding: 8px 12px;
+    padding: 6px 10px;
 }
 
 .cms-index-index .brands-wrapper .brands-slider li a {
     align-items: center;
     background: #fff;
     border: 1px solid #e8ecf1;
-    border-radius: 16px;
-    box-shadow: 0 2px 6px rgba(6, 26, 51, 0.04);
+    border-radius: 10px;
+    box-shadow: 0 5px 16px rgba(6, 26, 51, 0.05);
     display: flex;
     justify-content: center;
-    min-height: 88px;
-    padding: 20px 28px;
+    height: 84px;
+    min-height: 84px;
+    padding: 18px 24px;
     transition: box-shadow 0.32s ease, border-color 0.32s ease, transform 0.32s ease, background 0.32s ease;
     width: 100%;
 }
@@ -1422,13 +1597,14 @@
 .cms-index-index .brands-wrapper .brands-slider li a:hover {
     background: #fff;
     border-color: @dalactive-blue-border;
-    box-shadow: 0 8px 24px rgba(6, 26, 51, 0.1);
-    transform: translateY(-4px);
+    box-shadow: 0 10px 24px rgba(6, 26, 51, 0.1);
+    transform: translateY(-2px);
 }
 
 .cms-index-index .brands-wrapper .brands-slider li a img {
     filter: grayscale(0.75) opacity(0.85);
-    max-height: 44px;
+    max-height: 36px;
+    max-width: 96px;
     object-fit: contain;
     transition: filter 0.32s ease, transform 0.32s ease;
     width: auto;
@@ -1454,6 +1630,45 @@ body.cms-index-index {
     font-family: @font-family__base;
 }
 
+@keyframes dalactiveSpin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.cms-index-index .loading-mask {
+    background: rgba(248, 250, 252, 0.82) !important;
+    backdrop-filter: blur(2px);
+}
+
+.cms-index-index .loading-mask .loader > img {
+    display: none !important;
+}
+
+.cms-index-index .loading-mask .loader:before {
+    animation: dalactiveSpin 0.72s linear infinite;
+    border: 3px solid rgba(11, 111, 255, 0.16);
+    border-radius: 50%;
+    border-top-color: @dalactive-blue;
+    content: "";
+    display: block;
+    height: 34px;
+    margin: 0 auto;
+    width: 34px;
+}
+
+.cms-index-index .product-image-container,
+.cms-index-index .dalactive-home-news__media,
+.cms-index-index .brands-wrapper .brands-slider li a,
+.cms-index-index .hb-wrapper .hb-testimonoals ul li .hb-inner .hb-image > img {
+    background-color: #f8fafc;
+}
+
+.cms-index-index .product-image-wrapper,
+.cms-index-index .product-image-photo {
+    background: transparent !important;
+}
+
 .cms-index-index .page-main {
     background-color: transparent !important;
 }
@@ -1471,7 +1686,7 @@ body.cms-index-index {
 }
 
 .cms-index-index .home-images-wrapper {
-    background: #ffffff;
+    background: #f8fafc;
     padding: 40px 0 44px;
 }
 
@@ -1482,7 +1697,7 @@ body.cms-index-index {
 }
 
 .cms-index-index .testimonials-section {
-    background: linear-gradient(180deg, #f0f6ff 0%, #f8fafc 100%) !important;
+    background: linear-gradient(180deg, #eef5ff 0%, #f6f9fd 100%) !important;
     border-bottom: 1px solid #edf1f6;
 }
 
@@ -1493,7 +1708,7 @@ body.cms-index-index {
 }
 
 .cms-index-index .weather-section .weather-container-wrapper {
-    background: #ffffff !important;
+    background: transparent !important;
     border: 0;
 }
 
@@ -1520,7 +1735,7 @@ body.cms-index-index {
 .cms-index-index .weather-card:hover {
     background: #ffffff !important;
     border-color: @dalactive-blue-border !important;
-    transform: translateY(-6px) !important;
+    transform: translateY(-3px) !important;
 }
 
 .cms-index-index .weather-card h2 {
@@ -1536,7 +1751,7 @@ body.cms-index-index {
 .cms-index-index .hb-wrapper .nav-button {
     background: @dalactive-blue-dark !important;
     border: 0 !important;
-    border-radius: 10px !important;
+    border-radius: 8px !important;
     box-shadow: 0 4px 12px rgba(6, 26, 51, 0.15);
     color: @dalactive-white !important;
     transition: background 0.2s ease, transform 0.2s ease;
@@ -1577,15 +1792,33 @@ body.cms-index-index {
         max-width: 50%;
         margin-bottom: 16px;
     }
+
+    .cms-index-index .weather-card {
+        flex-basis: calc((100% - 24px) / 2);
+    }
 }
 
 @media (max-width: 767px) {
     .cms-index-index .block.widget.block-new-products {
-        padding: 32px 0 40px;
+        padding: 40px 0 44px;
     }
 
     .cms-index-index .block.widget.block-new-products .page-title-main > strong {
-        font-size: 22px;
+        font-size: 21px;
+    }
+
+    .cms-index-index .home-parallax-block {
+        min-height: 300px;
+        padding: 44px 24px;
+    }
+
+    .cms-index-index .home-parallax-block > h1 {
+        font-size: 30px !important;
+    }
+
+    .cms-index-index .home-parallax-block > .action.primary {
+        min-height: 46px;
+        padding: 0 26px !important;
     }
 
     .cms-index-index .home-advantage-block .hab-row .hab-inner {
@@ -1600,12 +1833,16 @@ body.cms-index-index {
     }
 
     .cms-index-index .hb-wrapper .hb-testimonoals ul li .hb-inner .hb-image > img {
-        height: 100px;
-        max-height: 100px;
-        max-width: 100px;
-        min-height: 100px;
-        min-width: 100px;
-        width: 100px;
+        height: 80px;
+        max-height: 80px;
+        max-width: 80px;
+        min-height: 80px;
+        min-width: 80px;
+        width: 80px;
+    }
+
+    .cms-index-index .weather-card {
+        flex-basis: 100%;
     }
 
     .cms-index-index .weather-container-wrapper {

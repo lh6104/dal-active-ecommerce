@@ -15,7 +15,7 @@
 
 $productCollection = $block->getProductCollection();
 if ($productCollection) {
-    $productCollection->setPageSize(10); // Giới hạn số lượng sản phẩm
+    $productCollection->setPageSize(16); // Giới hạn số lượng sản phẩm
 }
 
 if ($exist = ($productCollection && $productCollection->getSize())) {
@@ -187,16 +187,16 @@ if ($exist = ($productCollection && $productCollection->getSize())) {
         require(['jquery', 'bizkickowlcarousel'], function($) {
             $(document).ready(function() {
                 $(".product-widget-slider").owlCarousel({
-                    items: 4,
-                    itemsDesktop: [1199, 4],
-                    itemsDesktopSmall: [991, 3],
+                    items: 5,
+                    itemsDesktop: [1199, 5],
+                    itemsDesktopSmall: [991, 4],
                     itemsTablet: [767, 2],
                     itemsTabletSmall: [639, 2],
                     itemsMobile: [479, 1],
                     pagination: false,
                     navigationText: [
                         "<div class='left-arrow'><i class='fa fa-angle-left'></i></div>",
-                        "<div class='right-arrow'><i class='fa fa-angle-right'></i></div>" 
+                        "<div class='right-arrow'><i class='fa fa-angle-right'></i></div>"
                     ],
                     navigation: true,
                 });
