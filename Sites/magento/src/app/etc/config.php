@@ -360,6 +360,7 @@ return [
         'Dalactive_CatalogSetup' => 1,
         'Dalactive_CheckoutFix' => 1,
         'Dalactive_EconomicNews' => 1,
+        'Dalactive_SportsNews' => 1,
         'Dalactive_ExchangeRate' => 1,
         'Dalactive_HeroBanner' => 1,
         'Dalactive_HybridauthAutoload' => 1,

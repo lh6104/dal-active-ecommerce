@@ -97,15 +97,17 @@ Home Images Block,home-images-one,"<div class=""home-images-wrapper above-paddin
         </div>
     </div>
 </div>",1,0
-Bizkick Below,bizkick-below,"{{widget type=""Magento\Cms\Block\Widget\Block"" template=""widget/static_block/default.phtml"" block_id=""home-images-one""}}
-<div class=""page-main"">
+Bizkick Below,bizkick-below,"<div class=""page-main"">
 {{widget type=""Magento\Catalog\Block\Product\Widget\NewWidget"" display_type=""all_products"" show_pager=""0"" products_count=""10"" template=""product/widget/new/content/new_grid.phtml""}}
 </div>
 {{widget type=""Magento\Cms\Block\Widget\Block"" template=""widget/static_block/default.phtml"" block_id=""home-images-two""}}
-{{widget type=""Magento\Cms\Block\Widget\Block"" template=""widget/static_block/default.phtml"" block_id=""home-services""}}
-{{widget type=""Magento\Cms\Block\Widget\Block"" template=""widget/static_block/default.phtml"" block_id=""home_testimonials""}}
+{{widget type=""Magento\Cms\Block\Widget\Block"" template=""widget/static_block/default.phtml"" block_id=""home-economic-news""}}
 {{widget type=""Magento\Cms\Block\Widget\Block"" template=""widget/static_block/default.phtml"" block_id=""home_blogs""}}
+{{widget type=""Magento\Cms\Block\Widget\Block"" template=""widget/static_block/default.phtml"" block_id=""home_testimonials""}}
+{{widget type=""Magento\Cms\Block\Widget\Block"" template=""widget/static_block/default.phtml"" block_id=""home-services""}}
 {{widget type=""Magento\Cms\Block\Widget\Block"" template=""widget/static_block/default.phtml"" block_id=""home-brands""}}",1,0
+Home Exchange Rate,home-exchange-rate,"{{block class=""Dalactive\\ExchangeRate\\Block\\ExchangeRate"" name=""home.exchange.rate"" template=""Dalactive_ExchangeRate::home-exchangerate.phtml""}}",1,0
+Home Economic News,home-economic-news,"{{block class=""Dalactive\\EconomicNews\\Block\\News"" name=""home.economic.news"" template=""Dalactive_EconomicNews::home-news.phtml""}}",1,0
 Home Testimonials,home_testimonials,"<div class=""hb-wrapper testimonials-section above-padding below-padding above-margin below-margin"">
     <div class=""page-main"">
         <div class=""page-title-main""><strong>Phản hồi của khách hàng</strong></div>

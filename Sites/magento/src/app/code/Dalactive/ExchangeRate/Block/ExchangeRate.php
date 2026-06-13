@@ -130,4 +130,53 @@ class ExchangeRate extends Template
 
         return null;
     }
+
+    /**
+     * Compact exchange rates for homepage strip.
+     *
+     * @return array<string, array<string, float|null>>
+     */
+    public function getHomepageRates(): array
+    {
+        $preferred = ['USD', 'EUR', 'GBP', 'JPY', 'SGD'];
+        $rates = $this->getExchangeRates();
+        $homepageRates = [];
+
+        foreach ($preferred as $currencyCode) {
+            if (!empty($rates[$currencyCode])) {
+                $homepageRates[$currencyCode] = $rates[$currencyCode];
+            }
+        }
+
+        if (!empty($homepageRates)) {
+            return $homepageRates;
+        }
+
+        return array_slice($rates, 0, 5, true);
+    }
+
+    /**
+     * Full exchange rate page URL.
+     *
+     * @return string
+     */
+    public function getViewAllUrl(): string
+    {
+        return $this->getUrl('exchangerate/index/index');
+    }
+
+    /**
+     * Format VND rate for display.
+     *
+     * @param float|null $value
+     * @return string
+     */
+    public function formatRate($value): string
+    {
+        if ($value === null) {
+            return '-';
+        }
+
+        return number_format((float) $value, $value >= 1000 ? 0 : 2, '.', ',');
+    }
 }

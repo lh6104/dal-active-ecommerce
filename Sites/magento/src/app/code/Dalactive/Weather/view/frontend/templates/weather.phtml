@@ -1,11 +1,5 @@
 <?php
-/**
- * @var \Dalactive\Weather\Block\Weather $block
- */
-?>
-
-<?php
-// Define the list of cities you want to display
+/** @var \Dalactive\Weather\Block\Weather $block */
 $cities = ['HaNoi', 'London', 'New York', 'Tokyo', 'Sydney', 'Paris', 'Berlin', 'Moscow', 'Beijing', 'Seoul', 'San Francisco', 'Ho Chi Minh City', 'Bangkok', 'Singapore', 'Kuala Lumpur', 'Jakarta', 'Manila'];
 $weatherDataList = $block->getMultipleWeatherData($cities);
 ?>
@@ -13,16 +7,33 @@ $weatherDataList = $block->getMultipleWeatherData($cities);
 <?php if (!empty($weatherDataList)): ?>
     <div class="weather-container">
         <?php foreach ($weatherDataList as $weatherData): ?>
+            <?php
+            $description = (string) ($weatherData['weather'][0]['description'] ?? '');
+            $temp = round((float) ($weatherData['main']['temp'] ?? 0));
+            ?>
             <div class="weather-card">
-                <h2><?php echo $this->escapeHtml($weatherData['name']); ?>, <?php echo $this->escapeHtml($weatherData['sys']['country']); ?></h2>
-                <p>Nhiệt độ: <?php echo $this->escapeHtml($weatherData['main']['temp']); ?> °C</p>
-                <p>Thời tiết: <?php echo $this->escapeHtml(ucfirst($weatherData['weather'][0]['description'])); ?></p>
-                <p>Độ ẩm: <?php echo $this->escapeHtml($weatherData['main']['humidity']); ?>%</p>
-                <p>Tốc độ gió: <?php echo $this->escapeHtml($weatherData['wind']['speed']); ?> m/s</p>
+                <div class="weather-card__top">
+                    <div class="weather-card__location">
+                        <h2><?= $block->escapeHtml($weatherData['name']) ?></h2>
+                        <span class="weather-card__country"><?= $block->escapeHtml($weatherData['sys']['country']) ?></span>
+                    </div>
+                    <span class="weather-card__icon" aria-hidden="true"><?= $block->escapeHtml($block->getWeatherIcon($description)) ?></span>
+                </div>
+                <p class="weather-card__temp"><?= $block->escapeHtml((string) $temp) ?><span>°C</span></p>
+                <p class="weather-card__condition"><?= $block->escapeHtml(ucfirst($description)) ?></p>
+                <div class="weather-card__stats">
+                    <div class="weather-card__stat">
+                        <span class="weather-card__stat-label"><?= $block->escapeHtml(__('Độ ẩm')) ?></span>
+                        <span class="weather-card__stat-value"><?= $block->escapeHtml((string) ($weatherData['main']['humidity'] ?? '-')) ?>%</span>
+                    </div>
+                    <div class="weather-card__stat">
+                        <span class="weather-card__stat-label"><?= $block->escapeHtml(__('Gió')) ?></span>
+                        <span class="weather-card__stat-value"><?= $block->escapeHtml((string) ($weatherData['wind']['speed'] ?? '-')) ?> m/s</span>
+                    </div>
+                </div>
             </div>
         <?php endforeach; ?>
     </div>
 <?php else: ?>
-    <p>Thời tiết đang cập nhật, xin hãy thử lại sau.</p>
+    <p class="weather-card__empty"><?= $block->escapeHtml(__('Thời tiết đang cập nhật, xin hãy thử lại sau.')) ?></p>
 <?php endif; ?>
-

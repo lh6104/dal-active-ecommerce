@@ -676,23 +676,36 @@
 // 2. Product carousel section
 // ---------------------------------------------
 .cms-index-index .block.widget.block-new-products {
-    background: #f8fafc;
-    padding: 48px 0 56px;
+    background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+    border-bottom: 1px solid #edf1f6;
+    border-top: 1px solid #edf1f6;
+    padding: 64px 0 72px;
+    position: relative;
+}
+
+.cms-index-index .block.widget.block-new-products:before {
+    background: linear-gradient(90deg, #0b6fff, #4da3ff);
+    content: "";
+    height: 4px;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
 }
 
 .cms-index-index .block.widget.block-new-products .page-title-main {
     background: transparent;
-    margin-bottom: 28px;
+    margin-bottom: 40px;
     text-align: center;
 }
 
 .cms-index-index .block.widget.block-new-products .page-title-main > strong {
     color: @dalactive-blue-dark;
     display: inline-block;
-    font-size: 28px;
+    font-size: 26px;
     font-weight: 800;
-    letter-spacing: -0.3px;
-    padding: 0 0 16px;
+    letter-spacing: -0.02em;
+    padding: 0 0 14px;
     position: relative;
     text-transform: uppercase;
 }
@@ -709,6 +722,12 @@
     width: 80px;
 }
 
+.cms-index-index .block.widget.block-new-products .block-content {
+    margin: 0 auto;
+    max-width: 1400px;
+    padding: 0 24px;
+}
+
 .cms-index-index .block.widget.block-new-products .products-grid .product-items {
     gap: 0;
     justify-content: center;
@@ -716,32 +735,32 @@
 
 .cms-index-index .block.widget.block-new-products .products-grid .product-item {
     box-sizing: border-box;
-    padding: 0 12px;
+    padding: 0 16px;
 }
 
 .cms-index-index .block.widget.block-new-products .products-grid .product-item .product-item-info {
     background: #fff;
     border: 1px solid #e8ecf1;
-    border-radius: 12px;
-    box-shadow: 0 2px 8px rgba(6, 26, 51, 0.06);
+    border-radius: 20px;
+    box-shadow: 0 2px 4px rgba(6, 26, 51, 0.04), 0 12px 32px rgba(6, 26, 51, 0.07);
     overflow: hidden;
     padding: 0;
-    transition: box-shadow 0.28s ease, transform 0.28s ease, border-color 0.28s ease;
+    transition: box-shadow 0.32s ease, transform 0.32s ease, border-color 0.32s ease;
 }
 
 .cms-index-index .block.widget.block-new-products .products-grid .product-item:hover .product-item-info {
-    border-color: @dalactive-blue-border;
-    box-shadow: 0 16px 40px rgba(6, 26, 51, 0.12);
+    border-color: @dalactive-blue;
+    box-shadow: 0 4px 8px rgba(11, 111, 255, 0.08), 0 24px 48px rgba(11, 111, 255, 0.14);
     transform: translateY(-6px);
 }
 
 .cms-index-index .block.widget.block-new-products .products-grid .product-item .product-item-info .product-img-main {
-    background: #ffffff;
+    background: linear-gradient(180deg, #f8fafc 0%, #ffffff 100%);
     overflow: hidden;
 }
 
 .cms-index-index .block.widget.block-new-products .products-grid .product-item .product-item-info .product-img-main .product-item-photo {
-    aspect-ratio: 16 / 9;
+    aspect-ratio: 4 / 3;
     display: block;
     overflow: hidden;
     padding: 0;
@@ -753,27 +772,32 @@
     margin: 0;
     max-height: none;
     object-fit: cover;
-    transition: transform 0.35s ease;
+    transition: transform 0.4s ease;
     width: 100%;
 }
 
 .cms-index-index .block.widget.block-new-products .products-grid .product-item:hover .product-item-info .product-img-main .product-item-photo img {
-    transform: scale(1.06);
+    transform: scale(1.05);
 }
 
 .cms-index-index .block.widget.block-new-products .product-item-details {
-    padding: 16px 18px 20px;
+    padding: 22px 24px 26px;
 }
 
 .cms-index-index .block.widget.block-new-products .product-item-name {
-    margin: 0 0 8px;
+    margin: 0 0 10px;
+    min-height: 44px;
 }
 
 .cms-index-index .block.widget.block-new-products .product-item-name > a {
     color: @dalactive-blue-dark;
-    font-size: 14px;
-    font-weight: 600;
-    line-height: 1.4;
+    display: -webkit-box;
+    font-size: 15px;
+    font-weight: 700;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    line-height: 1.45;
+    overflow: hidden;
 }
 
 .cms-index-index .block.widget.block-new-products .product-item-name > a:hover {
@@ -781,13 +805,14 @@
 }
 
 .cms-index-index .block.widget.block-new-products .price-box {
-    margin: 0 0 12px;
+    margin: 0 0 16px;
 }
 
 .cms-index-index .block.widget.block-new-products .price-box .price {
     color: @dalactive-blue;
-    font-size: 16px;
-    font-weight: 700;
+    font-size: 20px;
+    font-weight: 800;
+    letter-spacing: -0.02em;
 }
 
 .cms-index-index .block.widget.block-new-products .product-item-actions {
@@ -800,18 +825,23 @@
 .cms-index-index .block.widget.block-new-products .product-item-actions .actions-primary .action.primary {
     background: @dalactive-blue;
     border: 0;
-    border-radius: 8px;
+    border-radius: 12px;
+    box-shadow: 0 4px 14px rgba(11, 111, 255, 0.22);
     color: #fff;
     font-size: 13px;
     font-weight: 700;
-    padding: 10px 18px;
+    letter-spacing: 0.02em;
+    min-height: 46px;
+    padding: 0 20px;
     text-transform: uppercase;
-    transition: background 0.2s ease, box-shadow 0.2s ease;
+    transition: background 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+    width: 100%;
 }
 
 .cms-index-index .block.widget.block-new-products .product-item-actions .actions-primary .action.primary:hover {
     background: @dalactive-blue-dark;
-    box-shadow: 0 8px 20px rgba(11, 111, 255, 0.28);
+    box-shadow: 0 8px 22px rgba(11, 111, 255, 0.32);
+    transform: translateY(-1px);
 }
 
 .cms-index-index .block.widget.block-new-products .product-item-actions .actions-secondary {
@@ -823,19 +853,35 @@
     align-items: center;
     background: #fff;
     border: 1px solid #e0e5eb;
-    border-radius: 8px;
+    border-radius: 10px;
     color: @dalactive-blue-dark;
     display: flex;
-    height: 38px;
+    height: 40px;
     justify-content: center;
-    width: 38px;
     transition: border-color 0.2s ease, color 0.2s ease, background 0.2s ease;
+    width: 40px;
 }
 
 .cms-index-index .block.widget.block-new-products .product-item-actions .actions-secondary a.action:hover {
     background: @dalactive-blue-light;
     border-color: @dalactive-blue;
     color: @dalactive-blue;
+}
+
+.cms-index-index .block.widget.block-new-products .owl-controls .owl-buttons > div {
+    background: @dalactive-blue-dark !important;
+    border-radius: 10px !important;
+    box-shadow: 0 4px 12px rgba(6, 26, 51, 0.15);
+    height: 40px !important;
+    line-height: 40px !important;
+    opacity: 1 !important;
+    transition: background 0.2s ease, transform 0.2s ease;
+    width: 40px !important;
+}
+
+.cms-index-index .block.widget.block-new-products .owl-controls .owl-buttons > div:hover {
+    background: @dalactive-blue !important;
+    transform: translateY(-1px);
 }
 
 // 3. Promo banner / parallax block
@@ -975,14 +1021,15 @@
 
 // 5. Testimonials section
 // ---------------------------------------------
-.cms-index-index .hb-wrapper {
-    background: linear-gradient(180deg, #f0f6ff 0%, #e8f2ff 50%, #f8fafc 100%) !important;
+.cms-index-index .hb-wrapper.testimonials-section {
+    background: linear-gradient(180deg, #f0f6ff 0%, #f8fafc 100%) !important;
     border-bottom: 1px solid #e0e8f0;
-    padding: 56px 0 48px;
+    padding: 64px 0 56px;
 }
 
 .cms-index-index .hb-wrapper .page-title-main {
     background: transparent;
+    margin-bottom: 36px;
     text-align: center;
 }
 
@@ -991,6 +1038,7 @@
     display: inline-block;
     font-size: 26px;
     font-weight: 800;
+    letter-spacing: -0.02em;
     padding: 0 0 14px;
     position: relative;
     text-transform: uppercase;
@@ -1008,6 +1056,10 @@
     width: 80px;
 }
 
+.cms-index-index .hb-wrapper .hb-testimonoals ul li {
+    padding: 0 16px;
+}
+
 .cms-index-index .hb-wrapper .hb-testimonoals ul li .hb-inner {
     padding: 0;
     text-align: center;
@@ -1015,43 +1067,69 @@
 
 .cms-index-index .hb-wrapper .hb-testimonoals ul li .hb-inner .hb-content {
     background: #fff !important;
-    border: 1px solid #e0e8f0 !important;
-    border-radius: 14px;
-    box-shadow: 0 6px 20px rgba(6, 26, 51, 0.07);
+    border: 1px solid #e8ecf1 !important;
+    border-radius: 18px !important;
+    box-shadow: 0 2px 8px rgba(6, 26, 51, 0.05), 0 12px 32px rgba(6, 26, 51, 0.06) !important;
     color: @dalactive-blue-dark !important;
-    padding: 20px 22px;
+    margin-bottom: 24px;
+    padding: 28px 28px 24px !important;
     position: relative;
-    transition: box-shadow 0.28s ease, border-color 0.28s ease;
+    text-align: left;
+    transition: box-shadow 0.32s ease, border-color 0.32s ease, transform 0.32s ease;
 }
 
 .cms-index-index .hb-wrapper .hb-testimonoals ul li .hb-inner:hover .hb-content {
     border-color: @dalactive-blue-border !important;
-    box-shadow: 0 14px 36px rgba(6, 26, 51, 0.1);
+    box-shadow: 0 4px 12px rgba(11, 111, 255, 0.08), 0 20px 44px rgba(6, 26, 51, 0.1) !important;
+    transform: translateY(-4px);
 }
 
 .cms-index-index .hb-wrapper .hb-testimonoals ul li .hb-inner .hb-content:before {
-    border-color: #e0e8f0 transparent transparent transparent !important;
+    background: none !important;
+    border: none !important;
+    bottom: auto !important;
+    color: rgba(11, 111, 255, 0.18);
+    content: "\201C" !important;
+    font-family: Georgia, serif;
+    font-size: 56px;
+    font-weight: 700;
+    left: 20px !important;
+    line-height: 1;
+    position: absolute !important;
+    top: 8px;
 }
 
 .cms-index-index .hb-wrapper .hb-testimonoals ul li .hb-inner .hb-content:after {
-    border-color: #fff transparent transparent transparent !important;
+    background: none !important;
+    border: none !important;
+    bottom: auto !important;
+    color: #f5a623;
+    content: "★★★★★" !important;
+    display: block;
+    font-size: 13px;
+    left: auto !important;
+    letter-spacing: 3px;
+    margin-top: 16px;
+    position: static !important;
 }
 
 .cms-index-index .hb-wrapper .hb-testimonoals ul li .hb-inner .hb-content > p {
-    color: @dalactive-blue-dark;
+    color: rgba(6, 26, 51, 0.82);
     font-family: @font-family__base;
     font-size: 15px;
     font-style: normal;
-    line-height: 1.7;
+    line-height: 1.75;
+    margin: 16px 0 0;
+    padding-top: 8px;
 }
 
 .cms-index-index .hb-wrapper .hb-testimonoals ul li .hb-inner .hb-image {
     align-items: center;
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 8px;
     justify-content: center;
-    margin-top: 20px;
+    margin-top: 0;
     text-align: center;
 }
 
@@ -1060,69 +1138,93 @@
     background: linear-gradient(135deg, @dalactive-blue-light 0%, #dce8f7 100%);
     border: 4px solid #fff;
     border-radius: 50%;
-    box-shadow: 0 8px 24px rgba(6, 26, 51, 0.14);
+    box-shadow: 0 4px 16px rgba(6, 26, 51, 0.12), 0 0 0 3px rgba(11, 111, 255, 0.12);
     display: block;
-    height: 120px;
-    max-height: 120px;
-    max-width: 120px;
-    min-height: 120px;
-    min-width: 120px;
+    height: 96px;
+    max-height: 96px;
+    max-width: 96px;
+    min-height: 96px;
+    min-width: 96px;
     object-fit: cover;
     object-position: center center;
     transition: border-color 0.28s ease, box-shadow 0.28s ease, transform 0.28s ease;
-    width: 120px;
+    width: 96px;
 }
 
 .cms-index-index .hb-wrapper .hb-testimonoals ul li .hb-inner:hover .hb-image > img {
-    border-color: @dalactive-blue;
-    box-shadow: 0 12px 30px rgba(11, 111, 255, 0.2);
-    transform: scale(1.06);
+    box-shadow: 0 8px 24px rgba(11, 111, 255, 0.2), 0 0 0 3px rgba(11, 111, 255, 0.25);
+    transform: scale(1.04);
 }
 
 .cms-index-index .hb-wrapper .hb-testimonoals ul li .hb-inner .hb-image h4 {
     color: @dalactive-blue-dark;
     font-size: 15px;
     font-weight: 700;
-    margin: 0;
+    margin: 8px 0 0;
 }
 
 .cms-index-index .hb-wrapper .hb-testimonoals ul li .hb-inner .hb-image p {
-    color: rgba(6, 26, 51, 0.6);
-    font-size: 13px;
+    color: rgba(6, 26, 51, 0.55);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
     margin: 0;
+    text-transform: uppercase;
+}
+
+.cms-index-index .hb-wrapper .hb-testimonoals .owl-controls .owl-buttons > div {
+    background: @dalactive-blue-dark !important;
+    border-radius: 10px !important;
+    box-shadow: 0 4px 12px rgba(6, 26, 51, 0.15);
+    opacity: 1 !important;
+    transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.cms-index-index .hb-wrapper .hb-testimonoals .owl-controls .owl-buttons > div:hover {
+    background: @dalactive-blue !important;
+    transform: translateY(-1px);
 }
 
 // 6. Weather section
 // ---------------------------------------------
-.cms-index-index .weather-container-wrapper {
-    background: #fff;
+.cms-index-index .weather-section {
+    background: #ffffff !important;
     border-bottom: 1px solid #edf1f6;
     border-top: 1px solid #edf1f6;
-    padding: 52px 0 48px;
+    padding: 64px 0 56px;
 }
 
-.cms-index-index .weather-container-wrapper .page-main {
+.cms-index-index .weather-container-wrapper {
+    background: transparent;
+    border-bottom: 0;
+    border-top: 0;
+    padding: 0;
+}
+
+.cms-index-index .weather-section .page-main {
     max-width: 1320px;
     padding: 0 24px;
 }
 
-.cms-index-index .weather-container-wrapper .page-main > .page-title-main {
+.cms-index-index .weather-section .page-title-main {
     background: transparent;
-    margin-bottom: 28px;
+    margin-bottom: 32px;
+    position: relative;
     text-align: center;
 }
 
-.cms-index-index .weather-container-wrapper .page-main > .page-title-main > strong {
+.cms-index-index .weather-section .page-title-main > strong {
     color: @dalactive-blue-dark;
     display: inline-block;
     font-size: 26px;
     font-weight: 800;
+    letter-spacing: -0.02em;
     padding: 0 0 14px;
     position: relative;
     text-transform: uppercase;
 }
 
-.cms-index-index .weather-container-wrapper .page-main > .page-title-main > strong:after {
+.cms-index-index .weather-section .page-title-main > strong:after {
     background: linear-gradient(90deg, @dalactive-blue, #4da3ff);
     border-radius: 2px;
     bottom: 0;
@@ -1134,26 +1236,108 @@
     width: 80px;
 }
 
+.cms-index-index .weather-section .nav-buttons {
+    gap: 6px;
+    right: 0;
+    top: 4px;
+}
+
+.cms-index-index .weather-section .weather-container-wrapper {
+    background: transparent !important;
+    border: 0;
+}
+
 .cms-index-index .weather-card {
     background: #fff !important;
-    border: 1px solid #e0e8f0 !important;
-    border-radius: 14px;
-    box-shadow: 0 4px 16px rgba(6, 26, 51, 0.06) !important;
-    padding: 24px 18px;
-    transition: box-shadow 0.28s ease, transform 0.28s ease, border-color 0.28s ease;
+    border: 1px solid #e8ecf1 !important;
+    border-radius: 18px !important;
+    box-shadow: 0 2px 8px rgba(6, 26, 51, 0.05) !important;
+    flex: 0 0 auto;
+    min-width: 260px;
+    padding: 24px 22px !important;
+    transition: box-shadow 0.32s ease, transform 0.32s ease, border-color 0.32s ease;
 }
 
 .cms-index-index .weather-card:hover {
     border-color: @dalactive-blue-border !important;
-    box-shadow: 0 14px 36px rgba(6, 26, 51, 0.1) !important;
-    transform: translateY(-6px) !important;
+    box-shadow: 0 4px 12px rgba(11, 111, 255, 0.08), 0 20px 40px rgba(6, 26, 51, 0.1) !important;
+    transform: translateY(-5px) !important;
 }
 
+.cms-index-index .weather-card__top {
+    align-items: flex-start;
+    display: flex;
+    gap: 12px;
+    justify-content: space-between;
+    margin-bottom: 12px;
+}
+
+.cms-index-index .weather-card__location h2,
 .cms-index-index .weather-card h2 {
     color: @dalactive-blue-dark !important;
-    font-size: 16px;
+    font-size: 16px !important;
+    font-weight: 700 !important;
+    line-height: 1.3 !important;
+    margin: 0 0 2px !important;
+}
+
+.cms-index-index .weather-card__country {
+    color: rgba(6, 26, 51, 0.5);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+
+.cms-index-index .weather-card__icon {
+    font-size: 32px;
+    line-height: 1;
+}
+
+.cms-index-index .weather-card__temp {
+    color: @dalactive-blue !important;
+    font-size: 38px !important;
+    font-weight: 800 !important;
+    letter-spacing: -0.03em;
+    line-height: 1 !important;
+    margin: 0 0 6px !important;
+}
+
+.cms-index-index .weather-card__temp span {
+    font-size: 18px;
     font-weight: 700;
-    margin: 0 0 8px;
+}
+
+.cms-index-index .weather-card__condition {
+    color: rgba(6, 26, 51, 0.65) !important;
+    font-size: 13px !important;
+    font-weight: 500 !important;
+    line-height: 1.45 !important;
+    margin: 0 0 16px !important;
+}
+
+.cms-index-index .weather-card__stats {
+    border-top: 1px solid #edf1f6;
+    display: grid;
+    gap: 10px;
+    grid-template-columns: 1fr 1fr;
+    padding-top: 14px;
+}
+
+.cms-index-index .weather-card__stat-label {
+    color: rgba(6, 26, 51, 0.48);
+    display: block;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    margin-bottom: 2px;
+    text-transform: uppercase;
+}
+
+.cms-index-index .weather-card__stat-value {
+    color: @dalactive-blue-dark;
+    font-size: 14px;
+    font-weight: 700;
 }
 
 .cms-index-index .weather-card p {
@@ -1168,7 +1352,7 @@
 .cms-index-index .brands-wrapper {
     background: #f8fafc;
     border-top: 1px solid #edf1f6;
-    padding: 48px 0 52px;
+    padding: 64px 0 0;
 }
 
 .cms-index-index .brands-wrapper .page-main {
@@ -1178,15 +1362,16 @@
 
 .cms-index-index .brands-wrapper .page-main > .page-title-main {
     background: transparent;
-    margin-bottom: 28px;
+    margin-bottom: 36px;
     text-align: center;
 }
 
 .cms-index-index .brands-wrapper .page-main > .page-title-main > strong {
     color: @dalactive-blue-dark;
     display: inline-block;
-    font-size: 24px;
+    font-size: 26px;
     font-weight: 800;
+    letter-spacing: -0.02em;
     padding: 0 0 14px;
     position: relative;
     text-transform: uppercase;
@@ -1217,39 +1402,41 @@
     align-items: center;
     display: flex;
     justify-content: center;
-    padding: 12px;
+    padding: 8px 12px;
 }
 
 .cms-index-index .brands-wrapper .brands-slider li a {
     align-items: center;
     background: #fff;
     border: 1px solid #e8ecf1;
-    border-radius: 12px;
-    box-shadow: 0 2px 8px rgba(6, 26, 51, 0.04);
+    border-radius: 16px;
+    box-shadow: 0 2px 6px rgba(6, 26, 51, 0.04);
     display: flex;
     justify-content: center;
-    min-height: 80px;
-    padding: 16px 24px;
-    transition: box-shadow 0.28s ease, border-color 0.28s ease, transform 0.28s ease;
+    min-height: 88px;
+    padding: 20px 28px;
+    transition: box-shadow 0.32s ease, border-color 0.32s ease, transform 0.32s ease, background 0.32s ease;
     width: 100%;
 }
 
 .cms-index-index .brands-wrapper .brands-slider li a:hover {
+    background: #fff;
     border-color: @dalactive-blue-border;
-    box-shadow: 0 10px 28px rgba(6, 26, 51, 0.1);
-    transform: translateY(-3px);
+    box-shadow: 0 8px 24px rgba(6, 26, 51, 0.1);
+    transform: translateY(-4px);
 }
 
 .cms-index-index .brands-wrapper .brands-slider li a img {
-    filter: grayscale(0.6);
-    max-height: 48px;
+    filter: grayscale(0.75) opacity(0.85);
+    max-height: 44px;
     object-fit: contain;
-    transition: filter 0.28s ease;
+    transition: filter 0.32s ease, transform 0.32s ease;
     width: auto;
 }
 
 .cms-index-index .brands-wrapper .brands-slider li a:hover img {
-    filter: grayscale(0);
+    filter: grayscale(0) opacity(1);
+    transform: scale(1.04);
 }
 
 // 8. Unified surfaces and Inter typography
@@ -1288,10 +1475,6 @@ body.cms-index-index {
     padding: 40px 0 44px;
 }
 
-.cms-index-index .block.widget.block-new-products {
-    background: #f8fafc !important;
-}
-
 .cms-index-index .home-advantage-block {
     background: #ffffff !important;
     border-bottom: 1px solid #edf1f6;
@@ -1299,7 +1482,7 @@ body.cms-index-index {
 }
 
 .cms-index-index .testimonials-section {
-    background: #f8fafc !important;
+    background: linear-gradient(180deg, #f0f6ff 0%, #f8fafc 100%) !important;
     border-bottom: 1px solid #edf1f6;
 }
 
@@ -1317,6 +1500,15 @@ body.cms-index-index {
 .cms-index-index .brands-wrapper {
     background: #f8fafc !important;
     border-top: 1px solid #edf1f6;
+    padding-bottom: 0 !important;
+}
+
+.cms-index-index .brands-wrapper.below-padding {
+    padding-bottom: 0 !important;
+}
+
+.cms-index-index .page-wrapper .page-footer {
+    margin-top: 0;
 }
 
 .cms-index-index .weather-card {
@@ -1343,23 +1535,28 @@ body.cms-index-index {
 
 .cms-index-index .hb-wrapper .nav-button {
     background: @dalactive-blue-dark !important;
-    border: 1px solid rgba(255, 255, 255, 0.12) !important;
-    border-radius: 6px !important;
+    border: 0 !important;
+    border-radius: 10px !important;
+    box-shadow: 0 4px 12px rgba(6, 26, 51, 0.15);
     color: @dalactive-white !important;
+    transition: background 0.2s ease, transform 0.2s ease;
 }
 
 .cms-index-index .hb-wrapper .nav-button:hover {
     background: @dalactive-blue !important;
+    transform: translateY(-1px);
 }
 
 .cms-index-index .dalactive-hero-content h1,
 .cms-index-index .dalactive-hero-content p,
 .cms-index-index .dalactive-hero-button,
 .cms-index-index .page-title-main > strong,
+.cms-index-index .dalactive-home-news .page-title-main > strong,
 .cms-index-index .block.widget.block-new-products .page-title-main > strong,
 .cms-index-index .hb-wrapper .page-title-main > strong,
 .cms-index-index .weather-container-wrapper .page-main > .page-title-main > strong,
 .cms-index-index .brands-wrapper .page-main > .page-title-main > strong,
+.cms-index-index .dalactive-home-news .page-title-main > strong,
 .cms-index-index .home-advantage-block .hab-row .hab-inner .home-advantage-block-inner > p,
 .cms-index-index .hb-wrapper .hb-testimonoals ul li .hb-inner .hb-content > p {
     font-family: @font-family__base;
@@ -1416,6 +1613,6 @@ body.cms-index-index {
     }
 
     .cms-index-index .brands-wrapper {
-        padding: 36px 0 40px;
+        padding: 36px 0 0;
     }
 }

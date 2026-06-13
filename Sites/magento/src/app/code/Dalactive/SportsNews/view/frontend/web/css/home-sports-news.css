@@ -1,0 +1,20 @@
+.cms-index-index .dalactive-home-news--sports {
+    background: #f8fafc;
+}
+
+.cms-index-index .dalactive-home-news--sports .dalactive-home-news__view-all {
+    background: #ffffff;
+}
+
+.cms-index-index .dalactive-home-news--sports .dalactive-home-news__card {
+    background: #ffffff;
+}
+
+.cms-index-index .dalactive-home-news--sports .dalactive-home-news__header > strong:after {
+    background: linear-gradient(90deg, #0b6fff, #34d399);
+}
+
+.cms-index-index .dalactive-home-news--sports .dalactive-home-news__media.is-placeholder {
+    background: linear-gradient(135deg, #eaf5ff 0%, #f0fdf4 55%, #dce8f7 100%);
+    color: #059669;
+}

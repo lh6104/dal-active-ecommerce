@@ -166,4 +166,36 @@ class Weather extends Template
 
         return $this->getMultipleWeatherData($cities);
     }
+
+    /**
+     * Simple weather icon from OpenWeather description.
+     */
+    public function getWeatherIcon(string $description): string
+    {
+        $desc = strtolower($description);
+
+        if (str_contains($desc, 'thunder') || str_contains($desc, 'storm')) {
+            return '⛈️';
+        }
+        if (str_contains($desc, 'rain') || str_contains($desc, 'drizzle')) {
+            return '🌧️';
+        }
+        if (str_contains($desc, 'snow')) {
+            return '❄️';
+        }
+        if (str_contains($desc, 'mist') || str_contains($desc, 'fog') || str_contains($desc, 'haze')) {
+            return '🌫️';
+        }
+        if (str_contains($desc, 'clear')) {
+            return '☀️';
+        }
+        if (str_contains($desc, 'few clouds')) {
+            return '🌤️';
+        }
+        if (str_contains($desc, 'cloud')) {
+            return '☁️';
+        }
+
+        return '🌡️';
+    }
 }

@@ -12,9 +12,9 @@
     right: 50%;
     width: 100vw;
     max-width: 100vw;
-    height: min(calc(100vw * 9 / 20), 460px);
-    min-height: 220px;
-    max-height: 460px;
+    height: min(calc(100vw * 9 / 20), 680px);
+    min-height: 340px;
+    max-height: 680px;
     margin-left: -50vw;
     margin-right: -50vw;
     background: #f8fafc;
@@ -265,9 +265,9 @@
 
 @media (max-width: 767px) {
     .dalactive-hero {
-        height: min(calc(100vw * 9 / 20), 320px);
-        max-height: 320px;
-        min-height: 180px;
+        height: min(calc(100vw * 9 / 20), 420px);
+        max-height: 420px;
+        min-height: 240px;
     }
 
     .dalactive-hero-content {

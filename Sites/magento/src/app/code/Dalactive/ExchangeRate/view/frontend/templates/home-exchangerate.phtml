@@ -1,0 +1,43 @@
+<?php
+/** @var \Dalactive\ExchangeRate\Block\ExchangeRate $block */
+$rates = $block->getHomepageRates();
+$flags = [
+    'USD' => '🇺🇸',
+    'EUR' => '🇪🇺',
+    'GBP' => '🇬🇧',
+    'JPY' => '🇯🇵',
+    'SGD' => '🇸🇬',
+];
+?>
+<section class="dalactive-home-rates" aria-label="<?= $block->escapeHtmlAttr(__('Tỷ giá ngoại tệ')) ?>">
+    <div class="page-main">
+        <div class="dalactive-home-rates__bar">
+            <div class="dalactive-home-rates__label">
+                <span><?= $block->escapeHtml(__('Tỷ giá VCB')) ?></span>
+                <small><?= $block->escapeHtml(__('Cập nhật hàng ngày')) ?></small>
+            </div>
+
+            <?php if (!empty($rates)): ?>
+                <ul class="dalactive-home-rates__list">
+                    <?php foreach ($rates as $currency => $rate): ?>
+                        <li class="dalactive-home-rates__item">
+                            <span class="dalactive-home-rates__code">
+                                <?php if (isset($flags[$currency])): ?>
+                                    <span aria-hidden="true"><?= $block->escapeHtml($flags[$currency]) ?></span>
+                                <?php endif; ?>
+                                <?= $block->escapeHtml($currency) ?>
+                            </span>
+                            <strong><?= $block->escapeHtml($block->formatRate($rate['transfer'] ?? $rate['sell'] ?? $rate['buy'] ?? null)) ?></strong>
+                        </li>
+                    <?php endforeach; ?>
+                </ul>
+            <?php else: ?>
+                <p class="dalactive-home-rates__empty"><?= $block->escapeHtml(__('Chưa có dữ liệu tỷ giá.')) ?></p>
+            <?php endif; ?>
+
+            <a class="dalactive-home-rates__link" href="<?= $block->escapeUrl($block->getViewAllUrl()) ?>">
+                <?= $block->escapeHtml(__('Chi tiết')) ?>
+            </a>
+        </div>
+    </div>
+</section>

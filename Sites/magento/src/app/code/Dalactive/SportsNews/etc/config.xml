@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <sportsnews>
+            <rss>
+                <rss_feed_url>https://vnexpress.net/rss/the-thao.rss</rss_feed_url>
+                <items_per_page>12</items_per_page>
+            </rss>
+        </sportsnews>
+    </default>
+</config>
