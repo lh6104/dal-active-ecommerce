@@ -26,6 +26,62 @@
     will-change: auto !important;
 }
 
+/* Final guard: the DAL Active PDP uses the custom gallery markup above.
+   Keep any Magento/Fotorama gallery fragments from extensions out of flow. */
+.catalog-product-view.page-layout-1column .product.media > .gallery-placeholder,
+.catalog-product-view.page-layout-1column .product.media [data-gallery-role='gallery-placeholder'],
+.catalog-product-view.page-layout-1column .product.media .fotorama,
+.catalog-product-view.page-layout-1column .product.media .fotorama__wrap,
+.catalog-product-view.page-layout-1column .product.media .fotorama__stage,
+.catalog-product-view.page-layout-1column .product.media .fotorama__nav-wrap,
+.catalog-product-view.page-layout-1column .product.media .fotorama__arr {
+    display: none !important;
+    height: 0 !important;
+    margin: 0 !important;
+    min-height: 0 !important;
+    overflow: hidden !important;
+    padding: 0 !important;
+    visibility: hidden !important;
+    width: 0 !important;
+}
+
+.catalog-product-view.page-layout-1column .product.media .dalactive-product-gallery {
+    display: grid !important;
+    grid-template-columns: 88px minmax(0, 1fr) !important;
+}
+
+.catalog-product-view.page-layout-1column .product.media .dalactive-product-gallery--single {
+    grid-template-columns: minmax(0, 1fr) !important;
+}
+
+.catalog-product-view.page-layout-1column .product.media .dalactive-product-gallery__thumbs {
+    display: flex !important;
+    flex-direction: column !important;
+}
+
+.catalog-product-view.page-layout-1column .product.media .dalactive-product-gallery__stage {
+    grid-column: 2 !important;
+}
+
+.catalog-product-view.page-layout-1column .product.media .dalactive-product-gallery--single .dalactive-product-gallery__stage {
+    grid-column: 1 !important;
+}
+
+@media (max-width: 767px) {
+    .catalog-product-view.page-layout-1column .product.media .dalactive-product-gallery {
+        display: flex !important;
+        grid-template-columns: none !important;
+    }
+
+    .catalog-product-view.page-layout-1column .product.media .dalactive-product-gallery__thumbs {
+        flex-direction: row !important;
+    }
+
+    .catalog-product-view.page-layout-1column .product.media .dalactive-product-gallery__stage {
+        grid-column: auto !important;
+    }
+}
+
 .catalog-product-view.page-layout-1column .product-detail-scroll-spacer,
 .catalog-product-view.page-layout-1column .product-detail-scroll-section > .product-detail-scroll-spacer {
     display: none !important;
@@ -441,6 +497,62 @@
     }
 }
 
+/* Final guard: the DAL Active PDP uses the custom gallery markup above.
+   Keep any Magento/Fotorama gallery fragments from extensions out of flow. */
+.catalog-product-view.page-layout-1column .product.media > .gallery-placeholder,
+.catalog-product-view.page-layout-1column .product.media [data-gallery-role='gallery-placeholder'],
+.catalog-product-view.page-layout-1column .product.media .fotorama,
+.catalog-product-view.page-layout-1column .product.media .fotorama__wrap,
+.catalog-product-view.page-layout-1column .product.media .fotorama__stage,
+.catalog-product-view.page-layout-1column .product.media .fotorama__nav-wrap,
+.catalog-product-view.page-layout-1column .product.media .fotorama__arr {
+    display: none !important;
+    height: 0 !important;
+    margin: 0 !important;
+    min-height: 0 !important;
+    overflow: hidden !important;
+    padding: 0 !important;
+    visibility: hidden !important;
+    width: 0 !important;
+}
+
+.catalog-product-view.page-layout-1column .product.media .dalactive-product-gallery {
+    display: grid !important;
+    grid-template-columns: 88px minmax(0, 1fr) !important;
+}
+
+.catalog-product-view.page-layout-1column .product.media .dalactive-product-gallery--single {
+    grid-template-columns: minmax(0, 1fr) !important;
+}
+
+.catalog-product-view.page-layout-1column .product.media .dalactive-product-gallery__thumbs {
+    display: flex !important;
+    flex-direction: column !important;
+}
+
+.catalog-product-view.page-layout-1column .product.media .dalactive-product-gallery__stage {
+    grid-column: 2 !important;
+}
+
+.catalog-product-view.page-layout-1column .product.media .dalactive-product-gallery--single .dalactive-product-gallery__stage {
+    grid-column: 1 !important;
+}
+
+@media (max-width: 767px) {
+    .catalog-product-view.page-layout-1column .product.media .dalactive-product-gallery {
+        display: flex !important;
+        grid-template-columns: none !important;
+    }
+
+    .catalog-product-view.page-layout-1column .product.media .dalactive-product-gallery__thumbs {
+        flex-direction: row !important;
+    }
+
+    .catalog-product-view.page-layout-1column .product.media .dalactive-product-gallery__stage {
+        grid-column: auto !important;
+    }
+}
+
 /* Keep Fotorama's own frame animation intact when thumbnails are clicked. */
 .catalog-product-view.page-layout-1column .product.media .fotorama__stage,
 .catalog-product-view.page-layout-1column .product.media .fotorama__stage__shaft {
@@ -668,5 +780,60 @@
     .catalog-product-view.page-layout-1column .product.media .dalactive-product-gallery__control {
         height: 34px;
         width: 34px;
+    }
+}
+
+/* Last PDP gallery override. Keep this at EOF so old Fotorama rules cannot win. */
+.catalog-product-view.page-layout-1column .product.media > .gallery-placeholder,
+.catalog-product-view.page-layout-1column .product.media [data-gallery-role='gallery-placeholder'],
+.catalog-product-view.page-layout-1column .product.media .fotorama,
+.catalog-product-view.page-layout-1column .product.media .fotorama__wrap,
+.catalog-product-view.page-layout-1column .product.media .fotorama__stage,
+.catalog-product-view.page-layout-1column .product.media .fotorama__nav-wrap,
+.catalog-product-view.page-layout-1column .product.media .fotorama__arr {
+    display: none !important;
+    height: 0 !important;
+    margin: 0 !important;
+    min-height: 0 !important;
+    overflow: hidden !important;
+    padding: 0 !important;
+    visibility: hidden !important;
+    width: 0 !important;
+}
+
+.catalog-product-view.page-layout-1column .product.media .dalactive-product-gallery {
+    display: grid !important;
+    grid-template-columns: 88px minmax(0, 1fr) !important;
+}
+
+.catalog-product-view.page-layout-1column .product.media .dalactive-product-gallery--single {
+    grid-template-columns: minmax(0, 1fr) !important;
+}
+
+.catalog-product-view.page-layout-1column .product.media .dalactive-product-gallery__thumbs {
+    display: flex !important;
+    flex-direction: column !important;
+}
+
+.catalog-product-view.page-layout-1column .product.media .dalactive-product-gallery__stage {
+    grid-column: 2 !important;
+}
+
+.catalog-product-view.page-layout-1column .product.media .dalactive-product-gallery--single .dalactive-product-gallery__stage {
+    grid-column: 1 !important;
+}
+
+@media (max-width: 767px) {
+    .catalog-product-view.page-layout-1column .product.media .dalactive-product-gallery {
+        display: flex !important;
+        grid-template-columns: none !important;
+    }
+
+    .catalog-product-view.page-layout-1column .product.media .dalactive-product-gallery__thumbs {
+        flex-direction: row !important;
+    }
+
+    .catalog-product-view.page-layout-1column .product.media .dalactive-product-gallery__stage {
+        grid-column: auto !important;
     }
 }

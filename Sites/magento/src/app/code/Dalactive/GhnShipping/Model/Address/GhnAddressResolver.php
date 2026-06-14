@@ -63,6 +63,10 @@ class GhnAddressResolver
             'country_id' => (string)($request->getDestCountryId() ?: ''),
         ];
 
+        if ($data['ghn_ward_code'] === '' && $data['postcode'] !== '') {
+            $data['ghn_ward_code'] = $data['postcode'];
+        }
+
         foreach (['latitude', 'longitude', 'origin_store_code'] as $key) {
             $value = $request->getData($key);
             if ($value !== null && $value !== '') {
@@ -161,9 +165,14 @@ class GhnAddressResolver
     private function findWard(array $district, array $destination, ?int $storeId): ?array
     {
         $wardCode = trim((string)($destination['ghn_ward_code'] ?? ''));
+        if ($wardCode === '') {
+            $wardCode = trim((string)($destination['postcode'] ?? ''));
+        }
+
         $streetWard = $this->extractWardName((string)($destination['street'] ?? ''));
         $candidates = [
             $destination['ghn_ward_name'] ?? '',
+            $destination['postcode'] ?? '',
             $destination['street'] ?? '',
             $streetWard,
         ];

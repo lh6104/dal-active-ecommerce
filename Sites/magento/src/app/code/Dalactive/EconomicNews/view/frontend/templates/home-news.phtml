@@ -1,24 +1,6 @@
 <?php
 /** @var \Dalactive\EconomicNews\Block\News $block */
 $articles = $block->getHomepageNewsItems(3);
-/** @var \Dalactive\ExchangeRate\Block\ExchangeRate $rateBlock */
-$rateBlock = $block->getLayout()->createBlock(\Dalactive\ExchangeRate\Block\ExchangeRate::class);
-$rates = $rateBlock->getHomepageRates();
-$flags = [
-    'USD' => '🇺🇸',
-    'EUR' => '🇪🇺',
-    'GBP' => '🇬🇧',
-    'JPY' => '🇯🇵',
-    'AUD' => '🇦🇺',
-    'SGD' => '🇸🇬',
-    'CAD' => '🇨🇦',
-    'CHF' => '🇨🇭',
-];
-$rateFields = [
-    'buy' => __('Mua'),
-    'transfer' => __('CK'),
-    'sell' => __('Bán'),
-];
 ?>
 <section class="dalactive-home-news dalactive-home-news--economic" aria-labelledby="dalactive-home-economic-title">
     <div class="page-main">
@@ -26,52 +8,6 @@ $rateFields = [
             <strong id="dalactive-home-economic-title" role="heading" aria-level="2">
                 <?= $block->escapeHtml(__('Tin kinh tế')) ?>
             </strong>
-        </div>
-
-        <div class="dalactive-home-news__rates" aria-label="<?= $block->escapeHtmlAttr(__('Tỷ giá ngoại tệ')) ?>">
-            <div class="dalactive-home-news__rates-bar">
-                <span class="dalactive-home-news__rates-label">
-                    <?= $block->escapeHtml(__('Tỷ giá VCB')) ?>
-                    <small><?= $block->escapeHtml(__('Cập nhật hàng ngày')) ?></small>
-                </span>
-
-                <?php if (!empty($rates)): ?>
-                    <ul class="dalactive-home-news__rates-list">
-                        <?php foreach ($rates as $currency => $rate): ?>
-                            <li class="dalactive-home-news__rates-item">
-                                <div class="dalactive-home-news__rates-head">
-                                    <span class="dalactive-home-news__rates-code">
-                                        <?php if (isset($flags[$currency])): ?>
-                                            <span aria-hidden="true"><?= $block->escapeHtml($flags[$currency]) ?></span>
-                                        <?php endif; ?>
-                                        <?= $block->escapeHtml($currency) ?>
-                                    </span>
-                                </div>
-                                <div class="dalactive-home-news__rates-values">
-                                    <?php foreach ($rateFields as $field => $label): ?>
-                                        <span class="dalactive-home-news__rates-value">
-                                            <small><?= $block->escapeHtml($label) ?></small>
-                                            <strong><?= $block->escapeHtml($rateBlock->formatRate($rate[$field] ?? null)) ?></strong>
-                                        </span>
-                                    <?php endforeach; ?>
-                                </div>
-                            </li>
-                        <?php endforeach; ?>
-                    </ul>
-                <?php else: ?>
-                    <p class="dalactive-home-news__rates-empty"><?= $block->escapeHtml(__('Chưa có dữ liệu tỷ giá.')) ?></p>
-                <?php endif; ?>
-
-                <a class="dalactive-home-news__rates-link" href="<?= $block->escapeUrl($rateBlock->getViewAllUrl()) ?>">
-                    <?= $block->escapeHtml(__('Chi tiết')) ?>
-                </a>
-            </div>
-        </div>
-
-        <div class="dalactive-home-news__toolbar">
-            <a class="dalactive-home-news__view-all" href="<?= $block->escapeUrl($block->getViewAllUrl()) ?>">
-                <?= $block->escapeHtml(__('Xem tất cả tin kinh tế')) ?>
-            </a>
         </div>
 
         <?php if (!empty($articles)): ?>
@@ -130,5 +66,11 @@ $rateFields = [
                 <?= $block->escapeHtml(__('Hiện chưa có tin tức để hiển thị.')) ?>
             </p>
         <?php endif; ?>
+
+        <div class="dalactive-home-news__toolbar">
+            <a class="dalactive-home-news__view-all" href="<?= $block->escapeUrl($block->getViewAllUrl()) ?>">
+                <?= $block->escapeHtml(__('Xem tất cả tin kinh tế')) ?>
+            </a>
+        </div>
     </div>
 </section>

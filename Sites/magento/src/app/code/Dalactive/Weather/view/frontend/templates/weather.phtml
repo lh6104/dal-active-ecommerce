@@ -2,7 +2,18 @@
 /** @var \Dalactive\Weather\Block\Weather $block */
 $cities = ['HaNoi', 'London', 'New York', 'Tokyo', 'Sydney', 'Paris', 'Berlin', 'Moscow', 'Beijing', 'Seoul', 'San Francisco', 'Ho Chi Minh City', 'Bangkok', 'Singapore', 'Kuala Lumpur', 'Jakarta', 'Manila'];
 $weatherDataList = $block->getMultipleWeatherData($cities);
+$isWeatherPage = $block->getRequest()->getFullActionName() === 'weather_index_index';
 ?>
+
+<?php if ($isWeatherPage): ?>
+    <section class="weather-page" aria-labelledby="weather-page-title">
+        <div class="weather-page__hero">
+            <span class="weather-page__eyebrow"><?= $block->escapeHtml(__('Cập nhật thời tiết')) ?></span>
+            <h1 id="weather-page-title"><?= $block->escapeHtml(__('Thời tiết các thành phố')) ?></h1>
+            <p><?= $block->escapeHtml(__('Theo dõi nhanh nhiệt độ, độ ẩm và tốc độ gió tại các thành phố nổi bật.')) ?></p>
+        </div>
+        <div class="weather-page__panel">
+<?php endif; ?>
 
 <?php if (!empty($weatherDataList)): ?>
     <div class="weather-container">
@@ -36,4 +47,9 @@ $weatherDataList = $block->getMultipleWeatherData($cities);
     </div>
 <?php else: ?>
     <p class="weather-card__empty"><?= $block->escapeHtml(__('Thời tiết đang cập nhật, xin hãy thử lại sau.')) ?></p>
+<?php endif; ?>
+
+<?php if ($isWeatherPage): ?>
+        </div>
+    </section>
 <?php endif; ?>

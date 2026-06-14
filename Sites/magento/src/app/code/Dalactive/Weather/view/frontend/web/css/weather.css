@@ -1,3 +1,61 @@
+.weather-page {
+    background: linear-gradient(135deg, #f7fbff 0%, #ffffff 48%, #eef5ff 100%);
+    border: 1px solid #e5eefb;
+    border-radius: 24px;
+    box-shadow: 0 22px 60px rgba(6, 26, 51, 0.08);
+    box-sizing: border-box;
+    font-family: 'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    margin: 32px auto 56px;
+    max-width: 1180px;
+    overflow: hidden;
+    padding: 28px;
+}
+
+.weather-page__hero {
+    background: #ffffff;
+    border: 1px solid #e8eef7;
+    border-radius: 20px;
+    box-shadow: 0 10px 28px rgba(6, 26, 51, 0.05);
+    color: #061a33;
+    margin-bottom: 20px;
+    padding: 34px 36px;
+}
+
+.weather-page__eyebrow {
+    color: #0b6fff;
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+}
+
+.weather-page__hero h1 {
+    color: #061a33;
+    font-size: 34px;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1.12;
+    margin: 0 0 12px;
+}
+
+.weather-page__hero p {
+    color: rgba(6, 26, 51, 0.68);
+    font-size: 16px;
+    line-height: 1.6;
+    margin: 0;
+    max-width: 650px;
+}
+
+.weather-page__panel {
+    background: #ffffff;
+    border: 1px solid #e8eef7;
+    border-radius: 20px;
+    box-shadow: 0 12px 34px rgba(6, 26, 51, 0.07);
+    padding: 22px;
+}
+
 .weather-container {
     display: flex;
     flex-wrap: wrap;
@@ -8,8 +66,8 @@
 .weather-card {
     background: #ffffff;
     border: 1px solid #e0e8f0;
-    border-radius: 16px;
-    box-shadow: 0 2px 8px rgba(6, 26, 51, 0.05);
+    border-radius: 12px;
+    box-shadow: 0 6px 18px rgba(6, 26, 51, 0.06);
     box-sizing: border-box;
     flex: 1 1 280px;
     max-width: 100%;
@@ -18,7 +76,32 @@
     transition: border-color 0.28s ease, box-shadow 0.28s ease, transform 0.28s ease;
 }
 
+.weather-card:hover {
+    border-color: #bfdfff;
+    box-shadow: 0 12px 28px rgba(6, 26, 51, 0.1);
+    transform: translateY(-2px);
+}
+
 @media (max-width: 767px) {
+    .weather-page {
+        border-radius: 18px;
+        margin: 20px 0 40px;
+        padding: 14px;
+    }
+
+    .weather-page__hero {
+        border-radius: 16px;
+        padding: 26px 20px;
+    }
+
+    .weather-page__hero h1 {
+        font-size: 26px;
+    }
+
+    .weather-page__panel {
+        padding: 14px;
+    }
+
     .weather-container {
         gap: 14px;
     }

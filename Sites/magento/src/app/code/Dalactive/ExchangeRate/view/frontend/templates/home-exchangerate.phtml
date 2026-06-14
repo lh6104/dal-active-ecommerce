@@ -6,12 +6,26 @@ $flags = [
     'EUR' => '🇪🇺',
     'GBP' => '🇬🇧',
     'JPY' => '🇯🇵',
+    'AUD' => '🇦🇺',
     'SGD' => '🇸🇬',
+    'CAD' => '🇨🇦',
+    'CHF' => '🇨🇭',
+];
+$rateFields = [
+    'buy' => __('Mua'),
+    'transfer' => __('CK'),
+    'sell' => __('Bán'),
 ];
 ?>
-<section class="dalactive-home-rates" aria-label="<?= $block->escapeHtmlAttr(__('Tỷ giá ngoại tệ')) ?>">
+<section class="dalactive-home-rates" aria-labelledby="dalactive-home-rates-title">
     <div class="page-main">
-        <div class="dalactive-home-rates__bar">
+        <div class="page-title-main">
+            <strong id="dalactive-home-rates-title" role="heading" aria-level="2">
+                <?= $block->escapeHtml(__('Tỷ giá')) ?>
+            </strong>
+        </div>
+
+        <div class="dalactive-home-rates__panel">
             <div class="dalactive-home-rates__label">
                 <span><?= $block->escapeHtml(__('Tỷ giá VCB')) ?></span>
                 <small><?= $block->escapeHtml(__('Cập nhật hàng ngày')) ?></small>
@@ -21,13 +35,22 @@ $flags = [
                 <ul class="dalactive-home-rates__list">
                     <?php foreach ($rates as $currency => $rate): ?>
                         <li class="dalactive-home-rates__item">
-                            <span class="dalactive-home-rates__code">
-                                <?php if (isset($flags[$currency])): ?>
-                                    <span aria-hidden="true"><?= $block->escapeHtml($flags[$currency]) ?></span>
-                                <?php endif; ?>
-                                <?= $block->escapeHtml($currency) ?>
-                            </span>
-                            <strong><?= $block->escapeHtml($block->formatRate($rate['transfer'] ?? $rate['sell'] ?? $rate['buy'] ?? null)) ?></strong>
+                            <div class="dalactive-home-rates__head">
+                                <span class="dalactive-home-rates__code">
+                                    <?php if (isset($flags[$currency])): ?>
+                                        <span aria-hidden="true"><?= $block->escapeHtml($flags[$currency]) ?></span>
+                                    <?php endif; ?>
+                                    <?= $block->escapeHtml($currency) ?>
+                                </span>
+                            </div>
+                            <div class="dalactive-home-rates__values">
+                                <?php foreach ($rateFields as $field => $label): ?>
+                                    <span class="dalactive-home-rates__value">
+                                        <small><?= $block->escapeHtml($label) ?></small>
+                                        <strong><?= $block->escapeHtml($block->formatRate($rate[$field] ?? null)) ?></strong>
+                                    </span>
+                                <?php endforeach; ?>
+                            </div>
                         </li>
                     <?php endforeach; ?>
                 </ul>
@@ -35,9 +58,11 @@ $flags = [
                 <p class="dalactive-home-rates__empty"><?= $block->escapeHtml(__('Chưa có dữ liệu tỷ giá.')) ?></p>
             <?php endif; ?>
 
-            <a class="dalactive-home-rates__link" href="<?= $block->escapeUrl($block->getViewAllUrl()) ?>">
-                <?= $block->escapeHtml(__('Chi tiết')) ?>
-            </a>
+            <div class="dalactive-home-rates__actions">
+                <a class="dalactive-home-rates__link" href="<?= $block->escapeUrl($block->getViewAllUrl()) ?>">
+                    <?= $block->escapeHtml(__('Chi tiết')) ?>
+                </a>
+            </div>
         </div>
     </div>
 </section>

@@ -101,6 +101,7 @@ Bizkick Below,bizkick-below,"<div class=""page-main"">
 {{widget type=""Magento\Catalog\Block\Product\Widget\NewWidget"" display_type=""all_products"" show_pager=""0"" products_count=""10"" template=""product/widget/new/content/new_grid.phtml""}}
 </div>
 {{widget type=""Magento\Cms\Block\Widget\Block"" template=""widget/static_block/default.phtml"" block_id=""home-images-two""}}
+{{widget type=""Magento\Cms\Block\Widget\Block"" template=""widget/static_block/default.phtml"" block_id=""home-exchange-rate""}}
 {{widget type=""Magento\Cms\Block\Widget\Block"" template=""widget/static_block/default.phtml"" block_id=""home-economic-news""}}
 {{widget type=""Magento\Cms\Block\Widget\Block"" template=""widget/static_block/default.phtml"" block_id=""home_blogs""}}
 {{widget type=""Magento\Cms\Block\Widget\Block"" template=""widget/static_block/default.phtml"" block_id=""home_testimonials""}}
@@ -255,18 +256,23 @@ Home Blogs,home_blogs,"<div class=""hb-wrapper above-padding below-padding weath
     <div class=""page-main"">
         <div class=""page-title-main"">
             <strong>Thời tiết</strong>
-            <div class=""nav-buttons"">
-                <button class=""nav-button prev"" style=""width: 29px; height: 30px;"">
-                    <i class=""fa fa-angle-left""></i>
-                </button>
-                <button class=""nav-button next"" style=""width: 29px; height: 30px;"">
-                    <i class=""fa fa-angle-right""></i>
-                </button>
+            <div class=""weather-heading-actions"">
+                <div class=""nav-buttons"">
+                    <button class=""nav-button prev"" style=""width: 29px; height: 30px;"">
+                        <i class=""fa fa-angle-left""></i>
+                    </button>
+                    <button class=""nav-button next"" style=""width: 29px; height: 30px;"">
+                        <i class=""fa fa-angle-right""></i>
+                    </button>
+                </div>
             </div>
         </div>
 
         <div class=""weather-container-wrapper"">
             {{block class=""Dalactive\\Weather\\Block\\Weather"" name=""current.weather"" template=""Dalactive_Weather::weather.phtml""}}
+        </div>
+        <div class=""weather-section__toolbar"">
+            <a class=""weather-view-more"" href=""{{store url='weather/index/index'}}"">Xem thêm</a>
         </div>
     </div>
 </div>

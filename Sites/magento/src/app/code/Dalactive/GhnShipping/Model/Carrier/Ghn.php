@@ -58,12 +58,13 @@ class Ghn extends AbstractCarrier implements CarrierInterface
                 'message' => $exception->getMessage(),
             ]);
 
-            if ($this->isAddressIncompleteError($exception) || !$this->ghnConfig->useFallbackOnApiFailure($storeId)) {
+            if (!$this->ghnConfig->useFallbackOnApiFailure($storeId)) {
                 return $this->buildErrorRate($exception->getMessage());
             }
 
             $price = $this->getFallbackFee($storeId);
             $this->ghnLogger->warning('GHN fallback fee used by admin configuration', [
+                'reason' => $exception->getMessage(),
                 'fallback_fee' => $price,
             ]);
         }

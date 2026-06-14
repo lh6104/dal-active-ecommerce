@@ -50,6 +50,7 @@ define([
                 state.selectedDistrict('');
                 state.selectedWard('');
                 name = state.maps.province[String(value)] || '';
+                this.setCustomAttribute('ghn_province_id', value || '');
                 this.setCustomAttribute('ghn_province_name', name);
                 this.setProviderValue('country_id', 'VN');
                 this.setProviderValue('region_id', '');
@@ -67,6 +68,7 @@ define([
                 state.selectedDistrict(value || '');
                 state.selectedWard('');
                 name = state.maps.district[String(value)] || '';
+                this.setCustomAttribute('ghn_district_id', value || '');
                 this.setCustomAttribute('ghn_district_name', name);
                 this.setProviderValue('city', name);
                 this.setProviderValue('postcode', '');
@@ -78,6 +80,7 @@ define([
             if (level === 'ward') {
                 state.selectedWard(value || '');
                 name = state.maps.ward[String(value)] || '';
+                this.setCustomAttribute('ghn_ward_code', value || '');
                 this.setCustomAttribute('ghn_ward_name', name);
                 this.setProviderValue('postcode', value || '');
             }
