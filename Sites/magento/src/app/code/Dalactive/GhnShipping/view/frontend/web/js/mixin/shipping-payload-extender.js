@@ -41,8 +41,6 @@ define([
         return wrapper.wrap(target, function (originalAction, payload) {
             var shippingAddress = payload.addressInformation.shipping_address;
 
-            originalAction(payload);
-
             shippingAddress.extension_attributes = shippingAddress.extension_attributes || {};
             shippingAddress.custom_attributes = shippingAddress.custom_attributes || {};
 
@@ -65,7 +63,7 @@ define([
             shippingAddress.city = getValue('ghn_district_name') || shippingAddress.city || '';
             shippingAddress.postcode = getValue('ghn_ward_code') || shippingAddress.postcode || '';
 
-            return payload;
+            return originalAction(payload);
         });
     };
 });

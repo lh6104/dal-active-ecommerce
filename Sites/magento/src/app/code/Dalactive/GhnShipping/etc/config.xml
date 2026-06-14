@@ -20,8 +20,6 @@
                 <default_origin_store_code>dal-active-xuan-thuy</default_origin_store_code>
                 <enable_checkout_dropdowns>1</enable_checkout_dropdowns>
                 <enable_name_resolver>1</enable_name_resolver>
-                <demo_to_district_id></demo_to_district_id>
-                <demo_to_ward_code></demo_to_ward_code>
                 <address_cache_ttl>86400</address_cache_ttl>
                 <default_service_id></default_service_id>
                 <default_service_type_id>2</default_service_type_id>
@@ -29,10 +27,16 @@
                 <default_length>30</default_length>
                 <default_width>20</default_width>
                 <default_height>12</default_height>
+                <coupon></coupon>
+                <insurance_value_mode>subtotal</insurance_value_mode>
+                <insurance_value_fixed>0</insurance_value_fixed>
+                <max_insurance_value>0</max_insurance_value>
                 <free_shipping_threshold>0</free_shipping_threshold>
+                <use_fallback_on_api_failure>0</use_fallback_on_api_failure>
                 <fallback_fee>35000</fallback_fee>
                 <debug>1</debug>
                 <sallowspecific>0</sallowspecific>
+                <showmethod>1</showmethod>
                 <sort_order>60</sort_order>
                 <specificerrmsg>GHN Express is currently unavailable.</specificerrmsg>
             </ghn>

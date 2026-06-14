@@ -67,15 +67,6 @@
                     <comment>Matches Magento city/region/street text against GHN cached master data.</comment>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                 </field>
-                <field id="demo_to_district_id" translate="label comment" type="text" sortOrder="110" showInDefault="1" showInWebsite="1" showInStore="0">
-                    <label>Fallback Destination District ID</label>
-                    <comment>Used only when automatic mapping/name resolver cannot resolve checkout address.</comment>
-                    <validate>validate-digits</validate>
-                </field>
-                <field id="demo_to_ward_code" translate="label comment" type="text" sortOrder="120" showInDefault="1" showInWebsite="1" showInStore="0">
-                    <label>Fallback Destination Ward Code</label>
-                    <comment>Used only when automatic mapping/name resolver cannot resolve checkout address.</comment>
-                </field>
                 <field id="address_cache_ttl" translate="label comment" type="text" sortOrder="125" showInDefault="1" showInWebsite="1" showInStore="0">
                     <label>GHN Address Cache TTL (seconds)</label>
                     <comment>Default is 86400 seconds.</comment>
@@ -106,18 +97,52 @@
                     <label>Default Height (cm)</label>
                     <validate>validate-digits</validate>
                 </field>
+                <field id="coupon" translate="label comment" type="text" sortOrder="185" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>GHN Coupon Code</label>
+                    <comment>Optional coupon sent to GHN fee API.</comment>
+                </field>
+                <field id="insurance_value_mode" translate="label comment" type="select" sortOrder="186" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Insurance Value Mode</label>
+                    <comment>Controls the insurance_value sent to GHN fee API.</comment>
+                    <source_model>Dalactive\GhnShipping\Model\Config\Source\InsuranceMode</source_model>
+                </field>
+                <field id="insurance_value_fixed" translate="label comment" type="text" sortOrder="187" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Fixed Insurance Value</label>
+                    <comment>Used only when Insurance Value Mode is Fixed Value.</comment>
+                    <validate>validate-number</validate>
+                </field>
+                <field id="max_insurance_value" translate="label comment" type="text" sortOrder="188" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Maximum Insurance Value</label>
+                    <comment>Set 0 to use full cart subtotal.</comment>
+                    <validate>validate-number</validate>
+                </field>
                 <field id="free_shipping_threshold" translate="label comment" type="text" sortOrder="190" showInDefault="1" showInWebsite="1" showInStore="0">
                     <label>Free Shipping Threshold</label>
                     <comment>Set 0 to disable.</comment>
                     <validate>validate-number</validate>
                 </field>
-                <field id="fallback_fee" translate="label" type="text" sortOrder="200" showInDefault="1" showInWebsite="1" showInStore="0">
+                <field id="use_fallback_on_api_failure" translate="label comment" type="select" sortOrder="200" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Use Fallback Fee on API Failure</label>
+                    <comment>If No, GHN is hidden with a clear checkout message when address is incomplete or GHN API fails.</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="fallback_fee" translate="label comment" type="text" sortOrder="205" showInDefault="1" showInWebsite="1" showInStore="0">
                     <label>Fallback Shipping Fee</label>
+                    <comment>Used only when fallback is enabled above.</comment>
                     <validate>validate-number</validate>
                 </field>
                 <field id="debug" translate="label" type="select" sortOrder="210" showInDefault="1" showInWebsite="1" showInStore="0">
                     <label>Debug Logging</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="showmethod" translate="label comment" type="select" sortOrder="215" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Show Method if Not Calculable</label>
+                    <comment>Shows GHN with a checkout-safe error message when the address is incomplete or GHN API cannot return a fee.</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="specificerrmsg" translate="label comment" type="textarea" sortOrder="216" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Displayed Error Message</label>
+                    <comment>Fallback admin-safe message used when GHN cannot calculate a rate.</comment>
                 </field>
                 <field id="sort_order" translate="label" type="text" sortOrder="220" showInDefault="1" showInWebsite="1" showInStore="0">
                     <label>Sort Order</label>

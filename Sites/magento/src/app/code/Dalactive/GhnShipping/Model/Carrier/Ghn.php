@@ -13,6 +13,7 @@ use Magento\Shipping\Model\Carrier\CarrierInterface;
 use Magento\Shipping\Model\Rate\Result;
 use Magento\Shipping\Model\Rate\ResultFactory;
 use Magento\Quote\Model\Quote\Address\RateResult\MethodFactory;
+use Magento\Quote\Model\Quote\Address\RateResult\Error;
 use Psr\Log\LoggerInterface;
 
 class Ghn extends AbstractCarrier implements CarrierInterface
@@ -53,9 +54,16 @@ class Ghn extends AbstractCarrier implements CarrierInterface
         try {
             $price = $this->resolveApiFee($request, $storeId);
         } catch (\Throwable $exception) {
-            $price = $this->getFallbackFee($storeId);
-            $this->ghnLogger->warning('GHN fallback fee used', [
+            $this->ghnLogger->warning('GHN rate unavailable', [
                 'message' => $exception->getMessage(),
+            ]);
+
+            if ($this->isAddressIncompleteError($exception) || !$this->ghnConfig->useFallbackOnApiFailure($storeId)) {
+                return $this->buildErrorRate($exception->getMessage());
+            }
+
+            $price = $this->getFallbackFee($storeId);
+            $this->ghnLogger->warning('GHN fallback fee used by admin configuration', [
                 'fallback_fee' => $price,
             ]);
         }
@@ -84,6 +92,37 @@ class Ghn extends AbstractCarrier implements CarrierInterface
         return $result;
     }
 
+    private function buildErrorRate(string $message): Result
+    {
+        $result = $this->rateResultFactory->create();
+        /** @var Error $error */
+        $error = $this->_rateErrorFactory->create();
+        $error->setCarrier($this->_code);
+        $error->setCarrierTitle((string)$this->getConfigData('title'));
+        $error->setErrorMessage($this->sanitizeCheckoutMessage($message));
+        $result->append($error);
+
+        return $result;
+    }
+
+    private function sanitizeCheckoutMessage(string $message): string
+    {
+        if (str_contains($message, 'destination address is incomplete')) {
+            return 'Please select district and ward to calculate GHN shipping fee.';
+        }
+
+        if (str_contains($message, 'origin')) {
+            return 'GHN shipping origin is not configured.';
+        }
+
+        return 'GHN Express is temporarily unavailable. Please check your address or choose another shipping method.';
+    }
+
+    private function isAddressIncompleteError(\Throwable $exception): bool
+    {
+        return str_contains($exception->getMessage(), 'destination address is incomplete');
+    }
+
     private function resolveApiFee(RateRequest $request, ?int $storeId): float
     {
         $destination = $this->addressResolver->resolveFromRateRequest($request, $storeId);
@@ -95,22 +134,38 @@ class Ghn extends AbstractCarrier implements CarrierInterface
         $toWard = (string)($destination['ghn_ward_code'] ?? '');
         $shopId = $this->ghnConfig->getInt('shop_id', 0, $storeId);
 
-        if (!$fromDistrict || !$fromWard || !$toDistrict || !$toWard || !$shopId) {
-            throw new \RuntimeException('GHN origin/destination mapping is incomplete.');
+        if (!$toDistrict || !$toWard) {
+            throw new \RuntimeException('GHN destination address is incomplete.');
         }
 
-        $serviceId = $this->ghnConfig->getInt('default_service_id', 0, $storeId);
+        if (!$fromDistrict || !$fromWard) {
+            throw new \RuntimeException('GHN origin mapping is incomplete.');
+        }
+
+        if (!$shopId) {
+            throw new \RuntimeException('GHN shop_id is not configured.');
+        }
+
+        $configuredServiceId = $this->ghnConfig->getInt('default_service_id', 0, $storeId);
+        $serviceId = $configuredServiceId;
         $serviceTypeId = $this->ghnConfig->getInt('default_service_type_id', 2, $storeId);
 
-        if (!$serviceId) {
-            $services = $this->client->getAvailableServices([
-                'shop_id' => $shopId,
-                'from_district' => $fromDistrict,
-                'to_district' => $toDistrict,
-            ], $storeId);
-            $service = $this->pickService($services['data'] ?? [], $serviceTypeId);
-            $serviceId = (int)($service['service_id'] ?? 0);
-            $serviceTypeId = (int)($service['service_type_id'] ?? $serviceTypeId);
+        $services = $this->client->getAvailableServices([
+            'shop_id' => $shopId,
+            'from_district' => $fromDistrict,
+            'to_district' => $toDistrict,
+        ], $storeId);
+        $availableServices = $services['data'] ?? [];
+        if (!$availableServices) {
+            throw new \RuntimeException('GHN has no available service for this route.');
+        }
+
+        $service = $this->pickService($availableServices, $serviceTypeId, $configuredServiceId);
+        $serviceId = (int)($service['service_id'] ?? 0);
+        $serviceTypeId = (int)($service['service_type_id'] ?? $serviceTypeId);
+
+        if (!$serviceId && !$serviceTypeId) {
+            throw new \RuntimeException('GHN has no available service for this route.');
         }
 
         $dimensions = $this->getDefaultDimensions($storeId);
@@ -123,15 +178,39 @@ class Ghn extends AbstractCarrier implements CarrierInterface
             'length' => $dimensions['length'],
             'weight' => $this->getPackageWeightGrams($request, $storeId),
             'width' => $dimensions['width'],
-            'insurance_value' => max(0, (int)round((float)$request->getPackageValueWithDiscount())),
+            'insurance_value' => $this->getInsuranceValue($request, $storeId),
             'items' => $this->buildItems($request, $storeId),
         ];
+
+        $coupon = trim((string)$this->ghnConfig->get('coupon', $storeId));
+        if ($coupon !== '') {
+            $payload['coupon'] = $coupon;
+        }
 
         if ($serviceId) {
             $payload['service_id'] = $serviceId;
         } else {
             $payload['service_type_id'] = $serviceTypeId;
         }
+
+        $this->ghnLogger->info('GHN fee request prepared', [
+            'origin_code' => $origin['code'] ?? null,
+            'from_district_id' => $fromDistrict,
+            'from_ward_code' => $fromWard,
+            'to_district_id' => $toDistrict,
+            'to_ward_code' => $toWard,
+            'configured_service_id' => $configuredServiceId ?: null,
+            'service_id' => $serviceId ?: null,
+            'service_type_id' => $serviceTypeId ?: null,
+            'service_name' => $service['short_name'] ?? $service['service_name'] ?? null,
+            'weight' => $payload['weight'],
+            'dimensions' => [
+                'length' => $payload['length'],
+                'width' => $payload['width'],
+                'height' => $payload['height'],
+            ],
+            'insurance_value' => $payload['insurance_value'],
+        ]);
 
         $response = $this->client->calculateFee($payload, $storeId);
         $data = $response['data'] ?? [];
@@ -155,8 +234,16 @@ class Ghn extends AbstractCarrier implements CarrierInterface
         return (float)$fee;
     }
 
-    private function pickService(array $services, int $preferredServiceTypeId): array
+    private function pickService(array $services, int $preferredServiceTypeId, int $configuredServiceId = 0): array
     {
+        if ($configuredServiceId) {
+            foreach ($services as $service) {
+                if ((int)($service['service_id'] ?? 0) === $configuredServiceId) {
+                    return $service;
+                }
+            }
+        }
+
         foreach ($services as $service) {
             if ((int)($service['service_type_id'] ?? 0) === $preferredServiceTypeId) {
                 return $service;
@@ -221,6 +308,19 @@ class Ghn extends AbstractCarrier implements CarrierInterface
             'width' => max(1, $this->ghnConfig->getInt('default_width', 20, $storeId)),
             'height' => max(1, $this->ghnConfig->getInt('default_height', 12, $storeId)),
         ];
+    }
+
+    private function getInsuranceValue(RateRequest $request, ?int $storeId): int
+    {
+        $mode = trim((string)$this->ghnConfig->get('insurance_value_mode', $storeId)) ?: 'subtotal';
+        $value = match ($mode) {
+            'none' => 0,
+            'fixed' => $this->ghnConfig->getInt('insurance_value_fixed', 0, $storeId),
+            default => max(0, (int)round((float)$request->getPackageValueWithDiscount())),
+        };
+        $cap = $this->ghnConfig->getInt('max_insurance_value', 0, $storeId);
+
+        return $cap > 0 ? min($value, $cap) : $value;
     }
 
     private function getFallbackFee(?int $storeId): float

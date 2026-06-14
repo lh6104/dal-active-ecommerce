@@ -29,12 +29,6 @@ class GhnAddressResolver
             }
         }
 
-        if (empty($destination['ghn_district_id']) || empty($destination['ghn_ward_code'])) {
-            $destination['ghn_district_id'] = $this->config->getInt('demo_to_district_id', 0, $storeId);
-            $destination['ghn_ward_code'] = (string)$this->config->get('demo_to_ward_code', $storeId);
-            $reason = 'fallback_demo_destination';
-        }
-
         $this->logger->info('GHN destination resolved', [
             'reason' => $reason,
             'province_id' => $destination['ghn_province_id'] ?? null,

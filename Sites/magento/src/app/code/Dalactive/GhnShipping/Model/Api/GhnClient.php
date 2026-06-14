@@ -93,9 +93,12 @@ class GhnClient
         if ($this->config->isDebug($storeId)) {
             $this->logger->debug('GHN request', [
                 'method' => $method,
+                'base_url' => $baseUrl,
+                'path' => $path,
                 'url' => $url,
                 'payload' => $payload,
                 'token' => $this->mask($token),
+                'shop_id' => $shopId ?: null,
             ]);
         }
 
@@ -111,13 +114,22 @@ class GhnClient
         $response = [];
 
         if ($responseBody !== '') {
-            $response = $this->json->unserialize($responseBody);
+            try {
+                $response = $this->json->unserialize($responseBody);
+            } catch (\Throwable $exception) {
+                $this->logger->warning('GHN response JSON decode failed', [
+                    'status' => $status,
+                    'url' => $url,
+                    'body' => mb_substr($responseBody, 0, 1000),
+                    'message' => $exception->getMessage(),
+                ]);
+            }
         }
 
         if ($this->config->isDebug($storeId)) {
             $this->logger->debug('GHN response', [
                 'status' => $status,
-                'body' => $response,
+                'body' => $response ?: mb_substr($responseBody, 0, 1000),
             ]);
         }
 

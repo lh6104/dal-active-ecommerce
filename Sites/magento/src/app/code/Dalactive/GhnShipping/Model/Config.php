@@ -54,6 +54,11 @@ class Config
         return $this->scopeConfig->isSetFlag(self::PATH . 'enable_checkout_dropdowns', ScopeInterface::SCOPE_STORE, $storeId);
     }
 
+    public function useFallbackOnApiFailure(?int $storeId = null): bool
+    {
+        return $this->scopeConfig->isSetFlag(self::PATH . 'use_fallback_on_api_failure', ScopeInterface::SCOPE_STORE, $storeId);
+    }
+
     public function getToken(?int $storeId = null): string
     {
         $value = trim((string)$this->get('token', $storeId));
@@ -75,7 +80,14 @@ class Config
         $environment = $this->get('environment', $storeId) ?: 'sandbox';
         $field = $environment === 'production' ? 'production_base_url' : 'sandbox_base_url';
 
-        return rtrim((string)$this->get($field, $storeId), '/');
+        return $this->normalizeBaseUrl((string)$this->get($field, $storeId));
+    }
+
+    public function normalizeBaseUrl(string $baseUrl): string
+    {
+        $baseUrl = rtrim(trim($baseUrl), '/');
+
+        return preg_replace('#/v2$#', '', $baseUrl) ?: $baseUrl;
     }
 
     public function getInt(string $field, int $default = 0, ?int $storeId = null): int
