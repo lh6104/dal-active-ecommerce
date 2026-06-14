@@ -3,41 +3,172 @@
 $order = $block->getOrder();
 ?>
 <?php if ($order): ?>
-    <section class="dalactive-sepay-page"
+    <?php
+    $amount = (float) $order->getGrandTotal();
+    $formattedAmount = number_format($amount, 0, ',', '.') . ' đ';
+    $memo = $block->getMemo();
+    $bankName = $block->getBankDisplayName() ?: $block->getBankCode();
+    $accountNo = $block->getAccountNo();
+    $accountName = $block->getAccountName();
+    ?>
+    <section class="dalactive-payment-page"
              data-status-url="<?= $block->escapeUrl($block->getStatusUrl()) ?>"
              data-fail-url="<?= $block->escapeUrl($block->getFailUrl()) ?>"
              data-success-url="<?= $block->escapeUrl($block->getSuccessUrl()) ?>"
              data-timeout="<?= (int) $block->getTimeout() ?>">
-        <div class="dalactive-sepay-card">
-            <div class="dalactive-sepay-copy">
-                <p class="dalactive-sepay-eyebrow">DAL Active</p>
-                <h1>QR chuyển khoản</h1>
-                <p>Quét mã QR hoặc chuyển khoản đúng số tiền và nội dung để hệ thống tự xác nhận đơn hàng.</p>
-                <dl>
-                    <dt>Mã đơn hàng</dt>
-                    <dd><?= $block->escapeHtml($order->getIncrementId()) ?></dd>
-                    <dt>Số tiền</dt>
-                    <dd><?= $block->escapeHtml(number_format((float) $order->getGrandTotal(), 0, ',', '.')) ?> đ</dd>
-                    <dt>Nội dung chuyển khoản</dt>
-                    <dd><strong><?= $block->escapeHtml($block->getMemo()) ?></strong></dd>
+        <nav class="dalactive-payment-progress" aria-label="<?= $block->escapeHtmlAttr(__('Checkout progress')) ?>">
+            <span><?= $block->escapeHtml(__('Giỏ hàng')) ?></span>
+            <span><?= $block->escapeHtml(__('Thông tin')) ?></span>
+            <span><?= $block->escapeHtml(__('Thanh toán')) ?></span>
+            <span><?= $block->escapeHtml(__('Hoàn tất')) ?></span>
+        </nav>
+
+        <header class="dalactive-payment-heading">
+            <p class="dalactive-payment-eyebrow"><?= $block->escapeHtml(__('DAL Active Checkout')) ?></p>
+            <h1><?= $block->escapeHtml(__('Thanh toán chuyển khoản')) ?></h1>
+            <p><?= $block->escapeHtml(__('Quét mã QR hoặc chuyển khoản đúng số tiền và nội dung để hệ thống tự xác nhận đơn hàng.')) ?></p>
+        </header>
+
+        <div class="dalactive-payment-grid">
+            <article class="dalactive-payment-card dalactive-payment-card--details">
+                <div class="dalactive-payment-card__head">
+                    <span class="dalactive-payment-label"><?= $block->escapeHtml(__('DAL ACTIVE PAYMENT')) ?></span>
+                    <span class="dalactive-payment-status" data-role="sepay-status-label"><?= $block->escapeHtml(__('Đang chờ thanh toán')) ?></span>
+                </div>
+
+                <div class="dalactive-payment-countdown">
+                    <span><?= $block->escapeHtml(__('Thời gian thanh toán còn lại')) ?></span>
+                    <strong data-role="sepay-countdown"></strong>
+                </div>
+
+                <dl class="dalactive-payment-facts">
+                    <div>
+                        <dt><?= $block->escapeHtml(__('Mã đơn hàng')) ?></dt>
+                        <dd><?= $block->escapeHtml($order->getIncrementId()) ?></dd>
+                    </div>
+                    <div>
+                        <dt><?= $block->escapeHtml(__('Số tiền')) ?></dt>
+                        <dd>
+                            <span data-copy-value="<?= $block->escapeHtmlAttr($formattedAmount) ?>"><?= $block->escapeHtml($formattedAmount) ?></span>
+                            <button type="button" class="dalactive-copy-button" data-copy-target="amount"><?= $block->escapeHtml(__('Sao chép')) ?></button>
+                        </dd>
+                    </div>
+                    <div>
+                        <dt><?= $block->escapeHtml(__('Nội dung chuyển khoản')) ?></dt>
+                        <dd>
+                            <strong data-copy-value="<?= $block->escapeHtmlAttr($memo) ?>"><?= $block->escapeHtml($memo) ?></strong>
+                            <button type="button" class="dalactive-copy-button" data-copy-target="memo"><?= $block->escapeHtml(__('Sao chép')) ?></button>
+                        </dd>
+                    </div>
                 </dl>
-                <p class="dalactive-sepay-waiting">
-                    <strong data-role="sepay-status-label">Đang xử lý</strong>.
-                    Trang sẽ tự chuyển khi SePay xác nhận giao dịch.
-                    <span data-role="sepay-countdown"></span>
+
+                <p class="dalactive-payment-note">
+                    <?= $block->escapeHtml(__('Vui lòng không chỉnh sửa nội dung chuyển khoản để hệ thống xác nhận tự động.')) ?>
                 </p>
-            </div>
-            <div class="dalactive-sepay-qr">
-                <img src="<?= $block->escapeUrl($block->getQrUrl()) ?>"
-                     alt="<?= $block->escapeHtmlAttr(__('QR chuyển khoản đơn hàng %1', $order->getIncrementId())) ?>"
-                     width="320"
-                     height="320"/>
-            </div>
+
+                <div class="dalactive-payment-actions">
+                    <button type="button" class="action primary dalactive-payment-check" data-role="sepay-check-now">
+                        <span><?= $block->escapeHtml(__('Tôi đã chuyển khoản')) ?></span>
+                    </button>
+                    <a class="action secondary" href="<?= $block->escapeUrl($block->getChangePaymentUrl()) ?>">
+                        <span><?= $block->escapeHtml(__('Đổi phương thức thanh toán')) ?></span>
+                    </a>
+                    <a class="action secondary" href="<?= $block->escapeUrl($block->getContinueShoppingUrl()) ?>">
+                        <span><?= $block->escapeHtml(__('Tiếp tục mua hàng')) ?></span>
+                    </a>
+                </div>
+            </article>
+
+            <aside class="dalactive-payment-card dalactive-payment-card--qr">
+                <div class="dalactive-payment-qrbox">
+                    <img src="<?= $block->escapeUrl($block->getQrUrl()) ?>"
+                         alt="<?= $block->escapeHtmlAttr(__('QR chuyển khoản đơn hàng %1', $order->getIncrementId())) ?>"
+                         width="320"
+                         height="320"/>
+                </div>
+
+                <div class="dalactive-bank-info">
+                    <?php if ($bankName): ?>
+                        <div>
+                            <span><?= $block->escapeHtml(__('Ngân hàng')) ?></span>
+                            <strong><?= $block->escapeHtml($bankName) ?></strong>
+                        </div>
+                    <?php endif; ?>
+                    <?php if ($accountName): ?>
+                        <div>
+                            <span><?= $block->escapeHtml(__('Chủ tài khoản')) ?></span>
+                            <strong><?= $block->escapeHtml($accountName) ?></strong>
+                        </div>
+                    <?php endif; ?>
+                    <?php if ($accountNo): ?>
+                        <div>
+                            <span><?= $block->escapeHtml(__('Số tài khoản')) ?></span>
+                            <strong><?= $block->escapeHtml($accountNo) ?></strong>
+                        </div>
+                    <?php endif; ?>
+                </div>
+
+                <p class="dalactive-payment-realtime">
+                    <?= $block->escapeHtml(__('Hệ thống đang kiểm tra giao dịch từ SePay.')) ?>
+                </p>
+            </aside>
+        </div>
+
+        <div class="dalactive-payment-bottom">
+            <section class="dalactive-payment-card dalactive-payment-summary">
+                <h2><?= $block->escapeHtml(__('Tóm tắt đơn hàng')) ?></h2>
+                <div class="dalactive-payment-items">
+                    <?php foreach ($order->getAllVisibleItems() as $item): ?>
+                        <div class="dalactive-payment-item">
+                            <div>
+                                <strong><?= $block->escapeHtml($item->getName()) ?></strong>
+                                <span><?= $block->escapeHtml(__('SL: %1', (float) $item->getQtyOrdered())) ?></span>
+                            </div>
+                            <span><?= $block->escapeHtml(trim(strip_tags((string) $order->formatPrice((float) $item->getRowTotalInclTax())))) ?></span>
+                        </div>
+                    <?php endforeach; ?>
+                </div>
+                <dl class="dalactive-payment-totals">
+                    <div>
+                        <dt><?= $block->escapeHtml(__('Tạm tính')) ?></dt>
+                        <dd><?= $block->escapeHtml(trim(strip_tags((string) $order->formatPrice((float) $order->getSubtotalInclTax())))) ?></dd>
+                    </div>
+                    <div>
+                        <dt><?= $block->escapeHtml(__('Vận chuyển')) ?></dt>
+                        <dd><?= $block->escapeHtml(trim(strip_tags((string) $order->formatPrice((float) $order->getShippingInclTax())))) ?></dd>
+                    </div>
+                    <?php if ((float) $order->getDiscountAmount() !== 0.0): ?>
+                        <div>
+                            <dt><?= $block->escapeHtml(__('Giảm giá')) ?></dt>
+                            <dd><?= $block->escapeHtml(trim(strip_tags((string) $order->formatPrice((float) $order->getDiscountAmount())))) ?></dd>
+                        </div>
+                    <?php endif; ?>
+                    <div class="is-grand">
+                        <dt><?= $block->escapeHtml(__('Tổng cộng')) ?></dt>
+                        <dd><?= $block->escapeHtml(trim(strip_tags((string) $order->formatPrice((float) $order->getGrandTotal())))) ?></dd>
+                    </div>
+                </dl>
+            </section>
+
+            <section class="dalactive-payment-card dalactive-payment-support">
+                <h2><?= $block->escapeHtml(__('Hỗ trợ thanh toán')) ?></h2>
+                <p><?= $block->escapeHtml(__('Nếu bạn đã chuyển khoản nhưng hệ thống chưa tự xác nhận, vui lòng giữ nguyên màn hình này hoặc liên hệ DAL Active để được hỗ trợ.')) ?></p>
+                <dl>
+                    <div>
+                        <dt><?= $block->escapeHtml(__('Hotline')) ?></dt>
+                        <dd><?= $block->escapeHtml(__('84886698386')) ?></dd>
+                    </div>
+                    <div>
+                        <dt><?= $block->escapeHtml(__('Email')) ?></dt>
+                        <dd><?= $block->escapeHtml(__('dalactive99@gmail.com')) ?></dd>
+                    </div>
+                </dl>
+            </section>
         </div>
     </section>
     <script type="text/x-magento-init">
     {
-        ".dalactive-sepay-page": {
+        ".dalactive-payment-page": {
             "Dalactive_Sepay/js/sepay-status": {}
         }
     }

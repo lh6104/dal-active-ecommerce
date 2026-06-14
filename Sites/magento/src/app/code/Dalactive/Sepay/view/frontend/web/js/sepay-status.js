@@ -14,6 +14,34 @@ define(['jquery'], function ($) {
             countdownTimer,
             failed = false;
 
+        function copyText(value, $button) {
+            if (!value) {
+                return;
+            }
+
+            function markCopied() {
+                var originalText = $button.text();
+
+                $button.text('Đã sao chép');
+                setTimeout(function () {
+                    $button.text(originalText);
+                }, 1600);
+            }
+
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(value).then(markCopied);
+                return;
+            }
+
+            var input = document.createElement('input');
+            input.value = value;
+            document.body.appendChild(input);
+            input.select();
+            document.execCommand('copy');
+            document.body.removeChild(input);
+            markCopied();
+        }
+
         function setStatus(label, className) {
             $statusLabel.text(label);
             $element
@@ -67,6 +95,15 @@ define(['jquery'], function ($) {
         }
 
         setStatus('Đang xử lý', 'is-processing');
+        $element.on('click', '[data-role="sepay-check-now"]', function () {
+            checkStatus();
+        });
+        $element.on('click', '[data-copy-target]', function () {
+            var $button = $(this),
+                value = $button.siblings('[data-copy-value]').first().data('copy-value');
+
+            copyText(value, $button);
+        });
         updateCountdown();
         checkStatus();
         countdownTimer = setInterval(updateCountdown, 1000);

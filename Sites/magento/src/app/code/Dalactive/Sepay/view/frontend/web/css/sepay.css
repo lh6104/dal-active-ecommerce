@@ -26,91 +26,340 @@
     font-weight: 700;
 }
 
-.dalactive-sepay-page {
-    max-width: 1120px;
+.dalactive-payment-page {
+    background: #f8fafc;
+    font-family: 'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif;
     margin: 0 auto;
-    padding: 48px 20px 72px;
+    max-width: 1180px;
+    padding: 34px 24px 58px;
 }
 
-.dalactive-sepay-card {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) 360px;
-    gap: 40px;
-    align-items: center;
-    border: 1px solid #d7e7ff;
-    background: #fff;
-    box-shadow: 0 14px 42px rgba(7, 45, 86, .08);
-    padding: 40px;
+.dalactive-payment-progress {
+    color: rgba(6, 26, 51, 0.56);
+    display: flex;
+    flex-wrap: wrap;
+    font-size: 13px;
+    font-weight: 700;
+    gap: 10px;
+    margin-bottom: 22px;
 }
 
-.dalactive-sepay-eyebrow {
-    color: #1478f2;
+.dalactive-payment-progress span:not(:last-child):after {
+    color: rgba(6, 26, 51, 0.32);
+    content: "/";
+    margin-left: 10px;
+}
+
+.dalactive-payment-heading {
+    margin: 0 0 24px;
+    max-width: 760px;
+}
+
+.dalactive-payment-eyebrow,
+.dalactive-payment-label {
+    color: #0b6fff;
+    font-size: 12px;
     font-weight: 800;
-    letter-spacing: .08em;
+    letter-spacing: 0.08em;
     text-transform: uppercase;
 }
 
-.dalactive-sepay-copy h1 {
-    margin: 0 0 12px;
+.dalactive-payment-heading h1 {
+    color: #061a33;
     font-size: 34px;
-    line-height: 1.15;
-}
-
-.dalactive-sepay-copy dl {
-    display: grid;
-    grid-template-columns: 160px 1fr;
-    gap: 10px 18px;
-    margin: 24px 0;
-}
-
-.dalactive-sepay-copy dt {
-    color: #5f6b7a;
-    font-weight: 700;
-}
-
-.dalactive-sepay-copy dd {
-    margin: 0;
-    color: #071f3a;
     font-weight: 800;
+    letter-spacing: 0;
+    line-height: 1.15;
+    margin: 6px 0 10px;
 }
 
-.dalactive-sepay-waiting {
-    color: #33506f;
-    font-weight: 600;
+.dalactive-payment-heading p {
+    color: rgba(6, 26, 51, 0.68);
+    font-size: 15px;
+    line-height: 1.65;
+    margin: 0;
 }
 
-.dalactive-sepay-page.is-processing [data-role="sepay-status-label"] {
-    color: #1478f2;
+.dalactive-payment-grid {
+    align-items: stretch;
+    display: grid;
+    gap: 22px;
+    grid-template-columns: minmax(0, 1fr) 390px;
 }
 
-.dalactive-sepay-page.is-success [data-role="sepay-status-label"] {
+.dalactive-payment-bottom {
+    display: grid;
+    gap: 22px;
+    grid-template-columns: minmax(0, 1.45fr) minmax(280px, 0.55fr);
+    margin-top: 22px;
+}
+
+.dalactive-payment-card {
+    background: #ffffff;
+    border: 1px solid #e5ebf2;
+    border-radius: 12px;
+    box-shadow: 0 8px 26px rgba(6, 26, 51, 0.06);
+    box-sizing: border-box;
+    padding: 24px;
+}
+
+.dalactive-payment-card__head {
+    align-items: center;
+    display: flex;
+    gap: 12px;
+    justify-content: space-between;
+    margin-bottom: 18px;
+}
+
+.dalactive-payment-status {
+    background: #fff7e8;
+    border: 1px solid #f4d69d;
+    border-radius: 999px;
+    color: #9a5a00;
+    font-size: 12px;
+    font-weight: 800;
+    padding: 7px 11px;
+    white-space: nowrap;
+}
+
+.dalactive-payment-page.is-processing .dalactive-payment-status {
+    background: #eef5ff;
+    border-color: #bfdfff;
+    color: #0b6fff;
+}
+
+.dalactive-payment-page.is-success .dalactive-payment-status {
+    background: #ecfdf3;
+    border-color: #b8edc8;
     color: #15803d;
 }
 
-.dalactive-sepay-page.is-failed [data-role="sepay-status-label"] {
+.dalactive-payment-page.is-failed .dalactive-payment-status {
+    background: #fff1f1;
+    border-color: #ffc9c9;
     color: #dc2626;
 }
 
-.dalactive-sepay-qr {
+.dalactive-payment-countdown {
+    align-items: center;
+    background: #f6f9fd;
+    border: 1px solid #edf2f7;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    padding: 14px 16px;
+}
+
+.dalactive-payment-countdown span {
+    color: rgba(6, 26, 51, 0.62);
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.dalactive-payment-countdown strong {
+    color: #061a33;
+    font-size: 20px;
+    font-weight: 800;
+}
+
+.dalactive-payment-facts,
+.dalactive-bank-info,
+.dalactive-payment-totals,
+.dalactive-payment-support dl {
+    display: grid;
+    gap: 12px;
+    margin: 0;
+}
+
+.dalactive-payment-facts > div,
+.dalactive-bank-info > div,
+.dalactive-payment-totals > div,
+.dalactive-payment-support dl > div {
+    align-items: center;
+    border-bottom: 1px solid #edf2f7;
+    display: grid;
+    gap: 12px;
+    grid-template-columns: 160px minmax(0, 1fr);
+    padding-bottom: 12px;
+}
+
+.dalactive-payment-facts dt,
+.dalactive-bank-info span,
+.dalactive-payment-totals dt,
+.dalactive-payment-support dt {
+    color: rgba(6, 26, 51, 0.58);
+    font-size: 13px;
+    font-weight: 800;
+}
+
+.dalactive-payment-facts dd,
+.dalactive-bank-info strong,
+.dalactive-payment-totals dd,
+.dalactive-payment-support dd {
+    color: #061a33;
+    font-size: 15px;
+    font-weight: 800;
+    margin: 0;
+    overflow-wrap: anywhere;
+}
+
+.dalactive-copy-button {
+    background: #ffffff;
+    border: 1px solid #d7e3f0;
+    border-radius: 8px;
+    color: #0b6fff;
+    font-size: 12px;
+    font-weight: 800;
+    margin-left: 10px;
+    padding: 6px 10px;
+}
+
+.dalactive-payment-note,
+.dalactive-payment-realtime,
+.dalactive-payment-support p {
+    color: rgba(6, 26, 51, 0.66);
+    font-size: 13px;
+    line-height: 1.65;
+    margin: 18px 0 0;
+}
+
+.dalactive-payment-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 22px;
+}
+
+.dalactive-payment-actions .action {
+    align-items: center;
+    border-radius: 8px;
+    display: inline-flex;
+    font-size: 13px;
+    font-weight: 800;
+    justify-content: center;
+    min-height: 42px;
+    padding: 0 16px;
+    text-decoration: none;
+}
+
+.dalactive-payment-actions .action.primary {
+    background: #0b6fff;
+    border-color: #0b6fff;
+    color: #ffffff;
+}
+
+.dalactive-payment-actions .action.secondary {
+    background: #ffffff;
+    border: 1px solid #d7e3f0;
+    color: #061a33;
+}
+
+.dalactive-payment-card--qr {
     text-align: center;
 }
 
-.dalactive-sepay-qr img {
-    width: min(100%, 320px);
-    height: auto;
+.dalactive-payment-qrbox {
+    background: #ffffff;
     border: 1px solid #d7e7ff;
-    padding: 12px;
-    background: #fff;
+    border-radius: 14px;
+    box-shadow: inset 0 0 0 8px #f8fbff;
+    margin: 0 auto 20px;
+    max-width: 350px;
+    padding: 18px;
 }
 
-@media (max-width: 768px) {
-    .dalactive-sepay-card {
+.dalactive-payment-qrbox img {
+    height: auto;
+    max-width: 100%;
+    width: 320px;
+}
+
+.dalactive-payment-summary h2,
+.dalactive-payment-support h2 {
+    color: #061a33;
+    font-size: 18px;
+    font-weight: 800;
+    margin: 0 0 16px;
+}
+
+.dalactive-payment-items {
+    display: grid;
+    gap: 12px;
+    margin-bottom: 18px;
+}
+
+.dalactive-payment-item {
+    align-items: center;
+    display: grid;
+    gap: 12px;
+    grid-template-columns: minmax(0, 1fr) auto;
+}
+
+.dalactive-payment-item strong,
+.dalactive-payment-item span {
+    color: #061a33;
+    display: block;
+    font-size: 13px;
+}
+
+.dalactive-payment-item div span {
+    color: rgba(6, 26, 51, 0.56);
+    margin-top: 4px;
+}
+
+.dalactive-payment-totals .is-grand {
+    border-bottom: 0;
+    border-top: 1px solid #dce8f5;
+    padding-top: 14px;
+}
+
+.dalactive-payment-totals .is-grand dt,
+.dalactive-payment-totals .is-grand dd {
+    color: #0b6fff;
+    font-size: 17px;
+}
+
+@media (max-width: 900px) {
+    .dalactive-payment-grid,
+    .dalactive-payment-bottom {
         grid-template-columns: 1fr;
-        padding: 24px;
+    }
+}
+
+@media (max-width: 640px) {
+    .dalactive-payment-page {
+        padding: 24px 16px 42px;
     }
 
-    .dalactive-sepay-copy dl,
-    .sepay-checkout-note dl {
+    .dalactive-payment-heading h1 {
+        font-size: 28px;
+    }
+
+    .dalactive-payment-card {
+        padding: 18px;
+    }
+
+    .dalactive-payment-card__head,
+    .dalactive-payment-countdown,
+    .dalactive-payment-actions {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .dalactive-payment-facts > div,
+    .dalactive-bank-info > div,
+    .dalactive-payment-totals > div,
+    .dalactive-payment-support dl > div {
         grid-template-columns: 1fr;
+    }
+
+    .dalactive-payment-actions .action {
+        width: 100%;
+    }
+
+    .dalactive-copy-button {
+        margin-left: 0;
+        margin-top: 8px;
     }
 }

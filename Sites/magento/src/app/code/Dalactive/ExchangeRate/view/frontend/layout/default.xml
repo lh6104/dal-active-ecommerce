@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="Dalactive_ExchangeRate::css/currency-switcher.css"/>
+    </head>
+    <body>
+        <referenceContainer name="header-wrapper">
+            <block class="Dalactive\ExchangeRate\Block\CurrencySwitcher"
+                   name="dalactive.currency.switcher"
+                   template="Dalactive_ExchangeRate::currency-switcher.phtml"
+                   before="dalactive.header.wishlist"/>
+        </referenceContainer>
+    </body>
+</page>

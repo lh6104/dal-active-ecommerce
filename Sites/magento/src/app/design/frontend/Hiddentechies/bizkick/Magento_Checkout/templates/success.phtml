@@ -1,0 +1,196 @@
+<?php
+/** @var \Dalactive\CheckoutFix\Block\Onepage\Success $block */
+$order = $block->getOrder();
+$shippingAddress = $order ? $order->getShippingAddress() : null;
+$billingAddress = $order ? $order->getBillingAddress() : null;
+$paymentTitle = $block->getPaymentTitle();
+$shippingDescription = $block->getShippingDescription();
+$supportPhone = $block->getSupportPhone() ?: '84886698386';
+$supportEmail = $block->getSupportEmail() ?: 'dalactive99@gmail.com';
+$status = $order ? (string) $order->getStatus() : '';
+$state = $order ? (string) $order->getState() : '';
+$isPaidLike = in_array($state, ['processing', 'complete'], true);
+$isCanceled = in_array($state, ['canceled', 'closed'], true);
+$timeline = [
+    ['key' => 'placed', 'label' => __('Đặt hàng'), 'state' => 'is-complete'],
+    ['key' => 'payment', 'label' => __('Thanh toán'), 'state' => $isPaidLike ? 'is-complete' : ($isCanceled ? 'is-muted' : 'is-current')],
+    ['key' => 'processing', 'label' => __('Xử lý'), 'state' => $isPaidLike ? 'is-current' : ''],
+    ['key' => 'shipping', 'label' => __('Giao hàng'), 'state' => ''],
+    ['key' => 'done', 'label' => __('Hoàn tất'), 'state' => ''],
+];
+?>
+<section class="dalactive-success-page">
+    <div class="dalactive-success-hero dalactive-order-card">
+        <span class="dalactive-success-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" focusable="false" role="presentation">
+                <path d="M9.6 16.7 4.9 12l-1.4 1.4 6.1 6.1L21 8.1l-1.4-1.4z"/>
+            </svg>
+        </span>
+        <div>
+            <p class="dalactive-success-eyebrow"><?= $block->escapeHtml(__('DAL Active Order')) ?></p>
+            <h1><?= $block->escapeHtml(__('Cảm ơn bạn đã đặt hàng!')) ?></h1>
+            <?php if ($order): ?>
+                <p><?= $block->escapeHtml(__('Đơn hàng #%1 đã được ghi nhận.', $order->getIncrementId())) ?></p>
+                <?php if ($order->getCustomerEmail()): ?>
+                    <p><?= $block->escapeHtml(__('Chúng tôi đã gửi thông tin xác nhận đơn hàng đến email của bạn.')) ?></p>
+                <?php endif; ?>
+            <?php else: ?>
+                <p><?= $block->escapeHtml(__('Đơn hàng của bạn đã được ghi nhận.')) ?></p>
+            <?php endif; ?>
+        </div>
+        <div class="dalactive-success-actions">
+            <?php if ($order && $block->canViewCurrentOrder()): ?>
+                <a class="action primary" href="<?= $block->escapeUrl($block->getViewOrderUrl()) ?>">
+                    <span><?= $block->escapeHtml(__('Xem chi tiết đơn hàng')) ?></span>
+                </a>
+            <?php endif; ?>
+            <a class="action secondary" href="<?= $block->escapeUrl($block->getContinueUrl()) ?>">
+                <span><?= $block->escapeHtml(__('Tiếp tục mua hàng')) ?></span>
+            </a>
+            <?php if ($order && $block->getCanPrintOrder()): ?>
+                <a class="action secondary" href="<?= $block->escapeUrl($block->getPrintUrl()) ?>" target="_blank" rel="noopener">
+                    <span><?= $block->escapeHtml(__('In hóa đơn')) ?></span>
+                </a>
+            <?php endif; ?>
+        </div>
+    </div>
+
+    <?php if ($order): ?>
+        <section class="dalactive-order-card dalactive-success-timeline" aria-labelledby="dalactive-success-timeline-title">
+            <h2 id="dalactive-success-timeline-title"><?= $block->escapeHtml(__('Trạng thái đơn hàng')) ?></h2>
+            <ol>
+                <?php foreach ($timeline as $step): ?>
+                    <li class="<?= $block->escapeHtmlAttr($step['state']) ?>">
+                        <span></span>
+                        <strong><?= $block->escapeHtml($step['label']) ?></strong>
+                    </li>
+                <?php endforeach; ?>
+            </ol>
+        </section>
+
+        <div class="dalactive-success-grid">
+            <section class="dalactive-order-card">
+                <h2><?= $block->escapeHtml(__('Tổng quan đơn hàng')) ?></h2>
+                <dl class="dalactive-success-facts">
+                    <div>
+                        <dt><?= $block->escapeHtml(__('Mã đơn hàng')) ?></dt>
+                        <dd><?= $block->escapeHtml($order->getIncrementId()) ?></dd>
+                    </div>
+                    <div>
+                        <dt><?= $block->escapeHtml(__('Ngày đặt')) ?></dt>
+                        <dd><?= $block->escapeHtml($block->formatDate($order->getCreatedAt(), \IntlDateFormatter::MEDIUM, true)) ?></dd>
+                    </div>
+                    <div>
+                        <dt><?= $block->escapeHtml(__('Phương thức thanh toán')) ?></dt>
+                        <dd><?= $block->escapeHtml($paymentTitle ?: __('Đang cập nhật')) ?></dd>
+                    </div>
+                    <div>
+                        <dt><?= $block->escapeHtml(__('Phương thức vận chuyển')) ?></dt>
+                        <dd><?= $block->escapeHtml($shippingDescription ?: __('Đang cập nhật')) ?></dd>
+                    </div>
+                    <div>
+                        <dt><?= $block->escapeHtml(__('Tổng tiền')) ?></dt>
+                        <dd><?= $block->escapeHtml($block->formatOrderPrice((float) $order->getGrandTotal())) ?></dd>
+                    </div>
+                    <div>
+                        <dt><?= $block->escapeHtml(__('Trạng thái đơn hàng')) ?></dt>
+                        <dd><?= $block->escapeHtml($order->getStatusLabel() ?: $status) ?></dd>
+                    </div>
+                </dl>
+            </section>
+
+            <section class="dalactive-order-card">
+                <h2><?= $block->escapeHtml(__('Thông tin giao hàng')) ?></h2>
+                <dl class="dalactive-success-facts">
+                    <div>
+                        <dt><?= $block->escapeHtml(__('Khách hàng')) ?></dt>
+                        <dd><?= $block->escapeHtml($block->getCustomerDisplayName() ?: __('Đang cập nhật')) ?></dd>
+                    </div>
+                    <?php if ($shippingAddress && $shippingAddress->getTelephone()): ?>
+                        <div>
+                            <dt><?= $block->escapeHtml(__('Điện thoại')) ?></dt>
+                            <dd><?= $block->escapeHtml($shippingAddress->getTelephone()) ?></dd>
+                        </div>
+                    <?php endif; ?>
+                    <?php if ($shippingAddress): ?>
+                        <div>
+                            <dt><?= $block->escapeHtml(__('Địa chỉ giao hàng')) ?></dt>
+                            <dd>
+                                <?= $block->escapeHtml(implode(', ', array_filter(array_merge(
+                                    $shippingAddress->getStreet(),
+                                    [$shippingAddress->getCity(), $shippingAddress->getRegion(), $shippingAddress->getPostcode(), $shippingAddress->getCountryId()]
+                                )))) ?>
+                            </dd>
+                        </div>
+                    <?php endif; ?>
+                    <?php if ($billingAddress): ?>
+                        <div>
+                            <dt><?= $block->escapeHtml(__('Địa chỉ thanh toán')) ?></dt>
+                            <dd>
+                                <?= $block->escapeHtml(implode(', ', array_filter(array_merge(
+                                    $billingAddress->getStreet(),
+                                    [$billingAddress->getCity(), $billingAddress->getRegion(), $billingAddress->getPostcode(), $billingAddress->getCountryId()]
+                                )))) ?>
+                            </dd>
+                        </div>
+                    <?php endif; ?>
+                </dl>
+            </section>
+        </div>
+
+        <section class="dalactive-order-card dalactive-success-products">
+            <h2><?= $block->escapeHtml(__('Sản phẩm trong đơn hàng')) ?></h2>
+            <div class="dalactive-success-product-list">
+                <?php foreach ($block->getVisibleItems() as $item): ?>
+                    <?php $optionsText = $block->getItemOptionsText($item); ?>
+                    <article class="dalactive-success-product">
+                        <img src="<?= $block->escapeUrl($block->getItemImageUrl($item)) ?>"
+                             alt="<?= $block->escapeHtmlAttr($item->getName()) ?>"
+                             loading="lazy"/>
+                        <div>
+                            <strong><?= $block->escapeHtml($item->getName()) ?></strong>
+                            <span><?= $block->escapeHtml(__('SKU: %1', $item->getSku())) ?></span>
+                            <?php if ($optionsText): ?>
+                                <span><?= $block->escapeHtml($optionsText) ?></span>
+                            <?php endif; ?>
+                        </div>
+                        <span><?= $block->escapeHtml(__('SL: %1', (float) $item->getQtyOrdered())) ?></span>
+                        <span><?= $block->escapeHtml($block->formatOrderPrice((float) $item->getRowTotalInclTax())) ?></span>
+                    </article>
+                <?php endforeach; ?>
+            </div>
+        </section>
+    <?php endif; ?>
+
+    <div class="dalactive-success-grid">
+        <section class="dalactive-order-card">
+            <h2><?= $block->escapeHtml(__('Bước tiếp theo')) ?></h2>
+            <ul class="dalactive-success-list">
+                <li><?= $block->escapeHtml(__('Kiểm tra email xác nhận đơn hàng.')) ?></li>
+                <li><?= $block->escapeHtml(__('DAL Active sẽ xử lý và chuẩn bị đơn hàng.')) ?></li>
+                <li><?= $block->escapeHtml(__('Theo dõi trạng thái đơn hàng trong tài khoản của bạn.')) ?></li>
+                <li><?= $block->escapeHtml(__('Liên hệ hỗ trợ nếu thông tin đơn hàng chưa chính xác.')) ?></li>
+            </ul>
+        </section>
+
+        <section class="dalactive-order-card">
+            <h2><?= $block->escapeHtml(__('Hỗ trợ')) ?></h2>
+            <dl class="dalactive-success-facts">
+                <div>
+                    <dt><?= $block->escapeHtml(__('Hotline')) ?></dt>
+                    <dd><?= $block->escapeHtml($supportPhone) ?></dd>
+                </div>
+                <div>
+                    <dt><?= $block->escapeHtml(__('Email')) ?></dt>
+                    <dd><?= $block->escapeHtml($supportEmail) ?></dd>
+                </div>
+            </dl>
+            <div class="dalactive-success-links">
+                <a href="<?= $block->escapeUrl($block->getUrl('hoan-hang-doi-tra')) ?>"><?= $block->escapeHtml(__('Chính sách đổi trả')) ?></a>
+                <a href="<?= $block->escapeUrl($block->getUrl('thanh-toan')) ?>"><?= $block->escapeHtml(__('Hướng dẫn thanh toán')) ?></a>
+            </div>
+        </section>
+    </div>
+
+    <?= $block->getAdditionalInfoHtml() ?>
+</section>

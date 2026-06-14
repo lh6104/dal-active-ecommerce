@@ -2271,3 +2271,189 @@ body.customer-account-create .message.info {
         padding: 12px 10px;
     }
 }
+
+// DAL Active mobile viewport fixes.
+@media (max-width: 767px) {
+    html,
+    body,
+    .page-wrapper,
+    .page-main,
+    .columns,
+    .column.main {
+        max-width: 100% !important;
+        overflow-x: hidden !important;
+    }
+
+    .page-wrapper .page-header {
+        position: relative !important;
+        z-index: 120 !important;
+    }
+
+    .page-wrapper .page-header .panel.wrapper .panel.header {
+        min-height: 34px !important;
+        padding: 4px 12px !important;
+        width: 100% !important;
+    }
+
+    .page-wrapper .page-header .panel.wrapper .panel.header > .header.links {
+        gap: 14px !important;
+        max-width: 100% !important;
+        min-width: 0 !important;
+    }
+
+    .page-wrapper .page-header .panel.wrapper .panel.header > .header.links > li > a,
+    .page-wrapper .page-header .panel.wrapper .panel.header .customer-welcome .customer-name,
+    .page-wrapper .page-header .panel.wrapper .panel.header .customer-welcome .action.switch {
+        font-size: 13px !important;
+        max-width: 170px !important;
+        overflow: hidden !important;
+        text-overflow: ellipsis !important;
+        white-space: nowrap !important;
+    }
+
+    .page-wrapper .page-header .panel.wrapper .panel.header .customer-welcome .customer-menu {
+        left: auto !important;
+        max-width: ~"calc(100vw - 24px)" !important;
+        min-width: 230px !important;
+        right: 0 !important;
+        top: 100% !important;
+        width: auto !important;
+    }
+
+    .page-wrapper .page-header .header.content {
+        display: grid !important;
+        grid-template-columns: 44px minmax(0, 1fr) auto !important;
+        min-height: 68px !important;
+        padding: 10px 14px !important;
+        row-gap: 8px !important;
+    }
+
+    .page-wrapper .page-header .nav-toggle {
+        align-self: center !important;
+        grid-column: 1 !important;
+        justify-self: start !important;
+        left: auto !important;
+        position: static !important;
+        top: auto !important;
+    }
+
+    .page-wrapper .page-header .logo {
+        grid-column: 2 !important;
+        justify-self: start !important;
+        margin: 0 !important;
+        max-width: 150px !important;
+        width: auto !important;
+    }
+
+    .page-wrapper .page-header .logo img {
+        height: auto !important;
+        max-height: 42px !important;
+        max-width: 150px !important;
+        object-fit: contain !important;
+        width: auto !important;
+    }
+
+    .cms-index-index .home-slider-wrapper,
+    .cms-index-index .home-slider-wrapper .home-slider-main,
+    .cms-index-index .home-slider-wrapper .home-slider,
+    .cms-index-index .home-slider-wrapper .owl-wrapper-outer {
+        max-width: 100% !important;
+        overflow: hidden !important;
+    }
+
+    .cms-index-index .home-slider-wrapper .home-slider-main .home-slider .owl-controls.clickable,
+    .cms-index-index .home-slider-wrapper .home-slider-main .home-slider .owl-controls {
+        bottom: 14px !important;
+        right: 14px !important;
+        top: auto !important;
+        z-index: 5 !important;
+    }
+
+    .cms-index-index .block.widget.block-new-products {
+        overflow: hidden !important;
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+    }
+
+    .cms-index-index .block.widget.block-new-products .block-content {
+        max-width: 100% !important;
+        overflow: hidden !important;
+        padding: 0 16px !important;
+    }
+
+    .cms-index-index .block.widget.block-new-products .slider-outer,
+    .cms-index-index .block.widget.block-new-products .owl-wrapper-outer {
+        margin: 0 !important;
+        overflow: hidden !important;
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+    }
+
+    .cms-index-index .block.widget.block-new-products .owl-item {
+        box-sizing: border-box !important;
+        padding: 0 8px !important;
+    }
+
+    .cms-index-index .block.widget.block-new-products .products-grid .product-item,
+    .cms-index-index .block.widget.block-new-products .products-grid .product-item.product-slider,
+    .cms-index-index .block.widget.block-new-products .products-grid .product-item .product-item-info {
+        box-sizing: border-box !important;
+        max-width: 100% !important;
+        width: 100% !important;
+    }
+
+    .cms-index-index .block.widget.block-new-products .product-item-details {
+        padding: 14px 14px 16px !important;
+    }
+
+    .cms-index-index .block.widget.block-new-products .product-item-actions .actions-primary .action.primary {
+        font-size: 12px !important;
+        min-height: 42px !important;
+        padding: 0 10px !important;
+        white-space: normal !important;
+    }
+
+    .cms-index-index .block.widget.block-new-products .owl-controls,
+    .cms-index-index .block.widget.block-new-products .owl-controls.clickable {
+        display: flex !important;
+        justify-content: center !important;
+        margin: 8px auto 0 !important;
+        position: static !important;
+        right: auto !important;
+        top: auto !important;
+        width: 100% !important;
+        z-index: 2 !important;
+    }
+
+    .cms-index-index .block.widget.block-new-products .owl-controls .owl-buttons {
+        display: inline-flex !important;
+        gap: 8px !important;
+    }
+
+    .cms-index-index .block.widget.block-new-products .owl-controls .owl-buttons > div {
+        height: 38px !important;
+        line-height: 38px !important;
+        margin: 0 !important;
+        position: static !important;
+        transform: none !important;
+        width: 38px !important;
+    }
+
+    .dal-chatbot {
+        bottom: 14px !important;
+        right: 14px !important;
+        z-index: 850 !important;
+    }
+
+    .dal-chatbot__toggle {
+        height: 50px !important;
+        width: 50px !important;
+    }
+
+    .dal-chatbot__panel {
+        bottom: 66px !important;
+        max-width: ~"calc(100vw - 20px)" !important;
+        right: -4px !important;
+        width: ~"calc(100vw - 20px)" !important;
+    }
+}

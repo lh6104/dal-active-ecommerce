@@ -92,18 +92,6 @@ $_photoUploadHtml = trim((string) $block->getChildHtml('form_fields_before'));
                     </fieldset>
 
                     <fieldset class="fieldset dal-review-section">
-                        <div class="field review-field-text required">
-                            <label for="review_field" class="label"><span><?= $block->escapeHtml(__('Nhận xét của bạn')) ?></span></label>
-                            <div class="control">
-                                <textarea name="detail"
-                                          id="review_field"
-                                          rows="6"
-                                          minlength="3"
-                                          data-validate="{required:true}"
-                                          data-bind="value: review().detail"></textarea>
-                                <div class="note"><?= $block->escapeHtml(__('Viết ngắn gọn cảm nhận của bạn về sản phẩm.')) ?></div>
-                            </div>
-                        </div>
                         <div class="field review-field-summary required">
                             <label for="summary_field" class="label"><span><?= $block->escapeHtml(__('Tiêu đề nhận xét')) ?></span></label>
                             <div class="control">
@@ -114,6 +102,18 @@ $_photoUploadHtml = trim((string) $block->getChildHtml('form_fields_before'));
                                        maxlength="150"
                                        data-validate="{required:true}"
                                        data-bind="value: review().title"/>
+                            </div>
+                        </div>
+                        <div class="field review-field-text required">
+                            <label for="review_field" class="label"><span><?= $block->escapeHtml(__('Nhận xét của bạn')) ?></span></label>
+                            <div class="control">
+                                <textarea name="detail"
+                                          id="review_field"
+                                          rows="6"
+                                          minlength="3"
+                                          data-validate="{required:true}"
+                                          data-bind="value: review().detail"></textarea>
+                                <div class="note"><?= $block->escapeHtml(__('Viết ngắn gọn cảm nhận của bạn về sản phẩm.')) ?></div>
                             </div>
                         </div>
                         <input type="hidden"

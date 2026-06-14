@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <title>Hoàn tất đơn hàng</title>
+        <css src="Magento_Checkout::css/dalactive-success.css"/>
+    </head>
+    <body>
+        <referenceBlock name="page.main.title" remove="true"/>
+        <referenceBlock name="checkout.success" remove="true"/>
+        <referenceContainer name="content">
+            <block class="Dalactive\CheckoutFix\Block\Onepage\Success" name="checkout.success.dalactive" template="Magento_Checkout::success.phtml" cacheable="false">
+                <container name="order.success.additional.info" label="Order Success Additional Info"/>
+            </block>
+        </referenceContainer>
+    </body>
+</page>

@@ -1,0 +1,68 @@
+<?php
+/** @var \Dalactive\ExchangeRate\Block\CurrencySwitcher $block */
+$currencies = $block->getCurrencies();
+$stores = $block->getStoreOptions();
+?>
+<div class="dalactive-currency-switcher"
+     data-mage-init='{"Dalactive_ExchangeRate/js/currency-switcher": <?= /* @noEscape */ $block->getJsonConfig() ?>}'>
+    <button class="dalactive-currency-switcher__button"
+            type="button"
+            aria-haspopup="true"
+            aria-expanded="false"
+            aria-label="<?= $block->escapeHtmlAttr(__('Currency display')) ?>"
+            data-dalactive-currency-toggle>
+        <svg class="dalactive-currency-switcher__icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path d="M7 7h9.5a3.5 3.5 0 0 1 0 7H15"/>
+            <path d="M9 4 6 7l3 3"/>
+            <path d="M17 17H7.5a3.5 3.5 0 0 1 0-7H9"/>
+            <path d="m15 14 3 3-3 3"/>
+            <path d="M12 6v12"/>
+        </svg>
+        <span class="dalactive-currency-switcher__label" data-dalactive-currency-current>VND</span>
+    </button>
+
+    <div class="dalactive-currency-switcher__dropdown" data-dalactive-currency-menu>
+        <div class="dalactive-currency-switcher__section">
+            <strong class="dalactive-currency-switcher__title">
+                <?= $block->escapeHtml(__('Currency display')) ?>
+            </strong>
+            <span class="dalactive-currency-switcher__note">
+                <?= $block->escapeHtml(__('Thanh toán cuối cùng vẫn bằng VND.')) ?>
+            </span>
+        </div>
+
+        <ul class="dalactive-currency-switcher__list">
+            <?php foreach ($currencies as $currency): ?>
+                <li>
+                    <button class="dalactive-currency-switcher__option"
+                            type="button"
+                            data-dalactive-currency-option="<?= $block->escapeHtmlAttr($currency['code']) ?>"
+                            <?= $currency['available'] ? '' : 'disabled="disabled"' ?>>
+                        <span class="dalactive-currency-switcher__code">
+                            <?= $block->escapeHtml($currency['code']) ?>
+                        </span>
+                        <span class="dalactive-currency-switcher__name">
+                            <?= $block->escapeHtml($currency['code'] . ' - ' . $currency['label']) ?>
+                        </span>
+                    </button>
+                </li>
+            <?php endforeach; ?>
+        </ul>
+
+        <?php if (count($stores) > 1): ?>
+            <div class="dalactive-currency-switcher__section dalactive-currency-switcher__language">
+                <strong class="dalactive-currency-switcher__title">
+                    <?= $block->escapeHtml(__('Language')) ?>
+                </strong>
+                <div class="dalactive-currency-switcher__stores">
+                    <?php foreach ($stores as $store): ?>
+                        <a class="dalactive-currency-switcher__store<?= $store['current'] ? ' is-current' : '' ?>"
+                           href="<?= $block->escapeUrl($store['url']) ?>">
+                            <?= $block->escapeHtml($store['name']) ?>
+                        </a>
+                    <?php endforeach; ?>
+                </div>
+            </div>
+        <?php endif; ?>
+    </div>
+</div>

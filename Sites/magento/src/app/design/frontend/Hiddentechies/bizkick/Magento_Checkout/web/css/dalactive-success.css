@@ -1,0 +1,360 @@
+.dalactive-success-page {
+    background: #f8fafc;
+    font-family: 'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    margin: 0 auto;
+    max-width: 1180px;
+    padding: 34px 24px 58px;
+}
+
+.dalactive-order-card {
+    background: #ffffff;
+    border: 1px solid #e5ebf2;
+    border-radius: 12px;
+    box-shadow: 0 8px 26px rgba(6, 26, 51, 0.06);
+    box-sizing: border-box;
+    padding: 24px;
+}
+
+.dalactive-success-hero {
+    align-items: center;
+    display: grid;
+    gap: 22px;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    margin-bottom: 22px;
+}
+
+.dalactive-success-icon {
+    align-items: center;
+    background: #ecfdf3;
+    border: 1px solid #b8edc8;
+    border-radius: 50%;
+    color: #15803d;
+    display: inline-flex;
+    height: 64px;
+    justify-content: center;
+    width: 64px;
+}
+
+.dalactive-success-icon svg {
+    fill: currentColor;
+    height: 32px;
+    width: 32px;
+}
+
+.dalactive-success-eyebrow {
+    color: #0b6fff;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    margin: 0 0 6px;
+    text-transform: uppercase;
+}
+
+.dalactive-success-hero h1 {
+    color: #061a33;
+    font-size: 34px;
+    font-weight: 800;
+    letter-spacing: 0;
+    line-height: 1.15;
+    margin: 0 0 8px;
+}
+
+.dalactive-success-hero p {
+    color: rgba(6, 26, 51, 0.68);
+    font-size: 15px;
+    line-height: 1.6;
+    margin: 0;
+}
+
+.dalactive-success-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: flex-end;
+}
+
+.dalactive-success-actions .action {
+    align-items: center;
+    border-radius: 8px;
+    display: inline-flex;
+    font-size: 13px;
+    font-weight: 800;
+    justify-content: center;
+    min-height: 42px;
+    padding: 0 16px;
+    text-decoration: none;
+}
+
+.dalactive-success-actions .action.primary {
+    background: #0b6fff;
+    border-color: #0b6fff;
+    color: #ffffff;
+}
+
+.dalactive-success-actions .action.secondary {
+    background: #ffffff;
+    border: 1px solid #d7e3f0;
+    color: #061a33;
+}
+
+.dalactive-success-timeline {
+    margin-bottom: 22px;
+}
+
+.dalactive-order-card h2 {
+    color: #061a33;
+    font-size: 18px;
+    font-weight: 800;
+    margin: 0 0 18px;
+}
+
+.dalactive-success-timeline ol {
+    display: grid;
+    gap: 0;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.dalactive-success-timeline li {
+    color: rgba(6, 26, 51, 0.48);
+    font-size: 13px;
+    font-weight: 800;
+    position: relative;
+    text-align: center;
+}
+
+.dalactive-success-timeline li:before {
+    background: #dce8f5;
+    content: "";
+    height: 2px;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 12px;
+}
+
+.dalactive-success-timeline li:first-child:before {
+    left: 50%;
+}
+
+.dalactive-success-timeline li:last-child:before {
+    right: 50%;
+}
+
+.dalactive-success-timeline li span {
+    background: #ffffff;
+    border: 2px solid #dce8f5;
+    border-radius: 50%;
+    display: block;
+    height: 22px;
+    margin: 0 auto 10px;
+    position: relative;
+    width: 22px;
+    z-index: 1;
+}
+
+.dalactive-success-timeline li.is-complete,
+.dalactive-success-timeline li.is-current {
+    color: #061a33;
+}
+
+.dalactive-success-timeline li.is-complete span {
+    background: #0b6fff;
+    border-color: #0b6fff;
+}
+
+.dalactive-success-timeline li.is-current span {
+    background: #ffffff;
+    border-color: #0b6fff;
+    box-shadow: 0 0 0 5px rgba(11, 111, 255, 0.1);
+}
+
+.dalactive-success-grid {
+    display: grid;
+    gap: 22px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    margin-bottom: 22px;
+}
+
+.dalactive-success-facts {
+    display: grid;
+    gap: 12px;
+    margin: 0;
+}
+
+.dalactive-success-facts > div {
+    border-bottom: 1px solid #edf2f7;
+    display: grid;
+    gap: 12px;
+    grid-template-columns: 170px minmax(0, 1fr);
+    padding-bottom: 12px;
+}
+
+.dalactive-success-facts > div:last-child {
+    border-bottom: 0;
+    padding-bottom: 0;
+}
+
+.dalactive-success-facts dt {
+    color: rgba(6, 26, 51, 0.58);
+    font-size: 13px;
+    font-weight: 800;
+}
+
+.dalactive-success-facts dd {
+    color: #061a33;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1.5;
+    margin: 0;
+}
+
+.dalactive-success-products {
+    margin-bottom: 22px;
+}
+
+.dalactive-success-product-list {
+    display: grid;
+    gap: 12px;
+}
+
+.dalactive-success-product {
+    align-items: center;
+    border: 1px solid #edf2f7;
+    border-radius: 10px;
+    display: grid;
+    gap: 14px;
+    grid-template-columns: 74px minmax(0, 1fr) auto auto;
+    padding: 12px;
+}
+
+.dalactive-success-product img {
+    background: #f6f9fd;
+    border-radius: 8px;
+    height: 74px;
+    object-fit: contain;
+    width: 74px;
+}
+
+.dalactive-success-product strong {
+    color: #061a33;
+    display: block;
+    font-size: 14px;
+    font-weight: 800;
+    margin-bottom: 4px;
+}
+
+.dalactive-success-product span {
+    color: rgba(6, 26, 51, 0.66);
+    display: block;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.dalactive-success-list {
+    color: rgba(6, 26, 51, 0.72);
+    display: grid;
+    gap: 10px;
+    line-height: 1.6;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.dalactive-success-list li {
+    padding-left: 18px;
+    position: relative;
+}
+
+.dalactive-success-list li:before {
+    background: #0b6fff;
+    border-radius: 50%;
+    content: "";
+    height: 6px;
+    left: 0;
+    position: absolute;
+    top: 10px;
+    width: 6px;
+}
+
+.dalactive-success-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 18px;
+}
+
+.dalactive-success-links a {
+    border: 1px solid #d7e3f0;
+    border-radius: 8px;
+    color: #0b6fff;
+    font-size: 13px;
+    font-weight: 800;
+    padding: 9px 12px;
+    text-decoration: none;
+}
+
+@media (max-width: 900px) {
+    .dalactive-success-hero,
+    .dalactive-success-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .dalactive-success-actions {
+        justify-content: flex-start;
+    }
+
+    .dalactive-success-timeline ol {
+        gap: 14px;
+        grid-template-columns: 1fr;
+    }
+
+    .dalactive-success-timeline li {
+        display: grid;
+        gap: 12px;
+        grid-template-columns: 24px minmax(0, 1fr);
+        text-align: left;
+    }
+
+    .dalactive-success-timeline li:before {
+        bottom: -14px;
+        height: auto;
+        left: 11px !important;
+        right: auto !important;
+        top: 22px;
+        width: 2px;
+    }
+
+    .dalactive-success-timeline li:last-child:before {
+        display: none;
+    }
+
+    .dalactive-success-timeline li span {
+        margin: 0;
+    }
+}
+
+@media (max-width: 640px) {
+    .dalactive-success-page {
+        padding: 24px 16px 42px;
+    }
+
+    .dalactive-order-card {
+        padding: 18px;
+    }
+
+    .dalactive-success-hero h1 {
+        font-size: 28px;
+    }
+
+    .dalactive-success-actions .action {
+        width: 100%;
+    }
+
+    .dalactive-success-facts > div,
+    .dalactive-success-product {
+        grid-template-columns: 1fr;
+    }
+}

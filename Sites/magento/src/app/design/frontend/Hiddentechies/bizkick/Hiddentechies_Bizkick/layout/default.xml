@@ -14,9 +14,6 @@
         <css src="Hiddentechies_Bizkick::css/font-awesome.min.css"/>
     </head>
     <body>
-        <referenceContainer name="header-wrapper">
-            <block class="Magento\Framework\View\Element\Template" name="header.contact.info" template="Hiddentechies_Bizkick::headerinfo.phtml" after="top.search" />
-        </referenceContainer>
         <referenceContainer name="after.body.start">
             <block class="Magento\Framework\View\Element\Template" name="top.promotion.block" template="Hiddentechies_Bizkick::promotion.phtml" before="global_notices"/>
         </referenceContainer>

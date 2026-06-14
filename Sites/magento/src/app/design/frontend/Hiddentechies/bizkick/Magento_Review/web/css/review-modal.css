@@ -69,6 +69,7 @@ body.dal-modal-open {
 }
 
 .dal-review-modal__close {
+    align-items: center;
     position: absolute;
     top: 18px;
     right: 18px;
@@ -78,8 +79,12 @@ body.dal-modal-open {
     border-radius: 50%;
     background: #f2f5f8;
     color: #071f3c;
+    display: inline-flex;
     font-size: 28px;
-    line-height: 1;
+    justify-content: center;
+    line-height: 42px;
+    padding: 0;
+    text-align: center;
     cursor: pointer;
 }
 
@@ -973,4 +978,122 @@ body.dal-modal-open {
 .dal-review-form .review-control-vote label.is-hovered,
 .dal-review-form .review-control-vote label.is-hovered:after {
     color: #f5b301 !important;
+}
+
+/* Balanced review modal layout. Keep the existing form structure, only align it. */
+.catalog-product-view .dal-review-modal {
+    align-items: center;
+    padding: 30px 24px;
+}
+
+.catalog-product-view .dal-review-modal__panel {
+    width: min(780px, calc(100vw - 48px));
+    max-height: calc(100vh - 60px);
+    padding: 34px 36px 36px;
+}
+
+.catalog-product-view .dal-review-modal__header {
+    margin-bottom: 24px;
+}
+
+.catalog-product-view .dal-review-product {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 430px;
+    width: 100%;
+}
+
+.catalog-product-view .dal-review-form {
+    margin: 0 auto;
+    max-width: 520px;
+    width: 100%;
+}
+
+.catalog-product-view .dal-review-form .dal-review-section {
+    border-top: 0;
+    padding: 18px 0 !important;
+}
+
+.catalog-product-view .dal-review-form .review-field-ratings {
+    margin-bottom: 2px;
+}
+
+.catalog-product-view .dal-review-form .review-field-summary {
+    margin: 0 0 18px !important;
+}
+
+.catalog-product-view .dal-review-form .review-field-text {
+    margin-bottom: 0 !important;
+}
+
+.catalog-product-view .dal-review-form .field > .label,
+.catalog-product-view .dal-review-section legend {
+    text-align: left;
+}
+
+.catalog-product-view .dal-review-form .review-field-ratings .label {
+    text-align: center;
+}
+
+.catalog-product-view .dal-review-form input[type='text'],
+.catalog-product-view .dal-review-form textarea {
+    border-color: #dbe5f0;
+    border-radius: 10px;
+}
+
+.catalog-product-view .dal-review-form .review-field-text textarea {
+    min-height: 150px !important;
+}
+
+.catalog-product-view .dal-review-form .note {
+    text-align: left;
+}
+
+.catalog-product-view .dal-review-form .review-form-actions {
+    display: flex;
+    justify-content: center;
+    margin-top: 18px;
+}
+
+.catalog-product-view .dal-review-form-actions .primary,
+.catalog-product-view .dal-review-form-actions .actions-primary {
+    width: auto;
+}
+
+.catalog-product-view .dal-review-form-actions .action.submit {
+    min-width: 180px;
+    width: auto;
+}
+
+@media (max-width: 767px) {
+    .catalog-product-view .dal-review-modal {
+        align-items: stretch;
+        padding: 16px 12px;
+    }
+
+    .catalog-product-view .dal-review-modal__panel {
+        width: calc(100vw - 24px);
+        max-height: calc(100dvh - 32px);
+        padding: 22px 18px;
+    }
+
+    .catalog-product-view .dal-review-form {
+        max-width: none;
+    }
+
+    .catalog-product-view .dal-review-form-actions .primary,
+    .catalog-product-view .dal-review-form-actions .actions-primary,
+    .catalog-product-view .dal-review-form-actions .action.submit {
+        width: 100%;
+    }
+}
+
+@media (max-width: 767px) {
+    .dal-review-modal__close {
+        height: 36px;
+        line-height: 36px;
+        right: 12px;
+        top: 12px;
+        width: 36px;
+    }
 }

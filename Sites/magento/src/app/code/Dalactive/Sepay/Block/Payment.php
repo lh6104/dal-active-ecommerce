@@ -83,4 +83,42 @@ class Payment extends Template
     {
         return $this->getUrl('checkout/onepage/success');
     }
+
+    public function getBankDisplayName(): string
+    {
+        $order = $this->getOrder();
+
+        return trim((string) $this->sepayConfig->getValue('bank_display_name', $order ? (int) $order->getStoreId() : null));
+    }
+
+    public function getBankCode(): string
+    {
+        $order = $this->getOrder();
+
+        return trim((string) $this->sepayConfig->getValue('bank_code', $order ? (int) $order->getStoreId() : null));
+    }
+
+    public function getAccountNo(): string
+    {
+        $order = $this->getOrder();
+
+        return trim((string) $this->sepayConfig->getValue('account_no', $order ? (int) $order->getStoreId() : null));
+    }
+
+    public function getAccountName(): string
+    {
+        $order = $this->getOrder();
+
+        return trim((string) $this->sepayConfig->getValue('account_name', $order ? (int) $order->getStoreId() : null));
+    }
+
+    public function getContinueShoppingUrl(): string
+    {
+        return $this->getUrl('');
+    }
+
+    public function getChangePaymentUrl(): string
+    {
+        return $this->getUrl('checkout/cart');
+    }
 }
