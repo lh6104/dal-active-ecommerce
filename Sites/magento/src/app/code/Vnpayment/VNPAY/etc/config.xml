@@ -8,6 +8,7 @@
                 <model>Vnpayment\VNPAY\Model\vnpay</model>
                 <order_status>pending</order_status>
                 <title>VNPAY</title>
+                <public_base_url></public_base_url>
                 <allowspecific>0</allowspecific>
                 <group>offline</group>
             </vnpay>

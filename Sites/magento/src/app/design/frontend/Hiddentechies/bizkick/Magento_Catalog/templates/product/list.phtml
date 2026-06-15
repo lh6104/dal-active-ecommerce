@@ -74,11 +74,16 @@ $getSaleData = function ($product): array {
     ?>
     <div class="products wrapper <?php /* @escapeNotVerified */ echo $viewMode; ?> products-<?php /* @escapeNotVerified */ echo $viewMode; ?>">
         <?php $iterator = 1; ?>
-        <ol class="products list items product-items">
-            <?php /** @var $_product \Magento\Catalog\Model\Product */ ?>
-            <?php foreach ($_productCollection as $_product): ?>
-                <?php /* @escapeNotVerified */ echo($iterator++ == 1) ? '<li class="item product product-item">' : '</li><li class="item product product-item">' ?>
-                <div class="product-item-info" data-container="product-grid">
+            <ol class="products list items product-items">
+                <?php /** @var $_product \Magento\Catalog\Model\Product */ ?>
+                <?php foreach ($_productCollection as $_product): ?>
+                    <?php
+                    $saleData = $getSaleData($_product);
+                    $salePercent = (int) $saleData['percent'];
+                    $productItemClasses = 'item product product-item' . ($salePercent > 0 ? ' has-sale-label' : '');
+                    ?>
+                <?php /* @escapeNotVerified */ echo($iterator++ == 1) ? '<li class="' . $productItemClasses . '">' : '</li><li class="' . $productItemClasses . '">' ?>
+                <div class="product-item-info<?php if ($salePercent > 0): ?> has-sale-label<?php endif; ?>" data-container="product-grid">
                     <?php
                     $productImage = $block->getImage($_product, $image);
                     if ($pos != null) {
@@ -110,8 +115,6 @@ $getSaleData = function ($product): array {
                                     }
                                 }
                             }
-                            $saleData = $getSaleData($_product);
-                            $salePercent = (int) $saleData['percent'];
                             if ($salePercent > 0) {
                                 ?>
                                 <span class="sale-label">-<?= $block->escapeHtml((string) $salePercent) ?>%</span>
@@ -164,7 +167,6 @@ $getSaleData = function ($product): array {
                         </strong>
                         <?php echo $block->getReviewsSummaryHtml($_product, $templateType); ?>
                         <?php /* @escapeNotVerified */ echo $block->getProductPrice($_product) ?>
-                        <?php $saleData = $getSaleData($_product); ?>
                         <?php if ((int)$saleData['percent'] > 0): ?>
                             <span class="old-price dal-list-old-price">
                                 <span class="price-wrapper">

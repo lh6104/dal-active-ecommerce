@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Move login-page-only blocks into the DAL Active login card.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <move element="social-login-popup-authentication-social-login" destination="customer_form_login" as="social_login" before="-"/>
+        <referenceBlock name="customer.new" remove="true"/>
+    </body>
+</page>

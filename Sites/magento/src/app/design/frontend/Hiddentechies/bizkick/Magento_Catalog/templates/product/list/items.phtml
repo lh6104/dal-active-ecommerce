@@ -213,18 +213,23 @@ switch ($type = $block->getType()) {
                                 <?php $iterator = 1; ?>
                                 <?php foreach ($items as $_item): ?>
                                     <?php $available = ''; ?>
+                                    <?php
+                                    $saleData = $getSaleData($_item);
+                                    $salePercent = (int) $saleData['percent'];
+                                    $saleItemClass = $salePercent > 0 ? ' has-sale-label' : '';
+                                    ?>
                                     <?php if (!$_item->isComposite() && $_item->isSaleable() && $type == 'related'): ?>
                                         <?php if (!$_item->getRequiredOptions()): ?>
                                             <?php $available = 'related-available'; ?>
                                         <?php endif; ?>
                                     <?php endif; ?>
                                     <?php if ($type == 'related' || $type == 'upsell'): ?>
-                                        <?php /* @escapeNotVerified */ echo($iterator++ == 1) ? '<li class="product-slider item product product-item" style="display: none;">' : '</li><li class="product-slider item product product-item" style="display: none;">' ?>
+                                        <?php /* @escapeNotVerified */ echo($iterator++ == 1) ? '<li class="product-slider item product product-item' . $saleItemClass . '" style="display: none;">' : '</li><li class="product-slider item product product-item' . $saleItemClass . '" style="display: none;">' ?>
                                     <?php else: ?>
-                                        <?php /* @escapeNotVerified */ echo($iterator++ == 1) ? '<li class="product-slider item product product-item">' : '</li><li class="product-slider item product product-item">' ?>
+                                        <?php /* @escapeNotVerified */ echo($iterator++ == 1) ? '<li class="product-slider item product product-item' . $saleItemClass . '">' : '</li><li class="product-slider item product product-item' . $saleItemClass . '">' ?>
                                     <?php endif; ?>
-                                    <div class="product-item-info <?php /* @escapeNotVerified */ echo $available; ?>">
-                                        <div class="product-img-main">
+                                    <div class="product-item-info <?php /* @escapeNotVerified */ echo $available; ?><?php if ($salePercent > 0): ?> has-sale-label<?php endif; ?>">
+                                        <div class="product-img-main<?php if ($salePercent > 0): ?> has-sale-label<?php endif; ?>">
                                             <?php /* @escapeNotVerified */ echo '<!-- ' . $image . '-->' ?>
                                             <a href="<?php /* @escapeNotVerified */ echo $block->getProductUrl($_item) ?>" class="product photo product-item-photo <?php if ($showBorder == 1) { ?> add-border <?php } ?>">
                                                 <?php echo $block->getImage($_item, $image)->toHtml(); ?>
@@ -247,8 +252,6 @@ switch ($type = $block->getType()) {
                                                 }
 
                                                 if ($showSaleLabel == 1) {
-                                                    $saleData = $getSaleData($_item);
-                                                    $salePercent = (int) $saleData['percent'];
                                                     if ($salePercent > 0) {
                                                         ?>
                                                         <span class="sale-label">-<?= $block->escapeHtml((string) $salePercent) ?>%</span>
@@ -288,7 +291,6 @@ switch ($type = $block->getType()) {
                                             </strong>
 
                                             <?php /* @escapeNotVerified */ echo $block->getProductPrice($_item); ?>
-                                            <?php $saleData = $getSaleData($_item); ?>
                                             <?php if ((int)$saleData['percent'] > 0): ?>
                                                 <span class="old-price dal-list-old-price">
                                                     <span class="price-wrapper">

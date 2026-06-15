@@ -26,6 +26,8 @@ $relationTable = $resource->getTableName('catalog_product_relation');
 $eavAttributeTable = $resource->getTableName('eav_attribute');
 $varcharTable = $resource->getTableName('catalog_product_entity_varchar');
 $intTable = $resource->getTableName('catalog_product_entity_int');
+$decimalTable = $resource->getTableName('catalog_product_entity_decimal');
+$datetimeTable = $resource->getTableName('catalog_product_entity_datetime');
 
 $today = new DateTimeImmutable('now', new DateTimeZone('Asia/Ho_Chi_Minh'));
 $fromDate = $today->format('Y-m-d');
@@ -59,7 +61,7 @@ $clothingCategoryId = 28;
 $shoeCategoryId = 29;
 $accessoryCategoryId = 30;
 
-$saleProductIds = array_map(
+$catalogRuleProductIds = array_map(
     'intval',
     $connection->fetchCol(
         "SELECT DISTINCT COALESCE(rel.parent_id, price.product_id) AS visible_product_id
@@ -73,10 +75,66 @@ $saleProductIds = array_map(
     )
 );
 
+$priceAttributeId = (int) $connection->fetchOne(
+    "SELECT attribute_id FROM {$eavAttributeTable} WHERE entity_type_id = 4 AND attribute_code = 'price'"
+);
+$specialPriceAttributeId = (int) $connection->fetchOne(
+    "SELECT attribute_id FROM {$eavAttributeTable} WHERE entity_type_id = 4 AND attribute_code = 'special_price'"
+);
+$specialFromAttributeId = (int) $connection->fetchOne(
+    "SELECT attribute_id FROM {$eavAttributeTable} WHERE entity_type_id = 4 AND attribute_code = 'special_from_date'"
+);
+$specialToAttributeId = (int) $connection->fetchOne(
+    "SELECT attribute_id FROM {$eavAttributeTable} WHERE entity_type_id = 4 AND attribute_code = 'special_to_date'"
+);
+
+$directSpecialProductIds = [];
+if ($priceAttributeId > 0 && $specialPriceAttributeId > 0) {
+    $directSpecialProductIds = array_map(
+        'intval',
+        $connection->fetchCol(
+            "SELECT DISTINCT COALESCE(rel.parent_id, entity.entity_id) AS visible_product_id
+             FROM {$productEntityTable} entity
+             INNER JOIN {$decimalTable} regular
+                ON regular.entity_id = entity.entity_id
+                AND regular.attribute_id = ?
+                AND regular.store_id = 0
+             INNER JOIN {$decimalTable} special
+                ON special.entity_id = entity.entity_id
+                AND special.attribute_id = ?
+                AND special.store_id = 0
+             LEFT JOIN {$datetimeTable} special_from
+                ON special_from.entity_id = entity.entity_id
+                AND special_from.attribute_id = ?
+                AND special_from.store_id = 0
+             LEFT JOIN {$datetimeTable} special_to
+                ON special_to.entity_id = entity.entity_id
+                AND special_to.attribute_id = ?
+                AND special_to.store_id = 0
+             LEFT JOIN {$relationTable} rel ON rel.child_id = entity.entity_id
+             WHERE special.value > 0
+                AND special.value < regular.value
+                AND (special_from.value IS NULL OR special_from.value <= ?)
+                AND (special_to.value IS NULL OR special_to.value >= ?)
+             ORDER BY visible_product_id",
+            [
+                $priceAttributeId,
+                $specialPriceAttributeId,
+                $specialFromAttributeId,
+                $specialToAttributeId,
+                $todayDate . ' 23:59:59',
+                $todayDate . ' 00:00:00',
+            ]
+        )
+    );
+}
+
+$saleProductIds = array_values(array_unique(array_merge($catalogRuleProductIds, $directSpecialProductIds)));
+
 $connection->delete($categoryProductTable, ['category_id IN (?)' => $promotionCategoryIds]);
 
 if (!$saleProductIds) {
-    echo "No active catalog-rule products for {$todayDate}; promotion categories cleared.\n";
+    echo "No active sale products for {$todayDate}; promotion categories cleared.\n";
     exit(0);
 }
 
@@ -154,4 +212,6 @@ foreach (array_values(array_unique($saleProductIds)) as $index => $productId) {
     $insert($accessoryCategoryId, $productId, $position);
 }
 
+echo 'Catalog-rule sale products: ' . count(array_unique($catalogRuleProductIds)) . "\n";
+echo 'Direct special-price products: ' . count(array_unique($directSpecialProductIds)) . "\n";
 echo 'Synced ' . count(array_unique($saleProductIds)) . " sale products into promotion categories.\n";

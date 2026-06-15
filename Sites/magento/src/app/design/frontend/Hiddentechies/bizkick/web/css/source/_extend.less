@@ -2145,6 +2145,733 @@ body.customer-account-create .message.info {
     color: @dalactive-blue-dark;
 }
 
+body.customer-account-login .page-main {
+    background: linear-gradient(180deg, #f6f9fd 0, #ffffff 220px);
+}
+
+body.customer-account-login .page-main > .page-title-wrapper,
+body.customer-account-login .page-main > .account-social-login,
+body.customer-account-login .page-main > .login-container {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 1050px;
+}
+
+body.customer-account-login .page-title-wrapper {
+    margin-bottom: 22px;
+}
+
+body.customer-account-login .account-social-login {
+    background: #ffffff;
+    border: 1px solid #e5ebf2;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(6, 26, 51, 0.055);
+    box-sizing: border-box;
+    margin-bottom: 28px;
+    max-width: 560px;
+    padding: 18px 22px 22px;
+    position: relative;
+    text-align: center;
+}
+
+body.customer-account-login .account-social-login:before {
+    color: @dalactive-blue-dark;
+    content: "Đăng nhập nhanh";
+    display: block;
+    font-size: 16px;
+    font-weight: 800;
+    margin-bottom: 14px;
+}
+
+body.customer-account-login .account-social-login:after {
+    background: #f8fafc;
+    bottom: -44px;
+    color: rgba(6, 26, 51, 0.54);
+    content: "hoặc đăng nhập bằng email";
+    font-size: 13px;
+    font-weight: 700;
+    height: 24px;
+    left: 50%;
+    line-height: 24px;
+    padding: 0 14px;
+    position: absolute;
+    transform: translateX(-50%);
+    white-space: nowrap;
+    z-index: 1;
+}
+
+body.customer-account-login .account-social-login .block-content {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: center;
+}
+
+body.customer-account-login .account-social-login .actions-toolbar,
+body.customer-account-login .account-social-login .social-btn-actions-toolbar {
+    margin: 0;
+}
+
+body.customer-account-login .account-social-login .btn-social {
+    align-items: center;
+    border-radius: 8px;
+    display: inline-flex;
+    font-size: 14px;
+    font-weight: 800;
+    justify-content: center;
+    min-height: 44px;
+    min-width: 238px;
+    padding: 0 18px;
+}
+
+body.customer-account-login .login-container {
+    align-items: flex-start;
+    border-top: 1px solid #edf2f7;
+    display: grid;
+    gap: 24px;
+    grid-template-columns: minmax(0, 1.1fr) minmax(300px, 0.9fr);
+    margin-top: 24px;
+    padding-top: 34px;
+}
+
+body.customer-account-login .login-container:before,
+body.customer-account-login .login-container:after {
+    content: none;
+}
+
+body.customer-account-login .login-container .block {
+    float: none;
+    margin-bottom: 0;
+    max-width: none;
+    width: auto;
+}
+
+body.customer-account-login .login-container .block-customer-login {
+    order: 1;
+}
+
+body.customer-account-login .login-container .block-new-customer {
+    order: 2;
+}
+
+body.customer-account-login .login-container .fieldset:after {
+    color: #ff4d4f;
+    font-size: 12px;
+    margin-top: 18px;
+}
+
+body.customer-account-login .login-container .field {
+    margin-bottom: 16px;
+}
+
+body.customer-account-login .login-container .field .control {
+    width: 100%;
+}
+
+body.customer-account-login .login-container input.input-text {
+    box-sizing: border-box;
+    max-width: 100%;
+    width: 100%;
+}
+
+body.customer-account-login .login-container .field.note {
+    color: rgba(6, 26, 51, 0.68);
+    margin-bottom: 18px;
+}
+
+body.customer-account-login .login-container .actions-toolbar {
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px 18px;
+    margin-top: 22px;
+}
+
+body.customer-account-login .login-container .actions-toolbar:before,
+body.customer-account-login .login-container .actions-toolbar:after {
+    content: none;
+}
+
+body.customer-account-login .login-container .primary,
+body.customer-account-login .login-container .secondary {
+    float: none;
+    margin: 0;
+}
+
+body.customer-account-login .login-container .secondary a {
+    font-weight: 800;
+}
+
+body.customer-account-login .page-main {
+    background: #f6f9fd;
+}
+
+body.customer-account-login .page-title-wrapper {
+    display: none !important;
+}
+
+body.customer-account-login .login-container,
+body.customer-account-login .page-main > .login-container {
+    border: 0;
+    display: block !important;
+    margin: 0 auto;
+    max-width: 560px;
+    padding: 12px 0 0;
+}
+
+body.customer-account-login .login-container .dalactive-login-page {
+    box-sizing: border-box;
+    margin: 0 auto;
+    max-width: 520px;
+    width: 100%;
+}
+
+body.customer-account-login .login-container .dalactive-login-card {
+    background: #ffffff;
+    border: 1px solid #e3ebf5;
+    border-radius: 12px;
+    box-shadow: 0 16px 36px rgba(6, 26, 51, 0.08);
+    box-sizing: border-box;
+    margin: 0;
+    padding: 30px 32px 26px;
+    width: 100%;
+}
+
+body.customer-account-login .login-container .dalactive-login-header {
+    margin: 0 0 20px;
+    text-align: center;
+}
+
+body.customer-account-login .login-container .dalactive-login-header > strong {
+    color: @dalactive-blue-dark;
+    display: block;
+    font-size: 24px;
+    font-weight: 800;
+    letter-spacing: 0;
+    line-height: 1.25;
+    margin: 0 0 9px;
+}
+
+body.customer-account-login .login-container .dalactive-login-header > p {
+    color: rgba(6, 26, 51, 0.66);
+    font-size: 14px;
+    line-height: 1.55;
+    margin: 0 auto;
+    max-width: 390px;
+}
+
+body.customer-account-login .login-container .dalactive-login-social {
+    margin: 0 0 20px;
+}
+
+body.customer-account-login .login-container .dalactive-login-social .account-social-login {
+    background: transparent;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+    margin: 0;
+    max-width: none;
+    padding: 0;
+}
+
+body.customer-account-login .login-container .dalactive-login-social .account-social-login:before,
+body.customer-account-login .login-container .dalactive-login-social .account-social-login:after {
+    content: none;
+}
+
+body.customer-account-login .login-container .dalactive-login-social .account-social-login .block-content {
+    display: grid;
+    gap: 10px;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+}
+
+body.customer-account-login .login-container .dalactive-login-social .actions-toolbar,
+body.customer-account-login .login-container .dalactive-login-social .social-btn-actions-toolbar {
+    display: block;
+    margin: 0;
+    min-width: 0;
+    width: 100%;
+}
+
+body.customer-account-login .login-container .dalactive-login-social .btn-social {
+    align-items: center;
+    border-radius: 8px;
+    box-sizing: border-box;
+    display: inline-flex;
+    font-size: 14px;
+    font-weight: 800;
+    justify-content: center;
+    min-height: 44px;
+    min-width: 0;
+    overflow: hidden;
+    padding: 0 16px;
+    text-align: center;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 100%;
+}
+
+body.customer-account-login .login-container .dalactive-login-social .btn-social .fa {
+    flex: 0 0 auto;
+    margin-right: 8px;
+}
+
+body.customer-account-login .login-container .dalactive-login-divider {
+    align-items: center;
+    color: rgba(6, 26, 51, 0.52);
+    display: flex;
+    font-size: 12px;
+    font-weight: 800;
+    gap: 12px;
+    letter-spacing: 0;
+    margin: 22px 0 18px;
+    text-align: center;
+    text-transform: none;
+}
+
+body.customer-account-login .login-container .dalactive-login-divider:before,
+body.customer-account-login .login-container .dalactive-login-divider:after {
+    background: #e8eef6;
+    content: "";
+    flex: 1;
+    height: 1px;
+}
+
+body.customer-account-login .login-container .dalactive-login-divider > span {
+    white-space: nowrap;
+}
+
+body.customer-account-login .login-container .dalactive-login-card .block-content,
+body.customer-account-login .login-container .dalactive-login-card .fieldset {
+    margin: 0;
+}
+
+body.customer-account-login .login-container .dalactive-login-card .fieldset:after {
+    content: none;
+}
+
+body.customer-account-login .login-container .dalactive-login-card .field {
+    margin-bottom: 15px;
+}
+
+body.customer-account-login .login-container .dalactive-login-card .field > .label {
+    color: @dalactive-blue-dark;
+    font-size: 13px;
+    font-weight: 800;
+    margin: 0 0 7px;
+}
+
+body.customer-account-login .login-container .dalactive-login-card input.input-text {
+    border: 1px solid #dbe5f0;
+    border-radius: 8px;
+    box-sizing: border-box;
+    color: @dalactive-blue-dark;
+    min-height: 44px;
+    padding: 0 13px;
+    width: 100%;
+}
+
+body.customer-account-login .login-container .dalactive-login-options {
+    align-items: center;
+    display: flex;
+    gap: 12px;
+    justify-content: space-between;
+    margin: -2px 0 20px;
+}
+
+body.customer-account-login .login-container .dalactive-login-options .field.choice {
+    color: rgba(6, 26, 51, 0.68);
+    font-size: 13px;
+    margin: 0;
+}
+
+body.customer-account-login .login-container .dalactive-login-options .action.remind {
+    color: @dalactive-blue;
+    font-size: 13px;
+    font-weight: 800;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+body.customer-account-login .login-container .dalactive-login-options .action.remind:hover {
+    color: @dalactive-blue-dark;
+}
+
+body.customer-account-login .login-container .dalactive-login-card .actions-toolbar {
+    display: block;
+    margin: 0;
+}
+
+body.customer-account-login .login-container .dalactive-login-card .actions-toolbar .primary,
+body.customer-account-login .login-container .dalactive-login-card .actions-toolbar .action.login {
+    width: 100%;
+}
+
+body.customer-account-login .login-container .dalactive-login-card .action.login.primary {
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 800;
+    min-height: 46px;
+}
+
+body.customer-account-login .login-container .dalactive-login-register {
+    border-top: 1px solid #edf2f7;
+    color: rgba(6, 26, 51, 0.66);
+    font-size: 14px;
+    margin: 22px 0 0;
+    padding-top: 20px;
+    text-align: center;
+}
+
+body.customer-account-login .login-container .dalactive-login-register .action.create {
+    color: @dalactive-blue;
+    font-weight: 800;
+    margin-left: 4px;
+    text-decoration: none;
+}
+
+body.customer-account-login .login-container .dalactive-login-register .action.create:hover {
+    color: @dalactive-blue-dark;
+}
+
+body.customer-account-create .page-main {
+    background: #f6f9fd;
+}
+
+body.customer-account-create .page-title-wrapper {
+    display: none !important;
+}
+
+body.customer-account-create .page-main > .account-social-login {
+    display: none;
+}
+
+body.customer-account-create .column.main {
+    box-sizing: border-box;
+    min-width: 0;
+}
+
+body.customer-account-create .dalactive-register-page {
+    box-sizing: border-box;
+    margin: 0 auto;
+    max-width: 680px;
+    width: 100%;
+}
+
+body.customer-account-create .dalactive-register-card {
+    background: #ffffff;
+    border: 1px solid #e3ebf5;
+    border-radius: 12px;
+    box-shadow: 0 16px 36px rgba(6, 26, 51, 0.08);
+    box-sizing: border-box;
+    margin: 0;
+    padding: 30px 32px 26px;
+    width: 100%;
+}
+
+body.customer-account-create .dalactive-register-header {
+    margin: 0 0 20px;
+    text-align: center;
+}
+
+body.customer-account-create .dalactive-register-header > strong {
+    color: @dalactive-blue-dark;
+    display: block;
+    font-size: 24px;
+    font-weight: 800;
+    letter-spacing: 0;
+    line-height: 1.25;
+    margin: 0 0 9px;
+}
+
+body.customer-account-create .dalactive-register-header > p {
+    color: rgba(6, 26, 51, 0.66);
+    font-size: 14px;
+    line-height: 1.55;
+    margin: 0 auto;
+    max-width: 410px;
+}
+
+body.customer-account-create .dalactive-register-card .form-create-account {
+    background: transparent;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+    box-sizing: border-box;
+    margin: 0;
+    max-width: 100% !important;
+    padding: 0;
+    width: 100% !important;
+}
+
+body.customer-account-create .dalactive-register-card .fieldset {
+    border: 0;
+    box-sizing: border-box;
+    margin: 0 0 18px;
+    min-width: 0;
+    padding: 0;
+    width: 100%;
+}
+
+body.customer-account-create .dalactive-register-card .fieldset.additional_info {
+    margin-bottom: 0;
+}
+
+body.customer-account-create .dalactive-register-card .legend {
+    border-bottom: 1px solid #edf2f7;
+    margin: 0 0 16px;
+    padding: 0 0 11px;
+}
+
+body.customer-account-create .dalactive-register-card .legend > span {
+    color: @dalactive-blue-dark;
+    font-size: 17px;
+    font-weight: 800;
+    letter-spacing: 0;
+}
+
+body.customer-account-create .dalactive-register-card .field {
+    box-sizing: border-box;
+    margin-bottom: 15px;
+    max-width: 100% !important;
+    min-width: 0;
+    width: 100% !important;
+}
+
+body.customer-account-create .dalactive-register-card .field .control {
+    box-sizing: border-box;
+    max-width: 100% !important;
+    min-width: 0;
+    width: 100% !important;
+}
+
+body.customer-account-create .dalactive-register-card .field > .label {
+    color: @dalactive-blue-dark;
+    font-size: 13px;
+    font-weight: 800;
+    margin: 0 0 7px;
+}
+
+body.customer-account-create .dalactive-register-card .field.choice {
+    color: rgba(6, 26, 51, 0.68);
+    font-size: 13px;
+    margin-bottom: 12px;
+}
+
+body.customer-account-create .dalactive-register-card input.input-text,
+body.customer-account-create .dalactive-register-card select {
+    border: 1px solid #dbe5f0;
+    border-radius: 8px;
+    box-sizing: border-box;
+    color: @dalactive-blue-dark;
+    min-height: 44px;
+    padding: 0 13px;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    width: 100% !important;
+}
+
+body.customer-account-create .dalactive-register-card .field-name-firstname,
+body.customer-account-create .dalactive-register-card .field-name-lastname {
+    display: block;
+}
+
+body.customer-account-create .dalactive-register-card .password-strength-meter {
+    border-radius: 0 0 8px 8px;
+    color: rgba(6, 26, 51, 0.68);
+    font-size: 13px;
+    line-height: 1.4;
+}
+
+body.customer-account-create .dalactive-register-card .actions-toolbar {
+    display: block;
+    margin: 6px 0 0;
+}
+
+body.customer-account-create .dalactive-register-card .actions-toolbar:before,
+body.customer-account-create .dalactive-register-card .actions-toolbar:after {
+    content: none;
+}
+
+body.customer-account-create .dalactive-register-card .actions-toolbar .primary,
+body.customer-account-create .dalactive-register-card .action.submit.primary {
+    float: none;
+    margin: 0;
+    width: 100%;
+}
+
+body.customer-account-create .dalactive-register-card .action.submit.primary {
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 800;
+    min-height: 46px;
+}
+
+body.customer-account-create .dalactive-register-divider {
+    align-items: center;
+    color: rgba(6, 26, 51, 0.52);
+    display: flex;
+    font-size: 12px;
+    font-weight: 800;
+    gap: 12px;
+    letter-spacing: 0;
+    margin: 22px 0 18px;
+    text-align: center;
+    text-transform: none;
+}
+
+body.customer-account-create .dalactive-register-divider:before,
+body.customer-account-create .dalactive-register-divider:after {
+    background: #e8eef6;
+    content: "";
+    flex: 1;
+    height: 1px;
+}
+
+body.customer-account-create .dalactive-register-divider > span {
+    white-space: nowrap;
+}
+
+body.customer-account-create .dalactive-register-social {
+    margin: 0 0 20px;
+}
+
+body.customer-account-create .dalactive-register-social .account-social-login {
+    background: transparent;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+    margin: 0;
+    max-width: none;
+    padding: 0;
+}
+
+body.customer-account-create .dalactive-register-social .account-social-login:before,
+body.customer-account-create .dalactive-register-social .account-social-login:after {
+    content: none;
+}
+
+body.customer-account-create .dalactive-register-social .account-social-login .block-content {
+    display: grid;
+    gap: 10px;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+}
+
+body.customer-account-create .dalactive-register-social .actions-toolbar,
+body.customer-account-create .dalactive-register-social .social-btn-actions-toolbar {
+    display: block;
+    margin: 0;
+    min-width: 0;
+    width: 100%;
+}
+
+body.customer-account-create .dalactive-register-social .btn-social {
+    align-items: center;
+    border-radius: 8px;
+    box-sizing: border-box;
+    display: inline-flex;
+    font-size: 14px;
+    font-weight: 800;
+    justify-content: center;
+    min-height: 44px;
+    min-width: 0;
+    overflow: hidden;
+    padding: 0 16px;
+    text-align: center;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 100%;
+}
+
+body.customer-account-create .dalactive-register-social .btn-social .fa {
+    flex: 0 0 auto;
+    margin-right: 8px;
+}
+
+body.customer-account-create .dalactive-register-login {
+    border-top: 1px solid #edf2f7;
+    color: rgba(6, 26, 51, 0.66);
+    font-size: 14px;
+    margin: 22px 0 0;
+    padding-top: 20px;
+    text-align: center;
+}
+
+body.customer-account-create .dalactive-register-login .action.login {
+    color: @dalactive-blue;
+    font-weight: 800;
+    margin-left: 4px;
+    text-decoration: none;
+}
+
+body.customer-account-create .dalactive-register-login .action.login:hover {
+    color: @dalactive-blue-dark;
+}
+
+.catalog-category-view .products-grid .product-item.has-sale-label .product-img-main .product-item-photo .sale-label,
+.catalogsearch-result-index .products-grid .product-item.has-sale-label .product-img-main .product-item-photo .sale-label,
+.catalog-category-view .products-grid .product-item-info.has-sale-label .product-img-main .product-item-photo .sale-label,
+.catalogsearch-result-index .products-grid .product-item-info.has-sale-label .product-img-main .product-item-photo .sale-label {
+    left: auto;
+    right: 10px;
+    top: 10px;
+    z-index: 2;
+}
+
+.catalog-category-view .products-grid .product-item .price-box,
+.catalogsearch-result-index .products-grid .product-item .price-box {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    justify-content: flex-start;
+    min-height: 0;
+}
+
+.catalog-category-view .products-grid .product-item .price-box .special-price,
+.catalog-category-view .products-grid .product-item .price-box .old-price,
+.catalog-category-view .products-grid .product-item .price-box .price-final_price,
+.catalogsearch-result-index .products-grid .product-item .price-box .special-price,
+.catalogsearch-result-index .products-grid .product-item .price-box .old-price,
+.catalogsearch-result-index .products-grid .product-item .price-box .price-final_price {
+    margin: 0;
+}
+
+.catalog-category-view .products-grid .product-item .price-box .old-price + .price-final_price,
+.catalogsearch-result-index .products-grid .product-item .price-box .old-price + .price-final_price {
+    display: none !important;
+}
+
+.catalog-category-view .products-grid .product-item .dal-list-old-price,
+.catalogsearch-result-index .products-grid .product-item .dal-list-old-price {
+    color: #6d7785;
+    display: block !important;
+    font-size: 14px;
+    line-height: 1.25;
+    margin: -1px 0 0;
+    text-decoration: line-through;
+}
+
+.catalog-category-view .products-grid .product-item .price-box .special-price .price,
+.catalog-category-view .products-grid .product-item .price-box .price-final_price .price,
+.catalogsearch-result-index .products-grid .product-item .price-box .special-price .price,
+.catalogsearch-result-index .products-grid .product-item .price-box .price-final_price .price {
+    display: block;
+    font-size: 18px;
+    line-height: 1.25;
+    white-space: normal;
+}
+
+.catalog-category-view .products-grid .product-item .price-box .old-price .price,
+.catalogsearch-result-index .products-grid .product-item .price-box .old-price .price,
+.catalog-category-view .products-grid .product-item .dal-list-old-price .price,
+.catalogsearch-result-index .products-grid .product-item .dal-list-old-price .price {
+    color: #6d7785;
+    display: block;
+    font-size: 14px;
+    line-height: 1.25;
+}
+
 // 9. Responsive adjustments
 // ---------------------------------------------
 @media (max-width: 1024px) {
@@ -2262,6 +2989,164 @@ body.customer-account-create .message.info {
     body.customer-account-confirmation .form.send.confirmation,
     body.customer-account-createpassword .form.reset.password {
         padding: 18px 16px;
+    }
+
+    body.customer-account-login .account-social-login {
+        margin-bottom: 30px;
+        padding: 18px 16px 22px;
+    }
+
+    body.customer-account-login .login-container {
+        gap: 18px;
+        grid-template-columns: 1fr;
+        padding-top: 30px;
+    }
+
+    body.customer-account-login .page-title-wrapper .page-title {
+        font-size: 22px;
+        line-height: 1.25;
+        max-width: 100%;
+        white-space: normal;
+        word-break: normal;
+    }
+
+    body.customer-account-login .login-container .actions-toolbar {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    body.customer-account-login .page-main > .login-container {
+        padding-top: 0;
+    }
+
+    body.customer-account-login .page-main,
+    body.customer-account-login .columns,
+    body.customer-account-login .column.main,
+    body.customer-account-login .login-container {
+        box-sizing: border-box;
+        max-width: 100% !important;
+        min-width: 0;
+        width: 100% !important;
+    }
+
+    body.customer-account-login .column.main {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+    }
+
+    body.customer-account-login .login-container {
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        max-width: calc(100vw - 32px) !important;
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+        width: calc(100vw - 32px) !important;
+    }
+
+    body.customer-account-login .login-container .dalactive-login-page,
+    body.customer-account-login .login-container .dalactive-login-card {
+        box-sizing: border-box;
+        max-width: 100% !important;
+        min-width: 0;
+        width: 100% !important;
+    }
+
+    body.customer-account-login .login-container .dalactive-login-page {
+        max-width: 100%;
+    }
+
+    body.customer-account-login .login-container .dalactive-login-card {
+        overflow: hidden;
+        padding: 24px 16px 22px;
+    }
+
+    body.customer-account-login .login-container .dalactive-login-header > strong {
+        font-size: 21px;
+    }
+
+    body.customer-account-login .login-container .dalactive-login-options {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 9px;
+    }
+
+    body.customer-account-login .login-container .dalactive-login-card .actions-toolbar {
+        display: block;
+    }
+
+    body.customer-account-login .login-container .dalactive-login-card input.input-text,
+    body.customer-account-login .login-container .dalactive-login-card .action.login.primary {
+        max-width: 100%;
+        min-width: 0;
+    }
+
+    body.customer-account-login .login-container .dalactive-login-divider {
+        gap: 8px;
+    }
+
+    body.customer-account-login .login-container .dalactive-login-social .account-social-login .block-content {
+        grid-template-columns: 1fr;
+    }
+
+    body.customer-account-create .page-main,
+    body.customer-account-create .columns,
+    body.customer-account-create .column.main {
+        box-sizing: border-box;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        max-width: 100% !important;
+        min-width: 0;
+        width: 100% !important;
+    }
+
+    body.customer-account-create .page-main {
+        padding-left: 16px !important;
+        padding-right: 16px !important;
+    }
+
+    body.customer-account-create .column.main {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+    }
+
+    body.customer-account-create .dalactive-register-page,
+    body.customer-account-create .dalactive-register-card {
+        box-sizing: border-box;
+        max-width: 100% !important;
+        min-width: 0;
+        width: 100% !important;
+    }
+
+    body.customer-account-create .dalactive-register-page {
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        max-width: calc(100vw - 32px) !important;
+        width: calc(100vw - 32px) !important;
+    }
+
+    body.customer-account-create .dalactive-register-card {
+        overflow: hidden;
+        padding: 24px 16px 22px;
+    }
+
+    body.customer-account-create .dalactive-register-header > strong {
+        font-size: 21px;
+    }
+
+    body.customer-account-create .dalactive-register-card input.input-text,
+    body.customer-account-create .dalactive-register-card select,
+    body.customer-account-create .dalactive-register-card .action.submit.primary {
+        max-width: 100%;
+        min-width: 0;
+    }
+
+    body.customer-account-create .dalactive-register-divider {
+        gap: 8px;
+    }
+
+    body.customer-account-create .dalactive-register-social .account-social-login .block-content {
+        grid-template-columns: 1fr;
     }
 
     body.account .data.table th,

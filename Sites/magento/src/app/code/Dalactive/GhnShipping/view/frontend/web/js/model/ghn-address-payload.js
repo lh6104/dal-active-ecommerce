@@ -72,6 +72,10 @@ define([
         payloadAddress.custom_attributes = payloadAddress.custom_attributes || {};
         payloadAddress.extension_attributes = payloadAddress.extension_attributes || {};
 
+        if (payloadAddress.region_id === '') {
+            payloadAddress.region_id = null;
+        }
+
         fields.forEach(function (field) {
             var value = getValue(sourceAddress, field);
 
@@ -86,7 +90,7 @@ define([
 
         if (hasGhnData) {
             payloadAddress.country_id = payloadAddress.country_id || 'VN';
-            payloadAddress.region_id = '';
+            payloadAddress.region_id = null;
             payloadAddress.region = getValue(sourceAddress, 'ghn_province_name') || payloadAddress.region || '';
             payloadAddress.city = getValue(sourceAddress, 'ghn_district_name') || payloadAddress.city || '';
             payloadAddress.postcode = getValue(sourceAddress, 'ghn_ward_code') || payloadAddress.postcode || '';
@@ -99,7 +103,7 @@ define([
         var payloadAddress = {
             street: address.street,
             city: address.city,
-            region_id: address.regionId,
+            region_id: address.regionId || null,
             region: address.region,
             country_id: address.countryId,
             postcode: address.postcode,

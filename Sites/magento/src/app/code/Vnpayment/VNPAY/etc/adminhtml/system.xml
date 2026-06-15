@@ -39,6 +39,12 @@
                                        sortOrder="11" showInDefault="1" showInWebsite="1" showInStore="0">
                     <label>Payment URL</label>
                 </field>
+                <field id="public_base_url" translate="label comment" type="text"
+                       sortOrder="12" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Public Return Base URL</label>
+                    <comment>Public HTTPS base URL used for VNPAY return URL, for example https://www.example.com/. Leave empty to use Magento secure base URL.</comment>
+                    <validate>validate-url</validate>
+                </field>
                 <field id="tmn_code" translate="label" type="text"
                        sortOrder="13" showInDefault="1" showInWebsite="1" showInStore="0">
                     <label>Terminal Code</label>

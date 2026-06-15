@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Move register-page-only blocks into the DAL Active register card.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <move element="social-login-popup-authentication-social-create" destination="customer_form_register" as="social_login" after="-"/>
+    </body>
+</page>

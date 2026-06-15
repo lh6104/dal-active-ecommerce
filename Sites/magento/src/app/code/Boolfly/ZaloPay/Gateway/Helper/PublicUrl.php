@@ -12,7 +12,6 @@ use Magento\Store\Model\ScopeInterface;
 class PublicUrl
 {
     private const CONFIG_PATH = 'payment/zalopay/public_base_url';
-    private const FALLBACK_PUBLIC_URL = 'https://cobalt-mulch-update.ngrok-free.dev/';
 
     public function __construct(
         private readonly ScopeConfigInterface $scopeConfig
@@ -28,7 +27,20 @@ class PublicUrl
         ));
 
         $env = trim((string)getenv('PAYMENT_PUBLIC_BASE_URL'));
-        $baseUrl = $configured !== '' ? $configured : ($env !== '' ? $env : self::FALLBACK_PUBLIC_URL);
+        $secureBaseUrl = trim((string)$this->scopeConfig->getValue(
+            'web/secure/base_url',
+            ScopeInterface::SCOPE_STORE,
+            $storeId
+        ));
+        $unsecureBaseUrl = trim((string)$this->scopeConfig->getValue(
+            'web/unsecure/base_url',
+            ScopeInterface::SCOPE_STORE,
+            $storeId
+        ));
+
+        $baseUrl = $configured !== ''
+            ? $configured
+            : ($env !== '' ? $env : ($secureBaseUrl !== '' ? $secureBaseUrl : $unsecureBaseUrl));
 
         return rtrim($baseUrl, '/') . '/';
     }

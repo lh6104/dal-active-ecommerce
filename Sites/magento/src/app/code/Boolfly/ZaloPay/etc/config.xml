@@ -26,7 +26,7 @@
                 <payment_url>https://openapi.zalopay.vn/</payment_url>
                 <staging_payment_url>https://stg.zalopay.com.vn/</staging_payment_url>
                 <sandbox_payment_url>https://sb-openapi.zalopay.vn/</sandbox_payment_url>
-                <public_base_url>https://cobalt-mulch-update.ngrok-free.dev/</public_base_url>
+                <public_base_url></public_base_url>
                 <can_initialize>1</can_initialize>
                 <can_authorize>0</can_authorize>
                 <can_capture>1</can_capture>

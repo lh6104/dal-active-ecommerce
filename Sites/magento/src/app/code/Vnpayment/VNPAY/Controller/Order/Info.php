@@ -3,6 +3,7 @@
 namespace Vnpayment\VNPAY\Controller\Order;
 
 use Magento\Framework\App\Action\Context;
+use Magento\Store\Model\ScopeInterface;
 use Magento\Framework\View\Result\PageFactory;
 
 class Info extends \Magento\Framework\App\Action\Action
@@ -82,16 +83,7 @@ class Info extends \Magento\Framework\App\Action\Action
 
         $incrementId = $order->getIncrementId();
 
-        /*
-         * Local demo setup:
-         * - Keep Magento Base URL as https://dalactive.test/
-         * - Use ngrok only for VNPAY return/callback URL.
-         *
-         * IMPORTANT:
-         * Change this value every time ngrok URL changes.
-         * Later, this should be moved to an Admin config field like "Public Payment Base URL".
-         */
-        $publicBaseUrl = 'https://cobalt-mulch-update.ngrok-free.dev';
+        $publicBaseUrl = $this->getPublicBaseUrl((int)$order->getStoreId());
         $returnUrl = rtrim($publicBaseUrl, '/') . '/paymentvnpay/order/pay';
 
         /*
@@ -140,5 +132,24 @@ class Info extends \Magento\Framework\App\Action\Action
 
         $this->jsonFac->setData($paymentUrl);
         return $this->jsonFac;
+    }
+
+    private function getPublicBaseUrl(int $storeId): string
+    {
+        $configured = trim((string)$this->scopeConfig->getValue(
+            'payment/vnpay/public_base_url',
+            ScopeInterface::SCOPE_STORE,
+            $storeId
+        ));
+        if ($configured !== '') {
+            return $configured;
+        }
+
+        $env = trim((string)getenv('PAYMENT_PUBLIC_BASE_URL'));
+        if ($env !== '') {
+            return $env;
+        }
+
+        return (string)$this->storeManager->getStore($storeId)->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_LINK);
     }
 }

@@ -18,6 +18,11 @@ use Magento\Framework\Data\Form\Element\AbstractElement;
 class Actions implements \Magento\Framework\Data\Form\Element\Renderer\RendererInterface
 {
     /**
+     * @var \Magento\Backend\Model\Url
+     */
+    private $backendUrlManager;
+
+    /**
      * Actions constructor.
      *
      * @param \Magento\Backend\Model\Url $backendUrlManager

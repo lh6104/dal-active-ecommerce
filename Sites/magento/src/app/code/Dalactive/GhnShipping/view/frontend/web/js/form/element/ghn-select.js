@@ -53,7 +53,7 @@ define([
                 this.setCustomAttribute('ghn_province_id', value || '');
                 this.setCustomAttribute('ghn_province_name', name);
                 this.setProviderValue('country_id', 'VN');
-                this.setProviderValue('region_id', '');
+                this.setProviderValue('region_id', null);
                 this.setProviderValue('region', name);
                 this.setProviderValue('city', '');
                 this.setProviderValue('postcode', '');
@@ -97,7 +97,7 @@ define([
 
         setProviderValue: function (code, value) {
             if (this.source) {
-                this.source.set('shippingAddress.' + code, value || '');
+                this.source.set('shippingAddress.' + code, value === null ? null : (value || ''));
             }
         },
 
