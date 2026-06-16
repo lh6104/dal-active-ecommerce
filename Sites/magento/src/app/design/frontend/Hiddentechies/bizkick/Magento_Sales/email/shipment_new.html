@@ -24,20 +24,21 @@
 <table>
     <tr class="email-intro">
         <td>
-            <p class="greeting">{{trans "%name," name=$order.getCustomerName()}}</p>
+            <h1 class="dal-email-title" style="color:#07111f; font-size:28px; line-height:34px; margin:0 0 16px;">{{trans "Your order is on the way"}}</h1>
+            <p class="greeting">{{trans "Hi %name," name=$order.getCustomerName()}}</p>
             <p>
-                {{trans "Thank you for your order from %store_name." store_name=$store.getFrontendName()}}
+                {{trans "Your DAL Active shipment is moving."}}
                 {{trans 'You can check the status of your order by <a href="%account_url">logging into your account</a>.' account_url=$this.getUrl($store,'customer/account/',[_nosid:1]) |raw}}
             </p>
             <p>
                 {{trans 'If you have questions about your order, you can email us at <a href="mailto:%store_email">%store_email</a>.' store_email=$store_email |raw}}
             </p>
-            <p>{{trans "Your shipping confirmation is below. Thank you again for your business."}}</p>
+            <p>{{trans "Your shipping confirmation is below."}}</p>
         </td>
     </tr>
     <tr class="email-summary">
         <td>
-            <h1>{{trans "Your Shipment #%shipment_id for Order #%order_id" shipment_id=$shipment.increment_id order_id=$order.increment_id}}</h1>
+            <h2 style="color:#07111f; font-size:20px; line-height:26px; margin:24px 0 6px;">{{trans "Shipment #%shipment_id for Order #%order_id" shipment_id=$shipment.increment_id order_id=$order.increment_id}}</h2>
         </td>
     </tr>
     <tr class="email-information">

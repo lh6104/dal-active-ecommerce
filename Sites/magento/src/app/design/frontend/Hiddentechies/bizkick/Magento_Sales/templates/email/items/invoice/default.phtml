@@ -1,0 +1,60 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+/** @var \Magento\Framework\Escaper $escaper */
+?>
+<?php $_item = $block->getItem() ?>
+<?php $_order = $block->getItem()->getOrder(); ?>
+<?php $orderItem = $_item->getOrderItem(); ?>
+<?php $product = $orderItem ? $orderItem->getProduct() : null; ?>
+<?php
+$imageUrl = '';
+if ($product && $product->getId()) {
+    try {
+        $imageUrl = $this->helper(\Magento\Catalog\Helper\Image::class)
+            ->init($product, 'product_thumbnail_image')
+            ->resize(96, 96)
+            ->getUrl();
+    } catch (\Throwable $exception) {
+        $imageUrl = '';
+    }
+}
+?>
+<tr>
+    <td class="item-info<?= ($block->getItemOptions() ? ' has-extra' : '') ?>">
+        <table class="dal-email-product" cellpadding="0" cellspacing="0" border="0" style="width:100%;">
+            <tr>
+                <td class="dal-email-product-image" style="width:92px; padding-right:12px; vertical-align:top;">
+                    <?php if ($imageUrl): ?>
+                        <img src="<?= $escaper->escapeUrl($imageUrl) ?>" width="80" height="80" alt="<?= $escaper->escapeHtmlAttr($_item->getName()) ?>" style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:6px; display:block; height:80px; width:80px;" />
+                    <?php endif; ?>
+                </td>
+                <td class="dal-email-product-info" style="vertical-align:top;">
+                    <p class="product-name" style="color:#07111f; font-size:14px; font-weight:700; line-height:20px; margin:0 0 4px;"><?= $escaper->escapeHtml($_item->getName()) ?></p>
+                    <p class="sku" style="color:#64748b; font-size:12px; margin:0 0 6px;"><?= $escaper->escapeHtml(__('SKU')) ?>: <?= $escaper->escapeHtml($block->getSku($_item)) ?></p>
+                    <?php if ($block->getItemOptions()): ?>
+                        <dl>
+                            <?php foreach ($block->getItemOptions() as $option): ?>
+                                <dt><strong><em><?= $escaper->escapeHtml($option['label']) ?></em></strong></dt>
+                                <dd>
+                                    <?= /* @noEscape */  nl2br($option['value']) ?>
+                                </dd>
+                            <?php endforeach; ?>
+                        </dl>
+                    <?php endif; ?>
+                    <?php $addInfoBlock = $block->getProductAdditionalInformationBlock(); ?>
+                    <?php if ($addInfoBlock): ?>
+                        <?= $addInfoBlock->setItem($_item->getOrderItem())->toHtml() ?>
+                    <?php endif; ?>
+                    <?= $escaper->escapeHtml($_item->getDescription()) ?>
+                </td>
+            </tr>
+        </table>
+    </td>
+    <td class="item-qty"><?= (float) $_item->getQty() ?></td>
+    <td class="item-price">
+        <?= /* @noEscape */ $block->getItemPrice($_item->getOrderItem()) ?>
+    </td>
+</tr>

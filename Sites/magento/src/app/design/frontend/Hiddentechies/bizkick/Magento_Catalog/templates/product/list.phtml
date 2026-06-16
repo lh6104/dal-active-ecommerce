@@ -166,8 +166,11 @@ $getSaleData = function ($product): array {
                             </a>
                         </strong>
                         <?php echo $block->getReviewsSummaryHtml($_product, $templateType); ?>
-                        <?php /* @escapeNotVerified */ echo $block->getProductPrice($_product) ?>
-                        <?php if ((int)$saleData['percent'] > 0): ?>
+                        <?php
+                        $priceHtml = $block->getProductPrice($_product);
+                        /* @escapeNotVerified */ echo $priceHtml;
+                        ?>
+                        <?php if ((int)$saleData['percent'] > 0 && strpos($priceHtml, 'old-price') === false): ?>
                             <span class="old-price dal-list-old-price">
                                 <span class="price-wrapper">
                                     <span class="price"><?= $block->escapeHtml($priceHelper->currency((float)$saleData['regular'], true, false)) ?></span>

@@ -15,13 +15,87 @@
 
 @import url("@{baseUrl}css/email-fonts.css");
 
-.header {
-    background-color: @email__background-color;
-    padding: @email-body__padding;
+.wrapper {
+    background: #f4f7fb;
+}
+
+.main {
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.header,
+.dal-email-header {
+    background-color: #07111f;
+    padding: 26px @email-body__padding 22px;
+    text-align: center;
+}
+
+.dal-email-header .logo img,
+.dal-email-logo img {
+    display: inline-block;
+    max-width: 190px;
+}
+
+.dal-email-tagline {
+    color: #b7c6da;
+    font-size: 13px;
+    letter-spacing: .02em;
+    margin: 10px 0 0;
+}
+
+.dal-email-content {
+    background: #ffffff;
+}
+
+.dal-email-title {
+    color: #07111f;
+    font-size: 28px;
+    line-height: 34px;
+    margin: 0 0 16px;
+}
+
+.dal-email-section-title {
+    color: #07111f;
+    font-size: 20px;
+    line-height: 26px;
+    margin: 28px 0 12px;
+}
+
+.dal-email-muted {
+    color: #64748b;
+    font-size: 13px;
+    line-height: 20px;
+}
+
+.dal-email-panel,
+.order-details {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+}
+
+.dal-email-panel th,
+.dal-email-panel td {
+    padding: 10px 14px;
+}
+
+.button.dal-email-button .inner-wrapper td,
+.button .inner-wrapper td {
+    background: #0a84ff;
+    border-radius: 6px;
+}
+
+.button.dal-email-button a,
+.button a {
+    color: #ffffff !important;
+    font-weight: 700;
+    letter-spacing: .02em;
 }
 
 .footer {
-    background-color: @email__background-color;
+    background-color: #07111f;
+    color: #d7e3f4;
     padding: @email-body__padding;
 
     table {
@@ -46,11 +120,114 @@
     }
 }
 
+.dal-email-footer a {
+    color: #ffffff;
+}
+
+.dal-email-footer-brand strong {
+    color: #ffffff;
+    font-size: 16px;
+}
+
+.dal-email-footer-brand p,
+.dal-email-footer-note p {
+    color: #d7e3f4;
+    font-size: 12px;
+    line-height: 18px;
+    margin: 4px 0;
+}
+
+.email-items,
+.dal-email-items {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.email-items th {
+    background: #f1f5f9;
+    color: #07111f;
+    font-size: 12px;
+    padding: 10px;
+    text-transform: uppercase;
+}
+
+.email-items td {
+    border-top: 1px solid #e2e8f0;
+    padding: 14px 10px;
+    vertical-align: top;
+}
+
+.dal-email-product {
+    width: 100%;
+}
+
+.dal-email-product-image {
+    width: 92px;
+    padding-right: 12px;
+    vertical-align: top;
+}
+
+.dal-email-product-image img {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    display: block;
+    height: 80px;
+    object-fit: contain;
+    width: 80px;
+}
+
+.dal-email-product-info {
+    vertical-align: top;
+}
+
+.product-name {
+    color: #07111f;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 20px;
+    margin: 0 0 4px;
+}
+
+.sku,
+.item-options {
+    color: #64748b;
+    font-size: 12px;
+}
+
+.order-totals td,
+.order-totals th {
+    border-top: 1px solid #e2e8f0;
+    padding: 8px 10px;
+}
+
+.order-totals .grand_total td,
+.order-totals .grand_total th {
+    color: #07111f;
+    font-size: 16px;
+    font-weight: 700;
+}
+
 .media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__xs) {
     .header,
     .main-content,
     .footer {
         padding: @email-body__padding @indent__s !important;
+    }
+
+    .dal-email-title {
+        font-size: 23px !important;
+        line-height: 29px !important;
+    }
+
+    .dal-email-product-image {
+        width: 72px !important;
+        padding-right: 8px !important;
+    }
+
+    .dal-email-product-image img {
+        height: 64px !important;
+        width: 64px !important;
     }
 
     .footer {

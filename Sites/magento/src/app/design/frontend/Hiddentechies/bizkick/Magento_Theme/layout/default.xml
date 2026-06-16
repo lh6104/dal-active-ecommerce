@@ -10,6 +10,7 @@
         <css src="Magento_Theme::css/header-wishlist.css"/>
         <css src="Magento_Theme::css/testimonial-avatar.css"/>
         <css src="Magento_Theme::css/mobile-responsive.css"/>
+        <script src="js/cart-form-key-sync.js"/>
     </head>
     <body>
         <referenceContainer name="header.panel">

@@ -1,0 +1,59 @@
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<!--@subject {{trans "Header"}} @-->
+<!--@vars {
+"var logo_url":"Email Logo Image URL",
+"var logo_alt":"Email Logo Alt Text",
+"var logo_height":"Email Logo Image Height",
+"var logo_width":"Email Logo Image Width",
+"var template_styles|raw":"Template CSS"
+} @-->
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <style type="text/css">
+        body { margin:0; padding:0; background:#f4f7fb; color:#1f2937; font-family:Arial, Helvetica, sans-serif; }
+        table { border-collapse:collapse; }
+        a { color:#0a84ff; text-decoration:none; }
+        p { color:#1f2937; font-size:14px; line-height:22px; margin:0 0 14px; }
+        .wrapper-inner { padding:18px 10px; }
+        .main { max-width:680px; width:100%; }
+        .main-content { padding:32px; }
+        .email-items th { background:#f1f5f9; color:#07111f; font-size:12px; padding:10px; text-transform:uppercase; }
+        .email-items td { border-top:1px solid #e2e8f0; padding:14px 10px; vertical-align:top; }
+        .item-qty, .item-price { text-align:right; white-space:nowrap; }
+        .order-details td { padding:14px; vertical-align:top; }
+        .order-details h3 { color:#07111f; font-size:14px; margin:0 0 8px; }
+        .button .inner-wrapper td { background:#0a84ff; border-radius:6px; }
+        .button a { color:#ffffff !important; display:inline-block; font-weight:700; padding:12px 20px; }
+        @media only screen and (max-width:600px) {
+            .wrapper-inner { padding:0 !important; }
+            .main-content { padding:24px 18px !important; }
+            .item-qty, .item-price { font-size:12px !important; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Begin wrapper table -->
+<table class="wrapper dal-email-wrapper" width="100%" style="background:#f4f7fb;">
+    <tr>
+        <td class="wrapper-inner" align="center">
+            <table class="main dal-email-main" align="center" style="border-radius:8px; overflow:hidden;">
+                <tr>
+                    <td class="header dal-email-header" style="background:#07111f; padding:26px 32px 22px; text-align:center;">
+                        <a class="logo dal-email-logo" href="{{store url=""}}" style="color:#ffffff; display:inline-block; font-size:24px; font-weight:800; letter-spacing:.08em; text-decoration:none;">DAL ACTIVE</a>
+                        <p class="dal-email-tagline" style="color:#b7c6da; font-size:13px; letter-spacing:.02em; margin:10px 0 0;">{{trans "Gear for every move."}}</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="main-content dal-email-content" style="background:#ffffff;">
+                    <!-- Begin Content -->

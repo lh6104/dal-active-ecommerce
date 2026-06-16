@@ -5,4 +5,14 @@
         <plugin name="dalactive_checkoutfix_cart_section"
                 type="Dalactive\CheckoutFix\Plugin\CustomerData\CartSectionPlugin"/>
     </type>
+    <type name="Magento\Checkout\Model\ShippingInformationManagement">
+        <plugin name="dalactive_checkoutfix_shipping_address_reference"
+                type="Dalactive\CheckoutFix\Plugin\Checkout\ShippingAddressReferencePlugin"
+                sortOrder="5"/>
+    </type>
+    <type name="Magento\Quote\Model\ShippingMethodManagement">
+        <plugin name="dalactive_checkoutfix_shipping_method_address_reference"
+                type="Dalactive\CheckoutFix\Plugin\Quote\ShippingMethodAddressReferencePlugin"
+                sortOrder="5"/>
+    </type>
 </config>

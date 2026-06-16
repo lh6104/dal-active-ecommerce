@@ -23,9 +23,10 @@
 <table>
     <tr class="email-intro">
         <td>
-            <p class="greeting">{{trans "%name," name=$order.getCustomerName()}}</p>
+            <h1 class="dal-email-title" style="color:#07111f; font-size:28px; line-height:34px; margin:0 0 16px;">{{trans "Your invoice is ready"}}</h1>
+            <p class="greeting">{{trans "Hi %name," name=$order.getCustomerName()}}</p>
             <p>
-                {{trans "Thank you for your order from %store_name." store_name=$store.getFrontendName()}}
+                {{trans "Your DAL Active invoice has been created."}}
                 {{trans 'You can check the status of your order by <a href="%account_url">logging into your account</a>.' account_url=$this.getUrl($store,'customer/account/',[_nosid:1]) |raw}}
             </p>
             <p>
@@ -35,7 +36,7 @@
     </tr>
     <tr class="email-summary">
         <td>
-            <h1>{{trans "Your Invoice #%invoice_id for Order #%order_id" invoice_id=$invoice.increment_id order_id=$order.increment_id}}</h1>
+            <h2 style="color:#07111f; font-size:20px; line-height:26px; margin:24px 0 6px;">{{trans "Invoice #%invoice_id for Order #%order_id" invoice_id=$invoice.increment_id order_id=$order.increment_id}}</h2>
         </td>
     </tr>
     <tr class="email-information">

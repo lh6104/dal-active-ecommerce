@@ -92,14 +92,17 @@ class Info extends \Magento\Framework\App\Action\Action
          */
         $amount = (int)round((float)$order->getTotalDue() * 100);
 
+        $createDate = (new \DateTimeImmutable('now', new \DateTimeZone('Asia/Ho_Chi_Minh')))
+            ->format('YmdHis');
+
         $inputData = [
             'vnp_Version' => '2.1.0',
             'vnp_TmnCode' => $vnpTmnCode,
             'vnp_Amount' => $amount,
             'vnp_Command' => 'pay',
-            'vnp_CreateDate' => date('YmdHis'),
+            'vnp_CreateDate' => $createDate,
             'vnp_CurrCode' => 'VND',
-            'vnp_IpAddr' => $_SERVER['REMOTE_ADDR'] ?? '127.0.0.1',
+            'vnp_IpAddr' => $this->getClientIpAddress(),
             'vnp_Locale' => 'vn',
             'vnp_OrderInfo' => 'Thanh toan don hang ' . $incrementId,
             'vnp_OrderType' => 'other',
@@ -151,5 +154,26 @@ class Info extends \Magento\Framework\App\Action\Action
         }
 
         return (string)$this->storeManager->getStore($storeId)->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_LINK);
+    }
+
+    private function getClientIpAddress(): string
+    {
+        $candidates = [
+            $_SERVER['HTTP_CF_CONNECTING_IP'] ?? '',
+            $_SERVER['HTTP_X_REAL_IP'] ?? '',
+            $_SERVER['HTTP_X_FORWARDED_FOR'] ?? '',
+            $_SERVER['REMOTE_ADDR'] ?? '',
+        ];
+
+        foreach ($candidates as $candidate) {
+            foreach (explode(',', (string)$candidate) as $ip) {
+                $ip = trim($ip);
+                if (filter_var($ip, FILTER_VALIDATE_IP, FILTER_FLAG_IPV4)) {
+                    return $ip;
+                }
+            }
+        }
+
+        return '127.0.0.1';
     }
 }

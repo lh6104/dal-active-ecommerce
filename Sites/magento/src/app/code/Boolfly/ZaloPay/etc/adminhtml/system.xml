@@ -41,7 +41,7 @@
                 </field>
                 <field id="public_base_url" translate="label comment" type="text" sortOrder="61" showInDefault="1" showInWebsite="1" showInStore="0">
                     <label>Public Payment Base URL</label>
-                    <comment>Public URL used only for ZaloPay redirect/callback, for example https://your-ngrok-domain/. Leave Magento Base URL unchanged.</comment>
+                    <comment>Public URL used only for ZaloPay redirect/callback, for example https://dalactive.store/. Leave Magento Base URL unchanged.</comment>
                     <validate>validate-url</validate>
                 </field>
                 <field id="allowspecific" translate="label" type="allowspecific" sortOrder="80" showInDefault="1" showInWebsite="1" showInStore="0" canRestore="1">

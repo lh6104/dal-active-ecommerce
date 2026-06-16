@@ -1602,10 +1602,10 @@
 .cms-index-index .brands-wrapper .page-main > .page-title-main > strong {
     color: @dalactive-blue-dark;
     display: inline-block;
-    font-size: 16px;
+    font-size: 28px;
     font-weight: 800;
     letter-spacing: 0;
-    line-height: 1.25;
+    line-height: 38px;
     padding: 0 0 10px;
     position: relative;
     text-transform: uppercase;
@@ -1655,7 +1655,7 @@
     justify-content: center;
     height: 58px;
     min-height: 58px;
-    padding: 12px 18px;
+    padding: 6px 16px;
     transition: box-shadow 0.32s ease, border-color 0.32s ease, transform 0.32s ease, background 0.32s ease;
     width: 100%;
 }
@@ -1669,8 +1669,8 @@
 
 .cms-index-index .brands-wrapper .brands-slider li a img {
     filter: grayscale(0.75) opacity(0.85);
-    max-height: 24px;
-    max-width: 72px;
+    max-height: 44px;
+    max-width: 130px;
     object-fit: contain;
     transition: filter 0.32s ease, transform 0.32s ease;
     width: auto;
@@ -2828,11 +2828,14 @@ body.customer-account-create .dalactive-register-login .action.login:hover {
     min-height: 0;
 }
 
-.catalog-category-view .products-grid .product-item .price-box .special-price,
 .catalog-category-view .products-grid .product-item .price-box .old-price,
+.catalogsearch-result-index .products-grid .product-item .price-box .old-price {
+    display: none !important;
+}
+
+.catalog-category-view .products-grid .product-item .price-box .special-price,
 .catalog-category-view .products-grid .product-item .price-box .price-final_price,
 .catalogsearch-result-index .products-grid .product-item .price-box .special-price,
-.catalogsearch-result-index .products-grid .product-item .price-box .old-price,
 .catalogsearch-result-index .products-grid .product-item .price-box .price-final_price {
     margin: 0;
 }
@@ -2862,8 +2865,6 @@ body.customer-account-create .dalactive-register-login .action.login:hover {
     white-space: normal;
 }
 
-.catalog-category-view .products-grid .product-item .price-box .old-price .price,
-.catalogsearch-result-index .products-grid .product-item .price-box .old-price .price,
 .catalog-category-view .products-grid .product-item .dal-list-old-price .price,
 .catalogsearch-result-index .products-grid .product-item .dal-list-old-price .price {
     color: #6d7785;
@@ -2951,6 +2952,11 @@ body.customer-account-create .dalactive-register-login .action.login:hover {
 
     .cms-index-index .brands-wrapper {
         padding: 36px 0 0;
+    }
+
+    .cms-index-index .brands-wrapper .page-main > .page-title-main > strong {
+        font-size: 22px;
+        line-height: 30px;
     }
 
     body.account .page-main,

@@ -13,16 +13,11 @@
 
 {{template config_path="design/email/header_template"}}
 
-<p class="greeting">{{trans "%name," name=$customer.name}}</p>
-<p>{{trans "Welcome to %store_name." store_name=$store.getFrontendName()}}</p>
-<p>
-    {{trans
-        'To sign in to our site, use these credentials during checkout or on the <a href="%customer_url">My Account</a> page:'
+<h1 class="dal-email-title" style="color:#07111f; font-size:28px; line-height:34px; margin:0 0 16px;">{{trans "Welcome to DAL Active"}}</h1>
+<p class="greeting">{{trans "Hi %name," name=$customer.name}}</p>
+<p>{{trans "Your DAL Active account has been created successfully. You can now save addresses, track orders, and move through checkout faster."}}</p>
 
-        customer_url=$this.getUrl($store,'customer/account/',[_nosid:1])
-    |raw}}
-</p>
-<table class="email-credentials">
+<table class="email-credentials dal-email-panel" width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:8px;">
     <tr>
         <th>{{trans "Email:"}}</th>
         <td>{{var customer.email}}</td>
@@ -32,69 +27,21 @@
         <td><em>{{trans "Password you set when creating account"}}</em></td>
     </tr>
 </table>
-<p>
-    {{trans
-        'Forgot your account password? Click <a href="%reset_url">here</a> to reset it.'
 
-        reset_url="$this.getUrl($store,'customer/account/createPassword/',[_query:[id:$customer.id,token:$customer.rp_token],_nosid:1])"
-    |raw}}
-</p>
-<br />
-<p>{{trans "When you sign in to your account, you will be able to:"}}</p>
-<table class="email-features">
+<table class="button dal-email-button" width="100%" border="0" cellspacing="0" cellpadding="0">
     <tr>
         <td>
-            <table>
+            <table class="inner-wrapper" border="0" cellspacing="0" cellpadding="0" align="center">
                 <tr>
-                    <td>
-                        <img src="{{view url='Magento_Customer/images/icn_checkout.png'}}" height="30" width="30" alt="{{trans 'Quick Checkout'}}" />
-                    </td>
-                    <td>
-                        <h3>{{trans "Proceed through checkout faster"}}</h3>
-                    </td>
-                </tr>
-            </table>
-        </td>
-        <td>
-            <table>
-                <tr>
-                    <td>
-                        <img src="{{view url='Magento_Customer/images/icn_status.png'}}" height="30" width="30" alt="{{trans 'Order Status'}}" />
-                    </td>
-                    <td>
-                        <h3>{{trans "Check the status of orders"}}</h3>
-                    </td>
-                </tr>
-            </table>
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <table>
-                <tr>
-                    <td>
-                        <img src="{{view url='Magento_Customer/images/icn_address.png'}}" height="30" width="30" alt="{{trans 'Manage Addresses'}}" />
-                    </td>
-                    <td>
-                        <h3>{{trans "Store alternative addresses"}}</h3>
-                        <p>{{trans "For shipping to multiple family members and friends"}}</p>
-                    </td>
-                </tr>
-            </table>
-        </td>
-        <td>
-            <table>
-                <tr>
-                    <td>
-                        <img src="{{view url='Magento_Customer/images/icn_history.png'}}" height="30" width="30" alt="{{trans 'Order History'}}" />
-                    </td>
-                    <td>
-                        <h3>{{trans "View past orders"}}</h3>
+                    <td align="center" style="background:#0a84ff; border-radius:6px;">
+                        <a href="{{var this.getUrl($store,'customer/account/',[_nosid:1])}}" target="_blank" style="color:#ffffff; font-weight:700;">{{trans "Visit My Account"}}</a>
                     </td>
                 </tr>
             </table>
         </td>
     </tr>
 </table>
+
+<p class="dal-email-muted" style="color:#64748b; font-size:13px; line-height:20px;">{{trans "If you forget your password, you can reset it from the sign-in page at any time."}}</p>
 
 {{template config_path="design/email/footer_template"}}

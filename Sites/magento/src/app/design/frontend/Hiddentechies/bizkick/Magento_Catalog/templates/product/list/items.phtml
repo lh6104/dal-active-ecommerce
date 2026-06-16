@@ -290,8 +290,11 @@ switch ($type = $block->getType()) {
                                                     <?php echo $block->escapeHtml($_item->getName()) ?></a>
                                             </strong>
 
-                                            <?php /* @escapeNotVerified */ echo $block->getProductPrice($_item); ?>
-                                            <?php if ((int)$saleData['percent'] > 0): ?>
+                                            <?php
+                                            $priceHtml = $block->getProductPrice($_item);
+                                            /* @escapeNotVerified */ echo $priceHtml;
+                                            ?>
+                                            <?php if ((int)$saleData['percent'] > 0 && strpos($priceHtml, 'old-price') === false): ?>
                                                 <span class="old-price dal-list-old-price">
                                                     <span class="price-wrapper">
                                                         <span class="price"><?= $block->escapeHtml($priceHelper->currency((float)$saleData['regular'], true, false)) ?></span>

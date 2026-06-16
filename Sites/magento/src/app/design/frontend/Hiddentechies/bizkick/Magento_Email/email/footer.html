@@ -13,37 +13,21 @@
                     </td>
                 </tr>
                 <tr>
-                    <td class="footer">
-                        <table>
+                    <td class="footer dal-email-footer" style="background:#07111f; color:#d7e3f4; padding:28px 32px;">
+                        <table width="100%" cellpadding="0" cellspacing="0" border="0">
                             <tr>
-                                <td>
-                                    {{depend url_about_us}}
-                                    <p>
-                                        {{trans '<a href=%url_about_us>About Us</a>' url_about_us=$url_about_us |raw}}
-                                    </p>
-                                    {{/depend}}
-                                    {{depend url_customer_service}}
-                                    <p>
-                                        {{trans '<a href=url_customer_service>Customer Service</a>' url_customer_service=$url_customer_service |raw}}
-                                    </p>
-                                    {{/depend}}
+                                <td class="dal-email-footer-brand">
+                                    <strong style="color:#ffffff; font-size:16px;">DAL Active</strong>
+                                    <p style="color:#d7e3f4; font-size:12px; line-height:18px; margin:4px 0;"><a href="{{store url=""}}" style="color:#ffffff;">https://dalactive.store</a></p>
+                                    <p style="color:#d7e3f4; font-size:12px; line-height:18px; margin:4px 0;"><a href="mailto:dalactive99@gmail.com" style="color:#ffffff;">dalactive99@gmail.com</a></p>
                                 </td>
-                                <td>
+                            </tr>
+                            <tr>
+                                <td class="dal-email-footer-note">
+                                    <p style="color:#d7e3f4; font-size:12px; line-height:18px; margin:4px 0;">{{trans "This is an automated transactional email from DAL Active."}}</p>
                                     {{depend store_phone}}
-                                        <p class="phone">
-                                            {{trans '<a href="tel:%store_phone">%store_phone</a>' store_phone=$store_phone |raw}}
-                                        </p>
+                                    <p style="color:#d7e3f4; font-size:12px; line-height:18px; margin:4px 0;">{{trans 'Support phone: <a href="tel:%store_phone" style="color:#ffffff;">%store_phone</a>' store_phone=$store_phone |raw}}</p>
                                     {{/depend}}
-                                    {{depend store_hours}}
-                                        <p class="hours">
-                                            {{trans 'Hours of Operation:<br /><span class="no-link">%store_hours</span>.' store_hours=$store_hours |raw}}
-                                        </p>
-                                    {{/depend}}
-                                </td>
-                                <td>
-                                    <p class="address">
-                                        {{var store.getFormattedAddress()|raw}}
-                                    </p>
                                 </td>
                             </tr>
                         </table>
