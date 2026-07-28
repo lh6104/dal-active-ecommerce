@@ -19,12 +19,10 @@ MODULES=(
   Dalactive_Brand
   Dalactive_EconomicNews
   Dalactive_ExchangeRate
-  Dalactive_FlashSale
   Dalactive_HeroBanner
   Dalactive_HybridauthAutoload
   Dalactive_LazyLoad
   Dalactive_PhotoReview
-  Dalactive_ProductRecommendation
   Dalactive_SizeGuide
   Dalactive_StockAlert
   Dalactive_StoreLocator

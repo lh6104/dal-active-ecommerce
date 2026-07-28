@@ -359,7 +359,7 @@ quick-start:
 	@echo "$(call lightblue,https://dalactive.test)"
 
 apply-flash-sale:
-	@echo "$(call lightblue,Refreshing DAL Active flash sale demo rule...)"
+	@echo "$(call lightblue,Refreshing DAL Active flash sale rule...)"
 	@./bin/apply-flash-sale
 
 apply-docker-network-fix:
