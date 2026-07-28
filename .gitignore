@@ -81,4 +81,5 @@ Sites/magento/src/pay,
 Sites/magento/src/vn,
 
 *.md
+!README.md
 VIETNAM_SHIPPING_ADMIN_SETUP.md
